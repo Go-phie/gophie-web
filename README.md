@@ -9,6 +9,8 @@ This project is the web interface setup for [Gophie](https://github.com/bisoncor
 
 The deployed version is available [here](https://deven96.github.io/gophie-web)
 
+![Preview](public/preview/src)
+
 ## Todo
 
 - [ ] Implement the search function
