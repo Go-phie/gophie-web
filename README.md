@@ -1,6 +1,6 @@
 # Gophie-web
 
-![Reel icon](public/reel.jpg)
+![Reel icon](public/reel.jpeg)
 
 This project is the web interface setup for [Gophie](https://github.com/bisoncorps/gophie)
 
