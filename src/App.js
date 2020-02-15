@@ -75,10 +75,15 @@ class App extends Component {
         console.log(this.state.listIndex)
         const movies = res.data
         let newIndex = this.state.listIndex;
+        let newmovies = movies.map((element, index) => {
+          element.Index = element.Index + ((newIndex -1) * 14)
+          return element
+        })
+        console.log(newmovies)
         newIndex += 1;
         this.setState({
           isLoading: false,
-          movies: [...this.state.movies, ...movies],
+          movies: [...this.state.movies, ...newmovies],
           listIndex: newIndex
           });
       })
@@ -112,7 +117,7 @@ class App extends Component {
           {this.state.movies.map((element, index) => {
             return (
               <Movie
-                key={index*(this.state.listIndex-1)}
+                key={element.Index}
                 name={element.Title}
                 size={element.Size}
                 image={element.PictureLink}
