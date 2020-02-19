@@ -40,7 +40,7 @@ class App extends Component {
         //document.documentElement.offsetHeight) && (this.state.searchValue === "")
       //) 
       if ((windowBottom >= docHeight) && (this.state.searchValue === "")){
-        this.performList();7
+        this.performList();
       }
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
