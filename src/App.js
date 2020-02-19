@@ -39,8 +39,8 @@ class App extends Component {
         //(window.innerHeight + document.documentElement.scrollTop ===
         //document.documentElement.offsetHeight) && (this.state.searchValue === "")
       //) 
-      if ((windowBottom >= docHeight) && (this.state.searchValue == "")){
-        this.performList();
+      if ((windowBottom >= docHeight) && (this.state.searchValue === "")){
+        this.performList();7
       }
     };
     this.handleSearchChange = this.handleSearchChange.bind(this);
