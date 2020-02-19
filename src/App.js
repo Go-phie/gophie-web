@@ -120,7 +120,7 @@ class App extends Component {
                 key={element.Index}
                 name={element.Title}
                 size={element.Size}
-                image={element.PictureLink}
+                image={element.CoverPhotoLink}
                 to={element.DownloadLink}
               />
             );
