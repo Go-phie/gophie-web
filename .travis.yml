@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - "9"
+dist: trusty
+sudo: false
+
+branches:
+  only:
+  - master
+
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install -g yarn
+  - yarn install
+
+script:
+  - yarn build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
+  local_dir: build
+  on:
+    branch: master

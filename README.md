@@ -2,6 +2,8 @@
 
 ![Reel icon](public/reel.jpeg)
 
+[![Build Status](https://travis-ci.com/deven96/gophie-web.svg?branch=master)](https://travis-ci.com/deven96/gophie-web)
+
 This project is the web interface setup for [Gophie](https://github.com/bisoncorps/gophie)
 
 
