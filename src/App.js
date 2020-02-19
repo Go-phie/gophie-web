@@ -27,12 +27,19 @@ class App extends Component {
       // * it's already loading
       // * there's nothing left to load
       if (isLoading || !hasMore || error) return;
+ 
+    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
+    const windowBottom = windowHeight + window.pageYOffset
 
       // Checks that the page has scrolled to the bottom
-      if (
-        (window.innerHeight + document.documentElement.scrollTop ===
-        document.documentElement.offsetHeight) && (this.state.searchValue === "")
-      ) {
+      //if (
+        //(window.innerHeight + document.documentElement.scrollTop ===
+        //document.documentElement.offsetHeight) && (this.state.searchValue === "")
+      //) 
+      if ((windowBottom >= docHeight) && (this.state.searchValue == "")){
         this.performList();
       }
     };
