@@ -4,7 +4,7 @@ import { DownloadIcon } from "./icons";
 
 export default class Movie extends Component {
   render() {
-    const {CoverPhotoLink, Description, DownloadLink, Index, IsSeries, SDownloadLink, Size, Title, UploadDate, Year} = this.props.data;
+    const {CoverPhotoLink, DownloadLink, Size, Title} = this.props.data;
     return (
       <div className="movie">
         <div className="movie-image">
