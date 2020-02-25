@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { RetryIcon, SearchIcon } from "./components/icons.js";
-import Movie from "./components/movie.js";
-import SkeletonLoader from "./components/SkeletonLoader.js";
+import { RetryIcon, SearchIcon } from "./components/icons";
+import MovieList from "./components/MovieList";
+import SkeletonLoader from "./components/SkeletonLoader";
 import "./css/App.css";
 import "./css/loader.css";
 
@@ -20,6 +20,10 @@ class App extends Component {
       error: false
     };
 
+    this.handleWindowScroll();
+  }
+
+  handleWindowScroll() {
     window.onscroll = () => {
       const { isLoading, hasMore, error } = this.state;
 
@@ -48,12 +52,6 @@ class App extends Component {
         this.performList();
       }
     };
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.performList = this.performList.bind(this);
-    this.performSearch = this.performSearch.bind(this);
-    this.checkKey = this.checkKey.bind(this);
-    this.newSearch = this.newSearch.bind(this);
-    this.tryAgain = this.tryAgain.bind(this);
   }
 
   handleSearchChange(event) {
@@ -62,8 +60,8 @@ class App extends Component {
       movie.Title.toLowerCase().includes(query)
     );
 
-    if (query.length === 0 && filteredMovies.length === 0) {
-      this.performList();
+    if (query.length === 0) {
+      this.performList(false);
       return;
     }
 
@@ -115,7 +113,7 @@ class App extends Component {
       });
   }
 
-  performList() {
+  performList(append = true) {
     this.setState({
       isLoading: true,
       error: false
@@ -132,7 +130,7 @@ class App extends Component {
         newIndex += 1;
         this.setState({
           isLoading: false,
-          movies: [...this.state.movies, ...newmovies],
+          movies: append ? [...this.state.movies, ...newmovies] : newmovies,
           listIndex: newIndex
         });
       })
@@ -178,16 +176,15 @@ class App extends Component {
           </div>
 
           <div className="header-right">
-            <button onClick={this.newSearch} className="search-btn">
+            <button onClick={this.newSearch.bind(this)} className="search-btn">
               <SearchIcon />
             </button>
           </div>
         </div>
 
         <div className="movies">
-          {this.state.movies.map((element, index) => {
-            return <Movie key={element.Index} data={element} />;
-          })}
+          <MovieList movies={this.state.movies} />
+
           {this.state.isLoading && !this.state.error && (
             <div className="skeleton-movies">
               <SkeletonLoader />
@@ -200,7 +197,10 @@ class App extends Component {
           {this.state.error && (
             <div className="error">
               <p className="error-text">Oops..An Unknown Error Occured</p>
-              <button className="error-retry-btn" onClick={this.tryAgain}>
+              <button
+                className="error-retry-btn"
+                onClick={this.tryAgain.bind(this)}
+              >
                 <RetryIcon />
                 Try Again
               </button>
