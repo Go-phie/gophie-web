@@ -11,7 +11,6 @@ class App extends Component {
     super(props);
     this.searchInput = React.createRef();
     this.state = {
-      searchValue: "",
       api: "https://gophie.herokuapp.com/",
       movies: [],
       listIndex: 1,
@@ -46,9 +45,11 @@ class App extends Component {
         html.scrollHeight,
         html.offsetHeight
       );
-      const windowBottom = windowHeight + window.pageYOffset;
 
-      if (windowBottom >= docHeight && this.state.searchValue === "") {
+      const windowBottom = windowHeight + window.pageYOffset;
+      let query = this.searchInput.current.value;
+
+      if (windowBottom >= docHeight && query === "") {
         this.performList();
       }
     };
@@ -62,6 +63,7 @@ class App extends Component {
 
     if (query.length === 0) {
       this.performList(false);
+      this.setState({ listIndex: 1 });
       return;
     }
 
