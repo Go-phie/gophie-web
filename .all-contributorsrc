@@ -14,6 +14,17 @@
         "code",
         "test"
       ]
+    },
+    {
+      "login": "NengakDakup",
+      "name": "Nengak Dakup",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/34240577?v=4",
+      "profile": "http://nenosoft-tech.rf.gd",
+      "contributions": [
+        "code",
+        "maintenance",
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
