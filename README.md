@@ -1,10 +1,9 @@
 # Gophie-web
+![Reel icon](public/reel.jpeg)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-![Reel icon](public/reel.jpeg)
-
 [![Build Status](https://travis-ci.com/deven96/gophie-web.svg?branch=master)](https://travis-ci.com/deven96/gophie-web)
 
 This project is the web interface setup for [Gophie](https://github.com/bisoncorps/gophie)
@@ -18,8 +17,11 @@ The deployed version is available [here](https://deven96.github.io/gophie-web)
 
 ## Todo
 
-- [ ] Implement the search function
-- [ ] Write Makefile to generate production build before pushing
+- [x] Implement the search function
+- [x] Create autodeploy pipeline
+- [ ] Include Engine selection functionality
+- [ ] Fix Mobile scroll error
+- [ ] Implement Lightmode
 
 ## Contributors ✨
 
