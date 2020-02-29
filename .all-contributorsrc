@@ -1,0 +1,36 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "kodjunkie",
+      "name": "Lawrence Onah",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/21959017?v=4",
+      "profile": "https://github.com/kodjunkie",
+      "contributions": [
+        "code",
+        "test"
+      ]
+    },
+    {
+      "login": "NengakDakup",
+      "name": "Nengak Dakup",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/34240577?v=4",
+      "profile": "http://nenosoft-tech.rf.gd",
+      "contributions": [
+        "code",
+        "maintenance",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "gophie-web",
+  "projectOwner": "deven96",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}

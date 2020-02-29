@@ -1,15 +1,17 @@
+import axios from "axios";
 import React, { Component } from "react";
-import Movie from "./components/movie.js";
+import { RetryIcon, SearchIcon } from "./components/icons";
+import MovieList from "./components/MovieList";
+import SkeletonLoader from "./components/SkeletonLoader";
 import "./css/App.css";
 import "./css/loader.css";
-import axios from "axios";
 
 class App extends Component {
   constructor(props) {
     super(props);
+    this.searchInput = React.createRef();
     this.state = {
-      searchValue: "",
-      movieLink: "https://gophie.herokuapp.com/",
+      api: "https://gophie.herokuapp.com/",
       movies: [],
       listIndex: 1,
       isLoading: false,
@@ -17,136 +19,196 @@ class App extends Component {
       error: false
     };
 
+    this.handleWindowScroll();
+  }
+
+  handleWindowScroll() {
     window.onscroll = () => {
-      const {
-        state: { isLoading, hasMore, error }
-      } = this;
+      const { isLoading, hasMore, error } = this.state;
 
       // Bails early if:
       // * there's an error
       // * it's already loading
       // * there's nothing left to load
       if (isLoading || !hasMore || error) return;
- 
-    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
-    const body = document.body;
-    const html = document.documentElement;
-    const docHeight = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight,  html.scrollHeight, html.offsetHeight);
-    const windowBottom = windowHeight + window.pageYOffset
 
-      // Checks that the page has scrolled to the bottom
-      //if (
-        //(window.innerHeight + document.documentElement.scrollTop ===
-        //document.documentElement.offsetHeight) && (this.state.searchValue === "")
-      //) 
-      if ((windowBottom >= docHeight) && (this.state.searchValue === "")){
+      const windowHeight =
+        "innerHeight" in window
+          ? window.innerHeight
+          : document.documentElement.offsetHeight;
+      const body = document.body;
+      const html = document.documentElement;
+      const docHeight = Math.max(
+        body.scrollHeight,
+        body.offsetHeight,
+        html.clientHeight,
+        html.scrollHeight,
+        html.offsetHeight
+      );
+
+      const windowBottom = windowHeight + window.pageYOffset;
+      let query = this.searchInput.current.value;
+
+      if (windowBottom >= docHeight && query === "") {
         this.performList();
       }
     };
-    this.handleSearchChange = this.handleSearchChange.bind(this);
-    this.performList = this.performList.bind(this);
-    this.performSearch = this.performSearch.bind(this)
-    this.checkKey = this.checkKey.bind(this);
-    this.newSearch = this.newSearch.bind(this);
   }
-
 
   handleSearchChange(event) {
-    this.setState({
-      searchValue: event.target.value
-    });
+    let query = event.target.value.toLowerCase();
+    const filteredMovies = this.state.movies.filter(movie =>
+      movie.Title.toLowerCase().includes(query)
+    );
+
+    if (query.length === 0) {
+      this.performList(false);
+      this.setState({ listIndex: 1 });
+      return;
+    }
+
+    if (filteredMovies.length >= 1) {
+      this.setState({
+        movies: filteredMovies
+      });
+      return;
+    }
+
+    this.performSearch(query);
   }
+
   newSearch() {
     this.setState({
-      movies: []
+      movies: [],
+      error: false
     });
-    this.performSearch();
+    let query = this.searchInput.current.value;
+    this.performSearch(query);
   }
+
   checkKey(e) {
-    // eslint-disable-next-line
-    if (e.charCode != 13) return;
-    this.setState({
-      movies: []
-    });
-    this.performSearch();
+    if (e.charCode !== 13) return;
+    this.setState({ movies: [] });
+    let query = this.searchInput.current.value;
+    this.performSearch(query);
   }
-  performSearch(){}
-  performList() {
+
+  performSearch(query) {
     this.setState({
-      isLoading: true
+      isLoading: true,
+      error: false
     });
-    axios.get(
-        `${this.state.movieLink}?list=${this.state.listIndex}`
-      )
+
+    axios
+      .get(this.state.api + "?search=" + query.replace(" ", "+"))
       .then(res => {
-        console.log(this.state.listIndex)
-        const movies = res.data
-        let newIndex = this.state.listIndex;
-        let newmovies = movies.map((element, index) => {
-          element.Index = element.Index + ((newIndex -1) * 14)
-          return element
-        })
-        console.log(newmovies)
-        newIndex += 1;
         this.setState({
-          isLoading: false,
-          movies: [...this.state.movies, ...newmovies],
-          listIndex: newIndex
-          });
+          movies: res.data,
+          isLoading: false
+        });
       })
       .catch(err => {
         this.setState({
           error: true
         });
-      console.log(err)
+        alert(err);
       });
   }
 
-  componentDidMount () {
+  performList(append = true) {
+    this.setState({
+      isLoading: true,
+      error: false
+    });
+    axios
+      .get(`${this.state.api}?list=${this.state.listIndex}`)
+      .then(res => {
+        const movies = res.data;
+        let newIndex = this.state.listIndex;
+        let newmovies = movies.map((element, index) => {
+          element.Index = element.Index + (newIndex - 1) * 14;
+          return element;
+        });
+        newIndex += 1;
+        this.setState({
+          isLoading: false,
+          movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+          listIndex: newIndex
+        });
+      })
+      .catch(err => {
+        this.setState({
+          error: true
+        });
+        alert(err);
+      });
+  }
+
+  tryAgain() {
+    let query = this.searchInput.current.value;
+    if (query.length > 1) {
+      this.performSearch(query);
+    } else {
+      this.performList();
+    }
+  }
+
+  componentDidMount() {
     this.performList();
   }
+
   render() {
     return (
       <div className="App">
-        <div className="search">
-          <input
-            type="text"
-            placeholder="Find a movie"
-            name=""
-            id=""
-            onKeyPress={this.checkKey}
-            onChange={this.handleSearchChange}
-          />{" "}
-          <button onClick={this.newSearch}> Search </button>{" "}
-        </div>{" "}
-        <div className="movies">
-          {" "}
-          {this.state.movies.map((element, index) => {
-            return (
-              <Movie
-                key={element.Index}
-                name={element.Title}
-                size={element.Size}
-                image={element.CoverPhotoLink}
-                to={element.DownloadLink}
-              />
-            );
-          })}{" "}
-        </div>{" "}
-        {this.state.isLoading && !this.state.error && (
-          <div className="loader">
-            <div className="lds-roller">
-              <div />
-              <div />
-              <div />
-              <div />
-              <div />
-              <div />
-              <div />
-              <div />
-            </div>{" "}
+        <div className="header">
+          <div className="header-left">
+            <p>Gophie</p>
           </div>
-        )}{" "}
+
+          <div className="header-center">
+            <input
+              type="text"
+              ref={this.searchInput}
+              className="form-control"
+              placeholder="Search for a movie..."
+              autoFocus={true}
+              onKeyPress={this.checkKey.bind(this)}
+              onChange={this.handleSearchChange.bind(this)}
+            />
+          </div>
+
+          <div className="header-right">
+            <button onClick={this.newSearch.bind(this)} className="search-btn">
+              <SearchIcon />
+            </button>
+          </div>
+        </div>
+
+        <div className="movies">
+          <MovieList movies={this.state.movies} />
+
+          {this.state.isLoading && !this.state.error && (
+            <div className="skeleton-movies">
+              <SkeletonLoader />
+              <SkeletonLoader />
+              <SkeletonLoader />
+              <SkeletonLoader />
+              <SkeletonLoader />
+            </div>
+          )}
+          {this.state.error && (
+            <div className="error">
+              <p className="error-text">Oops..An Unknown Error Occured</p>
+              <button
+                className="error-retry-btn"
+                onClick={this.tryAgain.bind(this)}
+              >
+                <RetryIcon />
+                Try Again
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     );
   }
