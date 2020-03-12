@@ -4,6 +4,7 @@ body {
   background-color: #1e2126; 
   padding: 0px;
   margin: 0px;
+  margin-top: 80px;
 }
 
 .App {
@@ -82,8 +83,32 @@ body {
   background-color: #e7d10a;
 }
 
+.options {
+  display: inline-flex;
+  align-items: center;
+  height: auto;
+  padding: 0px 10%;
+}
+
+.server-selector {
+  background-color: #e7d10a;
+  border: none;
+  color: #1e2126;
+  font-weight: bold;
+  padding: 10px 15px;
+  font-size: 15px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.server-selector > option {
+  background-color: #1e2126;
+  color: #e7d10a;
+  padding: 10px 15px;
+}
+
 div.movies {
-  margin: 100px 0;
+  margin: 10px 0;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;

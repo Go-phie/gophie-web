@@ -12,6 +12,7 @@ class App extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: "https://gophie.herokuapp.com/",
+      server: "",
       movies: [],
       listIndex: 1,
       isLoading: false,
@@ -77,6 +78,16 @@ class App extends Component {
     this.performSearch(query);
   }
 
+  handleServerChange(event) {
+    let server = event.target.value;
+    this.setState({
+      server,
+      movies: [],
+      listIndex: 1
+    }, () => this.performList());
+    
+  }
+
   newSearch() {
     this.setState({
       movies: [],
@@ -100,7 +111,7 @@ class App extends Component {
     });
 
     axios
-      .get(this.state.api + "?search=" + query.replace(" ", "+"))
+      .get(this.state.api + "?search=" + query.replace(" ", "+") + '&engine=' + this.state.server)
       .then(res => {
         this.setState({
           movies: res.data,
@@ -121,7 +132,7 @@ class App extends Component {
       error: false
     });
     axios
-      .get(`${this.state.api}?list=${this.state.listIndex}`)
+      .get(`${this.state.api}?list=${this.state.listIndex}&engine=${this.state.server}`)
       .then(res => {
         const movies = res.data;
         let newIndex = this.state.listIndex;
@@ -182,6 +193,14 @@ class App extends Component {
               <SearchIcon />
             </button>
           </div>
+        </div>
+
+        <div className="options">
+          <select className="server-selector" onChange={this.handleServerChange.bind(this)}>
+            <option value="">Select Server (Optional)</option>
+            <option value="NetNaija">NetNaija</option>
+            <option value="FzMovies">FzMovies</option>
+          </select>
         </div>
 
         <div className="movies">
