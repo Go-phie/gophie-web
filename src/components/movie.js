@@ -9,7 +9,7 @@ export default class Movie extends Component {
       <div className="movie">
         <div className="movie-image">
           <img src={CoverPhotoLink} alt="" />
-          <a className="download-btn" target="_blank" rel="noopener noreferrer" href={DownloadLink.Scheme + '://' + DownloadLink.Host + DownloadLink.Path + '?' + DownloadLink.RawQuery}>
+          <a className="download-btn" target="_blank" rel="noopener noreferrer" href={DownloadLink}>
             <DownloadIcon />
           </a>
         </div>
