@@ -210,9 +210,9 @@ class App extends Component {
             select className = "server-selector"
             onChange = { this.handleServerChange.bind(this) } >
             <
-            option value = "" > Select Server(Optional) < /option> <
             option value = "NetNaija" > NetNaija < /option> <
-            option value = "FzMovies" > FzMovies < /option> < /
+            option value = "FzMovies" > FzMovies < /option> <
+            option value = "BestHDMovies" > BestHDMovies < /option>< /
             select > <
             /div>
 
