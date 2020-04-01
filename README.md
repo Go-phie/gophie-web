@@ -1,19 +1,26 @@
-# Gophie-web
-![Reel icon](public/reel.jpeg)
+<p align="center"><img src="public/reel.png" alt="Gophie" height="100px"></p>
 
+<div align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors-)
+  <a href="#contributors-">
+    <img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square" alt="Go Report Card">
+  </a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-[![Build Status](https://travis-ci.com/deven96/gophie-web.svg?branch=master)](https://travis-ci.com/deven96/gophie-web)
+  <a href="https://travis-ci.com/go-phie/gophie">
+    <img src="https://travis-ci.com/go-phie/gophie.svg?branch=master" alt="Build Status">
+  </a>
+</div>
 
-This project is the web interface setup for [Gophie](https://github.com/bisoncorps/gophie)
+# Gophie-web
+
+This project is the web interface setup for [Gophie](https://github.com/go-phie/gophie) built on [React](https://github.com/facebook/react)
 
 
 ## Deployed Version
 
 The deployed version is available [here](https://go-phie.github.io/gophie-web)
 
-![Preview](public/preview.png)
+![Preview](public/demo.png)
 
 ## Todo
 
