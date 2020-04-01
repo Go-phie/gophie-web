@@ -11,7 +11,7 @@ This project is the web interface setup for [Gophie](https://github.com/bisoncor
 
 ## Deployed Version
 
-The deployed version is available [here](https://deven96.github.io/gophie-web)
+The deployed version is available [here](https://go-phie.github.io/gophie-web)
 
 ![Preview](public/preview.png)
 
