@@ -28,7 +28,7 @@ The deployed version is available [here](https://go-phie.github.io/gophie-web)
 - [x] Create autodeploy pipeline
 - [x] Include Engine selection functionality
 - [ ] Fix Mobile scroll error
-- [ ] Implement Lightmode
+- [x] Implement Lightmode
 
 ## Contributors ✨
 
