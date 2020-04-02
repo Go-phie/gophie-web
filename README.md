@@ -19,7 +19,7 @@ The deployed version is available [here](https://deven96.github.io/gophie-web)
 
 - [x] Implement the search function
 - [x] Create autodeploy pipeline
-- [ ] Include Engine selection functionality
+- [x] Include Engine selection functionality
 - [ ] Fix Mobile scroll error
 - [ ] Implement Lightmode
 

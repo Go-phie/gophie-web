@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "../css/movie.css";
 
 export default class SkeletonLoader extends Component {
     render(){
