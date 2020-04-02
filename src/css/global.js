@@ -42,7 +42,7 @@ body {
   width: 100%;
   height: 50px;
   box-shadow: #000 0px -2px 8px 1px;
-  background-color: inherit;
+  background-color: ${({ theme }) => theme.body};
   z-index: 999;
 }
 
@@ -293,14 +293,14 @@ div.movie {
   p.name {
     font-size: 20px;
     font-weight: 700;
-    color: #fff;
+    color: ${({ theme }) => theme.text}; 
   }
   
   p.by,
   p.pub-by {
     font-size: 13px;
     font-weight: 600;
-    color: #fff;
+    color: ${({ theme }) => theme.text}; 
     opacity: 0.5;
   }
   
