@@ -2,7 +2,11 @@ import React from "react";
 import Movie from "./movie";
 
 function MovieList({ movies }) {
-  return movies.map(movie => {
+  console.log(movies);
+  
+  const filteredMovies = movies.filter(movie => movie.Title.length > 0);
+  
+  return filteredMovies.map(movie => {
     return <Movie key={movie.Index} data={movie} />;
   });
 }
