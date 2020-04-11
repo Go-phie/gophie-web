@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import { RetryIcon, SearchIcon, SunIcon, MoonIcon } from "./components/icons";
 import MovieList from "./components/MovieList";
 import SkeletonLoader from "./components/SkeletonLoader";
+import { v4 as uuidv4 } from 'uuid';
 
 // style stuff
 import { ThemeProvider } from 'styled-components';
@@ -153,7 +154,8 @@ class App extends Component {
         const movies = res.data;
         let newIndex = this.state.listIndex;
         let newmovies = movies.map((element, index) => {
-          element.Index = element.Index + (newIndex - 1) * 14;
+        //   element.Index = element.Index + (newIndex - 1) * 14;
+        element.Index = uuidv4()
           return element;
         });
         newIndex += 1;
