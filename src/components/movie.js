@@ -7,7 +7,7 @@ export default class Movie extends Component {
     return (
       <div className="movie">
         <div className="movie-image">
-          <img src={CoverPhotoLink} alt="" />
+          <img src={CoverPhotoLink?CoverPhotoLink: "https://github.com/Go-phie/gophie-web/blob/master/public/no-pic.png"} alt="" />
           <a className="download-btn" target="_blank" rel="noopener noreferrer" href={DownloadLink}>
             <DownloadIcon />
           </a>
