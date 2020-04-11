@@ -6,8 +6,8 @@
     <img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square" alt="Go Report Card">
   </a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-  <a href="https://travis-ci.com/go-phie/gophie">
-    <img src="https://travis-ci.com/go-phie/gophie.svg?branch=master" alt="Build Status">
+  <a href="https://travis-ci.com/go-phie/gophie-web">
+    <img src="https://travis-ci.com/go-phie/gophie-web.svg?branch=master" alt="Build Status">
   </a>
 </div>
 
