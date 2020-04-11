@@ -246,6 +246,7 @@ class App extends Component {
                         <option value="NetNaija"> NetNaija </option>
                         <option value="FzMovies"> FzMovies </option>
                         <option value="BestHDMovies"> BestHDMovies </option>
+                        <option value="TvSeries"> TvSeries </option>
                     </select>
 
                     <button className="switch-theme-btn" onClick={() => this.switchTheme(this.state.theme)}>Switch Theme {theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
