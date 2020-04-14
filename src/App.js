@@ -32,7 +32,7 @@ class App extends Component {
 
   handleWindowScroll() {
     window.onscroll = () => {
-      const { isLoading, hasMore, error } = this.state;
+      const { isLoading, hasMore, error, server } = this.state;
 
       // Bails early if:
       // * there's an error
@@ -60,33 +60,35 @@ class App extends Component {
       if (windowBottom >= docHeight && query === "") {
         this.performList();
       }
+      if (windowBottom >= docHeight && query !== "" && server==="tvseries"){
+        this.performSearch(query, true)
+      }
     };
   }
 
   handleSearchChange(event) {
     let query = event.target.value.toLowerCase();
+    
+    if (query.length === 0) {
+        this.performList(false);
+        this.setState({ listIndex: 1 });
+        return;
+    }
+    
     const filteredMovies = this.state.movies.filter(movie =>
       movie.Title.toLowerCase().includes(query)
     );
-
-    if (query.length === 0) {
-      this.performList(false);
-      this.setState({ listIndex: 1 });
-      return;
-    }
-
     if (filteredMovies.length >= 1) {
       this.setState({
         movies: filteredMovies
       });
       return;
     }
-
-    this.performSearch(query);
   }
 
   handleServerChange(event) {
     let server = event.target.value;
+    this.searchInput.current.value = ""
     this.setState(
       {
         server,
@@ -113,7 +115,7 @@ class App extends Component {
     this.performSearch(query);
   }
 
-  performSearch(query) {
+  performSearch(query, append=false) {
     this.setState({
       isLoading: true,
       error: false
@@ -123,15 +125,24 @@ class App extends Component {
       .get(
         this.state.api +
           "search?query=" +
-          query.replace(" ", "+") +
+          encodeURI(query) +
           "&engine=" +
-          this.state.server
+          this.state.server+
+          "&page=" + this.state.listIndex
       )
       .then(res => {
-        this.setState({
-          movies: res.data,
-          isLoading: false
-        });
+          const movies = res.data;
+          if (movies !== null) {
+              let newmovies =  movies.map((element, index) => {
+                element.Index = uuidv4()
+                  return element;
+                });
+            this.setState({
+              movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+              isLoading: false,
+              listIndex: append? this.state.listIndex + 1: 1
+            });
+          }
       })
       .catch(err => {
         this.setState({
@@ -154,7 +165,6 @@ class App extends Component {
         const movies = res.data;
         let newIndex = this.state.listIndex;
         let newmovies = movies.map((element, index) => {
-        //   element.Index = element.Index + (newIndex - 1) * 14;
         element.Index = uuidv4()
           return element;
         });
@@ -245,10 +255,10 @@ class App extends Component {
                         className="server-selector"
                         onChange={this.handleServerChange.bind(this)}
                     >
-                        <option value="NetNaija"> NetNaija </option>
-                        <option value="FzMovies"> FzMovies </option>
-                        <option value="BestHDMovies"> BestHDMovies </option>
-                        <option value="TvSeries"> TvSeries </option>
+                        <option value="netnaija"> NetNaija </option>
+                        <option value="fzmovies"> FzMovies </option>
+                        <option value="besthdmovies"> BestHDMovies </option>
+                        <option value="tvseries"> TvSeries </option>
                     </select>
 
                     <button className="switch-theme-btn" onClick={() => this.switchTheme(this.state.theme)}>Switch Theme {theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
