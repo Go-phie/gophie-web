@@ -27,7 +27,7 @@ class App extends Component {
       theme: 'dark'
     };
 
-    this.handleWindowScroll();
+    this.handleScroll = this.handleWindowScroll.bind(this);
   }
 
   handleWindowScroll() {
@@ -195,6 +195,11 @@ class App extends Component {
   componentDidMount() {
     this.setTheme();
     this.performList();
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener("scroll", this.handleScroll);
   }
 
   setTheme(){
