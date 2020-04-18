@@ -26,44 +26,25 @@ class App extends Component {
       error: false,
       theme: 'dark'
     };
+}
 
-    this.handleScroll = this.handleWindowScroll.bind(this);
-  }
+  isBottom = (el) => {
+  return el.getBoundingClientRect().bottom <= window.innerHeight;
+}
 
-  handleWindowScroll() {
-    window.onscroll = () => {
+  handleScroll = () => {
+      const query = this.searchInput.current.value
       const { isLoading, hasMore, error, server } = this.state;
+      const wrappedElement = document.getElementById('movie-div');
 
-      // Bails early if:
-      // * there's an error
-      // * it's already loading
-      // * there's nothing left to load
       if (isLoading || !hasMore || error) return;
-
-      const windowHeight =
-        "innerHeight" in window
-          ? window.innerHeight
-          : document.documentElement.offsetHeight;
-      const body = document.body;
-      const html = document.documentElement;
-      const docHeight = Math.max(
-        body.scrollHeight,
-        body.offsetHeight,
-        html.clientHeight,
-        html.scrollHeight,
-        html.offsetHeight
-      );
-
-      const windowBottom = windowHeight + window.pageYOffset;
-      let query = this.searchInput.current.value;
-
-      if (windowBottom >= docHeight && query === "") {
+      
+      if (this.isBottom(wrappedElement) && query === "") {
         this.performList();
       }
-      if (windowBottom >= docHeight && query !== "" && server==="tvseries"){
+      if (this.isBottom(wrappedElement) && query !== "" && server==="tvseries"){
         this.performSearch(query, true)
       }
-    };
   }
 
   handleSearchChange(event) {
@@ -195,11 +176,11 @@ class App extends Component {
   componentDidMount() {
     this.setTheme();
     this.performList();
-    window.addEventListener("scroll", this.handleScroll);
+    document.addEventListener("scroll", this.handleScroll);
   }
 
   componentWillUnmount(){
-    window.removeEventListener("scroll", this.handleScroll);
+    document.removeEventListener("scroll", this.handleScroll);
   }
 
   setTheme(){
@@ -268,7 +249,7 @@ class App extends Component {
 
                     <button className="switch-theme-btn" onClick={() => this.switchTheme(this.state.theme)}>Switch Theme {theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
                     </div>
-                    <div className="movies">
+                    <div className="movies" id="movie-div">
                     <MovieList movies={this.state.movies} />
                     {this.state.isLoading && !this.state.error && (
                         <div className="skeleton-movies">
