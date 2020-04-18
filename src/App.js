@@ -49,10 +49,11 @@ class App extends Component {
 
   handleSearchChange(event) {
     let query = event.target.value.toLowerCase();
-    
+    this.setState({ listIndex: 1 });
     if (query.length === 0) {
-        this.performList(false);
-        this.setState({ listIndex: 1 });
+      this.setState(
+        { listIndex: 1 },
+        () => this.performList(false) );
         return;
     }
     
@@ -83,20 +84,21 @@ class App extends Component {
   newSearch() {
     this.setState({
       movies: [],
-      error: false
+      error: false,
+      listIndex: 1,
     });
     let query = this.searchInput.current.value;
-    this.performSearch(query);
+    this.performSearch(query, true);
   }
 
   checkKey(e) {
     if (e.charCode !== 13) return;
-    this.setState({ movies: [] });
+    this.setState({ movies: [], listIndex:1 });
     let query = this.searchInput.current.value;
     this.performSearch(query);
   }
 
-  performSearch(query, append=false) {
+  performSearch = (query, append=false) => {
     this.setState({
       isLoading: true,
       error: false
@@ -133,7 +135,7 @@ class App extends Component {
       });
   }
 
-  performList(append = true) {
+  performList = (append = true) => {
     this.setState({
       isLoading: true,
       error: false
@@ -232,11 +234,6 @@ class App extends Component {
                     </div>
                     </div>
                     <div className="options">
-                        {/* <ul>
-                            <li>NetNaija</li>
-                            <li>FzMovies</li>
-                            <li>BestHDMovies</li>
-                        </ul> */}
                     <select
                         className="server-selector"
                         onChange={this.handleServerChange.bind(this)}
