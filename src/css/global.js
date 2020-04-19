@@ -227,6 +227,7 @@ div.skeleton-movies {
 div.movie {
     width: 220px;
     min-height: 30vh;
+    height: 100%;
     background: transparent;
     position: relative;
     margin: 10px;
