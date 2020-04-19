@@ -2,7 +2,9 @@
 
 <div align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+<a href="#contributors">
+    <img src="https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square" alt="All Contributors">
+  </a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <a href="https://travis-ci.com/go-phie/gophie-web">
     <img src="https://travis-ci.com/go-phie/gophie-web.svg?branch=master" alt="Build Status">
