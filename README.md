@@ -2,9 +2,7 @@
 
 <div align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-  <a href="#contributors-">
-    <img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square" alt="Go Report Card">
-  </a>
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <a href="https://travis-ci.com/go-phie/gophie-web">
     <img src="https://travis-ci.com/go-phie/gophie-web.svg?branch=master" alt="Build Status">
@@ -39,8 +37,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://github.com/kodjunkie"><img src="https://avatars0.githubusercontent.com/u/21959017?v=4" width="100px;" alt=""/><br /><sub><b>Lawrence Onah</b></sub></a><br /><a href="https://github.com/deven96/gophie-web/commits?author=kodjunkie" title="Code">💻</a> <a href="https://github.com/deven96/gophie-web/commits?author=kodjunkie" title="Tests">⚠️</a></td>
-    <td align="center"><a href="http://nenosoft-tech.rf.gd"><img src="https://avatars0.githubusercontent.com/u/34240577?v=4" width="100px;" alt=""/><br /><sub><b>Nengak Dakup</b></sub></a><br /><a href="https://github.com/deven96/gophie-web/commits?author=NengakDakup" title="Code">💻</a> <a href="#maintenance-NengakDakup" title="Maintenance">🚧</a> <a href="https://github.com/deven96/gophie-web/pulls?q=is%3Apr+reviewed-by%3ANengakDakup" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/kodjunkie"><img src="https://avatars0.githubusercontent.com/u/21959017?v=4" width="100px;" alt=""/><br /><sub><b>Lawrence Onah</b></sub></a><br /><a href="https://github.com/Go-phie/gophie-web/commits?author=kodjunkie" title="Code">💻</a> <a href="https://github.com/Go-phie/gophie-web/commits?author=kodjunkie" title="Tests">⚠️</a></td>
+    <td align="center"><a href="http://nenosoft-tech.rf.gd"><img src="https://avatars0.githubusercontent.com/u/34240577?v=4" width="100px;" alt=""/><br /><sub><b>Nengak Dakup</b></sub></a><br /><a href="https://github.com/Go-phie/gophie-web/commits?author=NengakDakup" title="Code">💻</a> <a href="#maintenance-NengakDakup" title="Maintenance">🚧</a> <a href="https://github.com/Go-phie/gophie-web/pulls?q=is%3Apr+reviewed-by%3ANengakDakup" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://tacafrica.org"><img src="https://avatars0.githubusercontent.com/u/26682159?v=4" width="100px;" alt=""/><br /><sub><b>sylvernus akubo</b></sub></a><br /><a href="https://github.com/Go-phie/gophie-web/issues?q=author%3Asilvareal" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
