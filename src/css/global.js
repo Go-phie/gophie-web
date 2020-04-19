@@ -406,14 +406,20 @@ div.movie {
   border-radius: 5px;
   border: none;
   cursor: pointer;
-  animation: moveup 5s infinity;
+  animation: moveup 3s infinite linear;
 }
 
-// @keyframes moveup {
-// 100% {
-//   transform: translateY(-1em)
-// }
-// }
+@keyframes moveup {
+  0% {
+    transform: translateY(0em);
+  }
+  50% {
+    transform: translateY(-.5em);
+  }
+  100% {
+    transform: translateY(0em);
+  }
+}
 
 
 
