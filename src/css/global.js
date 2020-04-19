@@ -395,7 +395,45 @@ div.movie {
 
 
 
+.scroll {
+  opacity: 0.8;
+  background-color: yellow;
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 10px;
+  right: 15px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  animation: moveup 5s infinity;
+}
 
+// @keyframes moveup {
+// 100% {
+//   transform: translateY(-1em)
+// }
+// }
+
+
+
+.scroll:hover {
+  opacity: 1;
+}
+
+.arrow-up {
+  color: #121620;
+  position: absolute;
+  top: 50% ;
+  left: 50% ;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-bottom: 5px solid #121620;
+  width: 20px;
+  height: 20px;
+  border-left: 5px solid #121620;
+  transform: rotate(135deg);
+}
 
 
 

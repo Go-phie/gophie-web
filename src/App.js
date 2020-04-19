@@ -9,6 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './css/theme';
 import { GlobalStyles } from './css/global';
+import ScrollButton from "./components/ScrollToTop";
 
 // import "./css/App.css";
 
@@ -273,6 +274,8 @@ class App extends Component {
                 </div>
 
             </>
+            <ScrollButton scrollStepInPx="80"
+            delayInMs="16.66" / >
         </ThemeProvider>
     );
   }
