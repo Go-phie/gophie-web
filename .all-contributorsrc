@@ -25,11 +25,21 @@
         "maintenance",
         "review"
       ]
+    },
+    {
+      "login": "silvareal",
+      "name": "sylvernus akubo",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/26682159?v=4",
+      "profile": "https://tacafrica.org",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "gophie-web",
-  "projectOwner": "deven96",
+  "projectOwner": "Go-phie",
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true

@@ -2,20 +2,18 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 
-@import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
-  font-family: "Montserrat", sans-serif;
+  font-family: 'Pacifico', cursive;
+font-family: 'Righteous', cursive;
 }
 
 
 body {
-  font-family: 'Courier New', Courier, monospace;
-  font-style: cursive;
   background-color: ${({ theme }) => theme.body}; 
   padding: 0px;
   margin: 0px;
@@ -283,12 +281,12 @@ div.movie {
     width: 100%;
     padding-top: 10px;
     padding-left: 6px;
-    height: 20%;
+    height: auto;
   }
   
   div.about p {
     margin: 2px;
-    font-family: cursive;
+    color: ${({ theme }) => theme.text}; 
   }
   
   p.name {
@@ -420,8 +418,6 @@ div.movie {
     transform: translateY(0em);
   }
 }
-
-
 
 .scroll:hover {
   opacity: 1;
