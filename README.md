@@ -1,4 +1,4 @@
-<p align="center"><img src="public/reel.png" alt="Gophie" height="100px"></p>
+<p align="center"><img src="public/reel.png" alt="Gophie" height="250px"></p>
 
 <div align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->

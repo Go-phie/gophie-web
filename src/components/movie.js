@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { DownloadIcon } from "./icons";
 
 function checkURL(url) {
-  return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+  return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
 }
 
 export default class Movie extends Component {
@@ -22,11 +22,13 @@ export default class Movie extends Component {
             <DownloadIcon />
           </a>
         </div>
-        <div className="about">
-          <p className="name"> {Title} </p>
-          <p className="by"> Size: {Size} </p>
-          <p> Source: {Source} </p>
+        <div className="movie__about">
+          <h3 className="name"> {Title} </h3>
 
+          <div className="movie__about-meta">
+            <p className="movie-source"> {Source} </p>
+            <p className="movie-size"> {Size} </p>
+          </div>
         </div>
       </div>
     );
