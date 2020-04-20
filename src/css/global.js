@@ -283,7 +283,7 @@ div.movie {
     width: 100%;
     padding-top: 10px;
     padding-left: 6px;
-    height: 20%;
+    height: auto;
   }
   
   div.about p {
