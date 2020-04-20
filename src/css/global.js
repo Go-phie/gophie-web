@@ -439,6 +439,12 @@ div.movie {
   transform: rotate(135deg);
 }
 
-
+.github-button{
+  background: #e7d10a;
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
+  border-radius: 50%;
+}
 
 `
