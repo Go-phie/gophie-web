@@ -17,25 +17,8 @@ export default class Movie extends Component {
     return (
       <div className="movie">
         <div className="movie-image">
-<<<<<<< HEAD
-          <img
-            src={
-              checkURL(CoverPhotoLink)
-                ? CoverPhotoLink
-                : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-            }
-            alt={Title}
-          />
-          <a
-            className="download-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={DownloadLink}
-          >
-=======
           <img src={checkURL(CoverPhotoLink)?CoverPhotoLink: "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"} alt={Title} />
           <a className="download-btn" target="_blank" rel="noopener noreferrer" href={DownloadLink}>
->>>>>>> upstream/master
             <DownloadIcon />
           </a>
         </div>
