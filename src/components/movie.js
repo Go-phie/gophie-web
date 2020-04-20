@@ -7,14 +7,17 @@ function checkURL(url) {
 
 export default class Movie extends Component {
   render() {
-    const {CoverPhotoLink, DownloadLink, Size, Title} = this.props.data;
+    const {
+      CoverPhotoLink,
+      DownloadLink,
+      Size,
+      Title,
+      Source
+    } = this.props.data;
     return (
       <div className="movie">
         <div className="movie-image">
-          <img src={
-            checkURL(CoverPhotoLink) ? CoverPhotoLink : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-          }
-          alt={Title} />
+          <img src={checkURL(CoverPhotoLink)?CoverPhotoLink: "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"} alt={Title} />
           <a className="download-btn" target="_blank" rel="noopener noreferrer" href={DownloadLink}>
             <DownloadIcon />
           </a>
@@ -22,6 +25,8 @@ export default class Movie extends Component {
         <div className="about">
           <p className="name"> {Title} </p>
           <p className="by"> Size: {Size} </p>
+          <p> Source: {Source} </p>
+
         </div>
       </div>
     );
