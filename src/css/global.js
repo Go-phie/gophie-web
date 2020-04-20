@@ -236,7 +236,7 @@ div.movie {
     height: 100%;
     background: transparent;
     position: relative;
-    margin: 10px;
+    margin: .9em;
     display: block;
   }
   
@@ -250,22 +250,25 @@ div.movie {
   }
   
   div.movie-image img {
-    box-shadow: 4px 4px 16px 2px #121315;
+    box-shadow: 2px 7px 8px 2px ${({ theme }) => theme.movieBoxShadow};
     height: 100%;
     width: 100%;
     margin: auto;
-    border-radius: 3px;
     transition: .3s;
+    border-top-left-radius: .3em;
+    border-top-right-radius: .3em;
+    min-height: 20.6em
   }
   
   div.movie-image img:hover {
+    box-shadow: 2px -2px 8px 2px ${({ theme }) => theme.movieBoxShadow};
     transform: translateY(-3%);
   }
   
   .download-btn {
     position: absolute;
-    top: 80%;
-    right: 10%;
+    bottom: -.9em;
+    right: .9em;
     height: 50px;
     width: 50px;
     text-decoration: none;
@@ -284,32 +287,59 @@ div.movie {
   .download-btn:active {
     transform: translateY(3%);
   }
-  
-  div.about {
+
+
+  /* Movie About Details */
+  .movie__about {
     width: 100%;
-    padding-top: 10px;
-    padding-left: 6px;
-    height: auto;
+    min-height: 7em;
+    height: 100%;
+    padding: .5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: ${({ theme }) => theme.movieBackground}; 
+    border-end-end-radius: .39em;
+    border-end-start-radius: .39em;
   }
   
-  div.about p {
-    margin: 2px;
+  .movie__about .name {
+    font-size: .9em;
+    lin-height: 1.5;
+    font-weight: 500;
     color: ${({ theme }) => theme.text}; 
   }
   
-  p.name {
-    font-size: 20px;
-    font-weight: 700;
-    color: ${({ theme }) => theme.text}; 
+  .movie__about-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: .78em;
+    align-items: center
   }
   
-  p.by,
+  .movie__about-meta .movie-source {
+    background-color: #e7d10a;
+    padding: .2em .5em;
+    font-size: .7em;
+    color: #121620;
+    font-weight: 100;
+    border-radius: .2em;
+  }
+
+  .movie-size,
   p.pub-by {
-    font-size: 13px;
-    font-weight: 600;
+    font-size: .74em;
+    font-weight: 100;
     color: ${({ theme }) => theme.text}; 
     opacity: 0.5;
+    text-transform: uppercase;
   }
+
+  .movie-size:before {
+    content: "",
+  }
+  /* Movie About Details End */ 
+
   
   /* skeleton loader styles */
   
@@ -355,7 +385,7 @@ div.movie {
     box-shadow: 0px 0px 7px -2px #121315;
   }
   
-  div.skeleton-about p {
+  div.skeleton-movie__about p {
     border-radius: 5px;
   }
   
