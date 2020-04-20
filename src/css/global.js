@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
   list-style: none;
   font-family: 'Pacifico', cursive;
-font-family: 'Righteous', cursive;
+  font-family: 'Righteous', cursive;
 }
 
 
@@ -155,10 +155,16 @@ body {
 }
 
 div.movies {
-  margin: 10px 0;
+  margin: 5em;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+}
+
+@media (max-width: 991px) {
+  div.movies {
+  margin: 2em;
+  }
 }
 
 div.skeleton-movies {
@@ -167,6 +173,8 @@ div.skeleton-movies {
   justify-content: center;
   width: 100%;
 }
+
+
 
 .error {
   display: block;
