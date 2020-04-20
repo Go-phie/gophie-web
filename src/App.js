@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { RetryIcon, SearchIcon, SunIcon, MoonIcon } from "./components/icons";
+import { RetryIcon, SearchIcon, SunIcon, MoonIcon, GitMark } from "./components/icons";
 import MovieList from "./components/MovieList";
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from 'uuid';
@@ -246,6 +246,7 @@ class App extends Component {
                     </select>
 
                     <button className="switch-theme-btn" onClick={() => this.switchTheme(this.state.theme)}>Switch Theme {theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
+                    <a className="github-button" href="https://github.com/go-phie/gophie-web"> <GitMark /> </a>
                     </div>
                     <div className="movies" id="movie-div">
                     <MovieList movies={this.state.movies} />
