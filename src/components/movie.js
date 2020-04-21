@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Button from 'react-bootstrap/Button';
 import { DownloadIcon } from "./icons";
 
 function checkURL(url) {
@@ -19,9 +18,16 @@ export default class Movie extends Component {
     return (
       <div className="movie">
         <div className="movie-image">
-          <Button variant="outline-dark" onClick={() => this.props.setDescriptionModal(this.props.data)}>
-          <img src={checkURL(CoverPhotoLink)?CoverPhotoLink: "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"} alt={Title} />
-          </Button>
+          < img onClick = {
+            () => this.props.setDescriptionModal(this.props.data)
+          }
+          src = {
+            checkURL(CoverPhotoLink) ? CoverPhotoLink : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+          }
+          alt = {
+            Title
+          }
+          />
           <a className="download-btn" target="_blank" rel="noopener noreferrer" href={DownloadLink}>
             <DownloadIcon />
           </a>
