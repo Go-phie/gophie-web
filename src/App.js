@@ -285,9 +285,10 @@ class App extends Component {
                         <option value="besthdmovies"> BestHDMovies </option>
                         <option value="tvseries"> TvSeries </option>
                     </select>
+                    <div className="options__sub-details">
                     <button className="switch-theme-btn" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
                     <a className="github-button" href="https://github.com/go-phie/gophie-web"> <GitMark /> </a>
-
+                    </div>
                     </div>
                     <div className="movies" id="movie-div">
                     <MovieList movies={this.state.movies} setDescription={this.setDescription.bind(this)}/>

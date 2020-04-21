@@ -25,9 +25,6 @@ class DescriptionPopup extends Component {
           }
         </p>
       </Modal.Body>
-      <Modal.Footer>
-        <button className="cancel-btn" onClick={() => this.props.onHide()}>Close</button>
-      </Modal.Footer>
     </Modal>);
 
     }
