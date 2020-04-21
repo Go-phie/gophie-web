@@ -88,13 +88,14 @@ class App extends Component {
   }
 
   newSearch() {
-    this.setState({
-      movies: [],
-      error: false,
-      listIndex: 1,
-    });
     let query = this.searchInput.current.value;
-    this.performSearch(query, true);
+    if (query.trim().length > 1) {
+      this.setState({
+          movies: [],
+          error: false,
+          listIndex: 1,
+        },() => this.performSearch(query, true));       
+    }
   }
 
   checkKey(e) {
@@ -114,7 +115,7 @@ class App extends Component {
       .get(
         this.state.api +
           "search?query=" +
-          encodeURI(query) +
+          encodeURI(query.trim()) +
           "&engine=" +
           this.state.server+
           "&page=" + this.state.listIndex
@@ -174,8 +175,8 @@ class App extends Component {
 
   tryAgain() {
     let query = this.searchInput.current.value;
-    if (query.length > 1) {
-      this.performSearch(query);
+    if (query.trim().length > 1) {
+      this.performSearch(query.trim());
     } else {
       this.performList();
     }
