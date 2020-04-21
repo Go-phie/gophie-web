@@ -267,7 +267,8 @@ div.movie {
     transition: .3s;
     border-top-left-radius: .3em;
     border-top-right-radius: .3em;
-    min-height: 20.6em;
+    height: 20.6em;
+    object-fit: cover;
     cursor: pointer;
   }
   
@@ -349,10 +350,6 @@ div.movie {
     color: ${({ theme }) => theme.text}; 
     opacity: 0.5;
     text-transform: uppercase;
-  }
-
-  button {
-    outline: none;
   }
   /* Movie About Details End */ 
 
