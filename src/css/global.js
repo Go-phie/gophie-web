@@ -117,16 +117,29 @@ body {
   cursor: pointer;
   outline: none;
   height: 37px;
-  width: 135px;
+  width: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
 
-.switch-theme-btn svg {
-    margin-left: 5px;
+.dialog-theme {
+  .modal-content {
+    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.body};
+  }
+
+  .close {
+    color: ${({ theme }) => theme.text};
+  }
+
+  .cancel-btn {
+    background-color: #e7d10a;
+    border-radius: 5px;
+    color: '#121620';
+  }
 }
-}
+
 /* 
 .options ul {
   display: inline-flex;
@@ -142,7 +155,7 @@ body {
   border: 1px solid ${({ theme }) => theme.borderColor};
   color: #1e2126;
   font-weight: bold;
-  padding: 10px 15px;
+  padding: 10px 10px;
   font-size: 15px;
   border-radius: 5px;
   outline: none;
@@ -333,10 +346,6 @@ div.movie {
     color: ${({ theme }) => theme.text}; 
     opacity: 0.5;
     text-transform: uppercase;
-  }
-
-  .movie-size:before {
-    content: "",
   }
   /* Movie About Details End */ 
 
