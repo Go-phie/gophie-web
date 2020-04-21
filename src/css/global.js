@@ -103,10 +103,15 @@ body {
 }
 
 .options {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   height: auto;
-  padding: 0px 10%;
+  margin: .1em 8%;
+  justify-content: space-between;
+}
+
+.options__sub-details {
+  display: inline-flex;
 }
 
 .switch-theme-btn {
@@ -116,11 +121,15 @@ body {
   border: 1px solid ${({ theme }) => theme.borderColor};
   cursor: pointer;
   outline: none;
-  height: 37px;
-  width: 32px;
+  height: 3em;
+  width: 3em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.switch-theme-btn:hover {
+  background-color: #dcc80d;
 }
 
 .dialog-theme {
@@ -140,15 +149,6 @@ body {
   }
 }
 
-/* 
-.options ul {
-  display: inline-flex;
-  list-style-type: none;
-}
-
-.options ul li {
-  
-} */
 
 .server-selector {
   background-color: #e7d10a;
@@ -234,9 +234,6 @@ div.skeleton-movies {
 }
 
 @media (max-width: 450px) {
-    .options {
-        padding: 0px 10px;
-    }
 
     .server-selector {
         padding: 10px 0px;
@@ -270,7 +267,8 @@ div.movie {
     transition: .3s;
     border-top-left-radius: .3em;
     border-top-right-radius: .3em;
-    min-height: 20.6em
+    min-height: 20.6em;
+    cursor: pointer;
   }
   
   div.movie-image img:hover {
@@ -299,6 +297,11 @@ div.movie {
   
   .download-btn:active {
     transform: translateY(3%);
+    background: #dcc80d;
+  }
+
+  .download-btn:hover {
+    background: #dcc80d;
   }
 
 
@@ -349,7 +352,14 @@ div.movie {
   }
   /* Movie About Details End */ 
 
-  
+  /* Modal boostrap style */
+
+  .modal-body {
+    font-size: 1.1em;
+    line-height: 1.9;
+    font-weight: 100;
+  }
+  /* Modal boostrap style End */
   /* skeleton loader styles */
   
   div.skeleton-movie {
@@ -487,11 +497,19 @@ div.movie {
 }
 
 .github-button{
-  background: #e7d10a;
-  height: 35px;
-  width: 35px;
+  background: #121620;
+  height: 3em;
+  width: 3em;
   cursor: pointer;
   border-radius: 50%;
+}
+
+.github-button svg path {
+  fill: #e7d10a;
+}
+
+.github-button svg path:hover {
+    background: #dcc80d;
 }
 
 `

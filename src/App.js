@@ -88,13 +88,14 @@ class App extends Component {
   }
 
   newSearch() {
-    this.setState({
-      movies: [],
-      error: false,
-      listIndex: 1,
-    });
     let query = this.searchInput.current.value;
-    this.performSearch(query, true);
+    if (query.trim().length > 1) {
+      this.setState({
+          movies: [],
+          error: false,
+          listIndex: 1,
+        },() => this.performSearch(query, true));       
+    }
   }
 
   checkKey(e) {
@@ -114,7 +115,7 @@ class App extends Component {
       .get(
         this.state.api +
           "search?query=" +
-          encodeURI(query) +
+          encodeURI(query.trim()) +
           "&engine=" +
           this.state.server+
           "&page=" + this.state.listIndex
@@ -174,8 +175,8 @@ class App extends Component {
 
   tryAgain() {
     let query = this.searchInput.current.value;
-    if (query.length > 1) {
-      this.performSearch(query);
+    if (query.trim().length > 1) {
+      this.performSearch(query.trim());
     } else {
       this.performList();
     }
@@ -284,9 +285,10 @@ class App extends Component {
                         <option value="besthdmovies"> BestHDMovies </option>
                         <option value="tvseries"> TvSeries </option>
                     </select>
+                    <div className="options__sub-details">
                     <button className="switch-theme-btn" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
                     <a className="github-button" href="https://github.com/go-phie/gophie-web"> <GitMark /> </a>
-
+                    </div>
                     </div>
                     <div className="movies" id="movie-div">
                     <MovieList movies={this.state.movies} setDescription={this.setDescription.bind(this)}/>
