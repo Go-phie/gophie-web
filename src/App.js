@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
-// import Toggle from 'react-toggle'
-import { RetryIcon, SearchIcon, SunIcon, MoonIcon, GitMark } from "./components/icons";
+import Tour from 'reactour';
+import { RetryIcon, SearchIcon, SunIcon, MoonIcon, GitMark, WalkingIcon } from "./components/icons";
 import MovieList from "./components/MovieList";
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from 'uuid';
@@ -12,6 +12,7 @@ import { lightTheme, darkTheme } from './css/theme';
 import { GlobalStyles } from './css/global';
 import ScrollButton from "./components/ScrollToTop";
 import DescriptionPopup from "./components/DescriptionPopup";
+import { tourSteps, disableBody, enableBody } from "./utils"
 
 // import "./css/App.css";
 
@@ -30,7 +31,8 @@ class App extends Component {
       currentmovie: {},
       hasMore: true,
       error: false,
-      theme: 'dark'
+      theme: 'dark',
+      showTour: true,
     };
 }
 
@@ -194,6 +196,10 @@ class App extends Component {
     }
   }
 
+  UNSAFE_componentWillMount() {
+    this.setTour();
+  }
+
   componentDidMount() {
     this.setTheme();
     this.performList();
@@ -209,6 +215,21 @@ class App extends Component {
       this.switchTheme(theme === 'light' ? 'dark' : 'light');
   }
 
+  setTour(){
+    const tour = localStorage.getItem('showTour');
+    const showTour = (tour === 'true')
+    this.setState({ showTour }, () => console.log(`setting tour to ${showTour}`))
+  }
+
+  closeTour = () => {
+    this.setState({ showTour: false })
+    localStorage.setItem('showTour', false)
+  }
+
+  startTour = () => {
+    this.setState({ showTour: true })
+  }
+
   switchTheme(mode) {
         switch (mode) {
             case 'light':
@@ -216,7 +237,7 @@ class App extends Component {
                 this.setState({theme: 'dark'})
                 break;
             case 'dark':
-                    localStorage.setItem('theme', 'light');
+                  localStorage.setItem('theme', 'light');
                 this.setState({theme: 'light'})
                 break;
             default:
@@ -240,6 +261,7 @@ class App extends Component {
       const {theme} = this.state;
       const selectedTheme = theme === 'light' ? lightTheme : darkTheme
     return (
+      <>
         <ThemeProvider theme={selectedTheme}>
             <>
                 <GlobalStyles />
@@ -260,23 +282,15 @@ class App extends Component {
                         />
                     </div>
                     <div className="header-right">
-                        <button onClick={this.newSearch.bind(this)} className="search-btn">
+                        <button onClick={this.newSearch.bind(this)} className="search-btn" data-tour="my-third-step">
                             <SearchIcon />
                         </button>
                     </div>
                     </div>
                     <div className="options">
-                    {/* <div className="series-toggle">
-                    <span className="span-space">Series</span>
-                      <Toggle
-                        defaultChecked={true}
-                        icons={false}
-                        onChange={this.handleTofuChange}
-                        className="series-toggle-switch" />
-                      <span className="span-space">Movies</span>
-                    </div> */}
                     <select
                         className="server-selector"
+                        data-tour="my-second-step"
                         onChange={this.handleServerChange.bind(this)}
                     >
                         <option value="netnaija"> NetNaija </option>
@@ -284,9 +298,10 @@ class App extends Component {
                         <option value="besthdmovies"> BestHDMovies </option>
                         <option value="tvseries"> TvSeries </option>
                     </select>
-                    <div className="options__sub-details">
-                    <button className="switch-theme-btn" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
-                    <a className="github-button" href="https://github.com/go-phie/gophie-web"> <GitMark /> </a>
+                    <div className="options__sub-details" >
+                    <button className="github-button" data-tour="my-first-step" onClick={this.startTour}> <WalkingIcon /> </button>
+                    <button className="switch-theme-btn" data-tour="my-seventh-step" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
+                    <a className="github-button" href="https://github.com/go-phie" data-tour="my-eight-step"> <GitMark /> </a>
                     </div>
                     </div>
                     <div className="movies" id="movie-div">
@@ -319,6 +334,13 @@ class App extends Component {
             delayInMs="16.66" / >
               {this.state.show && <DescriptionPopup show={this.state.show} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
         </ThemeProvider>
+        <Tour 
+        steps={tourSteps} 
+        isOpen={this.state.showTour}
+        onAfterOpen={disableBody}
+        onBeforeClose={enableBody} 
+        onRequestClose={this.closeTour} />
+        </>
     );
   }
 }

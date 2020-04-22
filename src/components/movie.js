@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { DownloadIcon } from "./icons";
-
-function checkURL(url) {
-  return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
-}
+import { isImageURL } from "../utils"
 
 export default class Movie extends Component {
 
@@ -22,13 +19,16 @@ export default class Movie extends Component {
             () => this.props.setDescriptionModal(this.props.data)
           }
           src = {
-            checkURL(CoverPhotoLink) ? CoverPhotoLink : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+            isImageURL(CoverPhotoLink) ? CoverPhotoLink : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
           }
           alt = {
             Title
           }
+          data-tour="my-fourth-step"
+          id="my-fourth-step"
           />
-          <a className="download-btn" target="_blank" rel="noopener noreferrer" href={DownloadLink}>
+          <a className="download-btn" target="_blank" rel="noopener noreferrer" href={DownloadLink}
+            data-tour="my-sixth-step">
             <DownloadIcon />
           </a>
         </div>
