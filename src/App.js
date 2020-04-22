@@ -300,8 +300,8 @@ class App extends Component {
                     </select>
                     <div className="options__sub-details" >
                     <button className="github-button" data-tour="my-first-step" onClick={this.startTour}> <WalkingIcon /> </button>
-                    <button className="switch-theme-btn" data-tour="my-seventh-step" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
-                    <a className="github-button" href="https://github.com/go-phie" data-tour="my-eight-step"> <GitMark /> </a>
+                    <button className="switch-theme-btn" data-tour="my-eight-step" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
+                    <a className="github-button" href="https://github.com/go-phie/gophie-web" data-tour="my-ninth-step"> <GitMark /> </a>
                     </div>
                     </div>
                     <div className="movies" id="movie-div">
@@ -331,7 +331,7 @@ class App extends Component {
                 </div>
             </>
             <ScrollButton scrollStepInPx="80"
-            delayInMs="16.66" / >
+            delayInMs="16.66" />
               {this.state.show && <DescriptionPopup show={this.state.show} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
         </ThemeProvider>
         <Tour 
