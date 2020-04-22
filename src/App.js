@@ -153,23 +153,22 @@ class App extends Component {
       )
       .then(res => {
         const movies = res.data;
-        let newIndex = this.state.listIndex;
-        let newmovies = movies.map((element, index) => {
-        element.Index = uuidv4()
-          return element;
-        });
-        newIndex += 1;
-        this.setState({
-          isLoading: false,
-          movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-          listIndex: newIndex
-        });
+            let newIndex = this.state.listIndex;
+            let newmovies = movies.map((element, index) => {
+            element.Index = uuidv4()
+            return element;
+            });
+            newIndex += 1;
+            this.setState({
+              isLoading: false,
+              movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+              listIndex: newIndex
+            });
       })
       .catch(err => {
         this.setState({
           error: true
         });
-        alert(err);
       });
   }
 
