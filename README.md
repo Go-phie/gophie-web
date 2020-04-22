@@ -51,3 +51,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+<!-- Contribution Guidelines -->
+# Contributing
+If you've ever wanted to contribute to open source, now is your chance!, Contributions are always welcome! Please read the [Contribution guidelines for this project](docs/CONTRIBUTING.md).
