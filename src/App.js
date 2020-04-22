@@ -299,9 +299,9 @@ class App extends Component {
                         <option value="tvseries"> TvSeries </option>
                     </select>
                     <div className="options__sub-details" >
-                    <button className="github-button" data-tour="my-first-step" onClick={this.startTour}> <WalkingIcon /> </button>
-                    <button className="switch-theme-btn" data-tour="my-seventh-step" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
-                    <a className="github-button" href="https://github.com/go-phie" data-tour="my-eight-step"> <GitMark /> </a>
+                    <button className="github-button" data-tour="my-first-step" title="Take A Tour" onClick={this.startTour}> <WalkingIcon /> </button>
+                    <button className="switch-theme-btn" data-tour="my-seventh-step" title="Change Theme" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
+                    <a className="github-button" href="https://github.com/go-phie" data-tour="my-eight-step" title="Github Link" > <GitMark /> </a>
                     </div>
                     </div>
                     <div className="movies" id="movie-div">
