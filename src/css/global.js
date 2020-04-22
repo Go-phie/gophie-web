@@ -8,8 +8,9 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
   list-style: none;
-  font-family: 'Pacifico', cursive;
-  font-family: 'Righteous', cursive;
+    font-family:'Ubuntu',
+  sans-serif;
+
 }
 
 
@@ -267,8 +268,7 @@ div.movie {
     transition: .3s;
     border-top-left-radius: .3em;
     border-top-right-radius: .3em;
-    height: 20.6em;
-    object-fit: cover;
+    min-height: 20.6em;
     cursor: pointer;
   }
   
@@ -279,7 +279,7 @@ div.movie {
   
   .download-btn {
     position: absolute;
-    bottom: -.9em;
+    bottom: -.7em;
     right: .9em;
     height: 50px;
     width: 50px;
@@ -322,8 +322,8 @@ div.movie {
   
   .movie__about .name {
     font-size: .9em;
-    lin-height: 1.5;
-    font-weight: 500;
+    line-height: 1.5;
+    font-weight: 600;
     color: ${({ theme }) => theme.text}; 
   }
   
@@ -339,14 +339,13 @@ div.movie {
     padding: .2em .5em;
     font-size: .7em;
     color: #121620;
-    font-weight: 100;
+    font-weight: 500;
     border-radius: .2em;
   }
 
-  .movie-size,
-  p.pub-by {
-    font-size: .74em;
-    font-weight: 100;
+  .movie-size {
+    font-size: .75em;
+    font-weight: 500;
     color: ${({ theme }) => theme.text}; 
     opacity: 0.5;
     text-transform: uppercase;
