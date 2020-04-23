@@ -18,11 +18,11 @@ install:
 
 script:
   - yarn build
-  - cp CNAME README.md public/
+  - cp CNAME README.md build/
 
 deploy:
   provider: pages
-  local_dir: public
+  local_dir: build
   target_branch: master
   repo: "go-phie/go-phie.github.io"
   skip_cleanup: true
