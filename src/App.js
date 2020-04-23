@@ -12,7 +12,7 @@ import { lightTheme, darkTheme } from './css/theme';
 import { GlobalStyles } from './css/global';
 import ScrollButton from "./components/ScrollToTop";
 import DescriptionPopup from "./components/DescriptionPopup";
-import { tourSteps, disableBody, enableBody } from "./utils"
+import { tourSteps, disableBody, enableBody, nameToEngineMap } from "./utils"
 
 // import "./css/App.css";
 
@@ -22,7 +22,7 @@ class App extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: "https://gophie.herokuapp.com/",
-      server: "netnaija",
+      server: nameToEngineMap.get("Alpha"),
       mode: "movies",
       movies: [],
       listIndex: 1,
@@ -77,7 +77,7 @@ class App extends Component {
   }
 
   handleServerChange(event) {
-    let server = event.target.value;
+    let server = nameToEngineMap.get(event.target.value);
     this.searchInput.current.value = ""
     this.setState(
       {
@@ -297,15 +297,15 @@ class App extends Component {
                         data-tour="my-second-step"
                         onChange={this.handleServerChange.bind(this)}
                     >
-                        <option value="netnaija"> NetNaija </option>
-                        <option value="fzmovies"> FzMovies </option>
-                        <option value="besthdmovies"> BestHDMovies </option>
-                        <option value="tvseries"> TvSeries </option>
+                        <option value="Alpha"> Alpha </option>
+                        <option value="Delta"> Delta </option>
+                        <option value="Iota"> Iota (HD) </option>
+                        <option value="Zeta"> Zeta (Series) </option>
                     </select>
                     <div className="options__sub-details" >
                     <button className="actions-button tour-button" data-tour="my-first-step" title="Take A Tour" onClick={this.startTour}> <WalkingIcon /> </button>
-                    <button className="switch-theme-btn" data-tour="my-seventh-step" title="Change Theme" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
-                    <a className="actions-button github-button" href="https://github.com/go-phie" data-tour="my-eight-step" title="Github Link" > <GitMark /> </a>
+                    <button className="switch-theme-btn" data-tour="my-eight-step" title="Change Theme" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
+                    <a className="actions-button github-button" href="https://github.com/go-phie/gophie-web" data-tour="my-ninth-step" title="Github Link" > <GitMark /> </a>
                     </div>
                     </div>
                     <div className="movies" id="movie-div">

@@ -18,7 +18,7 @@ This project is the web interface setup for [Gophie](https://github.com/go-phie/
 
 ## Deployed Version
 
-The deployed version is available [here](https://go-phie.github.io/gophie-web)
+The deployed version is available [here](https://go-phie.github.io/)
 
 ![Preview](public/demo.png)
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { DownloadIcon } from "./icons";
-import { isImageURL } from "../utils"
+import { isImageURL, greekFromEnglish } from "../utils"
 
 export default class Movie extends Component {
 
@@ -36,7 +36,7 @@ export default class Movie extends Component {
           <h3 className="name"> {Title} </h3>
 
           <div className="movie__about-meta">
-            <p className="movie-source"> {Source} </p>
+            <p className="movie-source"> {greekFromEnglish(Source)} </p>
             <p className="movie-size"> {Size} </p>
           </div>
         </div>
