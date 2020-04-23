@@ -58,6 +58,15 @@ body {
   color: ${({ theme }) => theme.yellowText}; 
   font-weight: bold;
   font-size: 20px;
+  cursor: pointer;
+}
+
+.header-left p {
+  transition: .5s ease-in-out;
+}
+
+.header-left p:hover {
+  transform: rotate(20deg);
 }
 
 .header-right {
@@ -534,6 +543,9 @@ select {
   fill: #121620;
 }
 
+.tour-button:hover {
+  background-color: #dcc80d;
+}
 
 /* Utility Styling */
 .actions-button {
@@ -544,12 +556,7 @@ select {
   border: 1px solid #121620;
 }
 
-.actions-button:hover {
-  background-color: #dcc80d;
-}
-
 .em {
   color: #dcc80d !important;
-  
 }
 `
