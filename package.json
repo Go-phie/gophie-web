@@ -1,16 +1,18 @@
 {
   "name": "gophie-web",
   "version": "0.1.0",
-  "homepage": "https://deven96.github.io/gophie-web",
+  "homepage": "https://go-phie.github.io/",
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "body-scroll-lock": "^3.0.1",
     "bootstrap": "^4.4.1",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.8.3",
     "react-scripts": "2.1.5",
     "react-toggle": "^4.1.1",
+    "reactour": "^1.17.0",
     "styled-components": "^5.0.1",
     "uuid": "^7.0.3"
   },

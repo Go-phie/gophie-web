@@ -11,7 +11,8 @@ class DescriptionPopup extends Component {
     onHide={()=> this.props.onHide()}
     size="lg" 
     aria-labelledby="contained-modal-title-vcenter"
-    dialogClassName="dialog-theme" 
+    dialogClassName="dialog-theme"
+    data-tour="my-fifth-step"
     centered>
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">

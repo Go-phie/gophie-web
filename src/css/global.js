@@ -8,8 +8,9 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
   list-style: none;
-  font-family: 'Pacifico', cursive;
-  font-family: 'Righteous', cursive;
+    font-family:'Ubuntu',
+  sans-serif;
+
 }
 
 
@@ -38,8 +39,8 @@ body {
   display: inline-flex;
   align-items: center;
   width: 100%;
-  height: 50px;
-  box-shadow: #000 0px -2px 8px 1px;
+  height: 62px;
+  box-shadow: -1px 5px 1px -1px #4d638e2b;
   background-color: ${({ theme }) => theme.body};
   z-index: 999;
 }
@@ -57,6 +58,15 @@ body {
   color: ${({ theme }) => theme.yellowText}; 
   font-weight: bold;
   font-size: 20px;
+  cursor: pointer;
+}
+
+.header-left p {
+  transition: .5s ease-in-out;
+}
+
+.header-left p:hover {
+  transform: rotate(20deg);
 }
 
 .header-right {
@@ -71,25 +81,27 @@ body {
   width: 100%;
   height: 98%;
   outline: none;
+  font-weight: 600;
   border: none;
-  border-bottom: 2px solid ${({ theme }) => theme.yellowText};
   background: transparent;
-  color: ${({ theme }) => theme.yellowText};
   font-size: 19px;
   padding-left: 10px;
+  color: ${({ theme }) => theme.formColor};
+  opacity: .5;
 }
 
-.form-control::placeholder {
-  color: ${({ theme }) => theme.yellowText};
-  opacity: 0.5;
-  font-size: 17px;
+.form-control:focus {
+  background-color: ${({ theme }) => theme.movieBackground};
+  border-color: #121620;
+  box-shadow: none;
+  color: ${({ theme }) => theme.formColor};
+opacity: 1;
 }
 
 .search-btn {
-  border-radius: 0 6px 6px 0;
-  background: #ffe401;
+  background: #e7d10a;
   color: #FFF;
-  border: 1px solid ${({ theme }) => theme.borderColor};
+  border: none;
   outline: none;
   padding: 5px 20px;
   cursor: pointer;
@@ -99,7 +111,7 @@ body {
 }
 
 .search-btn:hover {
-  background-color: #e7d10a;
+  background-color: #dcc80d;
 }
 
 .options {
@@ -155,7 +167,8 @@ body {
   border: 1px solid ${({ theme }) => theme.borderColor};
   color: #1e2126;
   font-weight: bold;
-  padding: 10px 10px;
+  padding: 10px 25px;
+  justify-content: center;
   font-size: 15px;
   border-radius: 5px;
   outline: none;
@@ -164,7 +177,7 @@ body {
 .server-selector > option {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};
-  padding: 10px 15px;
+  padding: 1em .5em;
 }
 
 div.movies {
@@ -261,15 +274,14 @@ div.movie {
   
   div.movie-image img {
     box-shadow: 2px 7px 8px 2px ${({ theme }) => theme.movieBoxShadow};
-    height: 100%;
+    height: 20em;
     width: 100%;
     margin: auto;
     transition: .3s;
     border-top-left-radius: .3em;
     border-top-right-radius: .3em;
-    height: 20.6em;
-    object-fit: cover;
     cursor: pointer;
+    object-fit: cover;
   }
   
   div.movie-image img:hover {
@@ -279,7 +291,7 @@ div.movie {
   
   .download-btn {
     position: absolute;
-    bottom: -.9em;
+    bottom: -.7em;
     right: .9em;
     height: 50px;
     width: 50px;
@@ -309,8 +321,7 @@ div.movie {
   /* Movie About Details */
   .movie__about {
     width: 100%;
-    min-height: 7em;
-    height: 100%;
+    height: 8em;
     padding: .5em;
     display: flex;
     flex-direction: column;
@@ -322,9 +333,10 @@ div.movie {
   
   .movie__about .name {
     font-size: .9em;
-    lin-height: 1.5;
-    font-weight: 500;
-    color: ${({ theme }) => theme.text}; 
+    line-height: 1.5;
+    font-weight: 600;
+    color: ${({ theme }) => theme.text};
+    text-transform: capitalize;
   }
   
   .movie__about-meta {
@@ -339,14 +351,13 @@ div.movie {
     padding: .2em .5em;
     font-size: .7em;
     color: #121620;
-    font-weight: 100;
+    font-weight: 600;
     border-radius: .2em;
   }
 
-  .movie-size,
-  p.pub-by {
-    font-size: .74em;
-    font-weight: 100;
+  .movie-size {
+    font-size: .75em;
+    font-weight: 600;
     color: ${({ theme }) => theme.text}; 
     opacity: 0.5;
     text-transform: uppercase;
@@ -371,7 +382,7 @@ div.movie {
     margin: 10px;
     display: block;
   }
-  
+
   div.skeleton-movie-image {
     height: 310px;
     width: 100%;
@@ -450,10 +461,10 @@ div.movie {
   
 
 
-
+ 
 .scroll {
   opacity: 0.8;
-  background-color: yellow;
+  background-color: #e7d10a;
   width: 40px;
   height: 40px;
   position: fixed;
@@ -498,11 +509,8 @@ div.movie {
 }
 
 .github-button{
+  padding: 0;
   background: #121620;
-  height: 3em;
-  width: 3em;
-  cursor: pointer;
-  border-radius: 50%;
 }
 
 .github-button svg path {
@@ -512,5 +520,157 @@ div.movie {
 .github-button svg path:hover {
     background: #dcc80d;
 }
+
+/* Customize select button */
+select {
+    -webkit-appearance: none;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAYAAABuUU38AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUxJREFUeNrM1sEJwkAQBdCsngXPHsQO9O5FS7AAMVYgdqAd2IGCDWgFnryLFQiCZ8EGnJUNimiyM/tnk4HNEAg/8y6ZmMRVqz9eUJvRaSbvutCZ347bXVJy/ZnvTmdJ862Me+hAbZCTs6GHpyUi1tTSvPnqTpoWZPUa7W7ncT3vK4h4zVejy8QzM3WhVUO8ykI6jOxoGA4ig3BLHcNFSCGqGAkig2yqgpEiMsjSfY9LxYQg7L6r0X6wS29YJiYQYecemY+wHrXD1+bklGhpAhBDeu/JfIVGxaAQ9sb8CI+CQSJ+QmJg0Ii/EE2MBiIXooHRQhRCkBhNhBcEhLkwf05ZCG8ICCOpk0MULmvDSY2M8UawIRExLIQIEgHDRoghihgRIgiigBEjgiFATBACAgFgghEwSAAGgoBCBBgYAg5hYKAIFYgHBo6w9RRgAFfy160QuV8NAAAAAElFTkSuQmCC");
+  background-repeat: no-repeat;
+  background-size: 14px;
+  margin-right: 20px;
+  background-position: 90% center;
+  outline: none;
+  cursor: pointer;
+}
+
+.tour-button  {
+  background: #e7d10a;
+  border: none;
+  padding: .5em;
+}
+}
+
+.tour-button svg {
+  fill: #121620;
+}
+
+.tour-button:hover {
+  background-color: #dcc80d;
+}
+
+/* Utility Styling */
+.actions-button {
+  height: 3em;
+  width: 3em;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #121620;
+}
+
+.em {
+  color: #dcc80d !important;
+} /* Movie ard for small screens */
+  @media (max-width: 561px) {
+  div.movie {
+    display: flex;
+    width: 100%;
+    height: initial;
+    margin: 0 0 1.5em 0;
+    max-height: 15em;
+  }
+
+
+  div.movie-image {
+    height: 100%;
+  }
+
+
+  div.movie-image img {
+    height: 100%;
+    border-bottom-left-radius: 0.3em;
+    border-top-right-radius: initial;
+    box-shadow: initial;
+    min-height: initial;
+    object-fit: cover;
+  }
+
+  .download-btn {
+    height: 43px;
+    width: 43px;
+    bottom: -0.5em;
+    right: -9em;
+  }
+
+  .movie__about {
+    border-top-right-radius: 0.39em;
+    border-end-start-radius: initial;
+    height: 100%;
+  }
+
+  .movie__about-meta {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .movie__about-meta .movie-source {
+    background-color: #d0bd0a;
+  }
+
+
+
+  div.skeleton-movies {
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  div.skeleton-movie {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin: 0 0 2em 0;
+    max-height: 15em;
+    min-height: initial;
+    position: initial;
+    justify-content: space-between;
+  }
+
+  div.skeleton-movie-image {
+    height: 15em;
+    width: 100%;
+    margin: 0 .5em 0 0;
+  }
+
+  div.sabout {
+    width: 100%;
+  }
+
+  .skeleton-download-btn {
+      height: 39px;
+      width: 39px;
+      bottom: -0.7em;
+      right: -9em;
+  }
+
+  div.skeleton-movie__about p {
+    border-radius: 5px;
+  }
+
+  p.skeleton-name {
+    height: 80%;
+    width: 100%;
+    margin-top: initial;
+    border-radius: .2em;
+  }
+  
+  p.skeleton-by,
+  p.pub-by {
+    width: 30%;
+    height: 10%;
+  }
+
+  .actions-button {
+    height: 2.5em;
+    width: 2.5em;
+  }
+  .switch-theme-btn {
+    height: 2.5em;
+    width: 2.5em;
+  }
+  }
+  
 
 `
