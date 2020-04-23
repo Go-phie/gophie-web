@@ -18,7 +18,7 @@ export const tourSteps = [
         selector: '[data-tour="my-third-step"]',
         content: ({ goTo }) => (
             <div>
-              Search for your movies/series using this search feature. It will search at the <button style={{background: '#ffe401', borderRadius: 5, outline: 'none', padding: 5, border: 'none',}} onClick={() => goTo(1)}>currently selected site</button>
+              Search for your movies/series using this search feature. It will search at the <button style={{background: '#ffe401', borderRadius: 5}} onClick={() => goTo(1)}>currently selected site</button>
               <br />
             </div>
         ),
