@@ -299,8 +299,8 @@ class App extends Component {
                     >
                         <option value="Alpha"> Alpha </option>
                         <option value="Delta"> Delta </option>
-                        <option value="Iota"> Iota </option>
-                        <option value="Zeta"> Zeta </option>
+                        <option value="Iota"> Iota (HD) </option>
+                        <option value="Zeta"> Zeta (Series) </option>
                     </select>
                     <div className="options__sub-details" >
                     <button className="actions-button tour-button" data-tour="my-first-step" title="Take A Tour" onClick={this.startTour}> <WalkingIcon /> </button>
