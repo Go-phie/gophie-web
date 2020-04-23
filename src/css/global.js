@@ -274,14 +274,14 @@ div.movie {
   
   div.movie-image img {
     box-shadow: 2px 7px 8px 2px ${({ theme }) => theme.movieBoxShadow};
-    height: 100%;
+    height: 20em;
     width: 100%;
     margin: auto;
     transition: .3s;
     border-top-left-radius: .3em;
     border-top-right-radius: .3em;
-    min-height: 20.6em;
     cursor: pointer;
+    object-fit: cover;
   }
   
   div.movie-image img:hover {
@@ -321,8 +321,7 @@ div.movie {
   /* Movie About Details */
   .movie__about {
     width: 100%;
-    min-height: 7em;
-    height: 100%;
+    height: 8em;
     padding: .5em;
     display: flex;
     flex-direction: column;
@@ -462,111 +461,7 @@ div.movie {
   
 
 
-  /* Movie ard for small screens */
-  @media (max-width: 561px) {
-  div.movie {
-    display: flex;
-    width: 100%;
-    height: initial;
-    margin: 0 0 1.5em 0;
-    max-height: 15em;
-  }
-
-
-  div.movie-image {
-    height: 100%;
-  }
-
-
-  div.movie-image img {
-    height: 100%;
-    border-bottom-left-radius: 0.3em;
-    border-top-right-radius: initial;
-    box-shadow: initial;
-    min-height: initial;
-    object-fit: cover;
-  }
-
-  .download-btn {
-    height: 43px;
-    width: 43px;
-    bottom: -0.5em;
-    right: -9em;
-  }
-
-  .movie__about {
-    border-top-right-radius: 0.39em;
-    border-end-start-radius: initial;
-  }
-
-  .movie__about-meta {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-
-  .movie__about-meta .movie-source {
-    background-color: #d0bd0a;
-  }
-
-
-
-  div.skeleton-movies {
-    display: flex;
-    flex-flow: column;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  div.skeleton-movie {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    margin: 0 0 2em 0;
-    max-height: 15em;
-    min-height: initial;
-    position: initial;
-    justify-content: space-between;
-  }
-
-  div.skeleton-movie-image {
-    height: 15em;
-    width: 100%;
-    margin: 0 .5em 0 0;
-  }
-
-  div.sabout {
-    width: 100%;
-  }
-
-  .skeleton-download-btn {
-      height: 39px;
-      width: 39px;
-      bottom: -0.7em;
-      right: -9em;
-  }
-
-  div.skeleton-movie__about p {
-    border-radius: 5px;
-  }
-
-  p.skeleton-name {
-    height: 80%;
-    width: 100%;
-    margin-top: initial;
-    border-radius: .2em;
-  }
-  
-  p.skeleton-by,
-  p.pub-by {
-    width: 30%;
-    height: 10%;
-  }
-  
-  }
-  
-
+ 
 .scroll {
   opacity: 0.8;
   background-color: #e7d10a;
@@ -664,5 +559,118 @@ select {
 
 .em {
   color: #dcc80d !important;
-}
+} /* Movie ard for small screens */
+  @media (max-width: 561px) {
+  div.movie {
+    display: flex;
+    width: 100%;
+    height: initial;
+    margin: 0 0 1.5em 0;
+    max-height: 15em;
+  }
+
+
+  div.movie-image {
+    height: 100%;
+  }
+
+
+  div.movie-image img {
+    height: 100%;
+    border-bottom-left-radius: 0.3em;
+    border-top-right-radius: initial;
+    box-shadow: initial;
+    min-height: initial;
+    object-fit: cover;
+  }
+
+  .download-btn {
+    height: 43px;
+    width: 43px;
+    bottom: -0.5em;
+    right: -9em;
+  }
+
+  .movie__about {
+    border-top-right-radius: 0.39em;
+    border-end-start-radius: initial;
+    height: 100%;
+  }
+
+  .movie__about-meta {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .movie__about-meta .movie-source {
+    background-color: #d0bd0a;
+  }
+
+
+
+  div.skeleton-movies {
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  div.skeleton-movie {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    margin: 0 0 2em 0;
+    max-height: 15em;
+    min-height: initial;
+    position: initial;
+    justify-content: space-between;
+  }
+
+  div.skeleton-movie-image {
+    height: 15em;
+    width: 100%;
+    margin: 0 .5em 0 0;
+  }
+
+  div.sabout {
+    width: 100%;
+  }
+
+  .skeleton-download-btn {
+      height: 39px;
+      width: 39px;
+      bottom: -0.7em;
+      right: -9em;
+  }
+
+  div.skeleton-movie__about p {
+    border-radius: 5px;
+  }
+
+  p.skeleton-name {
+    height: 80%;
+    width: 100%;
+    margin-top: initial;
+    border-radius: .2em;
+  }
+  
+  p.skeleton-by,
+  p.pub-by {
+    width: 30%;
+    height: 10%;
+  }
+
+  .actions-button {
+    height: 2.5em;
+    width: 2.5em;
+  }
+  .switch-theme-btn {
+    height: 2.5em;
+    width: 2.5em;
+  }
+  }
+  
+
 `
