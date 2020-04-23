@@ -42,11 +42,15 @@ export const tourSteps = [
       },
       {
         selector: '[data-tour="my-seventh-step"]',
+        content: `Click this button to scroll back to the top of the page`,
+      },
+      {
+        selector: '[data-tour="my-eight-step"]',
         content: `Click this button to switch between light and dark modes`,
       },    
       {
-        selector: '[data-tour="my-eight-step"]',
-        content: `This links to the entire suite of gophie projects for interested developers`,
+        selector: '[data-tour="my-ninth-step"]',
+        content: `This links to the entire suite of gophie projects for interested developers. If you like this project, give it a star and if you have any complaints, raise an issue`,
       },  
 ]
 

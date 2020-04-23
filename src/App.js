@@ -335,7 +335,7 @@ class App extends Component {
                 </div>
             </>
             <ScrollButton scrollStepInPx="80"
-            delayInMs="16.66" / >
+            delayInMs="16.66" />
               {this.state.show && <DescriptionPopup show={this.state.show} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
         </ThemeProvider>
         <Tour 
