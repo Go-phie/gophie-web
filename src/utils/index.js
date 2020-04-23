@@ -5,6 +5,7 @@ export function isImageURL(url) {
     return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
   }
 
+
 export const tourSteps = [
     {
         selector: '[data-tour="my-first-step"]',
@@ -12,7 +13,7 @@ export const tourSteps = [
       },
       {
         selector: '[data-tour="my-second-step"]',
-        content: `This dropdown helps select a site to retrieve movies/series from. Currently only "TvSeries" supports series, the rest are for movies`,
+        content: `This dropdown helps select a site to retrieve movies/series from. Currently only "Zeta" supports series, the rest are for movies`,
       },
       {
         selector: '[data-tour="my-third-step"]',
@@ -53,6 +54,23 @@ export const tourSteps = [
         content: `This links to the entire suite of gophie projects for interested developers. If you like this project, give it a star and if you have any complaints, raise an issue`,
       },  
 ]
+
+let nm = new Map()
+nm.set("Alpha", "netnaija")
+nm.set("Delta", "fzmovies")
+nm.set("Iota", "besthdmovies")
+nm.set("Zeta", "tvseries")
+export const nameToEngineMap = nm
+
+export function greekFromEnglish(eng) {
+  const lowered = eng.toLowerCase()
+  for (let [key, val] of nm.entries()) {
+    if (val===lowered){
+      return key
+    }
+  }
+
+}
 
 export const disableBody = target => disableBodyScroll(target)
 export const enableBody = target => enableBodyScroll(target)
