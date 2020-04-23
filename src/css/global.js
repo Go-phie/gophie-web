@@ -8,9 +8,8 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
   list-style: none;
-    font-family:'Ubuntu',
-  sans-serif;
-
+  font-family: 'Pacifico', cursive;
+  font-family: 'Righteous', cursive;
 }
 
 
@@ -39,8 +38,8 @@ body {
   display: inline-flex;
   align-items: center;
   width: 100%;
-  height: 62px;
-  box-shadow: -1px 5px 1px -1px #4d638e2b;
+  height: 50px;
+  box-shadow: #000 0px -2px 8px 1px;
   background-color: ${({ theme }) => theme.body};
   z-index: 999;
 }
@@ -58,15 +57,6 @@ body {
   color: ${({ theme }) => theme.yellowText}; 
   font-weight: bold;
   font-size: 20px;
-  cursor: pointer;
-}
-
-.header-left p {
-  transition: .5s ease-in-out;
-}
-
-.header-left p:hover {
-  transform: rotate(20deg);
 }
 
 .header-right {
@@ -81,27 +71,25 @@ body {
   width: 100%;
   height: 98%;
   outline: none;
-  font-weight: 600;
   border: none;
+  border-bottom: 2px solid ${({ theme }) => theme.yellowText};
   background: transparent;
+  color: ${({ theme }) => theme.yellowText};
   font-size: 19px;
   padding-left: 10px;
-  color: ${({ theme }) => theme.formColor};
-  opacity: .5;
 }
 
-.form-control:focus {
-  background-color: ${({ theme }) => theme.movieBackground};
-  border-color: #121620;
-  box-shadow: none;
-  color: ${({ theme }) => theme.formColor};
-opacity: 1;
+.form-control::placeholder {
+  color: ${({ theme }) => theme.yellowText};
+  opacity: 0.5;
+  font-size: 17px;
 }
 
 .search-btn {
-  background: #e7d10a;
+  border-radius: 0 6px 6px 0;
+  background: #ffe401;
   color: #FFF;
-  border: none;
+  border: 1px solid ${({ theme }) => theme.borderColor};
   outline: none;
   padding: 5px 20px;
   cursor: pointer;
@@ -111,7 +99,7 @@ opacity: 1;
 }
 
 .search-btn:hover {
-  background-color: #dcc80d;
+  background-color: #e7d10a;
 }
 
 .options {
@@ -176,7 +164,7 @@ opacity: 1;
 .server-selector > option {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};
-  padding: 1em .5em;
+  padding: 10px 15px;
 }
 
 div.movies {
@@ -279,7 +267,8 @@ div.movie {
     transition: .3s;
     border-top-left-radius: .3em;
     border-top-right-radius: .3em;
-    min-height: 20.6em;
+    height: 20.6em;
+    object-fit: cover;
     cursor: pointer;
   }
   
@@ -290,7 +279,7 @@ div.movie {
   
   .download-btn {
     position: absolute;
-    bottom: -.7em;
+    bottom: -.9em;
     right: .9em;
     height: 50px;
     width: 50px;
@@ -333,8 +322,8 @@ div.movie {
   
   .movie__about .name {
     font-size: .9em;
-    line-height: 1.5;
-    font-weight: 600;
+    lin-height: 1.5;
+    font-weight: 500;
     color: ${({ theme }) => theme.text};
     text-transform: capitalize;
   }
@@ -351,13 +340,13 @@ div.movie {
     padding: .2em .5em;
     font-size: .7em;
     color: #121620;
-    font-weight: 600;
+    font-weight: 100;
     border-radius: .2em;
   }
 
   .movie-size {
-    font-size: .75em;
-    font-weight: 600;
+    font-size: .74em;
+    font-weight: 100;
     color: ${({ theme }) => theme.text}; 
     opacity: 0.5;
     text-transform: uppercase;
@@ -568,7 +557,7 @@ div.movie {
 
 .scroll {
   opacity: 0.8;
-  background-color: #e7d10a;
+  background-color: yellow;
   width: 40px;
   height: 40px;
   position: fixed;
@@ -613,8 +602,11 @@ div.movie {
 }
 
 .github-button{
-  padding: 0;
   background: #121620;
+  height: 3em;
+  width: 3em;
+  cursor: pointer;
+  border-radius: 50%;
 }
 
 .github-button svg path {
@@ -625,43 +617,4 @@ div.movie {
     background: #dcc80d;
 }
 
-/* Customize select button */
-select {
-    -webkit-appearance: none;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAYAAABuUU38AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUxJREFUeNrM1sEJwkAQBdCsngXPHsQO9O5FS7AAMVYgdqAd2IGCDWgFnryLFQiCZ8EGnJUNimiyM/tnk4HNEAg/8y6ZmMRVqz9eUJvRaSbvutCZ347bXVJy/ZnvTmdJ862Me+hAbZCTs6GHpyUi1tTSvPnqTpoWZPUa7W7ncT3vK4h4zVejy8QzM3WhVUO8ykI6jOxoGA4ig3BLHcNFSCGqGAkig2yqgpEiMsjSfY9LxYQg7L6r0X6wS29YJiYQYecemY+wHrXD1+bklGhpAhBDeu/JfIVGxaAQ9sb8CI+CQSJ+QmJg0Ii/EE2MBiIXooHRQhRCkBhNhBcEhLkwf05ZCG8ICCOpk0MULmvDSY2M8UawIRExLIQIEgHDRoghihgRIgiigBEjgiFATBACAgFgghEwSAAGgoBCBBgYAg5hYKAIFYgHBo6w9RRgAFfy160QuV8NAAAAAElFTkSuQmCC");
-  background-repeat: no-repeat;
-  background-size: 14px;
-  margin-right: 20px;
-  background-position: 90% center;
-  outline: none;
-  cursor: pointer;
-}
-
-.tour-button  {
-  background: #e7d10a;
-  border: none;
-  padding: .5em;
-}
-}
-
-.tour-button svg {
-  fill: #121620;
-}
-
-.tour-button:hover {
-  background-color: #dcc80d;
-}
-
-/* Utility Styling */
-.actions-button {
-  height: 3em;
-  width: 3em;
-  cursor: pointer;
-  border-radius: 50%;
-  border: 1px solid #121620;
-}
-
-.em {
-  color: #dcc80d !important;
-}
 `

@@ -203,10 +203,6 @@ class App extends Component {
   componentDidMount() {
     this.setTheme();
     this.performList();
-    if (!localStorage.getItem('viewedTour')){
-        this.startTour();
-        localStorage.setItem('viewedTour','true');
-    }
     document.addEventListener("scroll", this.handleScroll);
   }
 
@@ -272,7 +268,7 @@ class App extends Component {
                 <div className="App">
                     <div className="header">
                     <div className="header-left">
-                        <p> G<span class="em">o</span>phie </p>
+                        <p> Gophie </p>
                     </div>
                     <div className="header-center">
                         <input
@@ -303,9 +299,9 @@ class App extends Component {
                         <option value="tvseries"> TvSeries </option>
                     </select>
                     <div className="options__sub-details" >
-                    <button className="actions-button tour-button" data-tour="my-first-step" title="Take A Tour" onClick={this.startTour}> <WalkingIcon /> </button>
-                    <button className="switch-theme-btn" data-tour="my-seventh-step" title="Change Theme" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
-                    <a className="actions-button github-button" href="https://github.com/go-phie" data-tour="my-eight-step" title="Github Link" > <GitMark /> </a>
+                    <button className="github-button" data-tour="my-first-step" onClick={this.startTour}> <WalkingIcon /> </button>
+                    <button className="switch-theme-btn" data-tour="my-eight-step" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
+                    <a className="github-button" href="https://github.com/go-phie/gophie-web" data-tour="my-ninth-step"> <GitMark /> </a>
                     </div>
                     </div>
                     <div className="movies" id="movie-div">
