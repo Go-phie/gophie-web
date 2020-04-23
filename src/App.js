@@ -203,6 +203,10 @@ class App extends Component {
   componentDidMount() {
     this.setTheme();
     this.performList();
+    if (!localStorage.getItem('viewedTour')){
+        this.startTour();
+        localStorage.setItem('viewedTour','true');
+    }
     document.addEventListener("scroll", this.handleScroll);
   }
 
