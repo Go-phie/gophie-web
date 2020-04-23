@@ -31,7 +31,7 @@ class App extends Component {
       currentmovie: {},
       hasMore: true,
       error: false,
-      theme: 'dark',
+      theme: 'light',
       showTour: true,
     };
 }
@@ -216,7 +216,9 @@ class App extends Component {
 
   setTheme(){
       const theme = localStorage.getItem('theme');
-      this.switchTheme(theme === 'light' ? 'dark' : 'light');
+      if (theme !== null) {
+        this.switchTheme(theme === 'light' ? 'dark' : 'light');
+      }
   }
 
   setTour(){
@@ -241,7 +243,7 @@ class App extends Component {
                 this.setState({theme: 'dark'})
                 break;
             case 'dark':
-                  localStorage.setItem('theme', 'light');
+                localStorage.setItem('theme', 'light');
                 this.setState({theme: 'light'})
                 break;
             default:

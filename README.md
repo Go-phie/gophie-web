@@ -16,19 +16,13 @@
 This project is the web interface setup for [Gophie](https://github.com/go-phie/gophie) built on [React](https://github.com/facebook/react)
 
 
-## Deployed Version
+## Deployment
 
-The deployed version is available [here](https://go-phie.github.io/)
+Deployment happens in two stages, master branch is automatically linked to deploy to the staging environment available on [Netlify](https://gophie.netlify.app) which enables
+testing of newly integrated features. If testing goes according to plan and a tag is made, it is then released to the production environment on [GitHub Pages](https://go-phie.github.io/)
+
 
 ![Preview](public/demo.png)
-
-## Todo
-
-- [x] Implement the search function
-- [x] Create autodeploy pipeline
-- [x] Include Engine selection functionality
-- [x] Fix Mobile scroll error
-- [x] Implement Lightmode
 
 ## Contributors ✨
 
