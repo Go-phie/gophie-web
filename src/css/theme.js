@@ -6,6 +6,7 @@ export const lightTheme = {
   borderColor: '#363537',
   movieBackground: '#dfe1e6',
   movieBoxShadow: '#4d638e80',
+  formColor: '#121620',
 };
 
 export const darkTheme = {
@@ -15,5 +16,5 @@ export const darkTheme = {
   borderColor: '#363537',
   movieBackground: '#202534',
   movieBoxShadow: '#080f1cde',
-
+  formColor: '#bcab0e',
 };
