@@ -33,6 +33,7 @@ class App extends Component {
       error: false,
       theme: 'light',
       showTour: true,
+      ip_address: ""
     };
 }
 
@@ -140,7 +141,6 @@ class App extends Component {
         this.setState({
           error: true
         });
-        alert(err);
       });
   }
 
@@ -183,6 +183,16 @@ class App extends Component {
     }
   }
 
+  getIp = () => {
+    axios.get(
+      'https://api.ipify.org?format=json'
+    ).then(res => {
+      this.setState({
+        ip_address: res.data.ip
+      })
+    })
+  }
+
   toggleMode() {
     switch (this.state.mode){
       case "series":
@@ -201,6 +211,7 @@ class App extends Component {
   }
 
   componentDidMount() {
+    this.getIp();
     this.setTheme();
     this.performList();
     if (!localStorage.getItem('viewedTour')){
@@ -338,7 +349,7 @@ class App extends Component {
             </>
             <ScrollButton scrollStepInPx="80"
             delayInMs="16.66" />
-              {this.state.show && <DescriptionPopup show={this.state.show} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
+              {this.state.show && <DescriptionPopup show={this.state.show} ip_address={this.state.ip_address} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
         </ThemeProvider>
         <Tour 
         steps={tourSteps} 
