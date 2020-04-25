@@ -11,10 +11,10 @@ class DescriptionPopup extends Component {
         ratings_api: "https://gophie-ocena.herokuapp.com",
         ratings: {},
         ip_rating: 0,
-      }
+      };
     }
-
-    componentDidMount() {
+    
+    UNSAFE_componentWillMount() {
       this.getAverage();
       this.getRatings();
     }
