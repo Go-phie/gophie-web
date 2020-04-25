@@ -14,7 +14,7 @@ class DescriptionPopup extends Component {
       }
     }
 
-    componentDidMount() {
+    UNSAFE_componentWillMount() {
       this.getAverage();
       this.getRatings();
     }
