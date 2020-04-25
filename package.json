@@ -4,9 +4,12 @@
   "homepage": "https://go-phie.github.io/",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.9.11",
+    "@material-ui/icons": "^4.9.1",
     "axios": "^0.18.0",
     "body-scroll-lock": "^3.0.1",
     "bootstrap": "^4.4.1",
+    "material-ui-rating": "^4.0.0-beta.2",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.8.3",
