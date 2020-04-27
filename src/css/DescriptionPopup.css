@@ -213,6 +213,10 @@
         width: .7em !important;
     }
 
+    .video-play-button {
+        display: none;
+    }
+
 }
 
 @media (max-width: 991px) {
