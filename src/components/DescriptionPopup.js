@@ -106,6 +106,9 @@ class DescriptionPopup extends Component {
               }
               alt={this.props.movie.Title}
             />
+            <a id="play-video" class="video-play-button" href="/">
+              <span> </span>{" "}
+            </a>
           </section>
 
           <section className="gophie-modal__body">

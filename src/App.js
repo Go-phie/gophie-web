@@ -38,7 +38,7 @@ class App extends Component {
       hasMore: true,
       error: false,
       searchError: "",
-      theme: 'light',
+      theme: "light",
       showTour: true,
       ip_address: ""
     };
@@ -124,7 +124,7 @@ class App extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: "",
+      searchError: ""
     });
 
     axios
@@ -138,20 +138,20 @@ class App extends Component {
           this.state.listIndex
       )
       .then(res => {
-          const movies = res.data;
-          if (movies !== null) {
-            let newmovies =  movies.map((element, index) => {
-              element.Index = uuidv4()
-                return element;
-              });
+        const movies = res.data;
+        if (movies !== null) {
+          let newmovies = movies.map((element, index) => {
+            element.Index = uuidv4();
+            return element;
+          });
           this.setState({
             movies: append ? [...this.state.movies, ...newmovies] : newmovies,
             isLoading: false,
-            listIndex: append? this.state.listIndex + 1: 1
+            listIndex: append ? this.state.listIndex + 1 : 1
           });
-          } else {
-            throw new Error('Search returned empty, try another engine perhaps')
-          }
+        } else {
+          throw new Error("Search returned empty, try another engine perhaps");
+        }
       })
       .catch(err => {
         this.setState({
@@ -300,71 +300,26 @@ class App extends Component {
     return (
       <>
         <ThemeProvider theme={selectedTheme}>
-            <>
-                <GlobalStyles />
-                <div className="App">
-                    <div className="header">
-                    <div className="header-left">
-                        <p> G<span class="em">o</span>phie </p>
-                    </div>
-                    <div className="header-center">
-                        <input
-                        type="text"
-                        ref={this.searchInput}
-                        className="form-control"
-                        placeholder="Search for a movie..."
-                        autoFocus={true}
-                        onKeyPress={this.checkKey.bind(this)}
-                        onChange={this.handleSearchChange.bind(this)}
-                        />
-                    </div>
-                    <div className="header-right">
-                        <button onClick={this.newSearch.bind(this)} className="search-btn" data-tour="my-third-step">
-                            <SearchIcon />
-                        </button>
-                    </div>
-                    </div>
-                    <div className="options">
-                    <select
-                        className="server-selector"
-                        data-tour="my-second-step"
-                        onChange={this.handleServerChange.bind(this)}
-                    >
-                        <option value="Alpha"> Alpha </option>
-                        <option value="Delta"> Delta </option>
-                        <option value="Iota"> Iota (HD) </option>
-                        <option value="Zeta"> Zeta (Series) </option>
-                    </select>
-                    <div className="options__sub-details" >
-                    <button className="actions-button tour-button" data-tour="my-first-step" title="Take A Tour" onClick={this.startTour}> <WalkingIcon /> </button>
-                    <button className="switch-theme-btn" data-tour="my-eight-step" title="Change Theme" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
-                    <a className="actions-button github-button" href="https://github.com/go-phie/gophie-web" data-tour="my-ninth-step" title="Github Link" > <GitMark /> </a>
-                    </div>
-                    </div>
-                    <div className="movies" id="movie-div">
-                    <MovieList movies={this.state.movies} setDescription={this.setDescription.bind(this)}/>
-                    {this.state.isLoading && !this.state.error && (
-                        <div className="skeleton-movies">
-                        <SkeletonLoader />
-                        <SkeletonLoader />
-                        <SkeletonLoader />
-                        <SkeletonLoader />
-                        <SkeletonLoader />
-                        </div>
-                    )}
-                    {this.state.error && (
-                        <div className="error">
-                        <p className="error-text">{this.state.searchError!==""? this.state.searchError: "Oops..An Unknown Error Occured" } </p>
-                        {this.state.searchError?null:<button
-                            className="error-retry-btn"
-                            onClick={this.tryAgain.bind(this)}
-                        >
-                            <RetryIcon />
-                            Try Again
-                        </button>}
-                        </div>
-                    )}
-                    </div>
+          <>
+            <GlobalStyles />
+            <div className="App">
+              <div className="header">
+                <div className="header-left">
+                  <p>
+                    {" "}
+                    G<span class="em">o</span>phie{" "}
+                  </p>
+                </div>
+                <div className="header-center">
+                  <input
+                    type="text"
+                    ref={this.searchInput}
+                    className="form-control"
+                    placeholder="Search for a movie..."
+                    autoFocus={true}
+                    onKeyPress={this.checkKey.bind(this)}
+                    onChange={this.handleSearchChange.bind(this)}
+                  />
                 </div>
                 <div className="header-right">
                   <button
@@ -375,6 +330,7 @@ class App extends Component {
                     <SearchIcon />
                   </button>
                 </div>
+              </div>
               <div className="options">
                 <select
                   className="server-selector"
@@ -432,16 +388,19 @@ class App extends Component {
                 {this.state.error && (
                   <div className="error">
                     <p className="error-text">
-                      {" "}
-                      Oops..An Unknown Error Occured{" "}
+                      {this.state.searchError !== ""
+                        ? this.state.searchError
+                        : "Oops..An Unknown Error Occured"}{" "}
                     </p>
-                    <button
-                      className="error-retry-btn"
-                      onClick={this.tryAgain.bind(this)}
-                    >
-                      <RetryIcon />
-                      Try Again
-                    </button>
+                    {this.state.searchError ? null : (
+                      <button
+                        className="error-retry-btn"
+                        onClick={this.tryAgain.bind(this)}
+                      >
+                        <RetryIcon />
+                        Try Again
+                      </button>
+                    )}
                   </div>
                 )}
               </div>
