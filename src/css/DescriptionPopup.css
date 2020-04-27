@@ -120,7 +120,7 @@
     }
 
     .MuiSvgIcon-root {
-        width: .7em;
+        width: .7em !important;
     }
 
 }
