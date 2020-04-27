@@ -30,6 +30,7 @@ class App extends Component {
       currentmovie: {},
       hasMore: true,
       error: false,
+      searchError: "",
       theme: 'light',
       showTour: true,
       ip_address: ""
@@ -110,7 +111,8 @@ class App extends Component {
   performSearch = (query, append=false) => {
     this.setState({
       isLoading: true,
-      error: false
+      error: false,
+      searchError: "",
     });
 
     axios
@@ -125,20 +127,23 @@ class App extends Component {
       .then(res => {
           const movies = res.data;
           if (movies !== null) {
-              let newmovies =  movies.map((element, index) => {
-                element.Index = uuidv4()
-                  return element;
-                });
-            this.setState({
-              movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-              isLoading: false,
-              listIndex: append? this.state.listIndex + 1: 1
-            });
+            let newmovies =  movies.map((element, index) => {
+              element.Index = uuidv4()
+                return element;
+              });
+          this.setState({
+            movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+            isLoading: false,
+            listIndex: append? this.state.listIndex + 1: 1
+          });
+          } else {
+            throw new Error('Search returned empty, try another engine perhaps')
           }
       })
       .catch(err => {
         this.setState({
-          error: true
+          error: true,
+          searchError: err.message
         });
       });
   }
@@ -146,7 +151,8 @@ class App extends Component {
   performList = (append = true) => {
     this.setState({
       isLoading: true,
-      error: false
+      error: false,
+      searchError: ""
     });
     axios
       .get(
@@ -333,14 +339,14 @@ class App extends Component {
                     )}
                     {this.state.error && (
                         <div className="error">
-                        <p className="error-text"> Oops..An Unknown Error Occured </p>
-                        <button
+                        <p className="error-text">{this.state.searchError!==""? this.state.searchError: "Oops..An Unknown Error Occured" } </p>
+                        {this.state.searchError?null:<button
                             className="error-retry-btn"
                             onClick={this.tryAgain.bind(this)}
                         >
                             <RetryIcon />
                             Try Again
-                        </button>
+                        </button>}
                         </div>
                     )}
                     </div>
