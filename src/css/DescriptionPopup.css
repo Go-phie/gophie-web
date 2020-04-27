@@ -107,8 +107,9 @@
 }
 
 .em-span {
-    margin-left: 4em;
+    margin-right: .5em;
 }
+
 @media (max-width: 750px) {
     .gophie-modal__img img {
         display: none;
