@@ -687,8 +687,4 @@ select {
   color: ${({ theme }) => theme.yellowText} !important;
   text-decoration: none;
 }
-
-.gophie-alert a::after {
-  content: "",
-}
 `
