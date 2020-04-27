@@ -1,0 +1,137 @@
+.gophie-modal {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: row;
+}
+
+.modal-content {
+    width: initial !important;
+    border-radius: .5em;
+}
+
+.gophie-modal__img {
+    width: 40%;
+}
+
+.gophie-modal__body--description {
+    font-weight: initial !important;
+    margin-top: 1em;
+    font-size: .87em;
+    word-break: break-all;
+}
+
+.gophie-modal__body--description::first-letter {
+    font-weight: 600;
+    opacity: .7;
+}
+
+.gophie-modal__img img {
+    width: 100%;
+    object-fit: cover;
+    height: 100%;
+    border-top-left-radius: 0.5em;
+    border-bottom-left-radius: 0.5em;
+}
+
+.gophie-modal__body {
+    width: 60%;
+}
+
+.gophie-modal__body--header {
+    padding: 1em 1.5em !important;
+    border-bottom: 1px solid #2e38428f !important;
+}
+
+.gophie-modal__body--body {
+    padding: 1em 1.5em;
+}
+
+.gophie-modal-rating-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.gophie-modal-rating-container__average {
+    display: inline-flex;
+    align-items: flex-end;
+}
+
+.gophie-modal-rating-container__rate p {
+    padding-left: 1em !important;
+    font-size: .8em;
+    padding: 0;
+    padding-left: 0px;
+    line-height: 0;
+    margin-bottom: .5em;
+    text-transform: lowercase;
+    opacity: .7;
+    ;
+}
+
+.gophie-modal-rating-container__rate::before {
+    content: "";
+}
+
+
+.gophie-modal-rating-container__average::after {
+    content: "";
+}
+
+.gophie-modal-rating-container__average--container {
+    display: flex;
+    flex-direction: column;
+    line-height: 0;
+    text-align: center;
+}
+
+.gophie-modal-rating-container__average--container-item-1 {
+    display: inline-flex;
+    align-items: flex-start;
+    padding-left: .5em;
+}
+
+.gophie-modal-rating-container__average--container-item-1 p:first-child {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.gophie-modal-rating-container__average--container-item-1 p:last-child {
+    font-size: .82em;
+    opacity: .34;
+}
+
+.em-rate {
+    font-size: .7em;
+    opacity: .5;
+    line-height: .5;
+}
+
+.em-span {
+    margin-right: .5em;
+}
+
+@media (max-width: 750px) {
+    .gophie-modal__img img {
+        display: none;
+    }
+
+    .gophie-modal__img {
+        width: initial !important;
+
+    }
+
+    .gophie-modal__body {
+        width: 100%;
+    }
+
+    .MuiSvgIcon-root {
+        width: .7em !important;
+    }
+
+}
+
+@media (max-width: 991px) {
+    .modal-dialog {
+        max-width: 700px !important;
+    }
+}
