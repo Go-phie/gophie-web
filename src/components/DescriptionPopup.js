@@ -141,7 +141,7 @@ class DescriptionPopup extends Component {
 
                     <p className="em-rate">
                       <span className="em-span">by</span>
-                      
+
                       {this.state.ratings.by
                         ? Math.round(this.state.ratings.by)
                         : 0}
