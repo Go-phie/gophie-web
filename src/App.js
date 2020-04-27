@@ -366,12 +366,6 @@ class App extends Component {
                     )}
                     </div>
                 </div>
-<<<<<<< HEAD
-            </>
-            <ScrollButton scrollStepInPx="80"
-            delayInMs="16.66" />
-              {this.state.show && <DescriptionPopup show={this.state.show} ip_address={this.state.ip_address} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
-=======
                 <div className="header-right">
                   <button
                     onClick={this.newSearch.bind(this)}
@@ -381,7 +375,6 @@ class App extends Component {
                     <SearchIcon />
                   </button>
                 </div>
-              </div>
               <div className="options">
                 <select
                   className="server-selector"
@@ -468,7 +461,6 @@ class App extends Component {
               onHide={this.hideDescription.bind(this)}
             />
           )}
->>>>>>> upstream/master
         </ThemeProvider>
 
         {/* Tour Component Element */}
