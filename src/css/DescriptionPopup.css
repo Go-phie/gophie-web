@@ -81,6 +81,7 @@
     display: flex;
     flex-direction: column;
     line-height: 0;
+    text-align: center;
 }
 
 .gophie-modal-rating-container__average--container-item-1 {
@@ -105,6 +106,9 @@
     line-height: .5;
 }
 
+.em-span {
+    margin-left: 4em;
+}
 @media (max-width: 750px) {
     .gophie-modal__img img {
         display: none;
