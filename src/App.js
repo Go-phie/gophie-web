@@ -307,7 +307,7 @@ class App extends Component {
                 <div className="header-left">
                   <p>
                     {" "}
-                    G<span class="em">o</span>phie{" "}
+                    G<span className="em">o</span>phie{" "}
                   </p>
                 </div>
                 <div className="header-center">
