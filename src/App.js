@@ -202,23 +202,12 @@ class App extends Component {
   }
 
   getIp = () => {
-<<<<<<< HEAD
-    axios.get(
-      'https://api.ipify.org?format=json'
-    ).then(res => {
-      this.setState({
-        ip_address: res.data.ip
-      })
-    })
-  }
-=======
     axios.get("https://api.ipify.org?format=json").then(res => {
       this.setState({
         ip_address: res.data.ip
       });
     });
   };
->>>>>>> upstream/master
 
   toggleMode() {
     switch (this.state.mode) {
