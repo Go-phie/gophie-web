@@ -14,7 +14,6 @@ import ScrollButton from "./components/ScrollToTop";
 import DescriptionPopup from "./components/DescriptionPopup";
 import { tourSteps, disableBody, enableBody, nameToEngineMap } from "./utils"
 
-// import "./css/App.css";
 
 class App extends Component {
   constructor(props) {
