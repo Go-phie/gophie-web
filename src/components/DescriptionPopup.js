@@ -13,7 +13,6 @@ class DescriptionPopup extends Component {
         ip_rating: 0,
       };
     }
-    
     UNSAFE_componentWillMount() {
       this.getAverage();
       this.getRatings();
