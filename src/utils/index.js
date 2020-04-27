@@ -13,13 +13,13 @@ export const tourSteps = [
       },
       {
         selector: '[data-tour="my-second-step"]',
-        content: `This dropdown helps select a site to retrieve movies/series from. Currently only "Zeta" supports series, the rest are for movies`,
+        content: `This dropdown helps select an engine to retrieve movies/series from. Currently only the "Zeta" engine supports series, the rest are for movies. If an engine is unavailable due to perhaps network issues or a movie , try other engines instead`,
       },
       {
         selector: '[data-tour="my-third-step"]',
         content: ({ goTo }) => (
             <div>
-              Search for your movies/series using this search feature. It will search at the <button style={{background: '#ffe401', borderRadius: 5, outline: 'none', padding: 5, border: 'none',}} onClick={() => goTo(1)}>currently selected site</button>
+              Search for your movies/series using this search feature. It will search at the <button style={{background: '#ffe401', borderRadius: 5, outline: 'none', padding: 5, border: 'none',}} onClick={() => goTo(1)}>currently selected engine</button>
               <br />
             </div>
         ),
