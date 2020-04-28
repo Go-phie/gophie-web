@@ -129,7 +129,9 @@ class Popup extends Component {
         this.state.play?
         <div className="player-wrapper">
           <ReactPlayer url={this.props.movie.DownloadLink}
+           className="react-player"
            playing
+           pip
            controls
            width="100%"
            height="100%" />
