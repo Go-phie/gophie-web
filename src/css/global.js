@@ -90,7 +90,8 @@ body {
   opacity: .5;
 }
 .form-controlb {
-  width: 50%;
+  width: 100%;
+  margin-left:20%;
   text-align:center
   height: 98%;
   outline: none;
