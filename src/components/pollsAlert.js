@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
+import ErrorBoundary from '../utils/error-boundaries';
 
 const PollsAlert = () => {
   const [show, setShow] = useState(true);
@@ -17,4 +18,10 @@ const PollsAlert = () => {
   }
 }
 
-export default PollsAlert;
+export default function PollsAlertWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <PollsAlert />
+    </ErrorBoundary>
+  )
+};
