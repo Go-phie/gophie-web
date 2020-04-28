@@ -37,6 +37,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@reach/router": "^1.3.3",
     "material-ui-rating": "^4.2.0"
   }
 }

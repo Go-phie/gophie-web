@@ -205,6 +205,9 @@
 }
 
 
+.close:hover {
+    color: #00000045 !important;
+}
 
 @media (max-width: 750px) {
     .gophie-modal__img img {
@@ -222,6 +225,10 @@
 
     .MuiSvgIcon-root {
         width: .7em !important;
+    }
+
+    .video-play-button {
+        display: none;
     }
 
 }

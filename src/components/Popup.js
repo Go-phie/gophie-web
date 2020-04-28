@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
 import Rating from "material-ui-rating";
-import ReactPlayer from 'react-player';
+import ReactPlayer from "react-player";
 import axios from "axios";
-import "../css/DescriptionPopup.css";
+import "../css/Popup.css";
 
 class Popup extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class Popup extends Component {
       ratings_api: "https://gophie-ocena.herokuapp.com",
       ratings: {},
       ip_rating: 0,
-      play: false,
+      play: false
     };
   }
 
@@ -89,9 +89,8 @@ class Popup extends Component {
 
   handlePlayRequest(e) {
     e.preventDefault();
-    this.setState({ play: true })
-
-}
+    this.setState({ play: true });
+  }
 
   render() {
     return (
@@ -114,9 +113,18 @@ class Popup extends Component {
               }
               alt={this.props.movie.Title}
             />
-            <a id="play-video" className="video-play-button" href="/" onClick={this.handlePlayRequest.bind(this)}>
+
+            {/* Video Stream Play Icon */}
+            <a
+              id="play-video"
+              className="video-play-button"
+              href="/"
+              onClick={this.handlePlayRequest.bind(this)}
+            >
               <span> </span>{" "}
             </a>
+            {/* Video Stream Play Icon */}
+
           </section>
 
           <section className="gophie-modal__body">
