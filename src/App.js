@@ -83,6 +83,7 @@ class App extends Component {
 
   handleServerChange(event) {
     this.setState({
+      yearFilter:[],
       year: 0
     })
     let server = nameToEngineMap.get(event.target.value);
@@ -154,6 +155,7 @@ class App extends Component {
 
   performListYear =(year ,append = true)=>{
     this.setState({
+      yearFilter:[],
       isLoading: true,
       error: false,
     });
@@ -411,7 +413,7 @@ class App extends Component {
                     </div>
                     </div>
                     <div className='header-center'>
-                    <h4>Select Movie by Year</h4><select
+                    <h4>Select Movie by Year (Alpha and Iota HD)</h4><select
                         type="text"
                         ref={this.searchInput}
                         className="year-selector"
