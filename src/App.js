@@ -12,7 +12,6 @@ import {
 import MovieList from "./components/MovieList";
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
-import PollsAlert from "./components/pollsAlert";
 
 // style stuff
 import { ThemeProvider } from "styled-components";
