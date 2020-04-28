@@ -407,9 +407,6 @@ class App extends Component {
             </div>
           </>
 
-          {/* PollsAlert Component Element */}
-          <PollsAlert />
-
           {/* ScrollButton Take you back to the starting of the page */}
           <ScrollButton scrollStepInPx="80" delayInMs="16.66" />
           {this.state.show && (
