@@ -19,7 +19,7 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "./css/theme";
 import { GlobalStyles } from "./css/global";
 import ScrollButton from "./components/ScrollToTop";
-import DescriptionPopup from "./components/DescriptionPopup";
+import Popup from "./components/Popup";
 import { tourSteps, disableBody, enableBody, nameToEngineMap } from "./utils";
 
 class App extends Component {
@@ -413,7 +413,7 @@ class App extends Component {
           {/* ScrollButton Take you back to the starting of the page */}
           <ScrollButton scrollStepInPx="80" delayInMs="16.66" />
           {this.state.show && (
-            <DescriptionPopup
+            <Popup
               show={this.state.show}
               ip_address={this.state.ip_address}
               movie={this.state.currentmovie}
