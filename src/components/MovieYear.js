@@ -8,6 +8,7 @@ function MovieYear({ movies, setDescription ,year }) {
       if(movie.Year === Number(year)){
     return <Movie key={movie.Index} data={movie} setDescriptionModal={setDescription}/>
       };
+      return ''
   });
 }
 

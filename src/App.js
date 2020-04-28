@@ -161,12 +161,12 @@ class App extends Component {
       )
       .then(res => {
         const movies = res.data;
-            let newIndex = this.state.listYearIndex;
+            // let newIndex = this.state.listYearIndex;
             let newmovies = movies.map((element, index) => {
             element.Index = uuidv4()
             return element;
             });
-            newIndex += 1;
+            // newIndex += 1;
             this.setState({
               year:year,
               isLoading: false,
@@ -187,7 +187,6 @@ class App extends Component {
 
   performList = ( year, event , append = true) => {
     if(this.state.year === 0 ){
-      console.log(year)
     this.setState({
       isLoading: true,
       error: false
@@ -198,12 +197,12 @@ class App extends Component {
       )
       .then(res => {
         const movies = res.data;
-            let newIndex = this.state.listIndex;
+            // let newIndex = this.state.listIndex;
             let newmovies = movies.map((element, index) => {
             element.Index = uuidv4()
             return element;
             });
-            newIndex += 1;
+            // newIndex += 1;
             this.setState({
               isLoading: false,
               movies:append ? [...this.state.movies, ...newmovies] : newmovies,
@@ -228,12 +227,12 @@ class App extends Component {
         )
         .then(res => {
           const movies = res.data;
-              let newIndex = this.state.listYearIndex;
+              // let newIndex = this.state.listYearIndex;
               let newmovies = movies.map((element, index) => {
               element.Index = uuidv4()
               return element;
               });
-              newIndex += 1;
+              // newIndex += 1;
               this.setState({
                 isLoading: false,
                 yearFilter: append? [...this.state.yearFilter , ...newmovies]:newmovies,
@@ -377,7 +376,7 @@ class App extends Component {
     const year  = document.getElementById('mySelect').value
     console.log(year)
     this.setState({
-      year: Number(event.target.value),
+      year: year,
       isLoading : true
     })
     
