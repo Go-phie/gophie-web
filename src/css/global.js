@@ -672,5 +672,19 @@ select {
   }
   }
   
+  .gophie-alert {
+    position: fixed !important;
+    bottom: -.2em;
+    left: 0;
+    margin: .7em;
+    max-width: 28em;
+    border: 0;
+    background-color: ${({ theme }) => theme.movieBackground} !important;
+    color: ${({ theme }) => theme.text} !important;
+}
 
+.gophie-alert a {
+  color: ${({ theme }) => theme.yellowText} !important;
+  text-decoration: none;
+}
 `
