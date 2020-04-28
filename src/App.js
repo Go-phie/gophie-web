@@ -150,8 +150,44 @@ class App extends Component {
       });
   }
 
-  performList = ( event , append = true) => {
+  performListYear =(year ,append = true)=>{
+    this.setState({
+      isLoading: true,
+      error: false,
+    });
+    axios
+      .get(
+        `${this.state.api}list?page=${this.state.listYearIndex}&engine=${this.state.server}`
+      )
+      .then(res => {
+        const movies = res.data;
+            let newIndex = this.state.listYearIndex;
+            let newmovies = movies.map((element, index) => {
+            element.Index = uuidv4()
+            return element;
+            });
+            newIndex += 1;
+            this.setState({
+              year:year,
+              isLoading: false,
+              yearFilter: append? [...this.state.yearFilter , ...newmovies]:newmovies,
+             listYearIndex: append? this.state.listYearIndex + 1: 1,
+            });
+            this.setState({
+              filteredMovies : this.state.yearFilter.filter(movie=>movie.Year=== Number(this.state.year))
+            })
+      })
+      .catch(err => {
+        this.setState({
+          error: true
+        });
+      });
+
+  }
+
+  performList = ( year, event , append = true) => {
     if(this.state.year === 0 ){
+      console.log(year)
     this.setState({
       isLoading: true,
       error: false
@@ -338,15 +374,14 @@ class App extends Component {
   }
 
   setYear = (event) =>{
-    if(event.key === 'Enter'){
-      console.log(event.target.value)
+    const year  = document.getElementById('mySelect').value
+    console.log(year)
     this.setState({
-      year:event.target.value,
+      year: Number(event.target.value),
       isLoading : true
-    })}
-    this.performList()
-    if(Number(this.state.Year) < 2020){
-    }
+    })
+    
+      this.performListYear(year)
   }
 
 
@@ -381,15 +416,19 @@ class App extends Component {
                     </div>
                     </div>
                     <div className='header-center'>
-                    <input
+                    <h4>Select Movie by Year</h4><select
                         type="text"
                         ref={this.searchInput}
-                        className="form-controlb"
+                        className="year-selector"
+                        id='mySelect'
                         placeholder="Search by Year 2020-2018"
                         autoFocus={true}
-                        onKeyPress={this.setYear}
-                        // onKeyDown ={this.performList}
-                        />
+                        onChange={this.setYear}
+                        >
+                          <option value = '2020' >2020</option>
+                          <option value = '2019'>2019</option>
+                          <option value = '2018'>2018</option>
+                        </select>
                     </div><br/><br/>
                    
                     <div className="options">
