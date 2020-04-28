@@ -205,6 +205,9 @@
 }
 
 
+.close:hover {
+    color: #00000045 !important;
+}
 
 @media (max-width: 750px) {
     .gophie-modal__img img {
