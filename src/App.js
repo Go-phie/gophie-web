@@ -82,6 +82,9 @@ class App extends Component {
   }
 
   handleServerChange(event) {
+    this.setState({
+      year: 0
+    })
     let server = nameToEngineMap.get(event.target.value);
     this.searchInput.current.value = ""
     this.setState(
