@@ -11,7 +11,7 @@ function PollsAlert() {
         <p>
           Hi, Hope you are enjoying your stay on Gophie,
           We need your feedback about <b>features</b> you will love to see on Gophie.
-          <a href="https://pollev.com/devendexter353" target="_blank" rel="noopener noreferrer"> Give Feedback</a>
+          <a href="https://PollEv.com/discourses/lkassR2jhefHuR7qeqJll/respond" target="_blank" rel="noopener noreferrer"> Give Feedback</a>
         </p>
       </Alert>
       </>

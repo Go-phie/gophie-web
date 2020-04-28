@@ -133,69 +133,69 @@ class Popup extends Component {
                 {this.props.movie.Title}
               </Modal.Title>
             </Modal.Header>
-            {this.state.play ? (
-              <div className="player-wrapper">
-                <ReactPlayer
-                  url={this.props.movie.DownloadLink}
-                  playing
-                  controls
-                  width="100%"
-                  height="100%"
-                />
-              </div>
-            ) : (
-              <section className="gophie-modal__body--body">
-                <div className="gophie-modal-rating-container">
-                  <div className="gophie-modal-rating-container__average">
-                    <Rating
-                      value={Math.round(
-                        this.state.ratings.average_ratings
-                          ? this.state.ratings.average_ratings
-                          : 0
-                      )}
-                      max={5}
-                      readOnly={true}
-                    />
+            {
+        this.state.play?
+        <div className="player-wrapper">
+          <ReactPlayer url={this.props.movie.DownloadLink}
+           className="react-player"
+           playing
+           pip
+           controls
+           width="100%"
+           height="100%" />
+        </div>:
+         <section className="gophie-modal__body--body">
+         <div className="gophie-modal-rating-container">
+           <div className="gophie-modal-rating-container__average">
+             <Rating
+               value={Math.round(
+                 this.state.ratings.average_ratings
+                   ? this.state.ratings.average_ratings
+                   : 0
+               )}
+               max={5}
+               readOnly={true}
+             />
 
-                    <div className="gophie-modal-rating-container__average--container">
-                      <div className="gophie-modal-rating-container__average--container-item-1">
-                        <p>
-                          {this.state.ratings.average_ratings
-                            ? Math.round(
-                                this.state.ratings.average_ratings * 10
-                              ) / 10
-                            : 0}
-                        </p>
-                        <p>/5</p>
-                      </div>
+             <div className="gophie-modal-rating-container__average--container">
+               <div className="gophie-modal-rating-container__average--container-item-1">
+                 <p>
+                   {this.state.ratings.average_ratings
+                     ? Math.round(
+                         this.state.ratings.average_ratings * 10
+                       ) / 10
+                     : 0}
+                 </p>
+                 <p>/5</p>
+               </div>
 
-                      <p className="em-rate">
-                        <span className="em-span">by</span>
+               <p className="em-rate">
+                 <span className="em-span">by</span>
 
-                        {this.state.ratings.by
-                          ? Math.round(this.state.ratings.by)
-                          : 0}
-                      </p>
-                    </div>
-                  </div>
+                 {this.state.ratings.by
+                   ? Math.round(this.state.ratings.by)
+                   : 0}
+               </p>
+             </div>
+           </div>
 
-                  <div className="gophie-modal-rating-container__rate">
-                    <p>Rate Movie</p>
-                    <Rating
-                      value={this.state.ip_rating}
-                      max={5}
-                      onChange={value => this.rateMovie(value)}
-                    />
-                  </div>
-                </div>
+           <div className="gophie-modal-rating-container__rate">
+             <p>Rate Movie</p>
+             <Rating
+               value={this.state.ip_rating}
+               max={5}
+               onChange={value => this.rateMovie(value)}
+             />
+           </div>
+         </div>
 
-                <div className="gophie-modal__body--description">
-                  {this.props.movie.Description === ""
-                    ? "Seems like the description for this movie is missing"
-                    : this.props.movie.Description}
-                </div>
-              </section>
-            )}
+         <div className="gophie-modal__body--description">
+           {this.props.movie.Description === ""
+             ? "Seems like the description for this movie is missing"
+             : this.props.movie.Description}
+         </div>
+       </section>
+      }      
           </section>
         </Modal.Body>
       </Modal>
