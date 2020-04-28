@@ -288,7 +288,7 @@ div.skeleton-movies {
 @media (max-width: 450px) {
 
     .server-selector {
-        padding: 10px 0px;
+        padding: 10px .3em;
     }
     .year-selector {
         padding: 10px 0px;

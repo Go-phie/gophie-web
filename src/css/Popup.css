@@ -205,10 +205,14 @@
 }
 
 
+.close:hover {
+    color: #00000045 !important;
+}
 
 @media (max-width: 750px) {
     .gophie-modal__img img {
-        display: none;
+        max-height: 10em;
+        padding: 1em 1em 0 1em;
     }
 
     .gophie-modal__img {
@@ -218,6 +222,10 @@
 
     .gophie-modal__body {
         width: 100%;
+    }
+
+    .gophie-modal {
+        flex-direction: column;
     }
 
     .MuiSvgIcon-root {
