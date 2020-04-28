@@ -13,7 +13,6 @@ import { lightTheme, darkTheme } from './css/theme';
 import { GlobalStyles } from './css/global';
 import ScrollButton from "./components/ScrollToTop";
 import Popup from "./components/Popup";
-import PollsAlert from "./components/pollsAlert";
 import { tourSteps, disableBody, enableBody, nameToEngineMap } from "./utils"
 
 
@@ -161,12 +160,10 @@ class App extends Component {
       )
       .then(res => {
         const movies = res.data;
-            let newIndex = this.state.listYearIndex;
             let newmovies = movies.map((element, index) => {
             element.Index = uuidv4()
             return element;
             });
-            newIndex += 1;
             this.setState({
               year:year,
               isLoading: false,
@@ -197,12 +194,10 @@ class App extends Component {
       )
       .then(res => {
         const movies = res.data;
-            let newIndex = this.state.listIndex;
             let newmovies = movies.map((element, index) => {
             element.Index = uuidv4()
             return element;
             });
-            newIndex += 1;
             this.setState({
               isLoading: false,
               movies:append ? [...this.state.movies, ...newmovies] : newmovies,
@@ -227,12 +222,10 @@ class App extends Component {
         )
         .then(res => {
           const movies = res.data;
-              let newIndex = this.state.listYearIndex;
               let newmovies = movies.map((element, index) => {
               element.Index = uuidv4()
               return element;
               });
-              newIndex += 1;
               this.setState({
                 isLoading: false,
                 yearFilter: append? [...this.state.yearFilter , ...newmovies]:newmovies,
@@ -475,7 +468,6 @@ class App extends Component {
                 </div>
             </>
 {/* PollsAlert Component Element */}
-          <PollsAlert />
             <ScrollButton scrollStepInPx="80"
             delayInMs="16.66" />
               {this.state.show && <Popup show={this.state.show} ip_address={this.state.ip_address} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
