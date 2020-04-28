@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Rating from "material-ui-rating";
 import ReactPlayer from "react-player";
 import axios from "axios";
-import "../css/DescriptionPopup.css";
+import "../css/Popup.css";
 
 class Popup extends Component {
   constructor(props) {
