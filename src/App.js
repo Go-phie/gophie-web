@@ -12,7 +12,6 @@ import {
 import MovieList from "./components/MovieList";
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
-import PollsAlert from "./components/pollsAlert";
 
 // style stuff
 import { ThemeProvider } from "styled-components";
@@ -406,9 +405,6 @@ class App extends Component {
               </div>
             </div>
           </>
-
-          {/* PollsAlert Component Element */}
-          <PollsAlert />
 
           {/* ScrollButton Take you back to the starting of the page */}
           <ScrollButton scrollStepInPx="80" delayInMs="16.66" />

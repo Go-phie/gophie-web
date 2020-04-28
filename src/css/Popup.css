@@ -211,7 +211,8 @@
 
 @media (max-width: 750px) {
     .gophie-modal__img img {
-        display: none;
+        max-height: 10em;
+        padding: 1em 1em 0 1em;
     }
 
     .gophie-modal__img {
@@ -223,12 +224,12 @@
         width: 100%;
     }
 
-    .MuiSvgIcon-root {
-        width: .7em !important;
+    .gophie-modal {
+        flex-direction: column;
     }
 
-    .video-play-button {
-        display: none;
+    .MuiSvgIcon-root {
+        width: .7em !important;
     }
 
 }
