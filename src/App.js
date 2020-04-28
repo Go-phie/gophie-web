@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Tour from 'reactour';
 import { RetryIcon, SearchIcon, SunIcon, MoonIcon, GitMark, WalkingIcon } from "./components/icons";
 import MovieList from "./components/MovieList";
-import MovieYearList  from './components/MovieYearList'
+import MovieYear  from './components/MovieYear'
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from 'uuid';
 
@@ -12,7 +12,8 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './css/theme';
 import { GlobalStyles } from './css/global';
 import ScrollButton from "./components/ScrollToTop";
-import DescriptionPopup from './components/Popup'
+import Popup from "./components/Popup";
+import PollsAlert from "./components/pollsAlert";
 import { tourSteps, disableBody, enableBody, nameToEngineMap } from "./utils"
 
 
@@ -205,7 +206,6 @@ class App extends Component {
               this.setState({
                 filteredMovies : this.state.yearFilter.filter(movie=>movie.Year=== Number(this.state.year))
               })
-              console.log(this.state.yearFilter)
         })
         .catch(err => {
           this.setState({
@@ -339,6 +339,7 @@ class App extends Component {
 
   setYear = (event) =>{
     if(event.key === 'Enter'){
+      console.log(event.target.value)
     this.setState({
       year:event.target.value,
       isLoading : true
@@ -409,7 +410,7 @@ class App extends Component {
                     </div>
                     </div>
                     <div className="movies" id="movie-div">
-                      {this.state.year === 0 ? <MovieList movies={this.state.movies} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter} onScroll ={this.handleYearScroll}/> : <MovieYearList  setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.filteredMovies} onScroll ={this.handleYearScroll}/>}
+                      {this.state.year === 0 ? <MovieList movies={this.state.movies} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter} onScroll ={this.handleYearScroll}/> : <MovieYear movies={this.state.yearFilter} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter}/>}
                     
                     {this.state.isLoading && !this.state.error && (
                         <div className="skeleton-movies">
@@ -435,9 +436,11 @@ class App extends Component {
                     </div>
                 </div>
             </>
+{/* PollsAlert Component Element */}
+          <PollsAlert />
             <ScrollButton scrollStepInPx="80"
             delayInMs="16.66" />
-              {this.state.show && <DescriptionPopup show={this.state.show} ip_address={this.state.ip_address} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
+              {this.state.show && <Popup show={this.state.show} ip_address={this.state.ip_address} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
         </ThemeProvider>
         <Tour 
         steps={tourSteps} 

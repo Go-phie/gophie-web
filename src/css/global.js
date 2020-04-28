@@ -89,8 +89,28 @@ body {
   color: ${({ theme }) => theme.formColor};
   opacity: .5;
 }
+.form-controlb {
+  width: 50%;
+  text-align:center
+  height: 98%;
+  outline: none;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  font-size: 19px;
+  padding-left: 10px;
+  color: ${({ theme }) => theme.formColor};
+  opacity: .5;
+}
 
 .form-control:focus {
+  background-color: ${({ theme }) => theme.movieBackground};
+  border-color: #121620;
+  box-shadow: none;
+  color: ${({ theme }) => theme.formColor};
+opacity: 1;
+}
+.form-controlb:focus {
   background-color: ${({ theme }) => theme.movieBackground};
   border-color: #121620;
   box-shadow: none;
