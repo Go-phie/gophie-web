@@ -467,6 +467,7 @@ class App extends Component {
                         <SkeletonLoader />
                         </div>
                     )}
+                    
                     {this.state.error && (
                         <div className="error">
                         <p className="error-text"> Oops..An Unknown Error Occured </p>

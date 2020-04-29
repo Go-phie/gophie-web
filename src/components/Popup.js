@@ -92,6 +92,11 @@ class Popup extends Component {
     this.setState({ play: true });
   }
 
+  handleStopRequest(e) {
+    e.preventDefault()
+    this.setState({ play: false });
+  }
+
   render() {
     return (
       <Modal
@@ -115,6 +120,15 @@ class Popup extends Component {
             />
 
             {/* Video Stream Play Icon */}
+            {
+            this.state.play?
+            <a
+            id="stop-video"
+            className= "video-stop-button"
+            href="/"
+            onClick={this.handleStopRequest.bind(this)}>
+              <span></span>{" "}  
+            </a>:
             <a
               id="play-video"
               className="video-play-button"
@@ -123,6 +137,7 @@ class Popup extends Component {
             >
               <span> </span>{" "}
             </a>
+  }
             {/* Video Stream Play Icon */}
 
           </section>
@@ -142,7 +157,13 @@ class Popup extends Component {
            pip
            controls
            width="100%"
-           height="100%" />
+           height="90%" />
+           <div className="player-error-alert">
+           {this.props.server === "netnaija"?
+             <p id="player-error-message">Streaming from alpha is problematic, suggest downloading instead</p>:
+             <p></p>
+           }
+         </div>
         </div>:
          <section className="gophie-modal__body--body">
          <div className="gophie-modal-rating-container">
