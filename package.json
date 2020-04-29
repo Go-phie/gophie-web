@@ -13,7 +13,7 @@
     "react-bootstrap": "^1.0.0",
     "react-dom": "^16.8.3",
     "react-player": "^2.0.0",
-    "react-scripts": "2.1.5",
+    "react-scripts": "^3.4.1",
     "react-toggle": "^4.1.1",
     "reactour": "^1.17.0",
     "styled-components": "^5.0.1",
@@ -26,7 +26,8 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "format": "prettier \"src/**/*.{js,html,css}\" --write"
+    "format": "prettier \"src/**/*.{js,html,css}\" --write",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -39,8 +40,17 @@
   ],
   "devDependencies": {
     "@reach/router": "^1.3.3",
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "eslint-plugin-standard": "^4.0.1",
     "material-ui-rating": "^4.2.0",
     "prettier": "^2.0.5"
   }
