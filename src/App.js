@@ -613,7 +613,7 @@ class App extends Component {
           </>
 
           {/* ScrollButton Take you back to the starting of the page */}
-          <ScrollButton scrollStepInPx="80" delayInMs="16.66" data-tour="my-ninth-step"/>
+          <ScrollButton scrollStepInPx="80" delayInMs="16.66"/>
           {this.state.show && (
             <Popup
               show={this.state.show}
