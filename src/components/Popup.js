@@ -162,7 +162,7 @@ class Popup extends Component {
           </div>
           <div className="player-error-alert">
             {this.props.server === "netnaija"?
-              <p class="player-error-message">Streaming from alpha is problematic, suggest downloading instead</p>: <p></p>
+              <p className="player-error-message">Streaming from alpha is problematic, suggest <a className="gophie-link" href={this.props.movie.DownloadLink} target="_blank" rel="noopener noreferrer">downloading</a>  instead</p>: <p></p>
             }
           </div>
          </div>
