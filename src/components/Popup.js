@@ -150,21 +150,23 @@ class Popup extends Component {
             </Modal.Header>
             {
         this.state.play?
-        <div className="player-wrapper">
-          <ReactPlayer url={this.props.movie.DownloadLink}
-           className="react-player"
-           playing
-           pip
-           controls
-           width="100%"
-           height="90%" />
-           <div className="player-error-alert">
-           {this.props.server === "netnaija"?
-             <p id="player-error-message">Streaming from alpha is problematic, suggest downloading instead</p>:
-             <p></p>
-           }
+        <div>
+          <div className="player-wrapper">
+            <ReactPlayer url={this.props.movie.DownloadLink}
+            className="react-player"
+            playing
+            pip
+            controls
+            width="100%"
+            height="90%" />
+          </div>
+          <div className="player-error-alert">
+            {this.props.server === "netnaija"?
+              <p class="player-error-message">Streaming from alpha is problematic, suggest downloading instead</p>: <p></p>
+            }
+          </div>
          </div>
-        </div>:
+         :
          <section className="gophie-modal__body--body">
          <div className="gophie-modal-rating-container">
            <div className="gophie-modal-rating-container__average">
@@ -216,7 +218,7 @@ class Popup extends Component {
              : this.props.movie.Description}
          </div>
        </section>
-      }      
+      }
           </section>
         </Modal.Body>
       </Modal>
