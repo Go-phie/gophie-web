@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Rating from "material-ui-rating";
 import ReactPlayer from "react-player";
 import axios from "axios";
+import { greekFromEnglish } from "../utils";
 import "../css/Popup.css";
 
 class Popup extends Component {
@@ -161,8 +162,8 @@ class Popup extends Component {
             height="90%" />
           </div>
           <div className="player-error-alert">
-            {this.props.server === "netnaija"?
-              <p class="player-error-message">Streaming from alpha is problematic, suggest downloading instead</p>: <p></p>
+            {greekFromEnglish(this.props.server) === "Alpha"?
+              <p className="player-error-message">Streaming from Alpha is problematic, we suggest downloading instead</p>: <p></p>
             }
           </div>
          </div>
