@@ -209,6 +209,12 @@ opacity: 1;
   outline: none;
 }
 
+@media screen and (max-width:768px){
+  .year-selector{
+    display:none;
+  }
+}
+
 .server-selector > option {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};
