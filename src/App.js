@@ -139,7 +139,7 @@ class App extends Component {
       .then((res) => {
         const movies = res.data;
         if (movies !== null) {
-          let newmovies = movies.map((element, index) => {
+          let newmovies = movies.map((element) => {
             element.Index = uuidv4();
             return element;
           });
@@ -173,7 +173,7 @@ class App extends Component {
       .then((res) => {
         const movies = res.data;
         let newIndex = this.state.listIndex;
-        let newmovies = movies.map((element, index) => {
+        let newmovies = movies.map((element) => {
           element.Index = uuidv4();
           return element;
         });
@@ -185,6 +185,7 @@ class App extends Component {
         });
       })
       .catch((err) => {
+        console.log(err);
         this.setState({
           error: true,
         });
@@ -315,6 +316,7 @@ class App extends Component {
                     ref={this.searchInput}
                     className="form-control"
                     placeholder="Search for a movie..."
+                    // eslint-disable-next-line jsx-a11y/no-autofocus
                     autoFocus={true}
                     onKeyPress={this.checkKey.bind(this)}
                     onChange={this.handleSearchChange.bind(this)}
@@ -335,6 +337,7 @@ class App extends Component {
                   className="server-selector"
                   data-tour="my-second-step"
                   onChange={this.handleServerChange.bind(this)}
+                  onBlur={this.handleServerChange.bind(this)}
                 >
                   <option value="Alpha"> Alpha </option>
                   <option value="Delta"> Delta </option>

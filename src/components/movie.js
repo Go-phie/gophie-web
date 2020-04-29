@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
 import { DownloadIcon } from "./icons";
 import { isImageURL, greekFromEnglish } from "../utils";
@@ -16,6 +17,7 @@ export default class Movie extends Component {
         <div className="movie-image">
           <img
             onClick={() => this.props.setDescriptionModal(this.props.data)}
+            onKeyDown={() => this.props.setDescriptionModal(this.props.data)}
             src={
               isImageURL(CoverPhotoLink)
                 ? CoverPhotoLink

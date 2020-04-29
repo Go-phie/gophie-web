@@ -34,9 +34,11 @@ class Popup extends Component {
         });
       })
       .catch((err) => {
-        this.setState({
-          error: true,
-        });
+        if (err) {
+          this.setState({
+            error: true,
+          });
+        }
       });
   };
 
@@ -56,9 +58,11 @@ class Popup extends Component {
         }
       })
       .catch((err) => {
-        this.setState({
-          error: true,
-        });
+        if (err) {
+          this.setState({
+            error: true,
+          });
+        }
       });
   };
 
@@ -81,9 +85,11 @@ class Popup extends Component {
         this.getAverage();
       })
       .catch((err) => {
-        this.setState({
-          error: true,
-        });
+        if (err) {
+          this.setState({
+            error: true,
+          });
+        }
       });
   };
 
