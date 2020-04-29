@@ -31,7 +31,6 @@ class ScrollButton extends Component {
       <button
         title="Back to top"
         className="scroll"
-        data-tour="my-seventh-step"
         onClick={() => {
           this.scrollToTop();
         }}
