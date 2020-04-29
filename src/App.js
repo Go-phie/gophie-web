@@ -1,7 +1,19 @@
 import axios from "axios";
 import React, { Component } from "react";
+<<<<<<< HEAD
 import Tour from 'reactour';
 import { RetryIcon, SearchIcon, SunIcon, MoonIcon, GitMark, WalkingIcon } from "./components/icons";
+=======
+import Tour from "reactour";
+import {
+  RetryIcon,
+  SearchIcon,
+  SunIcon,
+  MoonIcon,
+  GitMark,
+  WalkingIcon,
+} from "./components/icons";
+>>>>>>> upstream/master
 import MovieList from "./components/MovieList";
 import MovieYear  from './components/MovieYear'
 import SkeletonLoader from "./components/SkeletonLoader";
@@ -36,14 +48,22 @@ class App extends Component {
       theme: 'light',
       showTour: true,
       ip_address: "",
+<<<<<<< HEAD
       yearFilter: [],
       filteredMovies :[],
+=======
+>>>>>>> upstream/master
     };
 }
 
   isBottom = (el) => {
+<<<<<<< HEAD
   return el.getBoundingClientRect().bottom <= window.innerHeight;
 }
+=======
+    return el.getBoundingClientRect().bottom <= window.innerHeight;
+  };
+>>>>>>> upstream/master
 
   handleScroll = () => {
       const query = this.searchInput.current.value
@@ -69,13 +89,18 @@ class App extends Component {
         () => this.performList(false) );
         return;
     }
+<<<<<<< HEAD
     
     const filteredMovies = this.state.movies.filter(movie =>
+=======
+
+    const filteredMovies = this.state.movies.filter((movie) =>
+>>>>>>> upstream/master
       movie.Title.toLowerCase().includes(query)
     );
     if (filteredMovies.length >= 1) {
       this.setState({
-        movies: filteredMovies
+        movies: filteredMovies,
       });
       return;
     }
@@ -92,7 +117,7 @@ class App extends Component {
       {
         server,
         movies: [],
-        listIndex: 1
+        listIndex: 1,
       },
       () => this.performList()
     );
@@ -106,7 +131,13 @@ class App extends Component {
           movies: [],
           error: false,
           listIndex: 1,
+<<<<<<< HEAD
         },() => this.performSearch(query, true));       
+=======
+        },
+        () => this.performSearch(query, true)
+      );
+>>>>>>> upstream/master
     }
   }
 
@@ -120,7 +151,12 @@ class App extends Component {
   performSearch = (query, append=false) => {
     this.setState({
       isLoading: true,
+<<<<<<< HEAD
       error: false
+=======
+      error: false,
+      searchError: "",
+>>>>>>> upstream/master
     });
 
     axios
@@ -132,6 +168,7 @@ class App extends Component {
           this.state.server+
           "&page=" + this.state.listIndex
       )
+<<<<<<< HEAD
       .then(res => {
           const movies = res.data;
           if (movies !== null) {
@@ -145,10 +182,32 @@ class App extends Component {
               listIndex: append? this.state.listIndex + 1: 1
             });
           }
+=======
+      .then((res) => {
+        const movies = res.data;
+        if (movies !== null) {
+          let newmovies = movies.map((element) => {
+            element.Index = uuidv4();
+            return element;
+          });
+          this.setState({
+            movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+            isLoading: false,
+            listIndex: append ? this.state.listIndex + 1 : 1,
+          });
+        } else {
+          throw new Error("Search returned empty, try another engine perhaps");
+        }
+>>>>>>> upstream/master
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
+<<<<<<< HEAD
           error: true
+=======
+          error: true,
+          searchError: err.message,
+>>>>>>> upstream/master
         });
       });
   }
@@ -158,13 +217,18 @@ class App extends Component {
       yearFilter:[],
       isLoading: true,
       error: false,
+<<<<<<< HEAD
+=======
+      searchError: "",
+>>>>>>> upstream/master
     });
     axios
       .get(
         `${this.state.api}list?page=${this.state.listYearIndex}&engine=${this.state.server}`
       )
-      .then(res => {
+      .then((res) => {
         const movies = res.data;
+<<<<<<< HEAD
             let newmovies = movies.map((element, index) => {
             element.Index = uuidv4()
             return element;
@@ -182,6 +246,18 @@ class App extends Component {
       .catch(err => {
         this.setState({
           error: true
+=======
+        let newIndex = this.state.listIndex;
+        let newmovies = movies.map((element) => {
+          element.Index = uuidv4();
+          return element;
+        });
+        newIndex += 1;
+        this.setState({
+          isLoading: false,
+          movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+          listIndex: newIndex,
+>>>>>>> upstream/master
         });
       });
 
@@ -210,9 +286,10 @@ class App extends Component {
             });
 
       })
-      .catch(err => {
+      .catch((err) => {
+        console.log(err);
         this.setState({
-          error: true
+          error: true,
         });
       });
     
@@ -261,6 +338,7 @@ class App extends Component {
   }
 
   getIp = () => {
+<<<<<<< HEAD
     axios.get(
       'https://api.ipify.org?format=json'
     ).then(res => {
@@ -269,6 +347,14 @@ class App extends Component {
       })
     })
   }
+=======
+    axios.get("https://api.ipify.org?format=json").then((res) => {
+      this.setState({
+        ip_address: res.data.ip,
+      });
+    });
+  };
+>>>>>>> upstream/master
 
   toggleMode() {
     switch (this.state.mode){
@@ -342,11 +428,21 @@ class App extends Component {
   }
 
   setDescription(movie) {
+<<<<<<< HEAD
     this.setState({
       show: true,
       currentmovie: movie,
     },
     ()=> console.log(this.state))
+=======
+    this.setState(
+      {
+        show: true,
+        currentmovie: movie,
+      },
+      () => console.log(this.state)
+    );
+>>>>>>> upstream/master
   }
   
   hideDescription() {
@@ -396,6 +492,7 @@ class App extends Component {
     return (
       <>
         <ThemeProvider theme={selectedTheme}>
+<<<<<<< HEAD
             <>
                 <GlobalStyles />
                 <div className="App">
@@ -467,6 +564,110 @@ class App extends Component {
                         <SkeletonLoader />
                         <SkeletonLoader />
                         </div>
+=======
+          <>
+            <GlobalStyles />
+            <div className="App">
+              <div className="header">
+                <div className="header-left">
+                  <p>
+                    {" "}
+                    G<span className="em">o</span>phie{" "}
+                  </p>
+                </div>
+                <div className="header-center">
+                  <input
+                    type="text"
+                    ref={this.searchInput}
+                    className="form-control"
+                    placeholder="Search for a movie..."
+                    // eslint-disable-next-line jsx-a11y/no-autofocus
+                    autoFocus={true}
+                    onKeyPress={this.checkKey.bind(this)}
+                    onChange={this.handleSearchChange.bind(this)}
+                  />
+                </div>
+                <div className="header-right">
+                  <button
+                    onClick={this.newSearch.bind(this)}
+                    className="search-btn"
+                    data-tour="my-third-step"
+                  >
+                    <SearchIcon />
+                  </button>
+                </div>
+              </div>
+              <div className="options">
+                <select
+                  className="server-selector"
+                  data-tour="my-second-step"
+                  onChange={this.handleServerChange.bind(this)}
+                  onBlur={this.handleServerChange.bind(this)}
+                >
+                  <option value="Alpha"> Alpha </option>
+                  <option value="Delta"> Delta </option>
+                  <option value="Iota"> Iota (HD) </option>
+                  <option value="Zeta"> Zeta (Series) </option>
+                </select>
+                <div className="options__sub-details">
+                  <button
+                    className="actions-button tour-button"
+                    data-tour="my-first-step"
+                    title="Take A Tour"
+                    onClick={this.startTour}
+                  >
+                    {" "}
+                    <WalkingIcon />{" "}
+                  </button>
+                  <button
+                    className="switch-theme-btn"
+                    data-tour="my-eight-step"
+                    title="Change Theme"
+                    onClick={() => this.switchTheme(this.state.theme)}
+                  >
+                    {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+                  </button>
+                  <a
+                    className="actions-button github-button"
+                    href="https://github.com/go-phie/gophie-web"
+                    data-tour="my-ninth-step"
+                    title="Github Link"
+                  >
+                    {" "}
+                    <GitMark />{" "}
+                  </a>
+                </div>
+              </div>
+              <div className="movies" id="movie-div">
+                <MovieList
+                  movies={this.state.movies}
+                  setDescription={this.setDescription.bind(this)}
+                />
+                {this.state.isLoading && !this.state.error && (
+                  <div className="skeleton-movies">
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                    <SkeletonLoader />
+                  </div>
+                )}
+                {this.state.error && (
+                  <div className="error">
+                    <p className="error-text">
+                      {this.state.searchError !== ""
+                        ? this.state.searchError
+                        : "Oops..An Unknown Error Occured"}{" "}
+                    </p>
+                    {this.state.searchError ? null : (
+                      <button
+                        className="error-retry-btn"
+                        onClick={this.tryAgain.bind(this)}
+                      >
+                        <RetryIcon />
+                        Try Again
+                      </button>
+>>>>>>> upstream/master
                     )}
                     
                     {this.state.error && (

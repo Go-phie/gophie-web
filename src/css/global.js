@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -748,4 +748,4 @@ select {
   color: ${({ theme }) => theme.yellowText} !important;
   text-decoration: none;
 }
-`
+`;
