@@ -122,6 +122,12 @@
     left: 0;
   }
 
+#player-error-message{
+    font-size: 13px;
+    margin-top: 100px;
+    margin-left: 10px;
+  }
+
 /* play button animation */
 .video-play-button, .video-stop-button {
     position: absolute;

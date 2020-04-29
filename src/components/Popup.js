@@ -157,7 +157,13 @@ class Popup extends Component {
            pip
            controls
            width="100%"
-           height="100%" />
+           height="90%" />
+           <div className="player-error-alert">
+           {this.props.server === "netnaija"?
+             <p id="player-error-message">Streaming from alpha is problematic, suggest downloading instead</p>:
+             <p></p>
+           }
+         </div>
         </div>:
          <section className="gophie-modal__body--body">
          <div className="gophie-modal-rating-container">
