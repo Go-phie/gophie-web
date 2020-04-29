@@ -6,6 +6,7 @@ import MovieList from "./components/MovieList";
 import MovieYear  from './components/MovieYear'
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from 'uuid';
+import {FaRegTimesCircle} from 'react-icons/fa'
 
 // style stuff
 import { ThemeProvider } from 'styled-components';
@@ -37,7 +38,8 @@ class App extends Component {
       showTour: true,
       ip_address: "",
       yearFilter: [],
-      filteredMovies :[]
+      filteredMovies :[],
+      canClear : 'false'
     };
 }
 
@@ -155,6 +157,7 @@ class App extends Component {
 
   performListYear =(year ,append = true)=>{
     this.setState({
+      canClear :true,
       yearFilter:[],
       isLoading: true,
       error: false,
@@ -381,6 +384,11 @@ class App extends Component {
       this.performListYear(year)
   }
 
+  clearFilter =()=>{
+    this.setState({
+      year : 0
+    })
+  }
 
   render() {
       const {theme} = this.state;
@@ -425,7 +433,9 @@ class App extends Component {
                           <option value = '2020' >2020</option>
                           <option value = '2019'>2019</option>
                           <option value = '2018'>2018</option>
-                        </select>
+                        </select>  {this.state.canClear === true ?   <FaRegTimesCircle onClick={this.clearFilter}  className='cancel-btn' value={theme === 'light' ? 'black': 'white'} style={{fontSize:'30px' , color : this.value  , cursor: 'pointer'} }/> : '' }
+
+
                     </div><br/><br/>
                    
                     <div className="options">

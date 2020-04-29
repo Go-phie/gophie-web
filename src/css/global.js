@@ -385,6 +385,10 @@ div.movie {
     color: ${({ theme }) => theme.text}
   }
   
+  .cancel-btn{
+    color: ${({ theme }) => theme.text}
+  }
+  
   .movie__about-meta {
     display: flex;
     justify-content: space-between;
