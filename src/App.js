@@ -7,7 +7,7 @@ import {
   SunIcon,
   MoonIcon,
   GitMark,
-  WalkingIcon
+  WalkingIcon,
 } from "./components/icons";
 import MovieList from "./components/MovieList";
 import SkeletonLoader from "./components/SkeletonLoader";
@@ -39,11 +39,11 @@ class App extends Component {
       searchError: "",
       theme: "light",
       showTour: true,
-      ip_address: ""
+      ip_address: "",
     };
   }
 
-  isBottom = el => {
+  isBottom = (el) => {
     return el.getBoundingClientRect().bottom <= window.innerHeight;
   };
 
@@ -74,12 +74,12 @@ class App extends Component {
       return;
     }
 
-    const filteredMovies = this.state.movies.filter(movie =>
+    const filteredMovies = this.state.movies.filter((movie) =>
       movie.Title.toLowerCase().includes(query)
     );
     if (filteredMovies.length >= 1) {
       this.setState({
-        movies: filteredMovies
+        movies: filteredMovies,
       });
       return;
     }
@@ -92,7 +92,7 @@ class App extends Component {
       {
         server,
         movies: [],
-        listIndex: 1
+        listIndex: 1,
       },
       () => this.performList()
     );
@@ -105,7 +105,7 @@ class App extends Component {
         {
           movies: [],
           error: false,
-          listIndex: 1
+          listIndex: 1,
         },
         () => this.performSearch(query, true)
       );
@@ -123,7 +123,7 @@ class App extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: ""
+      searchError: "",
     });
 
     axios
@@ -136,26 +136,26 @@ class App extends Component {
           "&page=" +
           this.state.listIndex
       )
-      .then(res => {
+      .then((res) => {
         const movies = res.data;
         if (movies !== null) {
-          let newmovies = movies.map((element, index) => {
+          let newmovies = movies.map((element) => {
             element.Index = uuidv4();
             return element;
           });
           this.setState({
             movies: append ? [...this.state.movies, ...newmovies] : newmovies,
             isLoading: false,
-            listIndex: append ? this.state.listIndex + 1 : 1
+            listIndex: append ? this.state.listIndex + 1 : 1,
           });
         } else {
           throw new Error("Search returned empty, try another engine perhaps");
         }
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
           error: true,
-          searchError: err.message
+          searchError: err.message,
         });
       });
   };
@@ -164,16 +164,16 @@ class App extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: ""
+      searchError: "",
     });
     axios
       .get(
         `${this.state.api}list?page=${this.state.listIndex}&engine=${this.state.server}`
       )
-      .then(res => {
+      .then((res) => {
         const movies = res.data;
         let newIndex = this.state.listIndex;
-        let newmovies = movies.map((element, index) => {
+        let newmovies = movies.map((element) => {
           element.Index = uuidv4();
           return element;
         });
@@ -181,12 +181,13 @@ class App extends Component {
         this.setState({
           isLoading: false,
           movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-          listIndex: newIndex
+          listIndex: newIndex,
         });
       })
-      .catch(err => {
+      .catch((err) => {
+        console.log(err);
         this.setState({
-          error: true
+          error: true,
         });
       });
   };
@@ -201,9 +202,9 @@ class App extends Component {
   }
 
   getIp = () => {
-    axios.get("https://api.ipify.org?format=json").then(res => {
+    axios.get("https://api.ipify.org?format=json").then((res) => {
       this.setState({
-        ip_address: res.data.ip
+        ip_address: res.data.ip,
       });
     });
   };
@@ -283,7 +284,7 @@ class App extends Component {
     this.setState(
       {
         show: true,
-        currentmovie: movie
+        currentmovie: movie,
       },
       () => console.log(this.state)
     );
@@ -315,6 +316,7 @@ class App extends Component {
                     ref={this.searchInput}
                     className="form-control"
                     placeholder="Search for a movie..."
+                    // eslint-disable-next-line jsx-a11y/no-autofocus
                     autoFocus={true}
                     onKeyPress={this.checkKey.bind(this)}
                     onChange={this.handleSearchChange.bind(this)}
@@ -335,6 +337,7 @@ class App extends Component {
                   className="server-selector"
                   data-tour="my-second-step"
                   onChange={this.handleServerChange.bind(this)}
+                  onBlur={this.handleServerChange.bind(this)}
                 >
                   <option value="Alpha"> Alpha </option>
                   <option value="Delta"> Delta </option>

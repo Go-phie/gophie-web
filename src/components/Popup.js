@@ -13,7 +13,7 @@ class Popup extends Component {
       ratings_api: "https://gophie-ocena.herokuapp.com",
       ratings: {},
       ip_rating: 0,
-      play: false
+      play: false,
     };
   }
 
@@ -27,17 +27,19 @@ class Popup extends Component {
     axios
       .post(this.state.ratings_api + "/movie/ratings/average/", {
         name: movie.Title,
-        engine: movie.Source
+        engine: movie.Source,
       })
-      .then(res => {
+      .then((res) => {
         this.setState({
-          ratings: res.data
+          ratings: res.data,
         });
       })
-      .catch(err => {
-        this.setState({
-          error: true
-        });
+      .catch((err) => {
+        if (err) {
+          this.setState({
+            error: true,
+          });
+        }
       });
   };
 
@@ -47,44 +49,48 @@ class Popup extends Component {
       .post(this.state.ratings_api + "/movie/rating/", {
         movie_name: movie.Title,
         engine: movie.Source,
-        ip_address: this.props.ip_address
+        ip_address: this.props.ip_address,
       })
-      .then(res => {
+      .then((res) => {
         if (res.data !== null) {
           this.setState({
-            ip_rating: res.data.score
+            ip_rating: res.data.score,
           });
         }
       })
-      .catch(err => {
-        this.setState({
-          error: true
-        });
+      .catch((err) => {
+        if (err) {
+          this.setState({
+            error: true,
+          });
+        }
       });
   };
 
-  rateMovie = value => {
+  rateMovie = (value) => {
     const { movie } = this.props;
     axios
       .post(this.state.ratings_api + "/rate/", {
         movie_name: movie.Title,
         engine: movie.Source,
         ip_address: this.props.ip_address,
-        score: value
+        score: value,
       })
-      .then(res => {
+      .then((res) => {
         if (res.data !== null) {
           this.setState({
-            ip_rating: res.data.score
+            ip_rating: res.data.score,
           });
         }
         // retrieve average to force rerender
         this.getAverage();
       })
-      .catch(err => {
-        this.setState({
-          error: true
-        });
+      .catch((err) => {
+        if (err) {
+          this.setState({
+            error: true,
+          });
+        }
       });
   };
 
@@ -140,7 +146,6 @@ class Popup extends Component {
             </a>
   }
             {/* Video Stream Play Icon */}
-
           </section>
 
           <section className="gophie-modal__body">
