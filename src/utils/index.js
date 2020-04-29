@@ -42,7 +42,7 @@ export const tourSteps = [
     content: () => (
       <div>
         Click the movie image to see the movie synopsis/review. Then go to the
-        next step of the tour
+        next step of the tour for further explanation
       </div>
     ),
   },
@@ -51,19 +51,49 @@ export const tourSteps = [
     content: `Movie description/synopsis. Might sometimes not be available`,
   },
   {
+    selector: '[data-tour="my-fifth-step"]',
+    content: () => (
+      <div>
+        Click the play button to start streaming the movie. Then go to the next 
+        step of the tour
+      </div>
+    ),
+  },
+  {
+    selector: '[data-tour="my-fifth-step"]',
+    content: () => (
+      <div>
+        Click the stop button to stop streaming the movie and proceed to the next 
+        step of the tour
+      </div>
+    ),
+  },
+  {
     selector: '[data-tour="my-sixth-step"]',
-    content: `Click this button to download the movie`,
+    content:  `Rate a movie out of five stars to show how much you like/dislike it. You can always edit your ratings later`
   },
   {
     selector: '[data-tour="my-seventh-step"]',
-    content: `Click this button to scroll back to the top of the page`,
+    content:  `Check out the average rating of a movie to show you how much people liked/disliked it`
+  },
+  {
+    selector: '[class="close"]',
+    content:  `Close the modal and proceed to next step`
   },
   {
     selector: '[data-tour="my-eight-step"]',
-    content: `Click this button to switch between light and dark modes`,
+    content: `Click this button to download the movie`,
   },
   {
     selector: '[data-tour="my-ninth-step"]',
+    content: `Click this button to scroll back to the top of the page`,
+  },
+  {
+    selector: '[data-tour="my-tenth-step"]',
+    content: `Click this button to switch between light and dark modes`,
+  },
+  {
+    selector: '[data-tour="my-eleventh-step"]',
     content: `This links to the entire suite of gophie projects for interested developers. If you like this project, give it a star and if you have any complaints, raise an issue`,
   },
 ];

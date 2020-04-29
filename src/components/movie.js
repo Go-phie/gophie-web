@@ -32,7 +32,7 @@ export default class Movie extends Component {
             target="_blank"
             rel="noopener noreferrer"
             href={DownloadLink}
-            data-tour="my-sixth-step"
+            data-tour="my-eight-step"
           >
             <DownloadIcon />
           </a>
