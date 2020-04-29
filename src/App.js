@@ -421,20 +421,7 @@ class App extends Component {
                     </div>
                     </div>
                     <div className='header-center'>
-                    <select
-                        type="text"
-                        ref={this.searchInput}
-                        className="year-selector"
-                        id='mySelect'
-                        autoFocus={true}
-                        onChange={this.setYear}
-                        >
-                          <option value = 'default' >Default</option>
-                          <option value = '2020' >2020</option>
-                          <option value = '2019'>2019</option>
-                          <option value = '2018'>2018</option>
-                        </select> 
-
+                    
 
                     </div><br/><br/>
                    
@@ -449,6 +436,20 @@ class App extends Component {
                         <option value="Iota"> Iota (HD) </option>
                         <option value="Zeta"> Zeta (Series) </option>
                     </select>
+                    <select
+                        type="text"
+                        ref={this.searchInput}
+                        className="year-selector"
+                        id='mySelect'
+                        autoFocus={true}
+                        onChange={this.setYear}
+                        >
+                          <option value = 'default' className='op' >Default</option>
+                          <option value = '2020' className='op'  >2020</option>
+                          <option value = '2019' className='op' >2019</option>
+                          <option value = '2018' className='op' >2018</option>
+                        </select> 
+
                     <div className="options__sub-details" >
                     <button className="actions-button tour-button" data-tour="my-first-step" title="Take A Tour" onClick={this.startTour}> <WalkingIcon /> </button>
                     <button className="switch-theme-btn" data-tour="my-eight-step" title="Change Theme" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>

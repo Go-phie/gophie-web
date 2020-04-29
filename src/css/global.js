@@ -194,13 +194,14 @@ opacity: 1;
   border-radius: 5px;
   outline: none;
 }
+
 .year-selector {
   background-color: #e7d10a;
   border: 1px solid ${({ theme }) => theme.borderColor};
   color: #1e2126;
   font-weight: bold;
   padding: 10px 25px;
-  width:100px;
+  width:150px;
   margin-left:20px;
   justify-content: center;
   font-size: 15px;
@@ -388,6 +389,10 @@ div.movie {
   .cancel-btn{
     color: ${({ theme }) => theme.text}
   }
+
+
+  
+
   
   .movie__about-meta {
     display: flex;
