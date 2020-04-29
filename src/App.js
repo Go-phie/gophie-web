@@ -356,7 +356,7 @@ class App extends Component {
                   </button>
                   <button
                     className="switch-theme-btn"
-                    data-tour="my-eight-step"
+                    data-tour="my-tenth-step"
                     title="Change Theme"
                     onClick={() => this.switchTheme(this.state.theme)}
                   >
@@ -365,7 +365,7 @@ class App extends Component {
                   <a
                     className="actions-button github-button"
                     href="https://github.com/go-phie/gophie-web"
-                    data-tour="my-ninth-step"
+                    data-tour="my-eleventh-step"
                     title="Github Link"
                   >
                     {" "}
@@ -410,7 +410,7 @@ class App extends Component {
           </>
 
           {/* ScrollButton Take you back to the starting of the page */}
-          <ScrollButton scrollStepInPx="80" delayInMs="16.66" />
+          <ScrollButton scrollStepInPx="80" delayInMs="16.66"/>
           {this.state.show && (
             <Popup
               show={this.state.show}

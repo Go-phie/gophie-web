@@ -131,7 +131,7 @@ class Popup extends Component {
             this.state.play?
             <a
             id="stop-video"
-            className= "video-stop-button"
+            className="video-stop-button"
             href="/"
             onClick={this.handleStopRequest.bind(this)}>
               <span></span>{" "}  
@@ -175,7 +175,9 @@ class Popup extends Component {
          :
          <section className="gophie-modal__body--body">
          <div className="gophie-modal-rating-container">
-           <div className="gophie-modal-rating-container__average">
+           <div 
+           className="gophie-modal-rating-container__average"
+           data-tour="my-seventh-step">
              <Rating
                value={Math.round(
                  this.state.ratings.average_ratings
@@ -208,7 +210,9 @@ class Popup extends Component {
              </div>
            </div>
 
-           <div className="gophie-modal-rating-container__rate">
+           <div 
+           className="gophie-modal-rating-container__rate"
+           data-tour="my-sixth-step">
              <p>Rate Movie</p>
              <Rating
                value={this.state.ip_rating}
