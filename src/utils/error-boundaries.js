@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from "@reach/router";
+import { Link } from "@reach/router";
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -19,9 +19,12 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       // You can render any custom fallback UI
-      return <h1>There was an Error with this listing. <Link to="/">Click Here</Link>
-      {" "}
-      to go back to the home page or wait for 5 seconds.</h1>;
+      return (
+        <h1>
+          There was an Error with this listing. <Link to="/">Click Here</Link>{" "}
+          to go back to the home page or wait for 5 seconds.
+        </h1>
+      );
     }
     return this.props.children;
   }
