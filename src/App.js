@@ -6,7 +6,6 @@ import MovieList from "./components/MovieList";
 import MovieYear  from './components/MovieYear'
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from 'uuid';
-import {FaRegTimesCircle} from 'react-icons/fa'
 
 // style stuff
 import { ThemeProvider } from 'styled-components';
@@ -39,7 +38,6 @@ class App extends Component {
       ip_address: "",
       yearFilter: [],
       filteredMovies :[],
-      canClear : 'false'
     };
 }
 
@@ -157,7 +155,6 @@ class App extends Component {
 
   performListYear =(year ,append = true)=>{
     this.setState({
-      canClear :true,
       yearFilter:[],
       isLoading: true,
       error: false,
@@ -374,20 +371,22 @@ class App extends Component {
   }
 
   setYear = (event) =>{
-    const year  = document.getElementById('mySelect').value
+    const year  = (document.getElementById('mySelect').value)
+    if( Number (year) === 2020 || Number(year) === 2019 || Number(year) === 2018){
     console.log(year)
     this.setState({
       year: year,
       isLoading : true
     })
-    
       this.performListYear(year)
+  } else if(year === 'default'){
+    this.clearFilter()
+  }
   }
 
   clearFilter =()=>{
     this.setState({
       year : 0,
-      canClear : false
     })
   }
 
@@ -431,10 +430,11 @@ class App extends Component {
                         autoFocus={true}
                         onChange={this.setYear}
                         >
+                          <option value = 'default' >Default</option>
                           <option value = '2020' >2020</option>
                           <option value = '2019'>2019</option>
                           <option value = '2018'>2018</option>
-                        </select>  {this.state.canClear === true ?   <FaRegTimesCircle onClick={this.clearFilter}  className='cancel-btn' value={theme === 'light' ? 'black': 'white'} style={{fontSize:'60px' , color : this.value  , cursor: 'pointer'} }/> : '' }
+                        </select> 
 
 
                     </div><br/><br/>
