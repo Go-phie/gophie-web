@@ -386,7 +386,8 @@ class App extends Component {
 
   clearFilter =()=>{
     this.setState({
-      year : 0
+      year : 0,
+      canClear : false
     })
   }
 
