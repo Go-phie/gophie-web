@@ -380,6 +380,10 @@ div.movie {
     color: ${({ theme }) => theme.text};
     text-transform: capitalize;
   }
+
+  .searchInt{
+    color: ${({ theme }) => theme.text}
+  }
   
   .movie__about-meta {
     display: flex;

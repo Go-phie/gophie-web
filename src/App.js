@@ -413,7 +413,7 @@ class App extends Component {
                     </div>
                     </div>
                     <div className='header-center'>
-                    <h4>Select Movie by Year (Alpha and Iota HD)</h4><select
+                    <h4 className='searchInt'>Select Movie by Year (Alpha and Iota HD)</h4><select
                         type="text"
                         ref={this.searchInput}
                         className="year-selector"
