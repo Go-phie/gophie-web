@@ -421,12 +421,11 @@ class App extends Component {
                     </div>
                     </div>
                     <div className='header-center'>
-                    <h4 className='searchInt'>Select Movie by Year (Alpha and Iota HD)</h4><select
+                    <select
                         type="text"
                         ref={this.searchInput}
                         className="year-selector"
                         id='mySelect'
-                        placeholder="Search by Year 2020-2018"
                         autoFocus={true}
                         onChange={this.setYear}
                         >
