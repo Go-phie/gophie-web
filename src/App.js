@@ -433,7 +433,7 @@ class App extends Component {
                           <option value = '2020' >2020</option>
                           <option value = '2019'>2019</option>
                           <option value = '2018'>2018</option>
-                        </select>  {this.state.canClear === true ?   <FaRegTimesCircle onClick={this.clearFilter}  className='cancel-btn' value={theme === 'light' ? 'black': 'white'} style={{fontSize:'30px' , color : this.value  , cursor: 'pointer'} }/> : '' }
+                        </select>  {this.state.canClear === true ?   <FaRegTimesCircle onClick={this.clearFilter}  className='cancel-btn' value={theme === 'light' ? 'black': 'white'} style={{fontSize:'60px' , color : this.value  , cursor: 'pointer'} }/> : '' }
 
 
                     </div><br/><br/>
