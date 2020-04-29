@@ -3,6 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Rating from "material-ui-rating";
 import ReactPlayer from "react-player";
 import axios from "axios";
+import { greekFromEnglish } from "../utils";
 import "../css/Popup.css";
 
 class Popup extends Component {
@@ -98,6 +99,11 @@ class Popup extends Component {
     this.setState({ play: true });
   }
 
+  handleStopRequest(e) {
+    e.preventDefault()
+    this.setState({ play: false });
+  }
+
   render() {
     return (
       <Modal
@@ -121,6 +127,15 @@ class Popup extends Component {
             />
 
             {/* Video Stream Play Icon */}
+            {
+            this.state.play?
+            <a
+            id="stop-video"
+            className= "video-stop-button"
+            href="/"
+            onClick={this.handleStopRequest.bind(this)}>
+              <span></span>{" "}  
+            </a>:
             <a
               id="play-video"
               className="video-play-button"
@@ -129,6 +144,7 @@ class Popup extends Component {
             >
               <span> </span>{" "}
             </a>
+  }
             {/* Video Stream Play Icon */}
           </section>
 
@@ -138,71 +154,77 @@ class Popup extends Component {
                 {this.props.movie.Title}
               </Modal.Title>
             </Modal.Header>
-            {this.state.play ? (
-              <div className="player-wrapper">
-                <ReactPlayer
-                  url={this.props.movie.DownloadLink}
-                  className="react-player"
-                  playing
-                  pip
-                  controls
-                  width="100%"
-                  height="100%"
-                />
-              </div>
-            ) : (
-              <section className="gophie-modal__body--body">
-                <div className="gophie-modal-rating-container">
-                  <div className="gophie-modal-rating-container__average">
-                    <Rating
-                      value={Math.round(
-                        this.state.ratings.average_ratings
-                          ? this.state.ratings.average_ratings
-                          : 0
-                      )}
-                      max={5}
-                      readOnly={true}
-                    />
+            {
+        this.state.play?
+        <div>
+          <div className="player-wrapper">
+            <ReactPlayer url={this.props.movie.DownloadLink}
+            className="react-player"
+            playing
+            pip
+            controls
+            width="100%"
+            height="90%" />
+          </div>
+          <div className="player-error-alert">
+            {greekFromEnglish(this.props.server) === "Alpha"?
+              <p className="player-error-message">Streaming from Alpha is problematic, we suggest downloading instead</p>: <p></p>
+            }
+          </div>
+         </div>
+         :
+         <section className="gophie-modal__body--body">
+         <div className="gophie-modal-rating-container">
+           <div className="gophie-modal-rating-container__average">
+             <Rating
+               value={Math.round(
+                 this.state.ratings.average_ratings
+                   ? this.state.ratings.average_ratings
+                   : 0
+               )}
+               max={5}
+               readOnly={true}
+             />
 
-                    <div className="gophie-modal-rating-container__average--container">
-                      <div className="gophie-modal-rating-container__average--container-item-1">
-                        <p>
-                          {this.state.ratings.average_ratings
-                            ? Math.round(
-                                this.state.ratings.average_ratings * 10
-                              ) / 10
-                            : 0}
-                        </p>
-                        <p>/5</p>
-                      </div>
+             <div className="gophie-modal-rating-container__average--container">
+               <div className="gophie-modal-rating-container__average--container-item-1">
+                 <p>
+                   {this.state.ratings.average_ratings
+                     ? Math.round(
+                         this.state.ratings.average_ratings * 10
+                       ) / 10
+                     : 0}
+                 </p>
+                 <p>/5</p>
+               </div>
 
-                      <p className="em-rate">
-                        <span className="em-span">by</span>
+               <p className="em-rate">
+                 <span className="em-span">by</span>
 
-                        {this.state.ratings.by
-                          ? Math.round(this.state.ratings.by)
-                          : 0}
-                      </p>
-                    </div>
-                  </div>
+                 {this.state.ratings.by
+                   ? Math.round(this.state.ratings.by)
+                   : 0}
+               </p>
+             </div>
+           </div>
 
-                  <div className="gophie-modal-rating-container__rate">
-                    <p>Rate Movie</p>
-                    <Rating
-                      value={this.state.ip_rating}
-                      max={5}
-                      onChange={(value) => this.rateMovie(value)}
-                    />
-                  </div>
-                </div>
+           <div className="gophie-modal-rating-container__rate">
+             <p>Rate Movie</p>
+             <Rating
+               value={this.state.ip_rating}
+               max={5}
+               onChange={value => this.rateMovie(value)}
+             />
+           </div>
+         </div>
 
-                <div className="gophie-modal__body--description">
-                  {this.props.movie.Description === ""
-                    ? "Seems like the description for this movie is missing"
-                    : this.props.movie.Description}
-                </div>
-              </section>
-            )}
+         <div className="gophie-modal__body--description">
+           {this.props.movie.Description === ""
+             ? "Seems like the description for this movie is missing"
+             : this.props.movie.Description}
+         </div>
+       </section>
+      }
           </section>
         </Modal.Body>
       </Modal>

@@ -120,54 +120,60 @@
   left: 0;
 }
 
+.player-error-message{
+  font-size: .8em;
+  padding: 1em;
+}
+
 /* play button animation */
-.video-play-button {
-  position: absolute;
-  z-index: 10;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  box-sizing: content-box;
-  display: block;
-  width: 32px;
-  height: 44px;
-  /* background: #fa183d; */
-  border-radius: 50%;
-  padding: 18px 20px 18px 28px;
+.video-play-button, .video-stop-button {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    box-sizing: content-box;
+    display: block;
+    width: 32px;
+    height: 44px;
+    /* background: #fa183d; */
+    border-radius: 50%;
+    padding: 18px 20px 18px 28px;
 }
 
-.video-play-button:before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  display: block;
-  width: 80px;
-  height: 80px;
-  background: #fff;
-  border-radius: 50%;
-  animation: pulse-border 1500ms ease-out infinite;
+
+.video-play-button:before, .video-stop-button:before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: #fff;
+    border-radius: 50%;
+    animation: pulse-border 1500ms ease-out infinite;
 }
 
-.video-play-button:after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  left: 50%;
-  top: 50%;
-  transform: translateX(-50%) translateY(-50%);
-  display: block;
-  width: 80px;
-  height: 80px;
-  background: #e7d10a;
-  border-radius: 50%;
-  transition: all 200ms;
+.video-play-button:after, .video-stop-button:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    display: block;
+    width: 80px;
+    height: 80px;
+    background: #e7d10a;
+    border-radius: 50%;
+    transition: all 200ms;
 }
 
-.video-play-button:hover:after {
-  background-color: #d6c20b;
+.video-play-button:hover:after, .video-stop-button:hover:after {
+    background-color: #d6c20b;
 }
 
 .video-play-button img {
@@ -187,6 +193,15 @@
   border-left: 32px solid #fff;
   border-top: 22px solid transparent;
   border-bottom: 22px solid transparent;
+}
+
+.video-stop-button span{
+    display: block;
+    position: relative;
+    z-index: 3;
+    border-top: 32px solid #fff;
+    top: 14%;
+    left: -9%;
 }
 
 @keyframes pulse-border {

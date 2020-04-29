@@ -417,6 +417,7 @@ class App extends Component {
               ip_address={this.state.ip_address}
               movie={this.state.currentmovie}
               onHide={this.hideDescription.bind(this)}
+              server = {this.state.server}
             />
           )}
         </ThemeProvider>
