@@ -687,4 +687,9 @@ select {
   color: ${({ theme }) => theme.yellowText} !important;
   text-decoration: none;
 }
-`;
+
+.gophie-link {
+  color: ${({ theme }) => theme.yellowText} !important;
+  text-decoration: none;
+}
+`
