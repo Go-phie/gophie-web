@@ -29,7 +29,7 @@ class App extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: "https://gophie.herokuapp.com/",
-      server: nameToEngineMap.get("Alpha"),
+      server: nameToEngineMap.get("Delta"),
       mode: "movies",
       year:0,
       movies: [],
@@ -543,8 +543,8 @@ class App extends Component {
                   onChange={this.handleServerChange.bind(this)}
                   onBlur={this.handleServerChange.bind(this)}
                 >
-                  <option value="Alpha"> Alpha </option>
                   <option value="Delta"> Delta </option>
+                  <option value="Alpha"> Alpha </option>
                   <option value="Iota"> Iota (HD) </option>
                   <option value="Zeta"> Zeta (Series) </option>
                 </select>

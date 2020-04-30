@@ -168,8 +168,7 @@ class Popup extends Component {
           </div>
           <div className="player-error-alert">
             {greekFromEnglish(this.props.server) === "Alpha"?
-              <p className="player-error-message">Streaming from Alpha is problematic, we suggest downloading instead</p>: <p></p>
-            }
+              <p className="player-error-message">Streaming from alpha is problematic, suggest <a className="gophie-link" href={this.props.movie.DownloadLink} target="_blank" rel="noopener noreferrer">downloading</a>  instead</p>: <p></p>            }
           </div>
          </div>
          :
