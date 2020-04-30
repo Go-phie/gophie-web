@@ -441,6 +441,7 @@ class App extends Component {
                     </div><br/><br/>
                    
                     <div className="options">
+                      <div>
                     <select
                         className="server-selector"
                         data-tour="my-second-step"
@@ -464,7 +465,7 @@ class App extends Component {
                           <option value = '2019' className='op' >2019</option>
                           <option value = '2018' className='op' >2018</option>
                         </select> 
-
+                        </div>
                     <div className="options__sub-details" >
                     <button className="actions-button tour-button" data-tour="my-first-step" title="Take A Tour" onClick={this.startTour}> <WalkingIcon /> </button>
                     <button className="switch-theme-btn" data-tour="my-eight-step" title="Change Theme" onClick={() => this.switchTheme(this.state.theme)}>{theme === 'dark'? <SunIcon /> : <MoonIcon />}</button>
