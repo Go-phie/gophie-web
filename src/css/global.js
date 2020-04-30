@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 
@@ -684,6 +684,11 @@ select {
 }
 
 .gophie-alert a {
+  color: ${({ theme }) => theme.yellowText} !important;
+  text-decoration: none;
+}
+
+.gophie-link {
   color: ${({ theme }) => theme.yellowText} !important;
   text-decoration: none;
 }
