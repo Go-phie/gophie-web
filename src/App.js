@@ -393,6 +393,7 @@ class App extends Component {
                 </div>
               </div>
               <div className="options">
+                <div>
                 <select
                   className="server-selector"
                   data-tour="my-second-step"
@@ -411,11 +412,12 @@ class App extends Component {
                         autoFocus={true}
                         onChange={this.setYear}
                         >
-                          <option value = 'default' className='op' selected = 'selected' >All Years</option>
+                          <option value = 'default' className='op' >All Years</option>
                           <option value = '2020' className='op'  >2020</option>
                           <option value = '2019' className='op' >2019</option>
                           <option value = '2018' className='op' >2018</option>
                         </select> 
+                        </div>
                 <div className="options__sub-details">
                   <button
                     className="actions-button tour-button"
