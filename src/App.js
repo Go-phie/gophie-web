@@ -406,7 +406,6 @@ class App extends Component {
                 </select>
                 <select
                         type="text"
-                        ref={this.searchInput}
                         className="year-selector"
                         id='mySelect'
                         autoFocus={true}
