@@ -460,7 +460,7 @@ class App extends Component {
                         autoFocus={true}
                         onChange={this.setYear}
                         >
-                          <option value = 'default' className='op' >Default</option>
+                          <option value = 'default' className='op' >All Years</option>
                           <option value = '2020' className='op'  >2020</option>
                           <option value = '2019' className='op' >2019</option>
                           <option value = '2018' className='op' >2018</option>
