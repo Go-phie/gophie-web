@@ -29,7 +29,7 @@ class App extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: "https://gophie.herokuapp.com/",
-      server: nameToEngineMap.get("Delta"),
+      server: nameToEngineMap.get("Alpha"),
       mode: "movies",
       year:0,
       movies: [],
@@ -388,13 +388,13 @@ class App extends Component {
   setYear = (event) =>{
     const year  = (document.getElementById('mySelect').value)
     if( Number (year) === 2020 || Number(year) === 2019 || Number(year) === 2018){
-    console.log(year)
     this.setState({
       year: year,
       isLoading : true
     })
-      this.performListYear(year)
+      this.performListYear(Number(year))
   } else if(year === 'default'){
+    console.log(this.state.year)
     this.clearFilter()
   }
   }
@@ -473,7 +473,7 @@ class App extends Component {
                     </div>
                     </div>
                     <div className="movies" id="movie-div">
-                      {this.state.year === 0 ? <MovieList movies={this.state.movies} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter} onScroll ={this.handleYearScroll}/> : <MovieYear movies={this.state.yearFilter} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter}/>}
+                      {this.state.year === 0 ? <MovieList movies={this.state.movies} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter} onScroll ={this.handleYearScroll}/> :<MovieYear movies={this.state.yearFilter} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter}/>}
                     
                     {this.state.isLoading && !this.state.error && (
                         <div className="skeleton-movies">
@@ -501,116 +501,8 @@ class App extends Component {
                 </div>
             </>
 {/* PollsAlert Component Element */}
-            <ScrollButton scrollStepInPx="80"
-            delayInMs="16.66" />
               {this.state.show && <Popup show={this.state.show} ip_address={this.state.ip_address} movie={this.state.currentmovie} onHide={this.hideDescription.bind(this)}/>}
           <>
-            <GlobalStyles />
-            <div className="App">
-              <div className="header">
-                <div className="header-left">
-                  <p>
-                    {" "}
-                    G<span className="em">o</span>phie{" "}
-                  </p>
-                </div>
-                <div className="header-center">
-                  <input
-                    type="text"
-                    ref={this.searchInput}
-                    className="form-control"
-                    placeholder="Search for a movie..."
-                    // eslint-disable-next-line jsx-a11y/no-autofocus
-                    autoFocus={true}
-                    onKeyPress={this.checkKey.bind(this)}
-                    onChange={this.handleSearchChange.bind(this)}
-                  />
-                </div>
-                <div className="header-right">
-                  <button
-                    onClick={this.newSearch.bind(this)}
-                    className="search-btn"
-                    data-tour="my-third-step"
-                  >
-                    <SearchIcon />
-                  </button>
-                </div>
-              </div>
-              <div className="options">
-                <select
-                  className="server-selector"
-                  data-tour="my-second-step"
-                  onChange={this.handleServerChange.bind(this)}
-                  onBlur={this.handleServerChange.bind(this)}
-                >
-                  <option value="Delta"> Delta </option>
-                  <option value="Alpha"> Alpha </option>
-                  <option value="Iota"> Iota (HD) </option>
-                  <option value="Zeta"> Zeta (Series) </option>
-                </select>
-                <div className="options__sub-details">
-                  <button
-                    className="actions-button tour-button"
-                    data-tour="my-first-step"
-                    title="Take A Tour"
-                    onClick={this.startTour}
-                  >
-                    {" "}
-                    <WalkingIcon />{" "}
-                  </button>
-                  <button
-                    className="switch-theme-btn"
-                    data-tour="my-tenth-step"
-                    title="Change Theme"
-                    onClick={() => this.switchTheme(this.state.theme)}
-                  >
-                    {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-                  </button>
-                  <a
-                    className="actions-button github-button"
-                    href="https://github.com/go-phie/gophie-web"
-                    data-tour="my-eleventh-step"
-                    title="Github Link"
-                  >
-                    {" "}
-                    <GitMark />{" "}
-                  </a>
-                </div>
-              </div>
-              <div className="movies" id="movie-div">
-                <MovieList
-                  movies={this.state.movies}
-                  setDescription={this.setDescription.bind(this)}
-                />
-                {this.state.isLoading && !this.state.error && (
-                  <div className="skeleton-movies">
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                  </div>
-                )}
-                {this.state.error && (
-                  <div className="error">
-                    <p className="error-text">
-                      {this.state.searchError !== ""
-                        ? this.state.searchError
-                        : "Oops..An Unknown Error Occured"}{" "}
-                    </p>
-                    {this.state.searchError ? null : (
-                      <button
-                        className="error-retry-btn"
-                        onClick={this.tryAgain.bind(this)}
-                      >
-                        <RetryIcon />
-                        Try Again
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
           </>
 
           {/* ScrollButton Take you back to the starting of the page */}
