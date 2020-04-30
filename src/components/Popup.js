@@ -4,6 +4,7 @@ import Rating from "material-ui-rating";
 import ReactPlayer from "react-player";
 import axios from "axios";
 import { greekFromEnglish } from "../utils";
+import { isIOS } from 'react-device-detect';
 import "../css/Popup.css";
 
 class Popup extends Component {
@@ -161,15 +162,20 @@ class Popup extends Component {
             <ReactPlayer url={this.props.movie.DownloadLink}
             className="react-player"
             playing
+            playsinline
             pip
             controls
             width="100%"
             height="90%" />
           </div>
-          <div className="player-error-alert">
-            {greekFromEnglish(this.props.server) === "Alpha"?
-              <p className="player-error-message">Streaming from alpha is problematic, suggest <a className="gophie-link" href={this.props.movie.DownloadLink} target="_blank" rel="noopener noreferrer">downloading</a>  instead</p>: <p></p>            }
-          </div>
+          {greekFromEnglish(this.props.server) === "Alpha"?
+              <div className="player-error-alert">
+              <p className="player-error-message">Streaming from alpha is problematic, suggest <a className="gophie-link" href={this.props.movie.DownloadLink} target="_blank" rel="noopener noreferrer">downloading</a>  instead</p>            }
+          </div>: null}
+          {isIOS?
+            <div className="player-error-alert">
+              <p className="player-error-message"> iOS 10+ users might have to disable <i><em>Low Power Mode</em></i> to stream</p>          }
+          </div>: null}
          </div>
          :
          <section className="gophie-modal__body--body">
