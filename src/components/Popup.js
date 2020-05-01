@@ -174,7 +174,7 @@ class Popup extends Component {
           </div>: null}
           {isIOS?
             <div className="player-error-alert">
-              <p className="player-error-message"> iOS 10+ users might have to disable <i><em>Low Power Mode</em></i> to stream</p>          }
+              <p className="player-error-message"> iOS 10+ users might have to disable <i><em>Low Power Mode</em></i> to stream</p>
           </div>: null}
          </div>
          :
