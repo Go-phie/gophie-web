@@ -324,8 +324,8 @@ div.movie {
     flex-direction: column;
     justify-content: space-around;
     background-color: ${({ theme }) => theme.movieBackground}; 
-    border-end-end-radius: .39em;
-    border-end-start-radius: .39em;
+    border-bottom-bottom-radius: .39em;
+    border-bottom-start-radius: .39em;
   }
   
   .movie__about .name {
@@ -590,7 +590,7 @@ select {
 
   .movie__about {
     border-top-right-radius: 0.39em;
-    border-end-start-radius: initial;
+    border-bottom-start-radius: initial;
     height: 100%;
   }
 
