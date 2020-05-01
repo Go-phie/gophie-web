@@ -89,8 +89,29 @@ body {
   color: ${({ theme }) => theme.formColor};
   opacity: .5;
 }
+.form-controlb {
+  width: 100%;
+  margin-left:20%;
+  text-align:center
+  height: 98%;
+  outline: none;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  font-size: 19px;
+  padding-left: 10px;
+  color: ${({ theme }) => theme.formColor};
+  opacity: .5;
+}
 
 .form-control:focus {
+  background-color: ${({ theme }) => theme.movieBackground};
+  border-color: #121620;
+  box-shadow: none;
+  color: ${({ theme }) => theme.formColor};
+opacity: 1;
+}
+.form-controlb:focus {
   background-color: ${({ theme }) => theme.movieBackground};
   border-color: #121620;
   box-shadow: none;
@@ -174,7 +195,32 @@ opacity: 1;
   outline: none;
 }
 
+.year-selector {
+  background-color: #e7d10a;
+  border: 1px solid ${({ theme }) => theme.borderColor};
+  color: #1e2126;
+  font-weight: bold;
+  padding: 10px 25px;
+  width:150px;
+  margin-left:20px;
+  justify-content: center;
+  font-size: 15px;
+  border-radius: 5px;
+  outline: none;
+}
+
+@media screen and (max-width:768px){
+  .year-selector{
+    display:none;
+  }
+}
+
 .server-selector > option {
+  background-color: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.yellowText};
+  padding: 1em .5em;
+}
+.year-selector > option {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};
   padding: 1em .5em;
@@ -250,6 +296,9 @@ div.skeleton-movies {
 
     .server-selector {
         padding: 10px .3em;
+    }
+    .year-selector {
+        padding: 10px 0px;
     }
 }
 
@@ -338,6 +387,18 @@ div.movie {
     color: ${({ theme }) => theme.text};
     text-transform: capitalize;
   }
+
+  .searchInt{
+    color: ${({ theme }) => theme.text}
+  }
+  
+  .cancel-btn{
+    color: ${({ theme }) => theme.text}
+  }
+
+
+  
+
   
   .movie__about-meta {
     display: flex;
