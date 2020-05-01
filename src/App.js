@@ -10,6 +10,7 @@ import {
   WalkingIcon,
 } from "./components/icons";
 import MovieList from "./components/MovieList";
+import MovieYear from './components/MovieYear'
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
@@ -29,17 +30,20 @@ class App extends Component {
       api: "https://gophie.herokuapp.com/",
       server: nameToEngineMap.get("Delta"),
       mode: "movies",
+      year:0,
       movies: [],
       listIndex: 1,
+      listYearIndex :1,
       isLoading: false,
       show: false,
       currentmovie: {},
       hasMore: true,
       error: false,
-      searchError: "",
-      theme: "light",
+      theme: 'light',
       showTour: true,
       ip_address: "",
+      yearFilter: [],
+      filteredMovies :[],
     };
   }
 
@@ -294,6 +298,62 @@ class App extends Component {
     this.setState({ show: false }, () => console.log(this.state));
   }
 
+  performListYear =(year ,append = true)=>{
+    this.setState({
+      yearFilter:[],
+      isLoading: true,
+      error: false,
+      searchError: "",
+    });
+    axios
+      .get(
+        `${this.state.api}list?page=${this.state.listYearIndex}&engine=${this.state.server}`
+      )
+      .then((res) => {
+        const movies = res.data;
+            let newmovies = movies.map((element, index) => {
+            element.Index = uuidv4()
+            return element;
+            });
+            this.setState({
+              year:year,
+              isLoading: false,
+              yearFilter: append? [...this.state.yearFilter , ...newmovies]:newmovies,
+             listYearIndex: append? this.state.listYearIndex + 1: 1,
+            });
+            this.setState({
+              filteredMovies : this.state.yearFilter.filter(movie=>movie.Year=== Number(this.state.year))
+            })
+      })
+      .catch(err => {
+        this.setState({
+          error: true
+        });
+      });
+
+  }
+
+  setYear = (event) =>{
+    const year  = (document.getElementById('mySelect').value)
+    if( Number (year) === 2020 || Number(year) === 2019 || Number(year) === 2018){
+    this.setState({
+      year: year,
+      isLoading : true
+    })
+      this.performListYear(Number(year))
+  } else if(year === 'default'){
+    console.log(this.state.year)
+    this.clearFilter()
+  }
+  }
+
+  clearFilter =()=>{
+    this.setState({
+      year : 0,
+    })
+  }
+
+ 
   render() {
     const { theme } = this.state;
     const selectedTheme = theme === "light" ? lightTheme : darkTheme;
@@ -333,6 +393,7 @@ class App extends Component {
                 </div>
               </div>
               <div className="options">
+                <div>
                 <select
                   className="server-selector"
                   data-tour="my-second-step"
@@ -344,6 +405,19 @@ class App extends Component {
                   <option value="Iota"> Iota (HD) </option>
                   <option value="Zeta"> Zeta (Series) </option>
                 </select>
+                <select
+                        type="text"
+                        className="year-selector"
+                        id='mySelect'
+                        autoFocus={true}
+                        onChange={this.setYear}
+                        >
+                          <option value = 'default' className='op' >All Years</option>
+                          <option value = '2020' className='op'  >2020</option>
+                          <option value = '2019' className='op' >2019</option>
+                          <option value = '2018' className='op' >2018</option>
+                        </select> 
+                        </div>
                 <div className="options__sub-details">
                   <button
                     className="actions-button tour-button"
@@ -374,10 +448,8 @@ class App extends Component {
                 </div>
               </div>
               <div className="movies" id="movie-div">
-                <MovieList
-                  movies={this.state.movies}
-                  setDescription={this.setDescription.bind(this)}
-                />
+              {this.state.year === 0 ? <MovieList movies={this.state.movies} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter} onScroll ={this.handleYearScroll}/> :<MovieYear movies={this.state.yearFilter} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter}/>}
+
                 {this.state.isLoading && !this.state.error && (
                   <div className="skeleton-movies">
                     <SkeletonLoader />
