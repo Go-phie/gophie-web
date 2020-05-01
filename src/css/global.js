@@ -315,8 +315,6 @@ div.movie {
   div.movie-image {
     height: 80%;
     width: 100%;
-    margin: auto;
-    justify-content: center;
     left: 0;
     position: relative;
   }
@@ -358,7 +356,6 @@ div.movie {
   }
   
   .download-btn:active {
-    transform: translateY(3%);
     background: #dcc80d;
   }
 
@@ -376,8 +373,8 @@ div.movie {
     flex-direction: column;
     justify-content: space-around;
     background-color: ${({ theme }) => theme.movieBackground}; 
-    border-end-end-radius: .39em;
-    border-end-start-radius: .39em;
+    border-bottom-bottom-radius: .39em;
+    border-bottom-start-radius: .39em;
   }
   
   .movie__about .name {
@@ -654,7 +651,7 @@ select {
 
   .movie__about {
     border-top-right-radius: 0.39em;
-    border-end-start-radius: initial;
+    border-bottom-start-radius: initial;
     height: 100%;
   }
 
