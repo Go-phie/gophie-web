@@ -114,5 +114,11 @@ export function greekFromEnglish(eng) {
   }
 }
 
+export const API_ENDPOINTS = {
+  gophieMain: "https://gophie.herokuapp.com/",
+  ocena: "https://gophie-ocena.herokuapp.com"
+  // ocena: "http://127.0.0.1:8000"
+}
+
 export const disableBody = (target) => disableBodyScroll(target);
 export const enableBody = (target) => enableBodyScroll(target);

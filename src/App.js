@@ -20,14 +20,14 @@ import { lightTheme, darkTheme } from "./css/theme";
 import { GlobalStyles } from "./css/global";
 import ScrollButton from "./components/ScrollToTop";
 import Popup from "./components/Popup";
-import { tourSteps, disableBody, enableBody, nameToEngineMap } from "./utils";
+import { tourSteps, disableBody, enableBody, nameToEngineMap, API_ENDPOINTS } from "./utils";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.searchInput = React.createRef();
     this.state = {
-      api: "https://gophie.herokuapp.com/",
+      api: API_ENDPOINTS.gophieMain,
       server: nameToEngineMap.get("Delta"),
       mode: "movies",
       year:0,
@@ -448,7 +448,7 @@ class App extends Component {
                 </div>
               </div>
               <div className="movies" id="movie-div">
-              {this.state.year === 0 ? <MovieList movies={this.state.movies} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter} onScroll ={this.handleYearScroll}/> :<MovieYear movies={this.state.yearFilter} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter}/>}
+              {this.state.year === 0 ? <MovieList ip_address={this.state.ip_address} movies={this.state.movies} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter} onScroll ={this.handleYearScroll}/> :<MovieYear ip_address={this.state.ip_address} movies={this.state.yearFilter} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter}/>}
 
                 {this.state.isLoading && !this.state.error && (
                   <div className="skeleton-movies">

@@ -3,7 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Rating from "material-ui-rating";
 import ReactPlayer from "react-player";
 import axios from "axios";
-import { greekFromEnglish } from "../utils";
+import { greekFromEnglish, API_ENDPOINTS } from "../utils";
 import { isIOS } from 'react-device-detect';
 import "../css/Popup.css";
 
@@ -11,16 +11,38 @@ class Popup extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ratings_api: "https://gophie-ocena.herokuapp.com",
+      ratings_api: API_ENDPOINTS.ocena,
       ratings: {},
       ip_rating: 0,
       play: false,
+      referral_id: ""
     };
   }
 
   componentDidMount() {
     this.getAverage();
     this.getRatings();
+    this.shareMovie();
+  }
+
+  shareMovie = () => {
+    axios
+      .post(this.state.ratings_api + "/referral/", {
+        ip_address: this.props.ip_address,
+        movie_name: this.props.movie.Title,
+        engine: this.props.movie.Source,
+        description: this.props.movie.Description,
+        size: this.props.movie.Size,
+        year: this.props.movie.Year,
+        download_link: this.props.movie.DownloadLink,
+        cover_photo_link: this.props.movie.CoverPhotoLink,
+      })
+      .then((res) => {
+        this.setState({
+          referral_id: res.data
+        },
+        console.log(`Referral ID of movie is ${res.data}`))
+      })
   }
 
   getAverage = () => {
