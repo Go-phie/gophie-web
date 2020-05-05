@@ -7,9 +7,10 @@ import {
   SunIcon,
   MoonIcon,
   GitMark,
-  WalkingIcon
+  WalkingIcon,
 } from "./components/icons";
 import MovieList from "./components/MovieList";
+import MovieYear from './components/MovieYear'
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
@@ -19,31 +20,34 @@ import { lightTheme, darkTheme } from "./css/theme";
 import { GlobalStyles } from "./css/global";
 import ScrollButton from "./components/ScrollToTop";
 import Popup from "./components/Popup";
-import { tourSteps, disableBody, enableBody, nameToEngineMap } from "./utils";
+import { tourSteps, disableBody, enableBody, nameToEngineMap, API_ENDPOINTS } from "./utils";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.searchInput = React.createRef();
     this.state = {
-      api: "https://gophie.herokuapp.com/",
-      server: nameToEngineMap.get("Alpha"),
+      api: API_ENDPOINTS.gophieMain,
+      server: nameToEngineMap.get("Delta"),
       mode: "movies",
+      year:0,
       movies: [],
       listIndex: 1,
+      listYearIndex :1,
       isLoading: false,
       show: false,
       currentmovie: {},
       hasMore: true,
       error: false,
-      searchError: "",
-      theme: "light",
+      theme: 'light',
       showTour: true,
-      ip_address: ""
+      ip_address: "",
+      yearFilter: [],
+      filteredMovies :[],
     };
   }
 
-  isBottom = el => {
+  isBottom = (el) => {
     return el.getBoundingClientRect().bottom <= window.innerHeight;
   };
 
@@ -74,12 +78,12 @@ class App extends Component {
       return;
     }
 
-    const filteredMovies = this.state.movies.filter(movie =>
+    const filteredMovies = this.state.movies.filter((movie) =>
       movie.Title.toLowerCase().includes(query)
     );
     if (filteredMovies.length >= 1) {
       this.setState({
-        movies: filteredMovies
+        movies: filteredMovies,
       });
       return;
     }
@@ -92,7 +96,7 @@ class App extends Component {
       {
         server,
         movies: [],
-        listIndex: 1
+        listIndex: 1,
       },
       () => this.performList()
     );
@@ -105,7 +109,7 @@ class App extends Component {
         {
           movies: [],
           error: false,
-          listIndex: 1
+          listIndex: 1,
         },
         () => this.performSearch(query, true)
       );
@@ -123,7 +127,7 @@ class App extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: ""
+      searchError: "",
     });
 
     axios
@@ -136,26 +140,26 @@ class App extends Component {
           "&page=" +
           this.state.listIndex
       )
-      .then(res => {
+      .then((res) => {
         const movies = res.data;
         if (movies !== null) {
-          let newmovies = movies.map((element, index) => {
+          let newmovies = movies.map((element) => {
             element.Index = uuidv4();
             return element;
           });
           this.setState({
             movies: append ? [...this.state.movies, ...newmovies] : newmovies,
             isLoading: false,
-            listIndex: append ? this.state.listIndex + 1 : 1
+            listIndex: append ? this.state.listIndex + 1 : 1,
           });
         } else {
           throw new Error("Search returned empty, try another engine perhaps");
         }
       })
-      .catch(err => {
+      .catch((err) => {
         this.setState({
           error: true,
-          searchError: err.message
+          searchError: err.message,
         });
       });
   };
@@ -164,16 +168,16 @@ class App extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: ""
+      searchError: "",
     });
     axios
       .get(
         `${this.state.api}list?page=${this.state.listIndex}&engine=${this.state.server}`
       )
-      .then(res => {
+      .then((res) => {
         const movies = res.data;
         let newIndex = this.state.listIndex;
-        let newmovies = movies.map((element, index) => {
+        let newmovies = movies.map((element) => {
           element.Index = uuidv4();
           return element;
         });
@@ -181,12 +185,13 @@ class App extends Component {
         this.setState({
           isLoading: false,
           movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-          listIndex: newIndex
+          listIndex: newIndex,
         });
       })
-      .catch(err => {
+      .catch((err) => {
+        console.log(err);
         this.setState({
-          error: true
+          error: true,
         });
       });
   };
@@ -201,9 +206,9 @@ class App extends Component {
   }
 
   getIp = () => {
-    axios.get("https://api.ipify.org?format=json").then(res => {
+    axios.get("https://api.ipify.org?format=json").then((res) => {
       this.setState({
-        ip_address: res.data.ip
+        ip_address: res.data.ip,
       });
     });
   };
@@ -283,7 +288,7 @@ class App extends Component {
     this.setState(
       {
         show: true,
-        currentmovie: movie
+        currentmovie: movie,
       },
       () => console.log(this.state)
     );
@@ -293,6 +298,62 @@ class App extends Component {
     this.setState({ show: false }, () => console.log(this.state));
   }
 
+  performListYear =(year ,append = true)=>{
+    this.setState({
+      yearFilter:[],
+      isLoading: true,
+      error: false,
+      searchError: "",
+    });
+    axios
+      .get(
+        `${this.state.api}list?page=${this.state.listYearIndex}&engine=${this.state.server}`
+      )
+      .then((res) => {
+        const movies = res.data;
+            let newmovies = movies.map((element, index) => {
+            element.Index = uuidv4()
+            return element;
+            });
+            this.setState({
+              year:year,
+              isLoading: false,
+              yearFilter: append? [...this.state.yearFilter , ...newmovies]:newmovies,
+             listYearIndex: append? this.state.listYearIndex + 1: 1,
+            });
+            this.setState({
+              filteredMovies : this.state.yearFilter.filter(movie=>movie.Year=== Number(this.state.year))
+            })
+      })
+      .catch(err => {
+        this.setState({
+          error: true
+        });
+      });
+
+  }
+
+  setYear = (event) =>{
+    const year  = (document.getElementById('mySelect').value)
+    if( Number (year) === 2020 || Number(year) === 2019 || Number(year) === 2018){
+    this.setState({
+      year: year,
+      isLoading : true
+    })
+      this.performListYear(Number(year))
+  } else if(year === 'default'){
+    console.log(this.state.year)
+    this.clearFilter()
+  }
+  }
+
+  clearFilter =()=>{
+    this.setState({
+      year : 0,
+    })
+  }
+
+ 
   render() {
     const { theme } = this.state;
     const selectedTheme = theme === "light" ? lightTheme : darkTheme;
@@ -315,6 +376,7 @@ class App extends Component {
                     ref={this.searchInput}
                     className="form-control"
                     placeholder="Search for a movie..."
+                    // eslint-disable-next-line jsx-a11y/no-autofocus
                     autoFocus={true}
                     onKeyPress={this.checkKey.bind(this)}
                     onChange={this.handleSearchChange.bind(this)}
@@ -331,16 +393,31 @@ class App extends Component {
                 </div>
               </div>
               <div className="options">
+                <div>
                 <select
                   className="server-selector"
                   data-tour="my-second-step"
                   onChange={this.handleServerChange.bind(this)}
+                  onBlur={this.handleServerChange.bind(this)}
                 >
-                  <option value="Alpha"> Alpha </option>
                   <option value="Delta"> Delta </option>
+                  <option value="Alpha"> Alpha </option>
                   <option value="Iota"> Iota (HD) </option>
                   <option value="Zeta"> Zeta (Series) </option>
                 </select>
+                <select
+                        type="text"
+                        className="year-selector"
+                        id='mySelect'
+                        autoFocus={true}
+                        onChange={this.setYear}
+                        >
+                          <option value = 'default' className='op' >All Years</option>
+                          <option value = '2020' className='op'  >2020</option>
+                          <option value = '2019' className='op' >2019</option>
+                          <option value = '2018' className='op' >2018</option>
+                        </select> 
+                        </div>
                 <div className="options__sub-details">
                   <button
                     className="actions-button tour-button"
@@ -353,7 +430,7 @@ class App extends Component {
                   </button>
                   <button
                     className="switch-theme-btn"
-                    data-tour="my-eight-step"
+                    data-tour="my-tenth-step"
                     title="Change Theme"
                     onClick={() => this.switchTheme(this.state.theme)}
                   >
@@ -362,7 +439,7 @@ class App extends Component {
                   <a
                     className="actions-button github-button"
                     href="https://github.com/go-phie/gophie-web"
-                    data-tour="my-ninth-step"
+                    data-tour="my-eleventh-step"
                     title="Github Link"
                   >
                     {" "}
@@ -371,10 +448,8 @@ class App extends Component {
                 </div>
               </div>
               <div className="movies" id="movie-div">
-                <MovieList
-                  movies={this.state.movies}
-                  setDescription={this.setDescription.bind(this)}
-                />
+              {this.state.year === 0 ? <MovieList ip_address={this.state.ip_address} movies={this.state.movies} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter} onScroll ={this.handleYearScroll}/> :<MovieYear ip_address={this.state.ip_address} movies={this.state.yearFilter} setDescription={this.setDescription.bind(this)} year={this.state.year} filterParam ={this.state.yearFilter}/>}
+
                 {this.state.isLoading && !this.state.error && (
                   <div className="skeleton-movies">
                     <SkeletonLoader />
@@ -407,13 +482,14 @@ class App extends Component {
           </>
 
           {/* ScrollButton Take you back to the starting of the page */}
-          <ScrollButton scrollStepInPx="80" delayInMs="16.66" />
+          <ScrollButton scrollStepInPx="80" delayInMs="16.66"/>
           {this.state.show && (
             <Popup
               show={this.state.show}
               ip_address={this.state.ip_address}
               movie={this.state.currentmovie}
               onHide={this.hideDescription.bind(this)}
+              server = {this.state.server}
             />
           )}
         </ThemeProvider>
