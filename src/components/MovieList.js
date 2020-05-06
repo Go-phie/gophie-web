@@ -12,6 +12,7 @@ function MovieList({ movies, setDescription }) {
       <Movie
         key={movie.Index}
         data={movie}
+        id={movie.Title}
         setDescriptionModal={setDescription}
       />
     );
