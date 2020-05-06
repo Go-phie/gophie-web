@@ -1,10 +1,17 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
+import axios from "axios";
 import { DownloadIcon } from "./icons";
-import { isImageURL, greekFromEnglish } from "../utils";
+import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
 import {Link} from "@reach/router";
 
 export default class Movie extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        ratings_api: API_ENDPOINTS.ocena,
+      };
+    }
 
     engineRouteName = (source) => {
       const sourceTitle = source.toLowerCase();
@@ -24,6 +31,25 @@ export default class Movie extends Component {
 
       return movieSource.toLowerCase();
     }
+
+
+  // Add download to API to make it trackable
+  addDownload = () => {
+    axios
+      .post(this.state.ratings_api + "/download/", {
+        ip_address: this.props.ip_address,
+        movie_name: this.props.data.Title,
+        engine: this.props.data.Source,
+        description: this.props.data.Description,
+        size: this.props.data.Size,
+        year: this.props.data.Year,
+        download_link: this.props.data.DownloadLink,
+        cover_photo_link: this.props.data.CoverPhotoLink,
+      })
+      .then(() => {
+        console.log(`added ${this.props.data.Title} to downloads on ocena`)
+      })
+  }
 
   render() {
     const {
@@ -74,7 +100,5 @@ export default class Movie extends Component {
           </div>
         </div>
       );
-
- 
   }
 }
