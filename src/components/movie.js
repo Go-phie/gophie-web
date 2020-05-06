@@ -3,15 +3,17 @@ import React, { Component } from "react";
 import axios from "axios";
 import { DownloadIcon } from "./icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
+import Rating from "material-ui-rating";
+import "../css/Popup.css";
 
 export default class Movie extends Component {
   constructor(props) {
     super(props);
     this.state = {
       ratings_api: API_ENDPOINTS.ocena,
+      ratings: {},
     };
   }
-
 
   // Add download to API to make it trackable
   addDownload = () => {
@@ -29,6 +31,31 @@ export default class Movie extends Component {
       .then(() => {
         console.log(`added ${this.props.data.Title} to downloads on ocena`)
       })
+  }
+
+  getAverage = () => {
+    const { data } = this.props;
+    axios
+      .post(this.state.ratings_api + "/movie/ratings/average/", {
+        name: data.Title,
+        engine: data.Source,
+      })
+      .then((res) => {
+        this.setState({
+          ratings: res.data,
+        });
+      })
+      .catch((err) => {
+        if (err) {
+          this.setState({
+            error: true,
+          });
+        }
+      });
+  };
+
+  componentDidMount(){
+    this.getAverage();
   }
 
   render() {
@@ -72,6 +99,21 @@ export default class Movie extends Component {
             <p className="movie-source"> {greekFromEnglish(Source)} </p>
             <p className="movie-size"> {Size} </p>
           </div>
+
+          <div 
+           className="gophie-modal-rating-container__average"
+           data-tour="my-seventh-step">
+             <Rating
+               value={Math.round(
+                 this.state.ratings.average_ratings
+                   ? this.state.ratings.average_ratings
+                   : 0
+               )}
+               max={5}
+               readOnly={true}
+             />
+           </div>
+
         </div>
       </div>
     );

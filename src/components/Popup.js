@@ -15,7 +15,8 @@ class Popup extends Component {
       ratings: {},
       ip_rating: 0,
       play: false,
-      referral_id: ""
+      referral_id: "",
+      error: false
     };
   }
 
@@ -192,7 +193,7 @@ class Popup extends Component {
           </div>
           {greekFromEnglish(this.props.server) === "Alpha"?
               <div className="player-error-alert">
-              <p className="player-error-message">Streaming from alpha is problematic, suggest <a className="gophie-link" href={this.props.movie.DownloadLink} target="_blank" rel="noopener noreferrer">downloading</a>  instead</p>            }
+              <p className="player-error-message">Streaming from alpha is problematic, suggest <a className="gophie-link" href={this.props.movie.DownloadLink} target="_blank" rel="noopener noreferrer">downloading</a>  instead</p>            
           </div>: null}
           {isIOS?
             <div className="player-error-alert">
