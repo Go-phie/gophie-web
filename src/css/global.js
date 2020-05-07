@@ -367,7 +367,7 @@ div.movie {
   /* Movie About Details */
   .movie__about {
     width: 100%;
-    height: 8em;
+    height: 11em;
     padding: .5em;
     display: flex;
     flex-direction: column;
@@ -645,7 +645,7 @@ select {
   .download-btn {
     height: 43px;
     width: 43px;
-    bottom: -0.5em;
+    bottom: 0.3em;
     right: -9em;
   }
 

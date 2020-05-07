@@ -100,6 +100,7 @@ export default class Movie extends Component {
             <p className="movie-size"> {Size} </p>
           </div>
 
+        <div className="rating-summary">
           <div 
            className="gophie-modal-rating-container__average"
            data-tour="my-seventh-step">
@@ -114,6 +115,27 @@ export default class Movie extends Component {
              />
            </div>
 
+           <div className="gophie-modal-rating-container__average--container__on-card">
+               <div className="gophie-modal-rating-container__average--container-item-1">
+                 <p>
+                   {this.state.ratings.average_ratings
+                     ? Math.round(
+                         this.state.ratings.average_ratings * 10
+                       ) / 10
+                     : 0}
+                 </p>
+                 <p>/5</p>
+               </div>
+
+               <p className="em-rate">
+                 <span className="em-span">by</span>
+
+                 {this.state.ratings.by
+                   ? Math.round(this.state.ratings.by)
+                   : 0}
+               </p>
+             </div>
+          </div>
         </div>
       </div>
     );
