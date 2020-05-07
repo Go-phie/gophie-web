@@ -206,15 +206,6 @@ class Popup extends Component {
            <div 
            className="gophie-modal-rating-container__average"
            data-tour="my-seventh-step">
-             <Rating
-               value={Math.round(
-                 this.state.ratings.average_ratings
-                   ? this.state.ratings.average_ratings
-                   : 0
-               )}
-               max={5}
-               readOnly={true}
-             />
 
              <div className="gophie-modal-rating-container__average--container">
                <div className="gophie-modal-rating-container__average--container-item-1">

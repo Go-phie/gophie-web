@@ -741,6 +741,10 @@ select {
     color: ${({ theme }) => theme.text} !important;
 }
 
+.gophie-modal-rating-container__average--container__on-card p {
+  color: ${({ theme }) => theme.text}
+}
+
 .gophie-alert a {
   color: ${({ theme }) => theme.yellowText} !important;
   text-decoration: none;

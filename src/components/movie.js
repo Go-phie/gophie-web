@@ -93,7 +93,7 @@ export default class Movie extends Component {
           </a>
         </div>
         <div className="movie__about">
-          <h3 className="name"> {Title} </h3>
+          <h3 className="name" onClick={() => this.props.setDescriptionModal(this.props.data)}> {Title} </h3>
 
           <div className="movie__about-meta">
             <p className="movie-source"> {greekFromEnglish(Source)} </p>
@@ -126,14 +126,6 @@ export default class Movie extends Component {
                  </p>
                  <p>/5</p>
                </div>
-
-               <p className="em-rate">
-                 <span className="em-span">by</span>
-
-                 {this.state.ratings.by
-                   ? Math.round(this.state.ratings.by)
-                   : 0}
-               </p>
              </div>
           </div>
         </div>

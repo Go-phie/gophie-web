@@ -96,10 +96,6 @@
   padding-left: 0.5em;
 }
 
-.gophie-modal-rating-container__average--container__on-card p {
-  color: #e4e7ef;
-}
-
 .gophie-modal-rating-container__average--container-item-1 p:first-child {
   font-weight: bold;
   font-size: 1.2em;
