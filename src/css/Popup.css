@@ -83,10 +83,21 @@
   text-align: center;
 }
 
+.gophie-modal-rating-container__average--container__on-card {
+  display: flex;
+  text-align: center;
+  line-height: 0;
+  margin-top: 0.5em;
+}
+
 .gophie-modal-rating-container__average--container-item-1 {
   display: inline-flex;
   align-items: flex-start;
   padding-left: 0.5em;
+}
+
+.gophie-modal-rating-container__average--container__on-card p {
+  color: #e4e7ef;
 }
 
 .gophie-modal-rating-container__average--container-item-1 p:first-child {
@@ -107,6 +118,7 @@
 
 .em-span {
   margin-right: 0.5em;
+  margin-left: 0.5em;
 }
 
 .player-wrapper {
