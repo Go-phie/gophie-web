@@ -363,6 +363,32 @@ div.movie {
     background: #dcc80d;
   }
 
+.rating-summary-on-card {
+  background: #dcc80d;
+  height: 25px;
+  width: 60px;
+  position: absolute;
+  border-radius: 12px;
+  top: -0.5em;
+  left: 5em;
+  box-shadow: 0px 0px 10px 5px #121315;
+  z-index: 10;
+  text-align: center;
+}
+
+.rating-summary-on-card p {
+  font-weight: bold;
+  text-align: center;
+  height: 25px;
+  width: 60px;
+}
+
+@media (max-width: 561px)
+{
+  .rating-summary-on-card{
+     left: 2.8em;
+  }
+}
 
   /* Movie About Details */
   .movie__about {

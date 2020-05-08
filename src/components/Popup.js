@@ -192,7 +192,7 @@ class Popup extends Component {
           </div>
           {greekFromEnglish(this.props.server) === "Alpha"?
               <div className="player-error-alert">
-              <p className="player-error-message">Streaming from alpha is problematic, suggest <a className="gophie-link" href={this.props.movie.DownloadLink} target="_blank" rel="noopener noreferrer">downloading</a>  instead</p>            }
+              <p className="player-error-message">Streaming from alpha is problematic, suggest <a className="gophie-link" href={this.props.movie.DownloadLink} target="_blank" rel="noopener noreferrer">downloading</a>  instead</p>            
           </div>: null}
           {isIOS?
             <div className="player-error-alert">
@@ -205,15 +205,6 @@ class Popup extends Component {
            <div 
            className="gophie-modal-rating-container__average"
            data-tour="my-seventh-step">
-             <Rating
-               value={Math.round(
-                 this.state.ratings.average_ratings
-                   ? this.state.ratings.average_ratings
-                   : 0
-               )}
-               max={5}
-               readOnly={true}
-             />
 
              <div className="gophie-modal-rating-container__average--container">
                <div className="gophie-modal-rating-container__average--container-item-1">

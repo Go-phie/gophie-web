@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
 import axios from "axios";
-import { DownloadIcon } from "./icons";
+import { DownloadIcon, Star } from "./icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
 
 export default class Movie extends Component {
@@ -9,6 +9,7 @@ export default class Movie extends Component {
     super(props);
     this.state = {
       ratings_api: API_ENDPOINTS.ocena,
+      ratings: {},
     };
   }
 
@@ -31,6 +32,31 @@ export default class Movie extends Component {
       })
   }
 
+  getAverage = () => {
+    const { data } = this.props;
+    axios
+      .post(this.state.ratings_api + "/movie/ratings/average/", {
+        name: data.Title,
+        engine: data.Source,
+      })
+      .then((res) => {
+        this.setState({
+          ratings: res.data,
+        });
+      })
+      .catch((err) => {
+        if (err) {
+          this.setState({
+            error: true,
+          });
+        }
+      });
+  };
+
+  componentDidMount(){
+    this.getAverage()
+  }
+
   render() {
     const {
       CoverPhotoLink,
@@ -42,6 +68,15 @@ export default class Movie extends Component {
     return (
       <div className="movie">
         <div className="movie-image">
+          <div className="rating-summary-on-card">
+                  <p>
+                      {this.state.ratings.average_ratings
+                      ? Math.round(
+                          this.state.ratings.average_ratings * 10
+                        ) / 10
+                      : 0} <Star />
+                  </p>
+            </div>
           <img
             onClick={() => this.props.setDescriptionModal(this.props.data)}
             onKeyDown={() => this.props.setDescriptionModal(this.props.data)}
@@ -66,7 +101,7 @@ export default class Movie extends Component {
           </a>
         </div>
         <div className="movie__about">
-          <h3 className="name"> {Title} </h3>
+          <h3 className="name" onClick={() => this.props.setDescriptionModal(this.props.data)}> {Title} </h3>
 
           <div className="movie__about-meta">
             <p className="movie-source"> {greekFromEnglish(Source)} </p>
