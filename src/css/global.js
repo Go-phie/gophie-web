@@ -394,8 +394,11 @@ div.movie {
   }
 
 
-  
-
+  @media (max-width: 561px) {
+    .gophie-modal-rating-container__average{
+      margin-bottom: 0.7em;
+  }
+  }
   
   .movie__about-meta {
     display: flex;
