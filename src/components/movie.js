@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { DownloadIcon } from "./icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
+import {Link} from "react-router-dom";
 import Rating from "material-ui-rating";
 import "../css/Popup.css";
 
@@ -65,39 +66,55 @@ export default class Movie extends Component {
       Size,
       Title,
       Source,
+      Index
     } = this.props.data;
+    
     return (
-      <div className="movie">
-        <div className="movie-image">
+        <div className="movie">
+          <div className="movie-image">
           <img
-            onClick={() => this.props.setDescriptionModal(this.props.data)}
-            onKeyDown={() => this.props.setDescriptionModal(this.props.data)}
-            src={
-              isImageURL(CoverPhotoLink)
-                ? CoverPhotoLink
-                : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-            }
-            alt={Title}
-            data-tour="my-fourth-step"
-            id="my-fourth-step"
-          />
-          <a
-            className="download-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={DownloadLink}
-            onClick={() => this.addDownload()}
-            data-tour="my-eight-step"
-          >
-            <DownloadIcon />
-          </a>
-        </div>
-        <div className="movie__about">
-          <h3 className="name" onClick={() => this.props.setDescriptionModal(this.props.data)}> {Title} </h3>
+                  onClick={() => {
+                    this.props.history.push(`/${greekFromEnglish(this.props.data.Source)}/${Index}`);
+                    this.props.setDescriptionModal(this.props.data)
+                  }
+                }
+                  onKeyDown={() => {
+                    this.props.history.push(`${greekFromEnglish(this.props.data.Source)}/${Index}`);
+                    this.props.setDescriptionModal(this.props.data)
+                  }
+                }
+                  src={
+                    isImageURL(CoverPhotoLink)
+                      ? CoverPhotoLink
+                      : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+                  }
+                  alt={Title}
+                  data-tour="my-fourth-step"
+                  id="my-fourth-step"
+                />
+            <a
+              className="download-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={DownloadLink}
+              data-tour="my-eight-step"
+            >
+              <DownloadIcon />
+            </a>
+          </div>
+          <div className="movie__about">
+            <Link to={`/${greekFromEnglish(Source)}/${Index}`}> 
+            <h3 className="name" onClick={
+              () => {
+                this.props.setDescriptionModal(this.props.data)
+              }
+            }> {Title} </h3>
+            </Link>
 
-          <div className="movie__about-meta">
-            <p className="movie-source"> {greekFromEnglish(Source)} </p>
-            <p className="movie-size"> {Size} </p>
+            <div className="movie__about-meta">
+              <p className="movie-source"> {greekFromEnglish(Source)} </p>
+              <p className="movie-size"> {Size} </p>
+            </div>
           </div>
 
         <div className="rating-summary">
@@ -129,7 +146,6 @@ export default class Movie extends Component {
              </div>
           </div>
         </div>
-      </div>
-    );
+      );
   }
 }
