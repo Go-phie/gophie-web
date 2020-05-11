@@ -226,7 +226,7 @@ opacity: 1;
   padding: 1em .5em;
 }
 
-.movies {
+div.movies {
   margin: 5em;
   display: flex;
   flex-flow: row wrap;
@@ -234,12 +234,12 @@ opacity: 1;
 }
 
 @media (max-width: 991px) {
-  .movies {
+  div.movies {
   margin: 2em;
   }
 }
 
-.skeleton-movies {
+div.skeleton-movies {
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
@@ -287,7 +287,7 @@ opacity: 1;
     width: 20%;
   }
 
-  .movie {
+  div.movie {
       width: 100%;
   }
 }
@@ -302,7 +302,7 @@ opacity: 1;
     }
 }
 
-.movie {
+div.movie {
     width: 220px;
     min-height: 30vh;
     height: 100%;
@@ -312,14 +312,14 @@ opacity: 1;
     display: block;
   }
   
-  .movie-image {
+  div.movie-image {
     height: 80%;
     width: 100%;
     left: 0;
     position: relative;
   }
   
-  .movie-image img {
+  div.movie-image img {
     box-shadow: 2px 7px 8px 2px ${({ theme }) => theme.movieBoxShadow};
     height: 20em;
     width: 100%;
@@ -331,7 +331,7 @@ opacity: 1;
     object-fit: cover;
   }
   
-  .movie-image img:hover {
+  div.movie-image img:hover {
     box-shadow: 2px -2px 8px 2px ${({ theme }) => theme.movieBoxShadow};
     transform: translateY(-3%);
   }
@@ -435,7 +435,7 @@ opacity: 1;
   /* Modal boostrap style End */
   /* skeleton loader styles */
   
-  .skeleton-movie {
+  div.skeleton-movie {
     width: 220px;
     min-height: 30vh;
     background: transparent;
@@ -444,7 +444,7 @@ opacity: 1;
     display: block;
   }
 
-  .skeleton-movie-image {
+  div.skeleton-movie-image {
     height: 310px;
     width: 100%;
     margin: auto;
@@ -477,7 +477,7 @@ opacity: 1;
     box-shadow: 0px 0px 7px -2px #121315;
   }
   
-  .skeleton-movie__about p {
+  div.skeleton-movie__about p {
     border-radius: 5px;
   }
   
@@ -622,7 +622,7 @@ select {
   color: #dcc80d !important;
 } /* Movie ard for small screens */
   @media (max-width: 561px) {
-  .movie {
+  div.movie {
     display: flex;
     width: 100%;
     height: initial;
@@ -631,12 +631,12 @@ select {
   }
 
 
-  .movie-image {
+  div.movie-image {
     height: 100%;
   }
 
 
-  .movie-image img {
+  div.movie-image img {
     height: 100%;
     border-bottom-left-radius: 0.3em;
     border-top-right-radius: initial;
@@ -669,7 +669,7 @@ select {
 
 
 
-  .skeleton-movies {
+  div.skeleton-movies {
     display: flex;
     flex-flow: column;
     flex-direction: column;
@@ -678,7 +678,7 @@ select {
     overflow: hidden;
   }
 
-  .skeleton-movie {
+  div.skeleton-movie {
     display: flex;
     width: 100%;
     flex-direction: row;
@@ -689,13 +689,13 @@ select {
     justify-content: space-between;
   }
 
-  .skeleton-movie-image {
+  div.skeleton-movie-image {
     height: 15em;
     width: 100%;
     margin: 0 .5em 0 0;
   }
 
-  .sabout {
+  div.sabout {
     width: 100%;
   }
 
@@ -706,7 +706,7 @@ select {
       right: -9em;
   }
 
-  .skeleton-movie__about p {
+  div.skeleton-movie__about p {
     border-radius: 5px;
   }
 
