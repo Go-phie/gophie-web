@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { Component } from "react";
 import Tour from "reactour";
+import { Route } from "react-router-dom";
 import {
   RetryIcon,
   SearchIcon,
@@ -19,7 +20,7 @@ import { lightTheme, darkTheme } from "./css/theme";
 import { GlobalStyles } from "./css/global";
 import ScrollButton from "./components/ScrollToTop";
 import Popup from "./components/Popup";
-import { tourSteps, disableBody, enableBody, nameToEngineMap } from "./utils";
+import { tourSteps, disableBody, enableBody, nameToEngineMap, greekFromEnglish } from "./utils";
 
 class Home extends Component {
   constructor(props) {
@@ -94,7 +95,10 @@ class Home extends Component {
         movies: [],
         listIndex: 1,
       },
-      () => this.performList()
+      () => { 
+        this.performList();
+        this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
+      }
     );
   }
 
@@ -224,6 +228,7 @@ class Home extends Component {
 
   UNSAFE_componentWillMount() {
     this.setTour();
+    this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
   }
 
   componentDidMount() {
@@ -285,13 +290,13 @@ class Home extends Component {
       {
         show: true,
         currentmovie: movie,
-      },
-      () => console.log(this.state)
+      }
     );
   }
 
   hideDescription() {
-    this.setState({ show: false }, () => console.log(this.state));
+    this.setState({ show: false });
+    this.props.history.push(`/${greekFromEnglish(this.state.server)}`)
   }
 
   render() {
@@ -374,10 +379,17 @@ class Home extends Component {
                 </div>
               </div>
               <div className="movies" id="movie-div">
-                <MovieList
-                  movies={this.state.movies}
-                  setDescription={this.setDescription.bind(this)}
-                />
+                <Route 
+                path={`/${greekFromEnglish(this.state.server)}`}
+                render={()=> {
+                  return (
+                    <MovieList
+                      movies={this.state.movies}
+                      history={this.props.history}
+                      setDescription={this.setDescription.bind(this)}
+                    />
+                  )
+                }}/>
                 {this.state.isLoading && !this.state.error && (
                   <div className="skeleton-movies">
                     <SkeletonLoader />

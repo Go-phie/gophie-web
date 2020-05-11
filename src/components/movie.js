@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { DownloadIcon } from "./icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
-import {Link} from "@reach/router";
+import {Link} from "react-router-dom";
 
 export default class Movie extends Component {
     constructor(props) {
@@ -12,26 +12,6 @@ export default class Movie extends Component {
         ratings_api: API_ENDPOINTS.ocena,
       };
     }
-
-    engineRouteName = (source) => {
-      const sourceTitle = source.toLowerCase();
-      let movieSource;
-      console.log(movieSource)
-      if (sourceTitle === 'netnaija') {
-        movieSource = 'Alpha';
-      } else if (sourceTitle === 'fzmovies') {
-        movieSource = 'Delta';
-      } else if (sourceTitle === 'besthdmovies') {
-        movieSource = 'IotaHD';
-      } else if (sourceTitle === 'tvseries') {
-        movieSource = 'ZetinSeries';
-      } else {
-        movieSource = ''
-      }
-
-      return movieSource.toLowerCase();
-    }
-
 
   // Add download to API to make it trackable
   addDownload = () => {
@@ -58,28 +38,32 @@ export default class Movie extends Component {
       Size,
       Title,
       Source,
+      Index
     } = this.props.data;
-
+    
     return (
         <div className="movie">
           <div className="movie-image">
-            < Link to = {
-              `/${this.engineRouteName(Source)}/${Title.trim().replace(/\s/g, '-')}`
-            } >
-              <img
-                // onClick={() => this.props.setDescriptionModal(this.props.data)}
-                // onKeyDown={() => this.props.setDescriptionModal(this.props.data)}
-                src={
-                  isImageURL(CoverPhotoLink)
-                    ? CoverPhotoLink
-                    : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+          <img
+                  onClick={() => {
+                    this.props.history.push(`/${greekFromEnglish(this.props.data.Source)}/${Index}`);
+                    this.props.setDescriptionModal(this.props.data)
+                  }
                 }
-                alt={Title}
-                data-tour="my-fourth-step"
-                id="my-fourth-step"
-              />
-            </Link>
-
+                  onKeyDown={() => {
+                    this.props.history.push(`${greekFromEnglish(this.props.data.Source)}/${Index}`);
+                    this.props.setDescriptionModal(this.props.data)
+                  }
+                }
+                  src={
+                    isImageURL(CoverPhotoLink)
+                      ? CoverPhotoLink
+                      : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+                  }
+                  alt={Title}
+                  data-tour="my-fourth-step"
+                  id="my-fourth-step"
+                />
             <a
               className="download-btn"
               target="_blank"
@@ -91,7 +75,13 @@ export default class Movie extends Component {
             </a>
           </div>
           <div className="movie__about">
-            <h3 className="name"> {Title} </h3>
+            <Link to={`/${greekFromEnglish(Source)}/${Index}`}> 
+            <h3 className="name" onClick={
+              () => {
+                this.props.setDescriptionModal(this.props.data)
+              }
+            }> {Title} </h3>
+            </Link>
 
             <div className="movie__about-meta">
               <p className="movie-source"> {greekFromEnglish(Source)} </p>

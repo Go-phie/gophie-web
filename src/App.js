@@ -1,6 +1,5 @@
-import {Router} from '@reach/router';
+import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
 import Home from './home';
-import MovieDetail from './components/MovieDetail';
 import React, {Component} from 'react';
 import NotFound from './components/error/NotFound';
 
@@ -10,11 +9,12 @@ class App extends Component {
  render() {
 
   return (
-    <Router>
-      <Home path='/' />
-      <MovieDetail path='/:Source/:Title'/>
-      <NotFound default />
-    </Router>
+    <BrowserRouter>
+    <Switch>
+      <Route path="/" component={Home}/>
+      <Redirect component={NotFound} />
+    </Switch>
+    </BrowserRouter>
   );
 
  }
