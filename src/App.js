@@ -1,9 +1,6 @@
 import { BrowserRouter, Switch, Redirect, Route } from "react-router-dom";
 import Home from './home';
 import React, {Component} from 'react';
-import NotFound from './components/error/NotFound';
-
-
 class App extends Component {
 
  render() {
@@ -12,7 +9,7 @@ class App extends Component {
     <BrowserRouter>
     <Switch>
       <Route path="/" component={Home}/>
-      <Redirect component={NotFound} />
+      <Redirect to="/" />
     </Switch>
     </BrowserRouter>
   );
