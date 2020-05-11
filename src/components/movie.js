@@ -115,9 +115,8 @@ export default class Movie extends Component {
               <p className="movie-source"> {greekFromEnglish(Source)} </p>
               <p className="movie-size"> {Size} </p>
             </div>
-          </div>
 
-        <div className="rating-summary">
+            <div className="rating-summary">
           <div 
            className="gophie-modal-rating-container__average"
            data-tour="my-seventh-step">
@@ -144,6 +143,7 @@ export default class Movie extends Component {
                  <p>/5</p>
                </div>
              </div>
+          </div>
           </div>
         </div>
       );
