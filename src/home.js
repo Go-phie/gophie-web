@@ -4,7 +4,6 @@ import Tour from "reactour";
 import { Route } from "react-router-dom";
 import {
   RetryIcon,
-  SearchIcon,
   SunIcon,
   MoonIcon,
   GitMark,
@@ -21,6 +20,7 @@ import { GlobalStyles } from "./css/global";
 import ScrollButton from "./components/ScrollToTop";
 import Popup from "./components/Popup";
 import { tourSteps, disableBody, enableBody, nameToEngineMap, greekFromEnglish } from "./utils";
+import NavBar from './components/Navbar';
 
 class Home extends Component {
   constructor(props) {
@@ -308,116 +308,89 @@ class Home extends Component {
           <>
             <GlobalStyles />
             <div className="App">
-              <div className="header">
-                <div className="header-left">
-                  <p>
-                    {" "}
-                    G<span className="em">o</span>phie{" "}
-                  </p>
-                </div>
-                <div className="header-center">
-                  <input
-                    type="text"
-                    ref={this.searchInput}
-                    className="form-control"
-                    placeholder="Search for a movie..."
-                    // eslint-disable-next-line jsx-a11y/no-autofocus
-                    autoFocus={true}
-                    onKeyPress={this.checkKey.bind(this)}
-                    onChange={this.handleSearchChange.bind(this)}
-                  />
-                </div>
-                <div className="header-right">
-                  <button
-                    onClick={this.newSearch.bind(this)}
-                    className="search-btn"
-                    data-tour="my-third-step"
-                  >
-                    <SearchIcon />
-                  </button>
-                </div>
-              </div>
-              <div className="options">
-                <select
-                  className="server-selector"
-                  data-tour="my-second-step"
-                  onChange={this.handleServerChange.bind(this)}
-                  onBlur={this.handleServerChange.bind(this)}
-                >
-                  <option value="Delta"> Delta </option>
-                  <option value="Alpha"> Alpha </option>
-                  <option value="Iota"> Iota (HD) </option>
-                  <option value="Zeta"> Zeta (Series) </option>
-                </select>
-                <div className="options__sub-details">
-                  <button
-                    className="actions-button tour-button"
-                    data-tour="my-first-step"
-                    title="Take A Tour"
-                    onClick={this.startTour}
-                  >
-                    {" "}
-                    <WalkingIcon />{" "}
-                  </button>
-                  <button
-                    className="switch-theme-btn"
-                    data-tour="my-tenth-step"
-                    title="Change Theme"
-                    onClick={() => this.switchTheme(this.state.theme)}
-                  >
-                    {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-                  </button>
-                  <a
-                    className="actions-button github-button"
-                    href="https://github.com/go-phie/gophie-web"
-                    data-tour="my-eleventh-step"
-                    title="Github Link"
-                  >
-                    {" "}
-                    <GitMark />{" "}
-                  </a>
-                </div>
-              </div>
-              <div className="movies" id="movie-div">
-                <Route 
-                path={`/${greekFromEnglish(this.state.server)}`}
-                render={()=> {
-                  return (
-                    <MovieList
-                      movies={this.state.movies}
-                      history={this.props.history}
-                      setDescription={this.setDescription.bind(this)}
-                    />
-                  )
-                }}/>
-                {this.state.isLoading && !this.state.error && (
-                  <div className="skeleton-movies">
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
+              <header>
+                <NavBar searchInput={this.searchInput} checkInputKey={this.checkKey.bind(this)} handleSearch={this.handleSearchChange.bind(this)} newSearch={this.newSearch.bind(this)} />
+
+                <div className="options">
+                  <button onClick={this.handleServerChange.bind(this)} value="Delta" >Delta</button>
+                  <button onClick={this.handleServerChange.bind(this)} value="Alpha" >Alpha</button>
+                <button onClick={this.handleServerChange.bind(this)} value="Iota" >Iota (HD)</button>
+                <button onClick={this.handleServerChange.bind(this)} value="Zeta" >Zeta (Series)</button>
+
+
+
+
+                  <div className="options__sub-details">
+                    <button
+                      className="actions-button tour-button"
+                      data-tour="my-first-step"
+                      title="Take A Tour"
+                      onClick={this.startTour}
+                    >
+                      {" "}
+                      <WalkingIcon />{" "}
+                    </button>
+                    <button
+                      className="switch-theme-btn"
+                      data-tour="my-tenth-step"
+                      title="Change Theme"
+                      onClick={() => this.switchTheme(this.state.theme)}
+                    >
+                      {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+                    </button>
+                    <a
+                      className="actions-button github-button"
+                      href="https://github.com/go-phie/gophie-web"
+                      data-tour="my-eleventh-step"
+                      title="Github Link"
+                    >
+                      {" "}
+                      <GitMark />{" "}
+                    </a>
                   </div>
-                )}
-                {this.state.error && (
-                  <div className="error">
-                    <p className="error-text">
-                      {this.state.searchError !== ""
-                        ? this.state.searchError
-                        : "Oops..An Unknown Error Occured"}{" "}
-                    </p>
-                    {this.state.searchError ? null : (
-                      <button
-                        className="error-retry-btn"
-                        onClick={this.tryAgain.bind(this)}
-                      >
-                        <RetryIcon />
-                        Try Again
-                      </button>
-                    )}
-                  </div>
-                )}
-              </div>
+                </div>
+                <div className="movies" id="movie-div">
+                  <Route 
+                  path={`/${greekFromEnglish(this.state.server)}`}
+                  render={()=> {
+                    return (
+                      <MovieList
+                        movies={this.state.movies}
+                        history={this.props.history}
+                        setDescription={this.setDescription.bind(this)}
+                      />
+                    )
+                  }}/>
+                  {this.state.isLoading && !this.state.error && (
+                    <div className="skeleton-movies">
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                    </div>
+                  )}
+                  {this.state.error && (
+                    <div className="error">
+                      <p className="error-text">
+                        {this.state.searchError !== ""
+                          ? this.state.searchError
+                          : "Oops..An Unknown Error Occured"}{" "}
+                      </p>
+                      {this.state.searchError ? null : (
+                        <button
+                          className="error-retry-btn"
+                          onClick={this.tryAgain.bind(this)}
+                        >
+                          <RetryIcon />
+                          Try Again
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </header>
+
             </div>
           </>
 
