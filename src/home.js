@@ -234,7 +234,14 @@ class Home extends Component {
 
   UNSAFE_componentWillMount() {
     this.setTour();
-    this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
+    const optionalRoute = this.props.location.pathname.slice(1)
+    if(Array.from(nameToEngineMap.keys()).includes(optionalRoute)){
+      this.setState({
+        server: nameToEngineMap.get(optionalRoute)
+      })
+    } else {
+      this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
+    }
   }
 
   componentDidMount() {
@@ -347,6 +354,7 @@ class Home extends Component {
                 <select
                   className="server-selector"
                   data-tour="my-second-step"
+                  value={greekFromEnglish(this.state.server)}
                   onChange={this.handleServerChange.bind(this)}
                   onBlur={this.handleServerChange.bind(this)}
                 >

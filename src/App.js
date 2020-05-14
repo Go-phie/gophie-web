@@ -8,6 +8,7 @@ class App extends Component {
   return (
     <BrowserRouter>
     <Switch>
+      <Route path="/(:engine)" component={Home}/>
       <Route path="/" component={Home}/>
       <Redirect to="/" />
     </Switch>
