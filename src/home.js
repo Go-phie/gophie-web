@@ -210,7 +210,13 @@ class Home extends Component {
       this.setState({
         ip_address: res.data.ip,
       });
-    });
+    })
+      .catch((err) => {
+        console.log(err);
+        this.setState({
+          error: true,
+        });
+      });
   };
 
   toggleMode() {
