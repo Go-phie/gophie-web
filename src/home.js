@@ -206,17 +206,26 @@ class Home extends Component {
   }
 
   getIp = () => {
-    axios.get("https://api.ipify.org?format=json").then((res) => {
+    axios.get("https://api.ipify.org?format=json")
+    .then((res) => {
       this.setState({
         ip_address: res.data.ip,
       });
     })
+<<<<<<< HEAD
       .catch((err) => {
         console.log(err);
         this.setState({
           error: true,
         });
       });
+=======
+    .catch((error) => {
+      this.setState({
+        error: true,
+      });
+    })
+>>>>>>> upstream/master
   };
 
   toggleMode() {
@@ -234,7 +243,14 @@ class Home extends Component {
 
   UNSAFE_componentWillMount() {
     this.setTour();
-    this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
+    const optionalRoute = this.props.location.pathname.slice(1)
+    if(Array.from(nameToEngineMap.keys()).includes(optionalRoute)){
+      this.setState({
+        server: nameToEngineMap.get(optionalRoute)
+      })
+    } else {
+      this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
+    }
   }
 
   componentDidMount() {
@@ -355,6 +371,7 @@ class Home extends Component {
                     </a>
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div className="movies" id="movie-div">
                   <Route 
                   path={`/${greekFromEnglish(this.state.server)}`}
@@ -394,6 +411,49 @@ class Home extends Component {
                       )}
                     </div>
                   )}
+=======
+              </div>
+              <div className="options">
+                <select
+                  className="server-selector"
+                  data-tour="my-second-step"
+                  value={greekFromEnglish(this.state.server)}
+                  onChange={this.handleServerChange.bind(this)}
+                  onBlur={this.handleServerChange.bind(this)}
+                >
+                  <option value="Delta"> Delta </option>
+                  <option value="Alpha"> Alpha </option>
+                  <option value="Iota"> Iota (HD) </option>
+                  <option value="Zeta"> Zeta (Series) </option>
+                </select>
+                <div className="options__sub-details">
+                  <button
+                    className="actions-button tour-button"
+                    data-tour="my-first-step"
+                    title="Take A Tour"
+                    onClick={this.startTour}
+                  >
+                    {" "}
+                    <WalkingIcon />{" "}
+                  </button>
+                  <button
+                    className="switch-theme-btn"
+                    data-tour="my-tenth-step"
+                    title="Change Theme"
+                    onClick={() => this.switchTheme(this.state.theme)}
+                  >
+                    {theme === "dark" ? <SunIcon /> : <MoonIcon />}
+                  </button>
+                  <a
+                    className="actions-button github-button"
+                    href="https://github.com/go-phie/gophie-web"
+                    data-tour="my-eleventh-step"
+                    title="Github Link"
+                  >
+                    {" "}
+                    <GitMark />{" "}
+                  </a>
+>>>>>>> upstream/master
                 </div>
               </header>
 
