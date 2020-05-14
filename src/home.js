@@ -206,11 +206,17 @@ class Home extends Component {
   }
 
   getIp = () => {
-    axios.get("https://api.ipify.org?format=json").then((res) => {
+    axios.get("https://api.ipify.org?format=json")
+    .then((res) => {
       this.setState({
         ip_address: res.data.ip,
       });
-    });
+    })
+    .catch((error) => {
+      this.setState({
+        error: true,
+      });
+    })
   };
 
   toggleMode() {
