@@ -12,10 +12,14 @@ export default class Movie extends Component {
     super(props);
     this.state = {
       ratings_api: API_ENDPOINTS.ocena,
-      ratings: {}
+      ratings: {},
+      hover: false,
     };
   }
 
+  toggleHover = () => {
+	  this.setState({hover: !this.state.hover});
+  }
   // Add download to API to make it trackable
   addDownload = () => {
     axios
@@ -69,16 +73,26 @@ export default class Movie extends Component {
       Index
     } = this.props.data;
 
+    var translateStyle;
+      if (this.state.hover) {
+        translateStyle = {transform: 'translateY(-10px)'}
+      } else {
+        translateStyle = {transform: 'translate(0px)'}
+   }
+
     return (
       <div className="movie">
         <div className="movie-image">
-          <img
+          <img className="position-relative"
             onClick={() => {
               this.props.history.push(
                 `/${greekFromEnglish(this.props.data.Source)}/${Index}`
               );
               this.props.setDescriptionModal(this.props.data);
             }}
+            style={translateStyle}
+            onMouseEnter={this.toggleHover} 
+            onMouseLeave={this.toggleHover}
             onKeyDown={() => {
               this.props.history.push(
                 `${greekFromEnglish(this.props.data.Source)}/${Index}`
@@ -94,6 +108,31 @@ export default class Movie extends Component {
             data-tour="my-fourth-step"
             id="my-fourth-step"
           />
+          <div style={translateStyle} className="position-absolute d-flex rating-summary__container">
+            <div className="rating-summary">
+              <div
+                className="gophie-modal-rating-container__average"
+                data-tour="my-seventh-step"
+              >
+                <Rating
+                  value={Math.round(
+                    this.state.ratings.average_ratings
+                      ? this.state.ratings.average_ratings
+                      : 0
+                  )}
+                  max={5}
+                  readOnly={true}
+                />
+              </div>
+            </div>
+
+
+              <p>
+                {this.state.ratings.average_ratings
+                  ? Math.round(this.state.ratings.average_ratings * 10) / 10
+                  : 0}
+              </p>
+          </div>
           <a
             className="download-btn"
             target="_blank"

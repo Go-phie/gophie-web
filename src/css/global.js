@@ -170,6 +170,14 @@ body {
 
 /* End engine Option */
 
+.rating-summary__container {
+  top: 0;
+  width: 100%;
+  background: linear-gradient(45deg, black, transparent);
+  border-top-left-radius: .39em;
+  border-top-right-radius: .39em;
+  transition: .3s;
+}
 
 .dialog-theme {
   .modal-content {
@@ -332,8 +340,8 @@ div.movie {
     width: 100%;
     margin: auto;
     transition: .3s;
-    border-top-left-radius: .3em;
-    border-top-right-radius: .3em;
+    border-top-left-radius: .39em;
+    border-top-right-radius: .39em;
     cursor: pointer;
     object-fit: cover;
   }
@@ -374,14 +382,14 @@ div.movie {
   /* Movie About Details */
   .movie__about {
     width: 100%;
-    height: 11em;
+    height: 8em;
     padding: .5em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     background-color: ${({ theme }) => theme.movieBackground}; 
-    border-bottom-bottom-radius: .39em;
-    border-bottom-start-radius: .39em;
+    order-bottom-left-radius: .39em;
+    border-bottom-right-radius: .39em;
   }
   
   .movie__about .name {
