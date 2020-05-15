@@ -158,7 +158,7 @@ class Popup extends Component {
             className="video-stop-button"
             href="/"
             onClick={this.handleStopRequest.bind(this)}>
-              <span></span>{" "}  
+              <span></span>{" "}
             </a>:
             <a
               id="play-video"

@@ -2,13 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import Tour from "reactour";
 import { Route } from "react-router-dom";
-import {
-  RetryIcon,
-  SunIcon,
-  MoonIcon,
-  GitMark,
-  WalkingIcon,
-} from "./components/icons";
+import { RetryIcon } from "./components/icons";
 import MovieList from "./components/MovieList";
 import SkeletonLoader from "./components/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
@@ -19,8 +13,15 @@ import { lightTheme, darkTheme } from "./css/theme";
 import { GlobalStyles } from "./css/global";
 import ScrollButton from "./components/ScrollToTop";
 import Popup from "./components/Popup";
-import { tourSteps, disableBody, enableBody, nameToEngineMap, greekFromEnglish } from "./utils";
-import NavBar from './components/Navbar';
+import {
+  tourSteps,
+  disableBody,
+  enableBody,
+  nameToEngineMap,
+  greekFromEnglish
+} from "./utils";
+import NavBar from "./components/Navbar";
+import EngineOptions from "./components/EnginOptions";
 
 class Home extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ class Home extends Component {
       searchError: "",
       theme: "light",
       showTour: true,
-      ip_address: "",
+      ip_address: ""
     };
   }
 
@@ -80,7 +81,7 @@ class Home extends Component {
     );
     if (filteredMovies.length >= 1) {
       this.setState({
-        movies: filteredMovies,
+        movies: filteredMovies
       });
       return;
     }
@@ -93,9 +94,9 @@ class Home extends Component {
       {
         server,
         movies: [],
-        listIndex: 1,
+        listIndex: 1
       },
-      () => { 
+      () => {
         this.performList();
         this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
       }
@@ -109,7 +110,7 @@ class Home extends Component {
         {
           movies: [],
           error: false,
-          listIndex: 1,
+          listIndex: 1
         },
         () => this.performSearch(query, true)
       );
@@ -127,7 +128,7 @@ class Home extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: "",
+      searchError: ""
     });
 
     axios
@@ -150,7 +151,7 @@ class Home extends Component {
           this.setState({
             movies: append ? [...this.state.movies, ...newmovies] : newmovies,
             isLoading: false,
-            listIndex: append ? this.state.listIndex + 1 : 1,
+            listIndex: append ? this.state.listIndex + 1 : 1
           });
         } else {
           throw new Error("Search returned empty, try another engine perhaps");
@@ -159,7 +160,7 @@ class Home extends Component {
       .catch((err) => {
         this.setState({
           error: true,
-          searchError: err.message,
+          searchError: err.message
         });
       });
   };
@@ -168,7 +169,7 @@ class Home extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: "",
+      searchError: ""
     });
     axios
       .get(
@@ -185,13 +186,13 @@ class Home extends Component {
         this.setState({
           isLoading: false,
           movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-          listIndex: newIndex,
+          listIndex: newIndex
         });
       })
       .catch((err) => {
         console.log(err);
         this.setState({
-          error: true,
+          error: true
         });
       });
   };
@@ -206,26 +207,18 @@ class Home extends Component {
   }
 
   getIp = () => {
-    axios.get("https://api.ipify.org?format=json")
-    .then((res) => {
-      this.setState({
-        ip_address: res.data.ip,
-      });
-    })
-<<<<<<< HEAD
-      .catch((err) => {
-        console.log(err);
+    axios
+      .get("https://api.ipify.org?format=json")
+      .then((res) => {
         this.setState({
-          error: true,
+          ip_address: res.data.ip
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          error: true
         });
       });
-=======
-    .catch((error) => {
-      this.setState({
-        error: true,
-      });
-    })
->>>>>>> upstream/master
   };
 
   toggleMode() {
@@ -243,11 +236,11 @@ class Home extends Component {
 
   UNSAFE_componentWillMount() {
     this.setTour();
-    const optionalRoute = this.props.location.pathname.slice(1)
-    if(Array.from(nameToEngineMap.keys()).includes(optionalRoute)){
+    const optionalRoute = this.props.location.pathname.slice(1);
+    if (Array.from(nameToEngineMap.keys()).includes(optionalRoute)) {
       this.setState({
         server: nameToEngineMap.get(optionalRoute)
-      })
+      });
     } else {
       this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
     }
@@ -308,17 +301,15 @@ class Home extends Component {
   }
 
   setDescription(movie) {
-    this.setState(
-      {
-        show: true,
-        currentmovie: movie,
-      }
-    );
+    this.setState({
+      show: true,
+      currentmovie: movie
+    });
   }
 
   hideDescription() {
     this.setState({ show: false });
-    this.props.history.push(`/${greekFromEnglish(this.state.server)}`)
+    this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
   }
 
   render() {
@@ -331,59 +322,33 @@ class Home extends Component {
             <GlobalStyles />
             <div className="App">
               <header>
-                <NavBar searchInput={this.searchInput} checkInputKey={this.checkKey.bind(this)} handleSearch={this.handleSearchChange.bind(this)} newSearch={this.newSearch.bind(this)} />
+                <NavBar
+                  searchInput={this.searchInput}
+                  checkInputKey={this.checkKey.bind(this)}
+                  handleSearch={this.handleSearchChange.bind(this)}
+                  newSearch={this.newSearch.bind(this)}
+                  theme={theme}
+                  tour={this.startTour}
+                  switchTheme={() => this.switchTheme(this.state.theme)}
+                />
 
-                <div className="options">
-                  <button onClick={this.handleServerChange.bind(this)} value="Delta" >Delta</button>
-                  <button onClick={this.handleServerChange.bind(this)} value="Alpha" >Alpha</button>
-                <button onClick={this.handleServerChange.bind(this)} value="Iota" >Iota (HD)</button>
-                <button onClick={this.handleServerChange.bind(this)} value="Zeta" >Zeta (Series)</button>
+                <EngineOptions handleServerChange={this.handleServerChange.bind(this)} />
+              </header>
 
-
-
-
-                  <div className="options__sub-details">
-                    <button
-                      className="actions-button tour-button"
-                      data-tour="my-first-step"
-                      title="Take A Tour"
-                      onClick={this.startTour}
-                    >
-                      {" "}
-                      <WalkingIcon />{" "}
-                    </button>
-                    <button
-                      className="switch-theme-btn"
-                      data-tour="my-tenth-step"
-                      title="Change Theme"
-                      onClick={() => this.switchTheme(this.state.theme)}
-                    >
-                      {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-                    </button>
-                    <a
-                      className="actions-button github-button"
-                      href="https://github.com/go-phie/gophie-web"
-                      data-tour="my-eleventh-step"
-                      title="Github Link"
-                    >
-                      {" "}
-                      <GitMark />{" "}
-                    </a>
-                  </div>
-                </div>
-<<<<<<< HEAD
-                <div className="movies" id="movie-div">
-                  <Route 
-                  path={`/${greekFromEnglish(this.state.server)}`}
-                  render={()=> {
-                    return (
-                      <MovieList
-                        movies={this.state.movies}
-                        history={this.props.history}
-                        setDescription={this.setDescription.bind(this)}
-                      />
-                    )
-                  }}/>
+              <main>
+              <div className="movies" id="movie-div">
+                  <Route
+                    path={`/${greekFromEnglish(this.state.server)}`}
+                    render={() => {
+                      return (
+                        <MovieList
+                          movies={this.state.movies}
+                          history={this.props.history}
+                          setDescription={this.setDescription.bind(this)}
+                        />
+                      );
+                    }}
+                  />
                   {this.state.isLoading && !this.state.error && (
                     <div className="skeleton-movies">
                       <SkeletonLoader />
@@ -411,66 +376,23 @@ class Home extends Component {
                       )}
                     </div>
                   )}
-=======
-              </div>
-              <div className="options">
-                <select
-                  className="server-selector"
-                  data-tour="my-second-step"
-                  value={greekFromEnglish(this.state.server)}
-                  onChange={this.handleServerChange.bind(this)}
-                  onBlur={this.handleServerChange.bind(this)}
-                >
-                  <option value="Delta"> Delta </option>
-                  <option value="Alpha"> Alpha </option>
-                  <option value="Iota"> Iota (HD) </option>
-                  <option value="Zeta"> Zeta (Series) </option>
-                </select>
-                <div className="options__sub-details">
-                  <button
-                    className="actions-button tour-button"
-                    data-tour="my-first-step"
-                    title="Take A Tour"
-                    onClick={this.startTour}
-                  >
-                    {" "}
-                    <WalkingIcon />{" "}
-                  </button>
-                  <button
-                    className="switch-theme-btn"
-                    data-tour="my-tenth-step"
-                    title="Change Theme"
-                    onClick={() => this.switchTheme(this.state.theme)}
-                  >
-                    {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-                  </button>
-                  <a
-                    className="actions-button github-button"
-                    href="https://github.com/go-phie/gophie-web"
-                    data-tour="my-eleventh-step"
-                    title="Github Link"
-                  >
-                    {" "}
-                    <GitMark />{" "}
-                  </a>
->>>>>>> upstream/master
-                </div>
-              </header>
-
+                </div> 
+              </main>
             </div>
           </>
 
           {/* ScrollButton Take you back to the starting of the page */}
-          <ScrollButton scrollStepInPx="80" delayInMs="16.66"/>
+          <ScrollButton scrollStepInPx="80" delayInMs="16.66" />
           {this.state.show && (
             <Popup
               show={this.state.show}
               ip_address={this.state.ip_address}
               movie={this.state.currentmovie}
               onHide={this.hideDescription.bind(this)}
-              server = {this.state.server}
+              server={this.state.server}
             />
           )}
+          {/* End ScrollButton */}
         </ThemeProvider>
 
         {/* Tour Component Element */}

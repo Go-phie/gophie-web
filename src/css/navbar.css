@@ -1,0 +1,38 @@
+
+.nav-bar__main {
+    width: 100%;
+}
+
+.nav-bar__main--brand {
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+
+/* Nav Search Bar */
+.nav-bar__main--has-search {
+    width: 100%;
+    max-width: 35em;
+    margin: 0 auto;
+    position: relative;
+}
+
+.nav-bar__main--has-search button {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    padding-right: 1em;
+    padding-left: 1em;
+    background: transparent;
+    font-size: 1.2em;
+    right: 0;
+    outline: 0;
+    margin: 0;
+    border: 0;
+}
+
+.nav-bar__main--has-search input {
+    padding: 1.3em 1.5em;
+    border-radius: 2em;
+}

@@ -1,7 +1,7 @@
 // theme.js
 export const lightTheme = {
   body: "#f1f2f9",
-  text: "#202534",
+  text: "#323643c9",
   yellowText: "#1e2126",
   borderColor: "#363537",
   movieBackground: "#dfe1e6",
@@ -16,5 +16,5 @@ export const darkTheme = {
   borderColor: "#363537",
   movieBackground: "#202534",
   movieBoxShadow: "#080f1cde",
-  formColor: "#bcab0e",
+  formColor: "#494e5b",
 };
