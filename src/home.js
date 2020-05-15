@@ -221,6 +221,20 @@ class Home extends Component {
       });
   };
 
+  manageHistory = (props) => {
+    console.log(this.props.history)
+    const optionalRoute = props.location.pathname.slice(1)
+    if(Array.from(nameToEngineMap.keys()).includes(optionalRoute)){
+      this.setState({
+        listIndex: 1,
+        movies: [],
+        server: nameToEngineMap.get(optionalRoute)
+      }, () => this.performList())
+    } else {
+      this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
+    }
+  }
+
   toggleMode() {
     switch (this.state.mode) {
       case "series":
@@ -236,13 +250,12 @@ class Home extends Component {
 
   UNSAFE_componentWillMount() {
     this.setTour();
-    const optionalRoute = this.props.location.pathname.slice(1);
-    if (Array.from(nameToEngineMap.keys()).includes(optionalRoute)) {
-      this.setState({
-        server: nameToEngineMap.get(optionalRoute)
-      });
-    } else {
-      this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
+    this.manageHistory(this.props);
+  }
+
+  UNSAFE_componentWillUpdate(nextProps) {
+    if(nextProps.location.pathname !== this.props.location.pathname){
+      this.manageHistory(nextProps)
     }
   }
 
