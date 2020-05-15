@@ -14,6 +14,7 @@ export default class Movie extends Component {
       ratings_api: API_ENDPOINTS.ocena,
       ratings: {},
     };
+    this._isMounted = false;
   }
 
   // Add download to API to make it trackable
@@ -57,6 +58,11 @@ export default class Movie extends Component {
 
   componentDidMount(){
     this.getAverage();
+    this._isMounted = true;
+  }
+
+  componentWillUnmount(){
+    this._isMounted = false;
   }
 
   render() {
