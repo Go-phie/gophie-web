@@ -41,6 +41,11 @@ export default class Movie extends Component {
       .post(this.state.ratings_api + "/movie/ratings/average/", {
         name: data.Title,
         engine: data.Source,
+        description: data.Description,
+        size: data.Size,
+        year: data.Year,
+        download_link: data.DownloadLink,
+        cover_photo_link: data.CoverPhotoLink
       })
       .then((res) => {
         this.setState({

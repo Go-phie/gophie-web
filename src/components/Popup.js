@@ -52,6 +52,11 @@ class Popup extends Component {
       .post(this.state.ratings_api + "/movie/ratings/average/", {
         name: movie.Title,
         engine: movie.Source,
+        description: movie.Description,
+        size: movie.Size,
+        year: movie.Year,
+        download_link: movie.DownloadLink,
+        cover_photo_link: movie.CoverPhotoLink
       })
       .then((res) => {
         this.setState({
@@ -97,6 +102,11 @@ class Popup extends Component {
       .post(this.state.ratings_api + "/rate/", {
         movie_name: movie.Title,
         engine: movie.Source,
+        description: movie.Description,
+        size: movie.Size,
+        year: movie.Year,
+        download_link: movie.DownloadLink,
+        cover_photo_link: movie.CoverPhotoLink,
         ip_address: this.props.ip_address,
         score: value,
       })
