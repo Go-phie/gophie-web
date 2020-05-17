@@ -18,17 +18,19 @@ import {
   disableBody,
   enableBody,
   nameToEngineMap,
-  greekFromEnglish
+  greekFromEnglish,
+  API_ENDPOINTS
 } from "./utils";
 import NavBar from "./components/Navbar";
 import EngineOptions from "./components/EnginOptions";
+import TrendingCarousel from "./components/TrendingCarousel";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.searchInput = React.createRef();
     this.state = {
-      api: "https://gophie.herokuapp.com/",
+      api: API_ENDPOINTS.gophieMain,
       server: nameToEngineMap.get("Delta"),
       mode: "movies",
       movies: [],
@@ -348,6 +350,12 @@ class Home extends Component {
                   tour={this.startTour}
                   switchTheme={() => this.switchTheme(this.state.theme)}
                 />
+                <div style={{ width: "30%", height: "200px", margin: "0 auto" }}>
+                  <TrendingCarousel
+                  setDescription={this.setDescription.bind(this)}
+                  history={this.props.history}
+                  />
+                </div>
 
                 <EngineOptions handleServerChange={this.handleServerChange.bind(this)} />
               </header>
