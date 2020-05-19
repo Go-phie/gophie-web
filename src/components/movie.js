@@ -15,6 +15,7 @@ export default class Movie extends Component {
       ratings: {},
       hover: false,
     };
+    this._isMounted = false;
   }
 
   toggleHover = () => {
@@ -43,7 +44,12 @@ export default class Movie extends Component {
     axios
       .post(this.state.ratings_api + "/movie/ratings/average/", {
         name: data.Title,
-        engine: data.Source
+        engine: data.Source,
+        description: data.Description,
+        size: data.Size,
+        year: data.Year,
+        download_link: data.DownloadLink,
+        cover_photo_link: data.CoverPhotoLink
       })
       .then((res) => {
         this.setState({
@@ -61,6 +67,11 @@ export default class Movie extends Component {
 
   componentDidMount() {
     this.getAverage();
+    this._isMounted = true;
+  }
+
+  componentWillUnmount(){
+    this._isMounted = false;
   }
 
   render() {

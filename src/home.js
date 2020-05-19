@@ -221,15 +221,19 @@ class Home extends Component {
       });
   };
 
-  manageHistory = (props) => {
-    console.log(this.props.history)
+  manageHistory = (props, refresh=true) => {
     const optionalRoute = props.location.pathname.slice(1)
     if(Array.from(nameToEngineMap.keys()).includes(optionalRoute)){
       this.setState({
         listIndex: 1,
         movies: [],
         server: nameToEngineMap.get(optionalRoute)
-      }, () => this.performList())
+      }, () => {
+        if(refresh){
+          this.performList()
+        }
+      }
+        )
     } else {
       this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
     }
@@ -250,11 +254,11 @@ class Home extends Component {
 
   UNSAFE_componentWillMount() {
     this.setTour();
-    this.manageHistory(this.props);
+    this.manageHistory(this.props, false);
   }
 
-  UNSAFE_componentWillUpdate(nextProps) {
-    if(nextProps.location.pathname !== this.props.location.pathname){
+  UNSAFE_componentWillUpdate(nextProps, newState) {
+    if(nextProps.location.pathname !== this.props.location.pathname && Object.keys(newState).length===0){
       this.manageHistory(nextProps)
     }
   }
@@ -321,8 +325,13 @@ class Home extends Component {
   }
 
   hideDescription() {
+<<<<<<< HEAD
     this.setState({ show: false });
     this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
+=======
+    this.setState({ show: false, currentmovie: {} });
+    this.props.history.push(`/${greekFromEnglish(this.state.server)}`)
+>>>>>>> upstream/master
   }
 
   render() {
