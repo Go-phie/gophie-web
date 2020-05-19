@@ -325,13 +325,8 @@ class Home extends Component {
   }
 
   hideDescription() {
-<<<<<<< HEAD
-    this.setState({ show: false });
-    this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
-=======
     this.setState({ show: false, currentmovie: {} });
     this.props.history.push(`/${greekFromEnglish(this.state.server)}`)
->>>>>>> upstream/master
   }
 
   render() {
