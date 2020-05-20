@@ -350,13 +350,11 @@ class Home extends Component {
                   tour={this.startTour}
                   switchTheme={() => this.switchTheme(this.state.theme)}
                 />
-                <div style={{ width: "30%", height: "200px", margin: "0 auto" }}>
                   <TrendingCarousel
                   setDescription={this.setDescription.bind(this)}
                   history={this.props.history}
                   />
-                </div>
-
+                
                 <EngineOptions handleServerChange={this.handleServerChange.bind(this)} />
               </header>
 

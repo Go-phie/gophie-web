@@ -111,7 +111,7 @@ body {
   justify-content: space-between;
   height: 3em;
   border-bottom: 2px solid ${({ theme }) => theme.movieBackground};
-  margin-top: 7.5em;
+  margin-top: 5em;
 }
 
 .engine-option__title {
@@ -753,5 +753,19 @@ select {
 .gophie-link {
   color: ${({ theme }) => theme.yellowText} !important;
   text-decoration: none;
+}
+
+.trending-carousal-image__container {
+  width: 100%;
+  height: 100%;
+}
+
+.trending-carousal-image {
+  min-width: 5em;
+  width: 100%;
+  max-height: 25em;
+  object-fit: cover;
+  min-height: 25em;
+  padding: .35em;
 }
 `
