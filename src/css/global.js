@@ -794,4 +794,8 @@ select {
 .network-icon {
   max-width: 4.5em;
 }
+
+.react-multiple-carousel__arrow  {
+  z-index: 100;
+}
 `
