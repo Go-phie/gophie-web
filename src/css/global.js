@@ -798,4 +798,35 @@ select {
 .react-multiple-carousel__arrow  {
   z-index: 100;
 }
+
+.react-multiple-carousel__arrow::before {
+  color: golden-rod !important;
+}
+
+/* Logo svg animation */
+#gophie-logo {
+  fill: ${({ theme }) => theme.yellowText};
+  stroke: ${({ theme }) => theme.yellowText};
+}
+
+#gophie-logo {
+  stroke-width: 0;
+  animation: logo 5s linear 2 forwards;
+}
+
+@keyframes logo {
+  0% {
+    stroke-width: 1pt;
+    stroke-dashoffset: 1200;
+    fill-opacity: 0;
+  }
+  50% {
+    fill-opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill-opacity: 1;
+    stroke-width: 0pt;
+  }
+}
 `

@@ -6,6 +6,9 @@ import {
   faSun,
   faBlind
 } from "@fortawesome/free-solid-svg-icons";
+import {
+  GophieLogo,
+} from "./icons"
 import "../css/navbar.css";
 
 class NavBar extends Component {
@@ -15,8 +18,7 @@ class NavBar extends Component {
         <div className="nav-bar__main d-flex">
           <div className="nav-bar__main--brand">
             <a href="/">
-              {" "}
-              G<span className="em">o</span>phie{" "}
+              <GophieLogo />
             </a>
           </div>
           <div className="nav-bar__main--has-search">
