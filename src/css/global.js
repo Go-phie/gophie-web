@@ -756,16 +756,42 @@ select {
 }
 
 .trending-carousal-image__container {
-  width: 100%;
-  height: 100%;
+  position: relative;
+  background: rgba(0,0,0,0.5);
+  margin: .2em;
+  min-height: 25em;
+  min-width: 5em;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+.trending-carousal-image__container:hover {
+  content: '';
+  position: absolute;
+  top: 0;
+  background: rgba(0,0,0,0.1);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -2;
+  transition: all .5s;
 }
 
 .trending-carousal-image {
-  min-width: 5em;
+  position: absolute;
+  z-index: -1;
   width: 100%;
+  height: 100%;
   max-height: 25em;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.carousel-container  {
   min-height: 25em;
-  padding: .35em;
+}
+
+.network-icon {
+  max-width: 4.5em;
 }
 `

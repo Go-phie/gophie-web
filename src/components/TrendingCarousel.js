@@ -6,7 +6,7 @@ import { API_ENDPOINTS, greekFromEnglish } from "../utils";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
-
+import { NetworkIcon } from "./icons";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -32,8 +32,9 @@ class TrendingCarousel extends Component {
     super(props);
     this.state = {
       trending_api: API_ENDPOINTS.ocena,
-      trending: []
-     };
+      trending: [],
+      error: false
+    };
   }
 
   componentDidMount() {
@@ -47,74 +48,84 @@ class TrendingCarousel extends Component {
       }
     };
 
-    axios(options).then(
-      (res) => {
+    axios(options)
+      .then((res) => {
         this.setState({ trending: res.data });
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+      })
+      .catch((err) => {
+        if (err) {
+          this.setState({ error: true });
+        }
+      });
   }
 
   render() {
     return (
-      <Carousel
-        responsive={responsive}
-        deviceType={this.props.deviceType}
-        keyBoardControl={true}
-        infinite={true}
-        ssr={true}
-        // autoPlay={this.props.deviceType !== "mobile" ? true : false}
-        transitionDuration={500}
-        containerClass="carousel-container"
-      >
-        {this.state.trending.map((trendingMovie) => {
-          let mov_obj = {
-            Title: trendingMovie.name,
-            Id: trendingMovie.referral_id,
-            key: trendingMovie.referral_id,
-            DownloadLink: trendingMovie.download_link,
-            CoverPhotoLink: trendingMovie.cover_photo_link,
-            Size: trendingMovie.size,
-            Source: trendingMovie.engine,
-            Year: trendingMovie.year,
-            Description: trendingMovie.description
-          };
-          return (
-            
-            <div className="trending-carousal-image__container">
-              <Image
-                className="img-fluid trending-carousal-image"
-                key={trendingMovie.id}
-                onClick={() => {
-                  this.props.history.push(
-                    `/${greekFromEnglish(trendingMovie.engine)}/${
-                      trendingMovie.referral_id
-                    }`
-                  );
-                  this.props.setDescription(mov_obj);
-                }}
-                onKeyDown={() => {
-                  this.props.history.push(
-                    `/${greekFromEnglish(trendingMovie.engine)}/${
-                      trendingMovie.referral_id
-                    }`
-                  );
-                  this.props.setDescription(mov_obj);
-                }}
-                alt={trendingMovie.name}
-                src={
-                  trendingMovie.cover_photo_link
-                    ? trendingMovie.cover_photo_link
-                    : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-                }
-              />              
-            </div>
+      <div>
+        <Carousel
+          responsive={responsive}
+          deviceType={this.props.deviceType}
+          keyBoardControl={true}
+          infinite={true}
+          ssr={true}
+          // autoPlay={this.props.deviceType !== "mobile" ? true : false}
+          transitionDuration={500}
+          containerClass="carousel-container"
+        >
+          {this.state.trending.map((trendingMovie) => {
+            let movie_obj = {
+              Title: trendingMovie.name,
+              Id: trendingMovie.referral_id,
+              key: trendingMovie.referral_id,
+              DownloadLink: trendingMovie.download_link,
+              CoverPhotoLink: trendingMovie.cover_photo_link,
+              Size: trendingMovie.size,
+              Source: trendingMovie.engine,
+              Year: trendingMovie.year,
+              Description: trendingMovie.description
+            };
+            return (
+              <div className="trending-carousal-image__container">
+                <Image
+                  className="img-fluid trending-carousal-image"
+                  key={trendingMovie.id}
+                  onClick={() => {
+                    this.props.history.push(
+                      `/${greekFromEnglish(trendingMovie.engine)}/${
+                        trendingMovie.referral_id
+                      }`
+                    );
+                    this.props.setDescription(movie_obj);
+                  }}
+                  onKeyDown={() => {
+                    this.props.history.push(
+                      `/${greekFromEnglish(trendingMovie.engine)}/${
+                        trendingMovie.referral_id
+                      }`
+                    );
+                    this.props.setDescription(movie_obj);
+                  }}
+                  alt={trendingMovie.name}
+                  src={
+                    trendingMovie.cover_photo_link
+                      ? trendingMovie.cover_photo_link
+                      : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+                  }
+                />
+              </div>
+            );
+          })}
+        </Carousel>
 
-          );
-        })}
-      </Carousel>
+        {!this.state.error ? null : (
+          <div className="error">
+            <p style={{position: 'absolute', top: '9em', left: 0, right: 0}} className="error-text">
+              <NetworkIcon />
+              <p>Try Again</p>
+            </p>
+          </div>
+        )}
+      </div>
     );
   }
 }
