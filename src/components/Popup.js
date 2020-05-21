@@ -21,9 +21,9 @@ class Popup extends Component {
   }
 
   componentDidMount() {
-    this.getAverage();
-    this.getRatings();
-    this.shareMovie();
+    // this.getAverage();
+    // this.getRatings();
+    // this.shareMovie();
   }
 
   shareMovie = () => {
@@ -120,6 +120,7 @@ class Popup extends Component {
         this.getAverage();
       })
       .catch((err) => {
+        console.log(err)
         if (err) {
           this.setState({
             error: true,
@@ -201,7 +202,7 @@ class Popup extends Component {
             width="100%"
             height="90%" />
           </div>
-          {greekFromEnglish(this.props.server) === "Alpha"?
+          {greekFromEnglish(this.props.movie.Source) === "Alpha"?
               <div className="player-error-alert">
               <p className="player-error-message">Streaming from alpha is problematic, suggest <a className="gophie-link" href={this.props.movie.DownloadLink} target="_blank" rel="noopener noreferrer">downloading</a>  instead</p>            
           </div>: null}
