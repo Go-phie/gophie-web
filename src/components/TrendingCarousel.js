@@ -85,7 +85,7 @@ class TrendingCarousel extends Component {
               Description: trendingMovie.description
             };
             return (
-              <div className="trending-carousal-image__container">
+              <div key={trendingMovie.id} className="trending-carousal-image__container">
                 <Image
                   className="img-fluid trending-carousal-image"
                   key={trendingMovie.id}
