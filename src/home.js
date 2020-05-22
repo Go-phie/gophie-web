@@ -376,7 +376,7 @@ class Home extends Component {
                   onBlur={this.handleServerChange.bind(this)}
                 >
                   <option value="Delta"> Delta </option>
-                  <option value="Alpha"> Alpha </option>
+                  {/* <option value="Alpha"> Alpha </option> */}
                   <option value="Iota"> Iota (HD) </option>
                   <option value="Zeta"> Zeta (Series) </option>
                 </select>
