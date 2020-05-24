@@ -99,7 +99,7 @@ export const tourSteps = [
 ];
 
 let nm = new Map();
-nm.set("Alpha", "netnaija");
+nm.set("Alpha", "mycoolmoviez");
 nm.set("Delta", "fzmovies");
 nm.set("Iota", "besthdmovies");
 nm.set("Zeta", "tvseries");
@@ -116,8 +116,8 @@ export function greekFromEnglish(eng) {
 }
 
 export const API_ENDPOINTS = {
-  gophieMain: "https://gophie.herokuapp.com/",
-  ocena: "https://gophie-ocena.herokuapp.com"
+  gophieMain: "https://deploy-gophie.herokuapp.com/",
+  ocena: "https://deploy-ocena.herokuapp.com"
   // ocena: "http://127.0.0.1:8000"
 }
 
