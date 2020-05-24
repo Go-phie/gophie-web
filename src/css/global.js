@@ -64,9 +64,8 @@ body {
 
 .nav-bar__main--has-search input:focus {
   background-color: ${({ theme }) => theme.movieBackground};
-  color: ${({ theme }) => theme.formColor};
-  opacity: 1;
-
+  color: ${({ theme }) => theme.text};
+  opacity: .9;
 }
 
 .search-btn {
