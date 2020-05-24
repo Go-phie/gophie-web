@@ -20,14 +20,14 @@ import { lightTheme, darkTheme } from "./css/theme";
 import { GlobalStyles } from "./css/global";
 import ScrollButton from "./components/ScrollToTop";
 import Popup from "./components/Popup";
-import { tourSteps, disableBody, enableBody, nameToEngineMap, greekFromEnglish } from "./utils";
+import { tourSteps, disableBody, enableBody, nameToEngineMap, greekFromEnglish, API_ENDPOINTS } from "./utils";
 
 class Home extends Component {
   constructor(props) {
     super(props);
     this.searchInput = React.createRef();
     this.state = {
-      api: "https://gophie.herokuapp.com/",
+      api: API_ENDPOINTS.gophieMain,
       server: nameToEngineMap.get("Delta"),
       mode: "movies",
       movies: [],

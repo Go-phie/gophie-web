@@ -79,7 +79,6 @@ export default class Movie extends Component {
       Source,
       Index
     } = this.props.data;
-    
     return (
         <div className="movie">
           <div className="movie-image">
