@@ -21,8 +21,8 @@ class Popup extends Component {
   }
 
   componentDidMount() {
-    // this.getAverage();
-    // this.getRatings();
+    this.getAverage();
+    this.getRatings();
     // this.shareMovie();
   }
 

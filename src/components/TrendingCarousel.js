@@ -42,8 +42,8 @@ class TrendingCarousel extends Component {
       method: "post",
       url: `${this.state.trending_api}/download/highest/`,
       data: {
-        filter_by: "days",
-        filter_num: 3,
+        filter_by: "weeks",
+        filter_num: 1,
         top: 10
       }
     };
