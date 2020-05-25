@@ -363,7 +363,7 @@ class Home extends Component {
                 )}
 
                 {!this.state.isSearch ? null : (
-                  <div className="mt-2" style={{display: 'grid'}}></div>
+                  <div className="mt-1" style={{display: 'grid'}}></div>
                 )}
                 <EngineOptions handleServerChange={this.handleServerChange.bind(this)} />
               </header>

@@ -73,6 +73,10 @@ body {
   transition: .3s;
 }
 
+    .tvIcon {
+      display: none;
+    }
+
   @media (max-width: 830px) {
     .nav-bar {
       flex-direction: column-reverse;
@@ -98,6 +102,16 @@ body {
       padding: .5em 1.8em .5em 1.8em;
       justify-content: flex-end;
      }
+  }
+
+  @media (max-width: 375px) {
+    .tvIcon {
+      display: block;
+    }
+
+    .gophieLogo {
+      display: none;
+    }
   }
 /* End navbar global style */
 
@@ -148,7 +162,7 @@ body {
 
 @media (max-width: 830px) {
   .engine-option {
-    margin-top: 6em;
+    margin-top: 3em;
     border: 0 !important;
   }
   .engine-option__title {

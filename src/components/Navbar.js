@@ -7,7 +7,7 @@ import {
   faBlind
 } from "@fortawesome/free-solid-svg-icons";
 import {
-  GophieLogo,
+  GophieLogo, TvIcon,
 } from "./icons"
 import "../css/navbar.css";
 
@@ -19,6 +19,7 @@ class NavBar extends Component {
           <div className="nav-bar__main--brand">
             <a href="/">
               <GophieLogo />
+              <TvIcon />
             </a>
           </div>
           <div className="nav-bar__main--has-search">
