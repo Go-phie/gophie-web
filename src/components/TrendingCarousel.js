@@ -7,6 +7,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
 import { NetworkIcon } from "./icons";
+import CarouselSkeletonLoader from "./Loader/CarouselSkeletonLoader";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -33,7 +34,8 @@ class TrendingCarousel extends Component {
     this.state = {
       trending_api: API_ENDPOINTS.ocena,
       trending: [],
-      error: false
+      error: false,
+      isLoading: true
     };
   }
 
@@ -50,11 +52,17 @@ class TrendingCarousel extends Component {
 
     axios(options)
       .then((res) => {
-        this.setState({ trending: res.data });
+        this.setState({ 
+          trending: res.data,
+          isLoading: false,
+         });
       })
       .catch((err) => {
         if (err) {
-          this.setState({ error: true });
+          this.setState({ 
+            error: true,
+            isLoading: false,
+          });
         }
       });
   }
@@ -115,7 +123,18 @@ class TrendingCarousel extends Component {
               </div>
             );
           })}
+
+
+
         </Carousel>
+          {!this.state.isLoading ? null : (
+            <div style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', position: 'absolute', top: '0',}} className='w-100 d-flex'>
+                <CarouselSkeletonLoader />
+                <CarouselSkeletonLoader />
+                  <CarouselSkeletonLoader />
+                <CarouselSkeletonLoader />
+            </div>
+        )}
 
         {!this.state.error ? null : (
           <div className="error">

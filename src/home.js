@@ -4,7 +4,7 @@ import Tour from "reactour";
 import { Route } from "react-router-dom";
 import { RetryIcon } from "./components/icons";
 import MovieList from "./components/MovieList";
-import SkeletonLoader from "./components/SkeletonLoader";
+import SkeletonLoader from "./components/Loader/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
 // style stuff
