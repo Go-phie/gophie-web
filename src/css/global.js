@@ -91,6 +91,7 @@ body {
 
      .nav-bar__main--brand {
        margin-right: .5em;
+       width: 10%;
      }
 
     .actions-button {
