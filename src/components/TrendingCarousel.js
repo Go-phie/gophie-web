@@ -6,7 +6,7 @@ import { API_ENDPOINTS, greekFromEnglish } from "../utils";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
-import { NetworkIcon } from "./icons";
+import { NetworkIcon, DownloadIcon } from "./icons";
 import CarouselSkeletonLoader from "./Loader/CarouselSkeletonLoader";
 const responsive = {
   superLargeDesktop: {
@@ -120,6 +120,17 @@ class TrendingCarousel extends Component {
                       : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
                   }
                 />
+
+            <a
+              className="download-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={trendingMovie.DownloadLink}
+              data-tour="my-eight-step"
+            >
+              <DownloadIcon />
+            </a>
+
               </div>
             );
           })}

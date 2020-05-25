@@ -8,9 +8,8 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
   list-style: none;
-    font-family:'Ubuntu',
+  font-family:'Ubuntu',
   sans-serif;
-
 }
 
 
@@ -79,29 +78,28 @@ body {
 
   @media (max-width: 830px) {
     .nav-bar {
-      flex-direction: column-reverse;
-      padding: 0;
+      padding: 1em 0 1em 1em;
     }
-
-    .nav-bar__main {
-        justify-content: space-between;
-        padding: 1em 1.8em 1em 1.8em;
-     }
 
      .nav-bar__main--has-search {
          margin: initial;
      }
+     
+     .nav-bar__main {
+       padding: 0 !important;
+     }
 
      .nav-bar__main--brand {
-       margin-right: 1em;
+       margin-right: .5em;
      }
 
-     .nav-bar__action-buttons {
-       display: none !important;
-      width: 100%;
-      padding: .5em 1.8em .5em 1.8em;
-      justify-content: flex-end;
-     }
+    .actions-button {
+      font-size: 1.2em !important;
+      margin: 0 !important;
+    }
+    .nav-bar__action-buttons button:first-child  {
+      display: none !important;
+    }
   }
 
   @media (max-width: 375px) {
@@ -112,6 +110,11 @@ body {
     .gophieLogo {
       display: none;
     }
+
+      .nav-bar__main {
+        justify-content: space-between;
+        padding: 1em;
+     }
   }
 /* End navbar global style */
 
