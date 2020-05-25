@@ -43,7 +43,8 @@ class Home extends Component {
       searchError: "",
       theme: "light",
       showTour: true,
-      ip_address: ""
+      ip_address: "",
+      isSearch: false,
     };
   }
 
@@ -83,7 +84,7 @@ class Home extends Component {
     );
     if (filteredMovies.length >= 1) {
       this.setState({
-        movies: filteredMovies
+        movies: filteredMovies,
       });
       return;
     }
@@ -96,7 +97,8 @@ class Home extends Component {
       {
         server,
         movies: [],
-        listIndex: 1
+        listIndex: 1,
+        isSearch: false
       },
       () => {
         this.performList();
@@ -104,6 +106,7 @@ class Home extends Component {
       }
     );
   }
+  
 
   newSearch() {
     let query = this.searchInput.current.value;
@@ -112,7 +115,8 @@ class Home extends Component {
         {
           movies: [],
           error: false,
-          listIndex: 1
+          listIndex: 1,
+          isSearch: true,
         },
         () => this.performSearch(query, true)
       );
@@ -121,7 +125,7 @@ class Home extends Component {
 
   checkKey(e) {
     if (e.charCode !== 13) return;
-    this.setState({ movies: [], listIndex: 1 });
+    this.setState({ movies: [], listIndex: 1,isSearch: true});
     let query = this.searchInput.current.value;
     this.performSearch(query);
   }
@@ -350,11 +354,17 @@ class Home extends Component {
                   tour={this.startTour}
                   switchTheme={() => this.switchTheme(this.state.theme)}
                 />
-                  <TrendingCarousel
-                  setDescription={this.setDescription.bind(this)}
-                  history={this.props.history}
-                  />
-                
+
+                {this.state.isSearch ? null : (
+                    <TrendingCarousel
+                    setDescription={this.setDescription.bind(this)}
+                    history={this.props.history}
+                    />
+                )}
+
+                {!this.state.isSearch ? null : (
+                  <div className="mt-2" style={{display: 'grid'}}></div>
+                )}
                 <EngineOptions handleServerChange={this.handleServerChange.bind(this)} />
               </header>
 
