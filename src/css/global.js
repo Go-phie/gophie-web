@@ -395,6 +395,15 @@ div.movie {
     background: #dcc80d;
   }
 
+  .carousal-download-btn {
+    bottom: 0 !important;
+    right: 0 !important;
+    height: 43px !important;
+    width: 47px !important;
+    border-radius: 2.2em 0 0 0 !important;
+    box-shadow: none !important;
+  }
+
 
   /* Movie About Details */
   .movie__about {

@@ -122,7 +122,7 @@ class TrendingCarousel extends Component {
                 />
 
             <a
-              className="download-btn"
+              className="download-btn carousal-download-btn"
               target="_blank"
               rel="noopener noreferrer"
               href={trendingMovie.DownloadLink}
