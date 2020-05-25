@@ -136,13 +136,6 @@ export default class Movie extends Component {
                 />
               </div>
             </div>
-
-
-              <p>
-                {this.state.ratings.average_ratings
-                  ? Math.round(this.state.ratings.average_ratings * 10) / 10
-                  : 0}
-              </p>
           </div>
           <a
             className="download-btn"
