@@ -827,6 +827,30 @@ select {
   animation: logo 5s linear 2 forwards;
 }
 
+#gophie-tv {
+  fill: ${({ theme }) => theme.yellowText};
+  stroke: ${({ theme }) => theme.yellowText};
+  stroke-width: 0;
+  animation: logoTV 1s infinite;
+  -webkit-animation-direction: alternate-reverse;
+}
+
+@keyframes logoTV {
+  0% {
+    stroke-width: 1pt;
+    stroke-dashoffset: 1200;
+    fill-opacity: 0;
+  }
+  50% {
+    fill-opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    fill-opacity: 1;
+    stroke-width: 0pt;
+  }
+}
+
 @keyframes logo {
   0% {
     stroke-width: 1pt;
