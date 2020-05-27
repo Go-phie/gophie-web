@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { DownloadIcon } from "./icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Rating from "material-ui-rating";
 import "../css/Popup.css";
 
@@ -31,9 +31,9 @@ export default class Movie extends Component {
         cover_photo_link: this.props.data.CoverPhotoLink,
       })
       .then(() => {
-        console.log(`added ${this.props.data.Title} to downloads on ocena`)
-      })
-  }
+        console.log(`added ${this.props.data.Title} to downloads on ocena`);
+      });
+  };
 
   getAverage = () => {
     const { data } = this.props;
@@ -45,7 +45,7 @@ export default class Movie extends Component {
         size: data.Size,
         year: data.Year,
         download_link: data.DownloadLink,
-        cover_photo_link: data.CoverPhotoLink
+        cover_photo_link: data.CoverPhotoLink,
       })
       .then((res) => {
         this.setState({
@@ -61,12 +61,12 @@ export default class Movie extends Component {
       });
   };
 
-  componentDidMount(){
+  componentDidMount() {
     this.getAverage();
     this._isMounted = true;
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this._isMounted = false;
   }
 
@@ -77,85 +77,91 @@ export default class Movie extends Component {
       Size,
       Title,
       Source,
-      Index
+      Index,
     } = this.props.data;
     return (
-        <div className="movie">
-          <div className="movie-image">
+      <div className="movie">
+        <div className="movie-image">
           <img
-                  onClick={() => {
-                    this.props.history.push(`/${greekFromEnglish(this.props.data.Source)}/${Index}`);
-                    this.props.setDescriptionModal(this.props.data)
-                  }
-                }
-                  onKeyDown={() => {
-                    this.props.history.push(`${greekFromEnglish(this.props.data.Source)}/${Index}`);
-                    this.props.setDescriptionModal(this.props.data)
-                  }
-                }
-                  src={
-                    isImageURL(CoverPhotoLink)
-                      ? CoverPhotoLink
-                      : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-                  }
-                  alt={Title}
-                  data-tour="my-fourth-step"
-                  id="my-fourth-step"
-                />
-            <a
-              className="download-btn"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={DownloadLink}
-              data-tour="my-eight-step"
+            onClick={() => {
+              this.props.history.push(
+                `/${greekFromEnglish(this.props.data.Source)}/${Index}`
+              );
+              this.props.setDescriptionModal(this.props.data);
+            }}
+            onKeyDown={() => {
+              this.props.history.push(
+                `${greekFromEnglish(this.props.data.Source)}/${Index}`
+              );
+              this.props.setDescriptionModal(this.props.data);
+            }}
+            src={
+              isImageURL(CoverPhotoLink)
+                ? CoverPhotoLink
+                : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+            }
+            alt={Title}
+            data-tour="my-fourth-step"
+            id="my-fourth-step"
+          />
+          <a
+            className="download-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={DownloadLink}
+            onClick={() => this.addDownload()}
+            data-tour="my-eight-step"
+          >
+            <DownloadIcon />
+          </a>
+        </div>
+        <div className="movie__about">
+          <Link to={`/${greekFromEnglish(Source)}/${Index}`}>
+            <h3
+              className="name"
+              onClick={() => {
+                this.props.setDescriptionModal(this.props.data);
+              }}
             >
-              <DownloadIcon />
-            </a>
-          </div>
-          <div className="movie__about">
-            <Link to={`/${greekFromEnglish(Source)}/${Index}`}> 
-            <h3 className="name" onClick={
-              () => {
-                this.props.setDescriptionModal(this.props.data)
-              }
-            }> {Title} </h3>
-            </Link>
+              {" "}
+              {Title}{" "}
+            </h3>
+          </Link>
 
-            <div className="movie__about-meta">
-              <p className="movie-source"> {greekFromEnglish(Source)} </p>
-              <p className="movie-size"> {Size} </p>
+          <div className="movie__about-meta">
+            <p className="movie-source"> {greekFromEnglish(Source)} </p>
+            <p className="movie-size"> {Size} </p>
+          </div>
+
+          <div className="rating-summary">
+            <div
+              className="gophie-modal-rating-container__average"
+              data-tour="my-seventh-step"
+            >
+              <Rating
+                value={Math.round(
+                  this.state.ratings.average_ratings
+                    ? this.state.ratings.average_ratings
+                    : 0
+                )}
+                max={5}
+                readOnly={true}
+              />
             </div>
 
-            <div className="rating-summary">
-          <div 
-           className="gophie-modal-rating-container__average"
-           data-tour="my-seventh-step">
-             <Rating
-               value={Math.round(
-                 this.state.ratings.average_ratings
-                   ? this.state.ratings.average_ratings
-                   : 0
-               )}
-               max={5}
-               readOnly={true}
-             />
-           </div>
-
-           <div className="gophie-modal-rating-container__average--container__on-card">
-               <div className="gophie-modal-rating-container__average--container-item-1">
-                 <p>
-                   {this.state.ratings.average_ratings
-                     ? Math.round(
-                         this.state.ratings.average_ratings * 10
-                       ) / 10
-                     : 0}
-                 </p>
-                 <p>/5</p>
-               </div>
-             </div>
-          </div>
+            <div className="gophie-modal-rating-container__average--container__on-card">
+              <div className="gophie-modal-rating-container__average--container-item-1">
+                <p>
+                  {this.state.ratings.average_ratings
+                    ? Math.round(this.state.ratings.average_ratings * 10) / 10
+                    : 0}
+                </p>
+                <p>/5</p>
+              </div>
+            </div>
           </div>
         </div>
-      );
+      </div>
+    );
   }
 }

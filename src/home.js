@@ -377,6 +377,7 @@ class Home extends Component {
                 >
                   <option value="Delta"> Delta </option>
                   <option value="Alpha"> Alpha </option>
+                  {/* <option value="Kronos"> Kronos </option> */}
                   <option value="Iota"> Iota (HD) </option>
                   <option value="Zeta"> Zeta (Series) </option>
                 </select>
