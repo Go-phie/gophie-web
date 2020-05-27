@@ -12,20 +12,20 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5
+    items: 5,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2
+    items: 2,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1
-  }
+    items: 1,
+  },
 };
 
 class TrendingCarousel extends Component {
@@ -35,7 +35,7 @@ class TrendingCarousel extends Component {
       trending_api: API_ENDPOINTS.ocena,
       trending: [],
       error: false,
-      isLoading: true
+      isLoading: true,
     };
   }
 
@@ -44,22 +44,22 @@ class TrendingCarousel extends Component {
       method: "post",
       url: `${this.state.trending_api}/download/highest/`,
       data: {
-        filter_by: "weeks",
-        filter_num: 1,
-        top: 10
-      }
+        filter_by: "days",
+        filter_num: 7,
+        top: 10,
+      },
     };
 
     axios(options)
       .then((res) => {
-        this.setState({ 
+        this.setState({
           trending: res.data,
           isLoading: false,
-         });
+        });
       })
       .catch((err) => {
         if (err) {
-          this.setState({ 
+          this.setState({
             error: true,
             isLoading: false,
           });
@@ -90,10 +90,13 @@ class TrendingCarousel extends Component {
               Size: trendingMovie.size,
               Source: trendingMovie.engine,
               Year: trendingMovie.year,
-              Description: trendingMovie.description
+              Description: trendingMovie.description,
             };
             return (
-              <div key={trendingMovie.id} className="trending-carousal-image__container">
+              <div
+                key={trendingMovie.id}
+                className="trending-carousal-image__container"
+              >
                 <Image
                   className="img-fluid trending-carousal-image"
                   key={trendingMovie.id}
@@ -121,35 +124,42 @@ class TrendingCarousel extends Component {
                   }
                 />
 
-            <a
-              className="download-btn carousal-download-btn"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={trendingMovie.DownloadLink}
-              data-tour="my-eight-step"
-            >
-              <DownloadIcon />
-            </a>
-
+                <a
+                  className="download-btn carousal-download-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={trendingMovie.DownloadLink}
+                  data-tour="my-eight-step"
+                >
+                  <DownloadIcon />
+                </a>
               </div>
             );
           })}
-
-
-
         </Carousel>
-          {!this.state.isLoading ? null : (
-            <div style={{ overflowX: 'auto', scrollSnapType: 'x mandatory', position: 'absolute', top: '0',}} className='w-100 d-flex'>
-                <CarouselSkeletonLoader />
-                <CarouselSkeletonLoader />
-                  <CarouselSkeletonLoader />
-                <CarouselSkeletonLoader />
-            </div>
+        {!this.state.isLoading ? null : (
+          <div
+            style={{
+              overflowX: "auto",
+              scrollSnapType: "x mandatory",
+              position: "absolute",
+              top: "0",
+            }}
+            className="w-100 d-flex"
+          >
+            <CarouselSkeletonLoader />
+            <CarouselSkeletonLoader />
+            <CarouselSkeletonLoader />
+            <CarouselSkeletonLoader />
+          </div>
         )}
 
         {!this.state.error ? null : (
           <div className="error">
-            <p style={{position: 'absolute', top: '9em', left: 0, right: 0}} className="error-text">
+            <p
+              style={{ position: "absolute", top: "9em", left: 0, right: 0 }}
+              className="error-text"
+            >
               <NetworkIcon />
               <p>Try Again</p>
             </p>

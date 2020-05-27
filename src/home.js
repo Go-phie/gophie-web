@@ -19,7 +19,7 @@ import {
   enableBody,
   nameToEngineMap,
   greekFromEnglish,
-  API_ENDPOINTS
+  API_ENDPOINTS,
 } from "./utils";
 import NavBar from "./components/Navbar";
 import EngineOptions from "./components/EnginOptions";
@@ -98,7 +98,7 @@ class Home extends Component {
         server,
         movies: [],
         listIndex: 1,
-        isSearch: false
+        isSearch: false,
       },
       () => {
         this.performList();
@@ -106,7 +106,6 @@ class Home extends Component {
       }
     );
   }
-  
 
   newSearch() {
     let query = this.searchInput.current.value;
@@ -125,7 +124,7 @@ class Home extends Component {
 
   checkKey(e) {
     if (e.charCode !== 13) return;
-    this.setState({ movies: [], listIndex: 1,isSearch: true});
+    this.setState({ movies: [], listIndex: 1, isSearch: true });
     let query = this.searchInput.current.value;
     this.performSearch(query);
   }
@@ -134,7 +133,7 @@ class Home extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: ""
+      searchError: "",
     });
 
     axios
@@ -157,7 +156,7 @@ class Home extends Component {
           this.setState({
             movies: append ? [...this.state.movies, ...newmovies] : newmovies,
             isLoading: false,
-            listIndex: append ? this.state.listIndex + 1 : 1
+            listIndex: append ? this.state.listIndex + 1 : 1,
           });
         } else {
           throw new Error("Search returned empty, try another engine perhaps");
@@ -166,7 +165,7 @@ class Home extends Component {
       .catch((err) => {
         this.setState({
           error: true,
-          searchError: err.message
+          searchError: err.message,
         });
       });
   };
@@ -175,7 +174,7 @@ class Home extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: ""
+      searchError: "",
     });
     axios
       .get(
@@ -192,13 +191,13 @@ class Home extends Component {
         this.setState({
           isLoading: false,
           movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-          listIndex: newIndex
+          listIndex: newIndex,
         });
       })
       .catch((err) => {
         console.log(err);
         this.setState({
-          error: true
+          error: true,
         });
       });
   };
@@ -217,33 +216,35 @@ class Home extends Component {
       .get("https://api.ipify.org?format=json")
       .then((res) => {
         this.setState({
-          ip_address: res.data.ip
+          ip_address: res.data.ip,
         });
       })
       .catch((error) => {
         this.setState({
-          error: true
+          error: true,
         });
       });
   };
 
-  manageHistory = (props, refresh=true) => {
-    const optionalRoute = props.location.pathname.slice(1)
-    if(Array.from(nameToEngineMap.keys()).includes(optionalRoute)){
-      this.setState({
-        listIndex: 1,
-        movies: [],
-        server: nameToEngineMap.get(optionalRoute)
-      }, () => {
-        if(refresh){
-          this.performList()
+  manageHistory = (props, refresh = true) => {
+    const optionalRoute = props.location.pathname.slice(1);
+    if (Array.from(nameToEngineMap.keys()).includes(optionalRoute)) {
+      this.setState(
+        {
+          listIndex: 1,
+          movies: [],
+          server: nameToEngineMap.get(optionalRoute),
+        },
+        () => {
+          if (refresh) {
+            this.performList();
+          }
         }
-      }
-        )
+      );
     } else {
       this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
     }
-  }
+  };
 
   toggleMode() {
     switch (this.state.mode) {
@@ -264,8 +265,11 @@ class Home extends Component {
   }
 
   UNSAFE_componentWillUpdate(nextProps, newState) {
-    if(nextProps.location.pathname !== this.props.location.pathname && Object.keys(newState).length===0){
-      this.manageHistory(nextProps)
+    if (
+      nextProps.location.pathname !== this.props.location.pathname &&
+      Object.keys(newState).length === 0
+    ) {
+      this.manageHistory(nextProps);
     }
   }
 
@@ -326,13 +330,13 @@ class Home extends Component {
   setDescription(movie) {
     this.setState({
       show: true,
-      currentmovie: movie
+      currentmovie: movie,
     });
   }
 
   hideDescription() {
     this.setState({ show: false, currentmovie: {} });
-    this.props.history.push(`/${greekFromEnglish(this.state.server)}`)
+    this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
   }
 
   render() {
@@ -356,20 +360,23 @@ class Home extends Component {
                 />
 
                 {this.state.isSearch ? null : (
-                    <TrendingCarousel
+                  <TrendingCarousel
                     setDescription={this.setDescription.bind(this)}
                     history={this.props.history}
-                    />
+                  />
                 )}
 
                 {!this.state.isSearch ? null : (
-                  <div className="mt-1" style={{display: 'grid'}}></div>
+                  <div className="mt-1" style={{ display: "grid" }}></div>
                 )}
-                <EngineOptions handleServerChange={this.handleServerChange.bind(this)} />
+                <EngineOptions
+                  handleServerChange={this.handleServerChange.bind(this)}
+                  server={this.state.server}
+                />
               </header>
 
               <main>
-              <div className="movies" id="movie-div">
+                <div className="movies" id="movie-div">
                   <Route
                     path={`/${greekFromEnglish(this.state.server)}`}
                     render={() => {
@@ -409,7 +416,7 @@ class Home extends Component {
                       )}
                     </div>
                   )}
-                </div> 
+                </div>
               </main>
             </div>
           </>
