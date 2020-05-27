@@ -35,6 +35,7 @@ class TrendingCarousel extends Component {
       trending_api: API_ENDPOINTS.ocena,
       trending: [],
       error: false,
+      currentmovie: { name: "" },
       isLoading: true,
     };
   }
@@ -67,6 +68,23 @@ class TrendingCarousel extends Component {
       });
   }
 
+  addDownload = (trendingMovie) => {
+    axios
+      .post(this.state.trending_api + "/download/", {
+        ip_address: this.props.ip_address,
+        movie_name: trendingMovie.Title,
+        engine: trendingMovie.Source,
+        description: trendingMovie.Description,
+        size: trendingMovie.Size,
+        year: trendingMovie.Year,
+        download_link: trendingMovie.DownloadLink,
+        cover_photo_link: trendingMovie.CoverPhotoLink,
+      })
+      .then(() => {
+        console.log(`added ${trendingMovie.Title} to downloads on ocena`);
+      });
+  };
+
   render() {
     return (
       <div>
@@ -77,8 +95,23 @@ class TrendingCarousel extends Component {
           infinite={true}
           ssr={true}
           autoPlay={this.props.deviceType !== "mobile" ? true : false}
-          transitionDuration={500}
+          transitionDuration={800}
           containerClass="carousel-container"
+          beforeChange={(previousSlide, { currentSlide, onMove }) => {
+            if (typeof this.state.trending[previousSlide - 2] !== "undefined") {
+              this.setState({
+                currentmovie: this.state.trending[previousSlide - 2],
+              });
+            } else {
+              let offset = (previousSlide % this.state.trending.length) - 2;
+              if (offset < 0) {
+                offset = this.state.trending.length + offset;
+              }
+              this.setState({
+                currentmovie: this.state.trending[offset],
+              });
+            }
+          }}
         >
           {this.state.trending.map((trendingMovie) => {
             let movie_obj = {
@@ -116,6 +149,11 @@ class TrendingCarousel extends Component {
                     );
                     this.props.setDescription(movie_obj);
                   }}
+                  onMouseOver={() => {
+                    this.setState({
+                      currentmovie: trendingMovie,
+                    });
+                  }}
                   alt={trendingMovie.name}
                   src={
                     trendingMovie.cover_photo_link
@@ -129,6 +167,7 @@ class TrendingCarousel extends Component {
                   target="_blank"
                   rel="noopener noreferrer"
                   href={trendingMovie.DownloadLink}
+                  onClick={() => this.addDownload(trendingMovie)}
                   data-tour="my-eight-step"
                 >
                   <DownloadIcon />
@@ -165,6 +204,7 @@ class TrendingCarousel extends Component {
             </p>
           </div>
         )}
+        <div className="trending_name">{this.state.currentmovie.name}</div>
       </div>
     );
   }

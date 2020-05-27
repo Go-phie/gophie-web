@@ -164,6 +164,10 @@ body {
   color: #b6a204;
 }
 
+.engine-option__buton-container button.selected{
+  color: #b6a204;
+}
+
 @media (max-width: 830px) {
   .engine-option {
     margin-top: 3em;
@@ -252,6 +256,12 @@ body {
   padding: 1em .5em;
 }
 .year-selector > option {
+  background-color: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.yellowText};
+  padding: 1em .5em;
+}
+
+div.trending_name {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};
   padding: 1em .5em;
@@ -879,4 +889,4 @@ select {
     stroke-width: 0pt;
   }
 }
-`
+`;

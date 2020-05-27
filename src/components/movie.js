@@ -19,8 +19,8 @@ export default class Movie extends Component {
   }
 
   toggleHover = () => {
-	  this.setState({hover: !this.state.hover});
-  }
+    this.setState({ hover: !this.state.hover });
+  };
   // Add download to API to make it trackable
   addDownload = () => {
     axios
@@ -32,7 +32,7 @@ export default class Movie extends Component {
         size: this.props.data.Size,
         year: this.props.data.Year,
         download_link: this.props.data.DownloadLink,
-        cover_photo_link: this.props.data.CoverPhotoLink
+        cover_photo_link: this.props.data.CoverPhotoLink,
       })
       .then(() => {
         console.log(`added ${this.props.data.Title} to downloads on ocena`);
@@ -49,17 +49,17 @@ export default class Movie extends Component {
         size: data.Size,
         year: data.Year,
         download_link: data.DownloadLink,
-        cover_photo_link: data.CoverPhotoLink
+        cover_photo_link: data.CoverPhotoLink,
       })
       .then((res) => {
         this.setState({
-          ratings: res.data
+          ratings: res.data,
         });
       })
       .catch((err) => {
         if (err) {
           this.setState({
-            error: true
+            error: true,
           });
         }
       });
@@ -70,7 +70,7 @@ export default class Movie extends Component {
     this._isMounted = true;
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     this._isMounted = false;
   }
 
@@ -81,20 +81,21 @@ export default class Movie extends Component {
       Size,
       Title,
       Source,
-      Index
+      Index,
     } = this.props.data;
 
     var translateStyle;
-      if (this.state.hover) {
-        translateStyle = {transform: 'translateY(-10px)'}
-      } else {
-        translateStyle = {transform: 'translate(0px)'}
-   }
+    if (this.state.hover) {
+      translateStyle = { transform: "translateY(-10px)" };
+    } else {
+      translateStyle = { transform: "translate(0px)" };
+    }
 
     return (
       <div className="movie">
         <div className="movie-image">
-          <img className="position-relative"
+          <img
+            className="position-relative"
             onClick={() => {
               this.props.history.push(
                 `/${greekFromEnglish(this.props.data.Source)}/${Index}`
@@ -102,7 +103,7 @@ export default class Movie extends Component {
               this.props.setDescriptionModal(this.props.data);
             }}
             style={translateStyle}
-            onMouseEnter={this.toggleHover} 
+            onMouseEnter={this.toggleHover}
             onMouseLeave={this.toggleHover}
             onKeyDown={() => {
               this.props.history.push(
@@ -119,7 +120,10 @@ export default class Movie extends Component {
             data-tour="my-fourth-step"
             id="my-fourth-step"
           />
-          <div style={translateStyle} className="position-absolute d-flex rating-summary__container">
+          <div
+            style={translateStyle}
+            className="position-absolute d-flex rating-summary__container"
+          >
             <div className="rating-summary">
               <div
                 className="gophie-modal-rating-container__average"
@@ -142,6 +146,7 @@ export default class Movie extends Component {
             target="_blank"
             rel="noopener noreferrer"
             href={DownloadLink}
+            onClick={() => this.addDownload()}
             data-tour="my-eight-step"
           >
             <DownloadIcon />

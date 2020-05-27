@@ -363,6 +363,7 @@ class Home extends Component {
                   <TrendingCarousel
                     setDescription={this.setDescription.bind(this)}
                     history={this.props.history}
+                    ip_address={this.state.ip_address}
                   />
                 )}
 
