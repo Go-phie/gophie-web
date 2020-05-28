@@ -6,6 +6,7 @@ import { API_ENDPOINTS, greekFromEnglish } from "../utils";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
+import { isMobile } from "react-device-detect";
 import { NetworkIcon, DownloadIcon } from "./icons";
 import CarouselSkeletonLoader from "./Loader/CarouselSkeletonLoader";
 const responsive = {
@@ -98,17 +99,24 @@ class TrendingCarousel extends Component {
           transitionDuration={800}
           containerClass="carousel-container"
           beforeChange={(previousSlide, { currentSlide, onMove }) => {
-            if (typeof this.state.trending[previousSlide - 2] !== "undefined") {
+            let offset = 0
+            if (isMobile) {
+              offset = 2
+            } else {
+              offset = this.state.trending.length/2
+            }
+            
+            if (typeof this.state.trending[previousSlide - offset] !== "undefined") {
               this.setState({
-                currentmovie: this.state.trending[previousSlide - 2],
+                currentmovie: this.state.trending[previousSlide - offset],
               });
             } else {
-              let offset = (previousSlide % this.state.trending.length) - 2;
-              if (offset < 0) {
-                offset = this.state.trending.length + offset;
+              let index = (previousSlide % this.state.trending.length) - offset;
+              if (index < 0) {
+                index = this.state.trending.length + index;
               }
               this.setState({
-                currentmovie: this.state.trending[offset],
+                currentmovie: this.state.trending[index],
               });
             }
           }}
