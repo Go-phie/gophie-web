@@ -2,16 +2,9 @@ import axios from "axios";
 import React, { Component } from "react";
 import Tour from "reactour";
 import { Route } from "react-router-dom";
-import {
-  RetryIcon,
-  SearchIcon,
-  SunIcon,
-  MoonIcon,
-  GitMark,
-  WalkingIcon,
-} from "./components/icons";
+import { RetryIcon } from "./components/icons";
 import MovieList from "./components/MovieList";
-import SkeletonLoader from "./components/SkeletonLoader";
+import SkeletonLoader from "./components/Loader/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
 // style stuff
@@ -20,7 +13,17 @@ import { lightTheme, darkTheme } from "./css/theme";
 import { GlobalStyles } from "./css/global";
 import ScrollButton from "./components/ScrollToTop";
 import Popup from "./components/Popup";
-import { tourSteps, disableBody, enableBody, nameToEngineMap, greekFromEnglish, API_ENDPOINTS } from "./utils";
+import {
+  tourSteps,
+  disableBody,
+  enableBody,
+  nameToEngineMap,
+  greekFromEnglish,
+  API_ENDPOINTS,
+} from "./utils";
+import NavBar from "./components/Navbar";
+import EngineOptions from "./components/EnginOptions";
+import TrendingCarousel from "./components/TrendingCarousel";
 
 class Home extends Component {
   constructor(props) {
@@ -41,6 +44,7 @@ class Home extends Component {
       theme: "light",
       showTour: true,
       ip_address: "",
+      isSearch: false,
     };
   }
 
@@ -94,8 +98,9 @@ class Home extends Component {
         server,
         movies: [],
         listIndex: 1,
+        isSearch: false,
       },
-      () => { 
+      () => {
         this.performList();
         this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
       }
@@ -110,6 +115,7 @@ class Home extends Component {
           movies: [],
           error: false,
           listIndex: 1,
+          isSearch: true,
         },
         () => this.performSearch(query, true)
       );
@@ -118,7 +124,7 @@ class Home extends Component {
 
   checkKey(e) {
     if (e.charCode !== 13) return;
-    this.setState({ movies: [], listIndex: 1 });
+    this.setState({ movies: [], listIndex: 1, isSearch: true });
     let query = this.searchInput.current.value;
     this.performSearch(query);
   }
@@ -206,36 +212,39 @@ class Home extends Component {
   }
 
   getIp = () => {
-    axios.get("https://api.ipify.org?format=json")
-    .then((res) => {
-      this.setState({
-        ip_address: res.data.ip,
+    axios
+      .get("https://api.ipify.org?format=json")
+      .then((res) => {
+        this.setState({
+          ip_address: res.data.ip,
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          error: true,
+        });
       });
-    })
-    .catch((error) => {
-      this.setState({
-        error: true,
-      });
-    })
   };
 
-  manageHistory = (props, refresh=true) => {
-    const optionalRoute = props.location.pathname.slice(1)
-    if(Array.from(nameToEngineMap.keys()).includes(optionalRoute)){
-      this.setState({
-        listIndex: 1,
-        movies: [],
-        server: nameToEngineMap.get(optionalRoute)
-      }, () => {
-        if(refresh){
-          this.performList()
+  manageHistory = (props, refresh = true) => {
+    const optionalRoute = props.location.pathname.slice(1);
+    if (Array.from(nameToEngineMap.keys()).includes(optionalRoute)) {
+      this.setState(
+        {
+          listIndex: 1,
+          movies: [],
+          server: nameToEngineMap.get(optionalRoute),
+        },
+        () => {
+          if (refresh) {
+            this.performList();
+          }
         }
-      }
-        )
+      );
     } else {
       this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
     }
-  }
+  };
 
   toggleMode() {
     switch (this.state.mode) {
@@ -256,8 +265,11 @@ class Home extends Component {
   }
 
   UNSAFE_componentWillUpdate(nextProps, newState) {
-    if(nextProps.location.pathname !== this.props.location.pathname && Object.keys(newState).length===0){
-      this.manageHistory(nextProps)
+    if (
+      nextProps.location.pathname !== this.props.location.pathname &&
+      Object.keys(newState).length === 0
+    ) {
+      this.manageHistory(nextProps);
     }
   }
 
@@ -316,17 +328,15 @@ class Home extends Component {
   }
 
   setDescription(movie) {
-    this.setState(
-      {
-        show: true,
-        currentmovie: movie,
-      }
-    );
+    this.setState({
+      show: true,
+      currentmovie: movie,
+    });
   }
 
   hideDescription() {
     this.setState({ show: false, currentmovie: {} });
-    this.props.history.push(`/${greekFromEnglish(this.state.server)}`)
+    this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
   }
 
   render() {
@@ -338,132 +348,92 @@ class Home extends Component {
           <>
             <GlobalStyles />
             <div className="App">
-              <div className="header">
-                <div className="header-left">
-                  <p>
-                    {" "}
-                    G<span className="em">o</span>phie{" "}
-                  </p>
-                </div>
-                <div className="header-center">
-                  <input
-                    type="text"
-                    ref={this.searchInput}
-                    className="form-control"
-                    placeholder="Search for a movie..."
-                    // eslint-disable-next-line jsx-a11y/no-autofocus
-                    autoFocus={true}
-                    onKeyPress={this.checkKey.bind(this)}
-                    onChange={this.handleSearchChange.bind(this)}
+              <header>
+                <NavBar
+                  searchInput={this.searchInput}
+                  checkInputKey={this.checkKey.bind(this)}
+                  handleSearch={this.handleSearchChange.bind(this)}
+                  newSearch={this.newSearch.bind(this)}
+                  theme={theme}
+                  tour={this.startTour}
+                  switchTheme={() => this.switchTheme(this.state.theme)}
+                />
+
+                {this.state.isSearch ? null : (
+                  <TrendingCarousel
+                    setDescription={this.setDescription.bind(this)}
+                    history={this.props.history}
+                    ip_address={this.state.ip_address}
                   />
-                </div>
-                <div className="header-right">
-                  <button
-                    onClick={this.newSearch.bind(this)}
-                    className="search-btn"
-                    data-tour="my-third-step"
-                  >
-                    <SearchIcon />
-                  </button>
-                </div>
-              </div>
-              <div className="options">
-                <select
-                  className="server-selector"
-                  data-tour="my-second-step"
-                  value={greekFromEnglish(this.state.server)}
-                  onChange={this.handleServerChange.bind(this)}
-                  onBlur={this.handleServerChange.bind(this)}
-                >
-                  <option value="Delta"> Delta </option>
-                  <option value="Alpha"> Alpha </option>
-                  {/* <option value="Kronos"> Kronos </option> */}
-                  <option value="Iota"> Iota (HD) </option>
-                  <option value="Zeta"> Zeta (Series) </option>
-                </select>
-                <div className="options__sub-details">
-                  <button
-                    className="actions-button tour-button"
-                    data-tour="my-first-step"
-                    title="Take A Tour"
-                    onClick={this.startTour}
-                  >
-                    {" "}
-                    <WalkingIcon />{" "}
-                  </button>
-                  <button
-                    className="switch-theme-btn"
-                    data-tour="my-tenth-step"
-                    title="Change Theme"
-                    onClick={() => this.switchTheme(this.state.theme)}
-                  >
-                    {theme === "dark" ? <SunIcon /> : <MoonIcon />}
-                  </button>
-                  <a
-                    className="actions-button github-button"
-                    href="https://github.com/go-phie/gophie-web"
-                    data-tour="my-eleventh-step"
-                    title="Github Link"
-                  >
-                    {" "}
-                    <GitMark />{" "}
-                  </a>
-                </div>
-              </div>
-              <div className="movies" id="movie-div">
-                <Route 
-                path={`/${greekFromEnglish(this.state.server)}`}
-                render={()=> {
-                  return (
-                    <MovieList
-                      movies={this.state.movies}
-                      history={this.props.history}
-                      setDescription={this.setDescription.bind(this)}
-                    />
-                  )
-                }}/>
-                {this.state.isLoading && !this.state.error && (
-                  <div className="skeleton-movies">
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                    <SkeletonLoader />
-                  </div>
                 )}
-                {this.state.error && (
-                  <div className="error">
-                    <p className="error-text">
-                      {this.state.searchError !== ""
-                        ? this.state.searchError
-                        : "Oops..An Unknown Error Occured"}{" "}
-                    </p>
-                    {this.state.searchError ? null : (
-                      <button
-                        className="error-retry-btn"
-                        onClick={this.tryAgain.bind(this)}
-                      >
-                        <RetryIcon />
-                        Try Again
-                      </button>
-                    )}
-                  </div>
+
+                {!this.state.isSearch ? null : (
+                  <div className="mt-1" style={{ display: "grid" }}></div>
                 )}
-              </div>
+                <EngineOptions
+                  handleServerChange={this.handleServerChange.bind(this)}
+                  server={this.state.server}
+                />
+              </header>
+
+              <main>
+                <div className="movies" id="movie-div">
+                  <Route
+                    path={`/${greekFromEnglish(this.state.server)}`}
+                    render={() => {
+                      return (
+                        <MovieList
+                          movies={this.state.movies}
+                          history={this.props.history}
+                          setDescription={this.setDescription.bind(this)}
+                        />
+                      );
+                    }}
+                  />
+                  {this.state.isLoading && !this.state.error && (
+                    <div className="skeleton-movies">
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                      <SkeletonLoader />
+                    </div>
+                  )}
+                  {this.state.error && (
+                    <div className="error">
+                      <p className="error-text">
+                        {this.state.searchError !== ""
+                          ? this.state.searchError
+                          : "Oops..An Unknown Error Occured"}{" "}
+                      </p>
+                      {this.state.searchError ? null : (
+                        <button
+                          className="error-retry-btn"
+                          onClick={this.tryAgain.bind(this)}
+                        >
+                          <RetryIcon />
+                          Try Again
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </main>
             </div>
           </>
 
           {/* ScrollButton Take you back to the starting of the page */}
-          <ScrollButton scrollStepInPx="80" delayInMs="16.66"/>
+          <ScrollButton scrollStepInPx="80" delayInMs="16.66" />
           {this.state.show && (
             <Popup
               show={this.state.show}
               ip_address={this.state.ip_address}
               movie={this.state.currentmovie}
               onHide={this.hideDescription.bind(this)}
-              server = {this.state.server}
+              server={this.state.server}
             />
           )}
+          {/* End ScrollButton */}
         </ThemeProvider>
 
         {/* Tour Component Element */}

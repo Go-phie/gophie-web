@@ -104,6 +104,7 @@ nm.set("Delta", "fzmovies");
 // nm.set("Kronos", "netnaija");
 nm.set("Iota", "besthdmovies");
 nm.set("Zeta", "tvseries");
+
 export const nameToEngineMap = nm;
 
 export function greekFromEnglish(eng) {
