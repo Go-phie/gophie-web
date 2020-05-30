@@ -267,7 +267,7 @@ class Popup extends Component {
                     className="gophie-modal-rating-container__rate"
                     data-tour="my-sixth-step"
                   >
-                    <p>Rate Movie</p>
+                    <p>Rate this Movie</p>
                     <Rating
                       value={this.state.ip_rating}
                       max={5}

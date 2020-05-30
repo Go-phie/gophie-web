@@ -131,9 +131,18 @@ body {
   margin-top: 5em;
 }
 
-.engine-option__title {
+.carousel-upper {
+  display: flex;
+  border-bottom: 2px solid ${({ theme }) => theme.movieBackground};
+  margin-top: 5em;
+  height: auto;
+  margin: 0.1em 8%;
+  width: 100%
+}
+
+.engine-option__title, .carousel-title {
   font-size: 1.3em;
-  color: #b6a204;
+  color: ${({ theme }) => theme.yellowText};
   padding: 0;
   margin: 0;
   letter-spacing: .05em;
@@ -426,6 +435,10 @@ div.movie {
     background-color: ${({ theme }) => theme.movieBackground}; 
     order-bottom-left-radius: .39em;
     border-bottom-right-radius: .39em;
+  }
+
+  .MuiSvgIcon-root{
+    color: 'primary'
   }
   
   .movie__about .name {
