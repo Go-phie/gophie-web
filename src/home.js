@@ -151,6 +151,9 @@ class Home extends Component {
         if (movies !== null) {
           let newmovies = movies.map((element) => {
             element.Index = uuidv4();
+            if (element.Title.endsWith("Tags")){
+              element.Title = element.Title.substr(0, element.Title.length-4)
+            }
             return element;
           });
           this.setState({
@@ -185,6 +188,9 @@ class Home extends Component {
         let newIndex = this.state.listIndex;
         let newmovies = movies.map((element) => {
           element.Index = uuidv4();
+          if (element.Title.endsWith("Tags")){
+            element.Title = element.Title.substr(0, element.Title.length-4)
+          }
           return element;
         });
         newIndex += 1;
