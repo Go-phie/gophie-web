@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable react/jsx-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
@@ -215,7 +216,11 @@ class TrendingCarousel extends Component {
             </p>
           </div>
         )}
-        <div className="trending_name">{this.state.currentmovie.name}</div>
+
+        {!this.state.currentmovie.name ? null: (
+          <div className="trending_name">{this.state.currentmovie.name}</div>
+          )
+        }
       </div>
     );
   }

@@ -238,10 +238,17 @@ body {
   padding: 1em .5em;
 }
 
-div.trending_name {
+.trending_name {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};
-  padding: 1em .5em;
+  padding: .65em .5em;
+  position: absolute;
+  top: 290px;
+  z-index: 1000;
+  margin: .2em;
+  border-left: 5px solid #e0c700;
+  border-radius: 0 .2em .2em 0;
+  text-transform: capitalize;
 }
 
 div.movies {
