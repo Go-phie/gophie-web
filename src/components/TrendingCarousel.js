@@ -125,6 +125,9 @@ class TrendingCarousel extends Component {
           }}
         >
           {this.state.trending.map((trendingMovie) => {
+            if (trendingMovie.name.endsWith("Tags")){
+              trendingMovie.name = trendingMovie.name.substr(0, trendingMovie.name.length-4)
+            }
             let movie_obj = {
               Title: trendingMovie.name,
               Id: trendingMovie.referral_id,
