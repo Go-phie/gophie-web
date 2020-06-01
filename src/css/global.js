@@ -61,6 +61,18 @@ body {
     opacity: .9;
 }
 
+/* Engine Option */
+.engine-option {
+  display: flex;
+  align-items: center;
+  height: auto;
+  margin: 0.1em 8%;
+  justify-content: space-between;
+  height: 3em;
+  border-bottom: 2px solid ${({ theme }) => theme.movieBackground};
+  margin-top: 5em;
+}
+
 .engine-option__title {
   font-size: 1.3em;
   color: #b6a204;
@@ -81,19 +93,20 @@ body {
   height: 100%;
   background: none;
   outline: none;
+  line-height: 0;
   outline: 0;
   border: none;
-  margin: 0 auto
-  color:  ${({ theme }) => theme.text};
+  margin: 0 auto;
+  color:  ${({ theme }) => theme.textext};
   cursor: pointer;
   padding: 1em 1.2em;
   letter-spacing: .05em;
   position: relative;
 }
 
-    .tvIcon {
-      display: none;
-    }
+.tvIcon {
+  display: none;
+}
 
 .engine-option__buton-container button:hover {
   color:  ${({ theme }) => theme.yellowText};
@@ -139,15 +152,7 @@ body {
   }
 
   .engine-option__buton-container button {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    margin: 0 !important;
-=======
     margin: initial !important;
->>>>>>> origin
-=======
-    margin: 0 !important;
->>>>>>> 3e136cf2... terms and condition page
     white-space: nowrap;
   }
 }
@@ -332,7 +337,7 @@ div.movie {
     left: 0;
     position: relative;
   }
-  
+
   div.movie-image img {
     box-shadow: 2px 7px 8px 2px ${({ theme }) => theme.movieBoxShadow};
     height: 20em;
