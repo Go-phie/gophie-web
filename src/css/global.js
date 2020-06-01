@@ -140,10 +140,14 @@ body {
 
   .engine-option__buton-container button {
 <<<<<<< HEAD
+<<<<<<< HEAD
     margin: 0 !important;
 =======
     margin: initial !important;
 >>>>>>> origin
+=======
+    margin: 0 !important;
+>>>>>>> 3e136cf2... terms and condition page
     white-space: nowrap;
   }
 }
