@@ -40,7 +40,7 @@ export default class EngineOptions extends Component {
             onClick={handleServerChange}
             value="Iota"
           >
-            Iota <small>(HD)</small>
+            Iota <small style={{ display: 'contents' }}>(HD)</small>
           </button>
           <button
             className={
@@ -51,7 +51,7 @@ export default class EngineOptions extends Component {
             onClick={handleServerChange}
             value="Zeta"
           >
-            Zeta <small>(Series)</small>
+            Zeta <small style={{ display: 'contents' }}>(Series)</small>
           </button>
         </div>
       </div>

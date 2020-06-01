@@ -60,6 +60,15 @@ body {
     border: none;
     opacity: .9;
 }
+.nav-bar__main--has-search input:focus {
+  background-color: ${({ theme }) => theme.movieBackground};
+  color: ${({ theme }) => theme.text};
+  opacity: .9;
+}
+.search-btn {
+  color: grey;
+  transition: .3s;
+}
 
 /* Engine Option */
 .engine-option {
@@ -131,16 +140,45 @@ body {
   position: absolute;
   content: '';
   height: .19em;
-  border-radius: 5em;
   width: 100%;
+  border-radius: 5em;
   bottom: 0;
-  background-color: ${({ theme }) => theme.yellowText};
+  background-color:  ${({ theme }) => theme.yellowText};
   left: 0;
 }
 @media (max-width: 830px) {
-  .engine-option {
-    margin-top: 3em;
+  .nav-bar {
+    padding: 1em 0 1em 1em;
   }
+
+  .nav-bar__main--has-search {
+      margin: initial;
+  }
+     
+  .nav-bar__main {
+    padding: 0 !important;
+  }
+
+  .nav-bar__main--brand {
+    margin-right: .5em;
+    width: 10%;
+  }
+
+  .actions-button {
+    font-size: 1.2em !important;
+    margin: 0 !important;
+  }
+
+  .nav-bar__action-buttons button:first-child  {
+    display: none !important;
+  }
+
+  .engine-option {
+    margin-top: 6em;
+    margin-top: 3em;
+    border: 0 !important;
+  }
+
   .engine-option__title {
     display: none;
   }
@@ -155,6 +193,8 @@ body {
     margin: 0 !important;
     white-space: nowrap;
   }
+
+  
 }
 
 @media (max-width: 440px) {
@@ -166,6 +206,20 @@ body {
     margin: 0 !important;
   }
 }
+
+  @media (max-width: 375px) {
+    .tvIcon {
+      display: block;
+    }
+    .gophieLogo {
+      display: none;
+    }
+
+    .nav-bar__main {
+        justify-content: space-between;
+        padding: 1em;
+     }
+  }
 /* End engine Option */
 
 .rating-summary__container {
