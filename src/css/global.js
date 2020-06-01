@@ -84,7 +84,7 @@ body {
 
 .engine-option__title {
   font-size: 1.3em;
-  color: #b6a204;
+  color:  ${({ theme }) => theme.yellowText};
   padding: 0;
   margin: 0;
   letter-spacing: .05em;
