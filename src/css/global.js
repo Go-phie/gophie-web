@@ -105,7 +105,7 @@ body {
   line-height: 0;
   outline: 0;
   border: none;
-  margin: 0 auto
+  margin: 0 auto;
   color:  ${({ theme }) => theme.text};
   cursor: pointer;
   padding: 1em 1.2em;
