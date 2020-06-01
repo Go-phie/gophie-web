@@ -96,8 +96,8 @@ body {
   line-height: 0;
   outline: 0;
   border: none;
-  margin: 0 auto;
-  color:  ${({ theme }) => theme.textext};
+  margin: 0 auto
+  color:  ${({ theme }) => theme.text};
   cursor: pointer;
   padding: 1em 1.2em;
   letter-spacing: .05em;
@@ -152,7 +152,7 @@ body {
   }
 
   .engine-option__buton-container button {
-    margin: initial !important;
+    margin: 0 !important;
     white-space: nowrap;
   }
 }
