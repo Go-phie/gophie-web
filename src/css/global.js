@@ -8,9 +8,8 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   box-sizing: border-box;
   list-style: none;
-    font-family:'Ubuntu',
+  font-family:'Ubuntu',
   sans-serif;
-
 }
 
 
@@ -32,33 +31,18 @@ body {
   position: relative;
 }
 
-.header {
+/* navbar global style */
+.nav-bar {
   position: fixed;
   top: 0;
   left: 0;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   width: 100%;
-  height: 62px;
-  box-shadow: -1px 5px 1px -1px #4d638e2b;
+  padding: 1.5em 1.8em 1.5em 1.8em;
+  box-shadow: -1px 5px 5px -1px #9ea9c02b;
   background-color: ${({ theme }) => theme.body};
   z-index: 999;
-}
-
-.header-left, .header-center, .header-right {
-  width: 10%;
-  height: 100%;
-  display: inline-flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-}
-
-.header-left {
-  color: ${({ theme }) => theme.yellowText}; 
-  font-weight: bold;
-  font-size: 20px;
-  cursor: pointer;
 }
 
 .header-left p {
@@ -69,39 +53,12 @@ body {
   transform: rotate(20deg);
 }
 
-.header-right {
-  width: 15%;
-}
-
-.header-center {
-  width: 75%;
-}
-
-.form-control {
-  width: 100%;
-  height: 98%;
-  outline: none;
-  font-weight: 600;
-  border: none;
-  background: transparent;
-  font-size: 19px;
-  padding-left: 10px;
-  color: ${({ theme }) => theme.formColor};
-  opacity: .5;
-}
-.form-controlb {
-  width: 100%;
-  margin-left:20%;
-  text-align:center
-  height: 98%;
-  outline: none;
-  font-weight: 600;
-  border: none;
-  background: transparent;
-  font-size: 19px;
-  padding-left: 10px;
-  color: ${({ theme }) => theme.formColor};
-  opacity: .5;
+.nav-bar__main--has-search input {
+    background-color: ${({ theme }) => theme.movieBackground};
+    color: ${({ theme }) => theme.formColor};
+    outline: none;
+    border: none;
+    opacity: .9;
 }
 
 .engine-option__title {
@@ -134,9 +91,9 @@ body {
   position: relative;
 }
 
-.search-btn:hover {
-  background-color: #dcc80d;
-}
+    .tvIcon {
+      display: none;
+    }
 
 .engine-option__buton-container button:hover {
   color:  ${({ theme }) => theme.yellowText};
@@ -182,7 +139,11 @@ body {
   }
 
   .engine-option__buton-container button {
+<<<<<<< HEAD
     margin: 0 !important;
+=======
+    margin: initial !important;
+>>>>>>> origin
     white-space: nowrap;
   }
 }
@@ -268,11 +229,18 @@ body {
   padding: 1em .5em;
 }
 
+div.trending_name {
+  background-color: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.yellowText};
+  padding: 1em .5em;
+}
+
 div.movies {
   margin: 5em;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
+  margin-top: 1.3em;
 }
 
 @media (max-width: 991px) {
@@ -367,8 +335,8 @@ div.movie {
     width: 100%;
     margin: auto;
     transition: .3s;
-    border-top-left-radius: .3em;
-    border-top-right-radius: .3em;
+    border-top-left-radius: .39em;
+    border-top-right-radius: .39em;
     cursor: pointer;
     object-fit: cover;
   }
@@ -405,18 +373,27 @@ div.movie {
     background: #dcc80d;
   }
 
+  .carousal-download-btn {
+    bottom: 0 !important;
+    right: 0 !important;
+    height: 43px !important;
+    width: 47px !important;
+    border-radius: 2.2em 0 0 0 !important;
+    box-shadow: none !important;
+  }
+
 
   /* Movie About Details */
   .movie__about {
     width: 100%;
-    height: 11em;
+    height: 8em;
     padding: .5em;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     background-color: ${({ theme }) => theme.movieBackground}; 
-    border-bottom-bottom-radius: .39em;
-    border-bottom-start-radius: .39em;
+    order-bottom-left-radius: .39em;
+    border-bottom-right-radius: .39em;
   }
   
   .movie__about .name {
@@ -636,28 +613,14 @@ select {
   cursor: pointer;
 }
 
-.tour-button  {
-  background: #e7d10a;
-  border: none;
-  padding: .5em;
-}
-}
-
-.tour-button svg {
-  fill: #121620;
-}
-
-.tour-button:hover {
-  background-color: #dcc80d;
-}
-
 /* Utility Styling */
 .actions-button {
-  height: 3em;
-  width: 3em;
   cursor: pointer;
-  border-radius: 50%;
-  border: 1px solid #121620;
+  background: transparent;
+  color: gray;
+  border: 0;
+  outline: none;
+  font-size: 1.5em;
 }
 
 .em {
@@ -766,10 +729,6 @@ select {
   }
 
   .actions-button {
-    height: 2.5em;
-    width: 2.5em;
-  }
-  .switch-theme-btn {
     height: 2.5em;
     width: 2.5em;
   }
