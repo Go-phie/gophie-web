@@ -730,6 +730,13 @@ select {
   outline: none !important;
 }
 
+button {
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  outline: none !important;
+}
+
 .em {
   color: #dcc80d !important;
 } /* Movie ard for small screens */
