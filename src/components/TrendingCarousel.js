@@ -99,14 +99,16 @@ class TrendingCarousel extends Component {
           transitionDuration={800}
           containerClass="carousel-container"
           beforeChange={(previousSlide, { currentSlide, onMove }) => {
-            let offset = 0
+            let offset = 0;
             if (isMobile) {
-              offset = 2
+              offset = 2;
             } else {
-              offset = this.state.trending.length/2
+              offset = this.state.trending.length / 2;
             }
-            
-            if (typeof this.state.trending[previousSlide - offset] !== "undefined") {
+
+            if (
+              typeof this.state.trending[previousSlide - offset] !== "undefined"
+            ) {
               this.setState({
                 currentmovie: this.state.trending[previousSlide - offset],
               });
@@ -122,8 +124,11 @@ class TrendingCarousel extends Component {
           }}
         >
           {this.state.trending.map((trendingMovie) => {
-            if (trendingMovie.name.endsWith("Tags")){
-              trendingMovie.name = trendingMovie.name.substr(0, trendingMovie.name.length-4)
+            if (trendingMovie.name.endsWith("Tags")) {
+              trendingMovie.name = trendingMovie.name.substr(
+                0,
+                trendingMovie.name.length - 4
+              );
             }
             let movie_obj = {
               Title: trendingMovie.name,
@@ -177,8 +182,8 @@ class TrendingCarousel extends Component {
                   className="download-btn carousal-download-btn"
                   target="_blank"
                   rel="noopener noreferrer"
-                  href={trendingMovie.DownloadLink}
-                  onClick={() => this.addDownload(trendingMovie)}
+                  href={movie_obj.DownloadLink}
+                  onClick={() => this.addDownload(movie_obj)}
                   data-tour="my-eight-step"
                 >
                   <DownloadIcon />
