@@ -326,8 +326,6 @@ div.skeleton-movies {
   width: 100%;
 }
 
-
-
 .error {
   display: block;
   align-items: center;
@@ -441,6 +439,7 @@ div.movie {
 
   .download-btn:hover {
     background: #dcc80d;
+    color: #1e2126;
   }
 
   .carousal-download-btn {
@@ -482,6 +481,10 @@ div.movie {
   }
 
   a {
+    text-decoration: none;
+  }
+
+  a:hover {
     text-decoration: none;
   }
 
@@ -717,18 +720,20 @@ select {
 
 /* Utility Styling */
 .actions-button {
-  cursor: pointer;
-  background: transparent;
-  color: gray;
-  border: 0;
-  outline: none;
+  color: grey;
   font-size: 1.5em;
+  background: transparent;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+  outline: none !important;
 }
 
 .em {
   color: #dcc80d !important;
 } /* Movie ard for small screens */
-  @media (max-width: 561px) {
+@media (max-width: 561px) {
   div.movie {
     display: flex;
     width: 100%;
@@ -845,6 +850,13 @@ select {
     border: 0;
     background-color: ${({ theme }) => theme.movieBackground} !important;
     color: ${({ theme }) => theme.text} !important;
+}
+
+@media (max-width: 450px) {
+  .download-btn {
+    bottom: .1em;
+    right: -7em;
+  }
 }
 
 .gophie-modal-rating-container__average--container__on-card p {
