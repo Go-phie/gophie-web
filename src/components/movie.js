@@ -21,6 +21,7 @@ export default class Movie extends Component {
   toggleHover = () => {
     this.setState({ hover: !this.state.hover });
   };
+  
   // Add download to API to make it trackable
   addDownload = () => {
     axios
