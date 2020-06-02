@@ -8,8 +8,12 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
 import { isMobile } from "react-device-detect";
-import { NetworkIcon, DownloadIcon } from "./icons";
+import { NetworkIcon } from "./icons";
 import CarouselSkeletonLoader from "./Loader/CarouselSkeletonLoader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faDownload
+} from "@fortawesome/free-solid-svg-icons";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -90,13 +94,14 @@ class TrendingCarousel extends Component {
   render() {
     return (
       <div>
+        {/* <h2 className="trending-title">Trending Movies</h2> */}
         <Carousel
           responsive={responsive}
           deviceType={this.props.deviceType}
           keyBoardControl={true}
           infinite={true}
           ssr={true}
-          autoPlay={this.props.deviceType !== "mobile" ? true : false}
+          // autoPlay={this.props.deviceType !== "mobile" ? true : false}
           transitionDuration={800}
           containerClass="carousel-container"
           beforeChange={(previousSlide, { currentSlide, onMove }) => {
@@ -174,7 +179,13 @@ class TrendingCarousel extends Component {
                   }
                 />
 
-                <a
+                <div className="carousal-image-detail">
+                  <div className="carousal-image-detail--main">
+                    <p>{trendingMovie.engine}</p>
+                    <p>{trendingMovie.name}</p>
+                  </div>
+
+                  <a
                   className="download-btn carousal-download-btn"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -182,8 +193,9 @@ class TrendingCarousel extends Component {
                   onClick={() => this.addDownload(trendingMovie)}
                   data-tour="my-eight-step"
                 >
-                  <DownloadIcon />
+                  <FontAwesomeIcon icon={faDownload} />
                 </a>
+                </div>
               </div>
             );
           })}
@@ -217,10 +229,10 @@ class TrendingCarousel extends Component {
           </div>
         )}
 
-        {!this.state.currentmovie.name ? null: (
+        {/* {!this.state.currentmovie.name ? null: (
           <div className="trending_name">{this.state.currentmovie.name}</div>
           )
-        }
+        } */}
       </div>
     );
   }

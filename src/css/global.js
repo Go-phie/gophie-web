@@ -225,7 +225,7 @@ body {
 .rating-summary__container {
   top: 0;
   width: 100%;
-  background: linear-gradient(45deg, black, transparent);
+  background: linear-gradient(360deg,transparent,rgba(0,0,0,.9)) !important;
   border-top-left-radius: .39em;
   border-top-right-radius: .39em;
   transition: .3s;
@@ -417,11 +417,10 @@ div.movie {
   }
   
   .download-btn {
+    color: #1e2126;
     position: absolute;
     bottom: -.7em;
     right: .9em;
-    height: 50px;
-    width: 50px;
     text-decoration: none;
     background: #e7d10a;
     border-radius: 50%;
@@ -430,7 +429,8 @@ div.movie {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0px;
+    font-size: 1.2em;
+    padding: .65em;
     cursor: pointer;
     box-shadow: 0px 0px 7px -2px #121315;
   }
@@ -444,14 +444,46 @@ div.movie {
   }
 
   .carousal-download-btn {
-    bottom: 0 !important;
-    right: 0 !important;
-    height: 43px !important;
-    width: 47px !important;
-    border-radius: 2.2em 0 0 0 !important;
+    font-size: 1.1em;
+    margin-left: .5em;
     box-shadow: none !important;
+    position: initial !important;
   }
 
+  .carousal-image-detail {
+    position: absolute;
+    bottom: 0;
+    padding: .5em 1em;
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .carousal-image-detail--main {
+    line-height: 0;
+  }
+
+  .carousal-image-detail--main p:first-child {
+    background: #ffffff;
+    color: #1e2126;
+    display: inline-block;
+    padding: 1em .3em;
+    font-size: .8em;
+    font-weight: 600;
+  }
+
+  .carousal-image-detail--main p:last-child {
+    color: #ffffff;
+    font-size: 1.09em;
+    margin-top: .1em;
+    line-height: 1.2;
+  }
+
+  a {
+    text-decoration: none;
+  }
 
   /* Movie About Details */
   .movie__about {
@@ -547,7 +579,7 @@ div.movie {
     animation: blink 1s infinite;
     -webkit-animation-direction: alternate-reverse;
   }
-  
+
   .skeleton-download-btn {
     position: absolute;
     top: 80%;
@@ -829,13 +861,24 @@ select {
   text-decoration: none;
 }
 
+.trending-title {
+  color:  ${({ theme }) => theme.yellowText};
+  margin-top: 4em !important;
+  margin: 0.1em 8%;
+  font-weight: 600;
+  font-size: 1.3em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
 .trending-carousal-image__container {
   position: relative;
-  background: rgba(0,0,0,0.5);
+  background: linear-gradient(transparent,rgba(0,0,0,.9));
   margin: .2em;
   min-height: 25em;
   min-width: 5em;
-  transition: .5s ease-in-out;
+  transition: .5s all;
+  border-radius: .7em;
   cursor: pointer;
 }
 
@@ -843,11 +886,12 @@ select {
   content: '';
   position: absolute;
   top: 0;
-  background: rgba(0,0,0,0.1);
+  background: linear-gradient(transparent,rgba(0,0,0,.9)) !important;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: -2;
+  border-radius: 1em;
   transition: all .5s;
 }
 
@@ -858,11 +902,13 @@ select {
   height: 100%;
   max-height: 25em;
   object-fit: cover;
+  border-radius: .7em;
   cursor: pointer;
 }
 
 .carousel-container  {
   min-height: 25em;
+      margin-top: 6em;
 }
 
 .network-icon {
