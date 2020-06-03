@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable react/jsx-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
@@ -7,8 +8,12 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
 import { isMobile } from "react-device-detect";
-import { NetworkIcon, DownloadIcon } from "./icons";
+import { NetworkIcon } from "./icons";
 import CarouselSkeletonLoader from "./Loader/CarouselSkeletonLoader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faDownload
+} from "@fortawesome/free-solid-svg-icons";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -89,6 +94,7 @@ class TrendingCarousel extends Component {
   render() {
     return (
       <div>
+        {/* <h2 className="trending-title">Trending Movies</h2> */}
         <Carousel
           responsive={responsive}
           deviceType={this.props.deviceType}
@@ -178,7 +184,13 @@ class TrendingCarousel extends Component {
                   }
                 />
 
-                <a
+                <div className="carousal-image-detail">
+                  <div className="carousal-image-detail--main">
+                    <p>{trendingMovie.engine}</p>
+                    <p>{trendingMovie.name}</p>
+                  </div>
+
+                  <a
                   className="download-btn carousal-download-btn"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -186,8 +198,9 @@ class TrendingCarousel extends Component {
                   onClick={() => this.addDownload(movie_obj)}
                   data-tour="my-eight-step"
                 >
-                  <DownloadIcon />
+                  <FontAwesomeIcon icon={faDownload} />
                 </a>
+                </div>
               </div>
             );
           })}
@@ -220,7 +233,11 @@ class TrendingCarousel extends Component {
             </p>
           </div>
         )}
-        <div className="trending_name">{this.state.currentmovie.name}</div>
+
+        {/* {!this.state.currentmovie.name ? null: (
+          <div className="trending_name">{this.state.currentmovie.name}</div>
+          )
+        } */}
       </div>
     );
   }
