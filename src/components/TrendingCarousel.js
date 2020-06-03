@@ -11,9 +11,7 @@ import { isMobile } from "react-device-detect";
 import { NetworkIcon } from "./icons";
 import CarouselSkeletonLoader from "./Loader/CarouselSkeletonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDownload
-} from "@fortawesome/free-solid-svg-icons";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -186,20 +184,20 @@ class TrendingCarousel extends Component {
 
                 <div className="carousal-image-detail">
                   <div className="carousal-image-detail--main">
-                    <p>{trendingMovie.engine}</p>
+                    <p>{greekFromEnglish(trendingMovie.engine)}</p>
                     <p>{trendingMovie.name}</p>
                   </div>
 
                   <a
-                  className="download-btn carousal-download-btn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={movie_obj.DownloadLink}
-                  onClick={() => this.addDownload(movie_obj)}
-                  data-tour="my-eight-step"
-                >
-                  <FontAwesomeIcon icon={faDownload} />
-                </a>
+                    className="download-btn carousal-download-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={movie_obj.DownloadLink}
+                    onClick={() => this.addDownload(movie_obj)}
+                    data-tour="my-eight-step"
+                  >
+                    <FontAwesomeIcon icon={faDownload} />
+                  </a>
                 </div>
               </div>
             );
