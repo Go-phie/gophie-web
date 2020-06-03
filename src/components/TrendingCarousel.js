@@ -89,6 +89,9 @@ class TrendingCarousel extends Component {
   render() {
     return (
       <div>
+        <div className='carousel-upper'>
+          <h2 className='carousel-title'>Trending Movies</h2>
+        </div>
         <Carousel
           responsive={responsive}
           deviceType={this.props.deviceType}
