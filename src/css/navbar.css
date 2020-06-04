@@ -1,9 +1,9 @@
-
 .nav-bar__main {
     width: 100%;
 }
 
 .nav-bar__main--brand {
+    max-width: 3.5em;
     font-size: 1.5em;
     font-weight: bold;
     text-decoration: none;

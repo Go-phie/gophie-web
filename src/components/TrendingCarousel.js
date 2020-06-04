@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable react/jsx-key */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
@@ -7,8 +8,10 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
 import { isMobile } from "react-device-detect";
-import { NetworkIcon, DownloadIcon } from "./icons";
+import { NetworkIcon } from "./icons";
 import CarouselSkeletonLoader from "./Loader/CarouselSkeletonLoader";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -92,6 +95,7 @@ class TrendingCarousel extends Component {
         <div className='carousel-upper'>
           <h2 className='carousel-title'>Trending Movies</h2>
         </div>
+        {/* <h2 className="trending-title">Trending Movies</h2> */}
         <Carousel
           responsive={responsive}
           deviceType={this.props.deviceType}
@@ -102,14 +106,16 @@ class TrendingCarousel extends Component {
           transitionDuration={800}
           containerClass="carousel-container"
           beforeChange={(previousSlide, { currentSlide, onMove }) => {
-            let offset = 0
+            let offset = 0;
             if (isMobile) {
-              offset = 2
+              offset = 2;
             } else {
-              offset = this.state.trending.length/2
+              offset = this.state.trending.length / 2;
             }
-            
-            if (typeof this.state.trending[previousSlide - offset] !== "undefined") {
+
+            if (
+              typeof this.state.trending[previousSlide - offset] !== "undefined"
+            ) {
               this.setState({
                 currentmovie: this.state.trending[previousSlide - offset],
               });
@@ -125,8 +131,11 @@ class TrendingCarousel extends Component {
           }}
         >
           {this.state.trending.map((trendingMovie) => {
-            if (trendingMovie.name.endsWith("Tags")){
-              trendingMovie.name = trendingMovie.name.substr(0, trendingMovie.name.length-4)
+            if (trendingMovie.name.endsWith("Tags")) {
+              trendingMovie.name = trendingMovie.name.substr(
+                0,
+                trendingMovie.name.length - 4
+              );
             }
             let movie_obj = {
               Title: trendingMovie.name,
@@ -176,16 +185,23 @@ class TrendingCarousel extends Component {
                   }
                 />
 
-                <a
-                  className="download-btn carousal-download-btn"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href={trendingMovie.DownloadLink}
-                  onClick={() => this.addDownload(trendingMovie)}
-                  data-tour="my-eight-step"
-                >
-                  <DownloadIcon />
-                </a>
+                <div className="carousal-image-detail">
+                  <div className="carousal-image-detail--main">
+                    <p>{greekFromEnglish(trendingMovie.engine)}</p>
+                    <p>{trendingMovie.name}</p>
+                  </div>
+
+                  <a
+                    className="download-btn carousal-download-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={movie_obj.DownloadLink}
+                    onClick={() => this.addDownload(movie_obj)}
+                    data-tour="my-eight-step"
+                  >
+                    <FontAwesomeIcon icon={faDownload} />
+                  </a>
+                </div>
               </div>
             );
           })}
@@ -218,7 +234,11 @@ class TrendingCarousel extends Component {
             </p>
           </div>
         )}
-        <div className="trending_name">{this.state.currentmovie.name}</div>
+
+        {/* {!this.state.currentmovie.name ? null: (
+          <div className="trending_name">{this.state.currentmovie.name}</div>
+          )
+        } */}
       </div>
     );
   }

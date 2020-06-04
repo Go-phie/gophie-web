@@ -118,7 +118,7 @@ export function greekFromEnglish(eng) {
 
 export const API_ENDPOINTS = {
   gophieMain: "https://deploy-gophie.herokuapp.com/",
-  ocena: "https://deploy-ocena.herokuapp.com"
+  ocena: "https://gophie-ocena.herokuapp.com"
   // ocena: "http://127.0.0.1:8000"
 }
 
