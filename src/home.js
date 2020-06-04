@@ -13,6 +13,7 @@ import { lightTheme, darkTheme } from "./css/theme";
 import { GlobalStyles } from "./css/global";
 import ScrollButton from "./components/ScrollToTop";
 import Popup from "./components/Popup";
+
 import {
   tourSteps,
   disableBody,
@@ -24,6 +25,7 @@ import {
 import NavBar from "./components/Navbar";
 import EngineOptions from "./components/EnginOptions";
 import TrendingCarousel from "./components/TrendingCarousel";
+import Footer from "./components/footer";
 
 class Home extends Component {
   constructor(props) {
@@ -425,6 +427,8 @@ class Home extends Component {
                   )}
                 </div>
               </main>
+            
+            <Footer />
             </div>
           </>
 

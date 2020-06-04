@@ -1,7 +1,12 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
 import axios from "axios";
-import { DownloadIcon } from "./icons";
+import {
+  FontAwesomeIcon
+} from "@fortawesome/react-fontawesome";
+import {
+  faDownload
+} from "@fortawesome/free-solid-svg-icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
 import { Link } from "react-router-dom";
 import Rating from "material-ui-rating";
@@ -150,7 +155,7 @@ export default class Movie extends Component {
             onClick={() => this.addDownload()}
             data-tour="my-eight-step"
           >
-            <DownloadIcon />
+            <FontAwesomeIcon icon={faDownload} />
           </a>
         </div>
         <div className="movie__about">

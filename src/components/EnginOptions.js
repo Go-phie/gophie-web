@@ -12,8 +12,8 @@ export default class EngineOptions extends Component {
           <button
             className={
               greekFromEnglish(server) === "Delta"
-                ? "ml-4 shadow-none selected"
-                : "ml-4 shadow-none"
+                ? "shadow-none selected"
+                : "shadow-none"
             }
             onClick={handleServerChange}
             value="Delta"
@@ -23,8 +23,8 @@ export default class EngineOptions extends Component {
           <button
             className={
               greekFromEnglish(server) === "Alpha"
-                ? "ml-4 shadow-none selected"
-                : "ml-4 shadow-none"
+                ? "shadow-none selected"
+                : "shadow-none"
             }
             onClick={handleServerChange}
             value="Alpha"
@@ -34,24 +34,24 @@ export default class EngineOptions extends Component {
           <button
             className={
               greekFromEnglish(server) === "Iota"
-                ? "ml-4 shadow-none selected"
-                : "ml-4 shadow-none"
+                ? "shadow-none selected"
+                : "shadow-none"
             }
             onClick={handleServerChange}
             value="Iota"
           >
-            Iota <small>(HD)</small>
+            Iota <small style={{ display: 'contents' }}>(HD)</small>
           </button>
           <button
             className={
               greekFromEnglish(server) === "Zeta"
-                ? "ml-4 shadow-none selected"
-                : "ml-4 shadow-none"
+                ? "shadow-none selected"
+                : "shadow-none"
             }
             onClick={handleServerChange}
             value="Zeta"
           >
-            Zeta <small>(Series)</small>
+            Zeta <small style={{ display: 'contents' }}>(Series)</small>
           </button>
         </div>
       </div>
