@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
 import axios from "axios";
@@ -5,7 +6,7 @@ import {
   FontAwesomeIcon
 } from "@fortawesome/react-fontawesome";
 import {
-  faDownload
+  faDownload, faShareAlt
 } from "@fortawesome/free-solid-svg-icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
 import { Link } from "react-router-dom";
@@ -156,6 +157,16 @@ export default class Movie extends Component {
             data-tour="my-eight-step"
           >
             <FontAwesomeIcon icon={faDownload} />
+          </a>
+          <a
+            className="download-btn share-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+            href={DownloadLink}
+            onClick={() => this.addDownload()}
+            data-tour="my-eight-step"
+          >
+            <FontAwesomeIcon icon={faShareAlt} />
           </a>
         </div>
         <div className="movie__about">
