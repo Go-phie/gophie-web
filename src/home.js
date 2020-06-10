@@ -200,7 +200,7 @@ class Home extends Component {
           isLoading: false,
           movies: append ? [...this.state.movies, ...newmovies] : newmovies,
           listIndex: newIndex,
-        });
+        }, console.log(this.state.movies));
       })
       .catch((err) => {
         console.log(err);
@@ -347,6 +347,23 @@ class Home extends Component {
     this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
   }
 
+  shareMovie(movie) {
+    console.log(movie);
+    
+    if(navigator.share){
+      const shareData = {
+        title: movie.Title,
+        text: movie.Title + '....' + movie.Description,
+        url: `https://gophie.cam/shared/${movie.referralID}`,
+      };
+
+      navigator.share(shareData)
+        .then(() => console.log('share successful'))
+        .catch(err => console.log(err))
+    }
+    
+  }
+
   render() {
     const { theme } = this.state;
     const selectedTheme = theme === "light" ? lightTheme : darkTheme;
@@ -391,9 +408,11 @@ class Home extends Component {
                     render={() => {
                       return (
                         <MovieList
+                          ip_address={this.state.ip_address}
                           movies={this.state.movies}
                           history={this.props.history}
                           setDescription={this.setDescription.bind(this)}
+                          shareMovie={this.shareMovie.bind(this)}
                         />
                       );
                     }}
@@ -439,6 +458,7 @@ class Home extends Component {
               show={this.state.show}
               ip_address={this.state.ip_address}
               movie={this.state.currentmovie}
+              shareMovie={this.shareMovie.bind(this)}
               onHide={this.hideDescription.bind(this)}
               server={this.state.server}
             />

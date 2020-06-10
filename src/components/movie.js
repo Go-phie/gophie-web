@@ -6,7 +6,7 @@ import {
   FontAwesomeIcon
 } from "@fortawesome/react-fontawesome";
 import {
-  faDownload, faShareAlt
+  faDownload, faShareAlt, faSpinner
 } from "@fortawesome/free-solid-svg-icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
 import { Link } from "react-router-dom";
@@ -19,6 +19,8 @@ export default class Movie extends Component {
     this.state = {
       ratings_api: API_ENDPOINTS.ocena,
       ratings: {},
+      referralID: null,
+      loadingReferralID: false,
       hover: false,
     };
     this._isMounted = false;
@@ -72,8 +74,44 @@ export default class Movie extends Component {
       });
   };
 
+  getShareID = (action) => {
+    
+    const { data } = this.props;
+    
+    axios.post(this.state.ratings_api + '/referral/', {
+      ip_address: this.props.ip_address,
+      movie_name: data.Title,
+      engine: data.Source,
+      description: data.Description,
+      size: data.Size,
+      year: data.Year,
+      download_link: data.DownloadLink,
+      cover_photo_link: data.CoverPhotoLink
+    }).then(res => {
+      const {data} = res;
+      if(action){
+        this.setState({loadingReferralID: false})
+      }
+      this.setState({referralID: data}, () => {if(action){this.shareMovie()}})
+    }).catch(err=> {
+        this.setState({loadingReferralID: false});
+        console.log(err);
+    })
+  }
+
+  shareMovie(){
+    if(this.state.referralID){
+      this.props.shareMovie({...this.props.data, referralID: this.state.referralID});
+    } else {      
+      this.setState({loadingReferralID: true});
+      this.getShareID('share');
+    }
+    
+  }
+
   componentDidMount() {
     this.getAverage();
+    this.getShareID();
     this._isMounted = true;
   }
 
@@ -158,16 +196,13 @@ export default class Movie extends Component {
           >
             <FontAwesomeIcon icon={faDownload} />
           </a>
-          <a
+          <button
             className="download-btn share-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={DownloadLink}
-            onClick={() => this.addDownload()}
-            data-tour="my-eight-step"
+            onClick={() => this.shareMovie()}
+            data-tour=""
           >
-            <FontAwesomeIcon icon={faShareAlt} />
-          </a>
+            {this.state.loadingReferralID? <FontAwesomeIcon icon={faSpinner} /> : <FontAwesomeIcon icon={faShareAlt} />}
+          </button>
         </div>
         <div className="movie__about">
           <Link to={`/${greekFromEnglish(Source)}/${Index}`}>
