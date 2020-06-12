@@ -26,6 +26,7 @@ import NavBar from "./components/Navbar";
 import EngineOptions from "./components/EnginOptions";
 import TrendingCarousel from "./components/TrendingCarousel";
 import Footer from "./components/footer";
+import ShareModal from "./components/ShareModal";
 
 class Home extends Component {
   constructor(props) {
@@ -47,6 +48,8 @@ class Home extends Component {
       showTour: true,
       ip_address: "",
       isSearch: false,
+      showShareModal: false,
+      movieToBeShared: {}
     };
   }
 
@@ -348,8 +351,6 @@ class Home extends Component {
   }
 
   shareMovie(movie) {
-    console.log(movie);
-    
     if(navigator.share){
       const shareData = {
         title: movie.Title,
@@ -360,6 +361,9 @@ class Home extends Component {
       navigator.share(shareData)
         .then(() => console.log('share successful'))
         .catch(err => console.log(err))
+    } else {
+      this.setState({movieToBeShared: movie}, this.setState({showShareModal: true}));
+      
     }
     
   }
@@ -453,6 +457,15 @@ class Home extends Component {
 
           {/* ScrollButton Take you back to the starting of the page */}
           <ScrollButton scrollStepInPx="80" delayInMs="16.66" />
+          
+          {this.state.showShareModal && 
+            <ShareModal 
+              display={this.state.showShareModal} 
+              onHide={() => this.setState({showShareModal: false})}
+              movie={this.state.movieToBeShared}
+            />
+          }
+
           {this.state.show && (
             <Popup
               show={this.state.show}
