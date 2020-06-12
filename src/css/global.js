@@ -45,6 +45,11 @@ body {
   z-index: 999;
 }
 
+.share-card {
+  background-color: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+}
+
 .header-left p {
   transition: .5s ease-in-out;
 }

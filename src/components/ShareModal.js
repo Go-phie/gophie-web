@@ -20,10 +20,10 @@ class ShareModal extends Component {
         
         return(
             <Modal show={this.props.display} onHide={this.props.onHide}>
-                <Modal.Header closeButton>
+                <Modal.Header closeButton className="share-card">
                     <Modal.Title>Share a Movie</Modal.Title>
                 </Modal.Header>
-                <Modal.Body className="show-grid">
+                <Modal.Body className="show-grid share-card">
                     <Container>
                         <Row>
                             <Col xs={2} md={1}>
@@ -55,8 +55,8 @@ class ShareModal extends Component {
                         </Row>
                     </Container>
                 </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="danger" onClick={this.props.onHide}>
+                <Modal.Footer className="share-card">
+                    <Button variant="warning" onClick={this.props.onHide}>
                         Close
                     </Button>
                 </Modal.Footer>
