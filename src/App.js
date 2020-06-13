@@ -1,7 +1,7 @@
 import { HashRouter, Switch, Redirect, Route } from "react-router-dom";
-import Home from "./home";
+import Home from "./pages/home";
 import React, { Component } from "react";
-import Terms from "./terms";
+import Terms from "./pages/terms";
 
 class App extends Component {
   render() {

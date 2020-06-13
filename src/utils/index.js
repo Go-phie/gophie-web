@@ -54,7 +54,7 @@ export const tourSteps = [
     selector: '[data-tour="my-fifth-step"]',
     content: () => (
       <div>
-        Click the play button to start streaming the movie. Then go to the next 
+        Click the play button to start streaming the movie. Then go to the next
         step of the tour
       </div>
     ),
@@ -63,22 +63,22 @@ export const tourSteps = [
     selector: '[data-tour="my-fifth-step"]',
     content: () => (
       <div>
-        Click the stop button to stop streaming the movie and proceed to the next 
-        step of the tour
+        Click the stop button to stop streaming the movie and proceed to the
+        next step of the tour
       </div>
     ),
   },
   {
     selector: '[data-tour="my-sixth-step"]',
-    content:  `Rate a movie out of five stars to show how much you like/dislike it. You can always edit your ratings later`
+    content: `Rate a movie out of five stars to show how much you like/dislike it. You can always edit your ratings later`,
   },
   {
     selector: '[data-tour="my-seventh-step"]',
-    content:  `Check out the average rating of a movie to show you how much people liked/disliked it`
+    content: `Check out the average rating of a movie to show you how much people liked/disliked it`,
   },
   {
     selector: '[class="close"]',
-    content:  `Close the modal and proceed to next step`
+    content: `Close the modal and proceed to next step`,
   },
   {
     selector: '[data-tour="my-eight-step"]',
@@ -101,7 +101,7 @@ export const tourSteps = [
 let nm = new Map();
 nm.set("Alpha", "mycoolmoviez");
 nm.set("Delta", "fzmovies");
-// nm.set("Kronos", "netnaija");
+nm.set("Kronos", "netnaija");
 nm.set("Iota", "besthdmovies");
 nm.set("Zeta", "tvseries");
 
@@ -118,9 +118,9 @@ export function greekFromEnglish(eng) {
 
 export const API_ENDPOINTS = {
   gophieMain: "https://deploy-gophie.herokuapp.com/",
-  ocena: "https://gophie-ocena.herokuapp.com"
+  ocena: "https://gophie-ocena.herokuapp.com",
   // ocena: "http://127.0.0.1:8000"
-}
+};
 
 export const disableBody = (target) => disableBodyScroll(target);
 export const enableBody = (target) => enableBodyScroll(target);

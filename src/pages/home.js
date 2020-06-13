@@ -2,17 +2,17 @@ import axios from "axios";
 import React, { Component } from "react";
 import Tour from "reactour";
 import { Route } from "react-router-dom";
-import { RetryIcon } from "./components/icons";
-import MovieList from "./components/MovieList";
-import SkeletonLoader from "./components/Loader/SkeletonLoader";
+import { RetryIcon } from "../components/icons";
+import MovieList from "../components/MovieList";
+import SkeletonLoader from "../components/Loader/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
 // style stuff
 import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "./css/theme";
-import { GlobalStyles } from "./css/global";
-import ScrollButton from "./components/ScrollToTop";
-import Popup from "./components/Popup";
+import { lightTheme, darkTheme } from "../css/theme";
+import { GlobalStyles } from "../css/global";
+import ScrollButton from "../components/ScrollToTop";
+import Popup from "../components/Popup";
 
 import {
   tourSteps,
@@ -21,11 +21,11 @@ import {
   nameToEngineMap,
   greekFromEnglish,
   API_ENDPOINTS,
-} from "./utils";
-import NavBar from "./components/Navbar";
-import EngineOptions from "./components/EnginOptions";
-import TrendingCarousel from "./components/TrendingCarousel";
-import Footer from "./components/footer";
+} from "../utils";
+import NavBar from "../components/Navbar";
+import EngineOptions from "../components/EnginOptions";
+import TrendingCarousel from "../components/TrendingCarousel";
+import Footer from "../components/footer";
 
 class Home extends Component {
   constructor(props) {
@@ -153,8 +153,8 @@ class Home extends Component {
         if (movies !== null) {
           let newmovies = movies.map((element) => {
             element.Index = uuidv4();
-            if (element.Title.endsWith("Tags")){
-              element.Title = element.Title.substr(0, element.Title.length-4)
+            if (element.Title.endsWith("Tags")) {
+              element.Title = element.Title.substr(0, element.Title.length - 4);
             }
             return element;
           });
@@ -190,8 +190,8 @@ class Home extends Component {
         let newIndex = this.state.listIndex;
         let newmovies = movies.map((element) => {
           element.Index = uuidv4();
-          if (element.Title.endsWith("Tags")){
-            element.Title = element.Title.substr(0, element.Title.length-4)
+          if (element.Title.endsWith("Tags")) {
+            element.Title = element.Title.substr(0, element.Title.length - 4);
           }
           return element;
         });
@@ -427,8 +427,8 @@ class Home extends Component {
                   )}
                 </div>
               </main>
-            
-            <Footer />
+
+              <Footer />
             </div>
           </>
 
