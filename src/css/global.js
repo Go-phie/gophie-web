@@ -45,6 +45,11 @@ body {
   z-index: 999;
 }
 
+.share-card {
+  background-color: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+}
+
 .header-left p {
   transition: .5s ease-in-out;
 }
@@ -432,6 +437,10 @@ div.movie {
     cursor: pointer;
     box-shadow: 0px 0px 7px -2px #121315;
   }
+
+  .share-btn {
+    right: 3.2em;
+  }
   
   .download-btn:active {
     background: #dcc80d;
@@ -771,6 +780,10 @@ button {
     right: -9em;
   }
 
+  .share-btn {
+    right: -6.7em;
+  }
+
   .movie__about {
     border-top-right-radius: 0.39em;
     border-bottom-start-radius: initial;
@@ -863,6 +876,10 @@ button {
   .download-btn {
     bottom: .1em;
     right: -7em;
+  }
+
+  .share-btn {
+    right: -5em;
   }
 }
 

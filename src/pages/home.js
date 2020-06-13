@@ -26,6 +26,7 @@ import NavBar from "../components/Navbar";
 import EngineOptions from "../components/EnginOptions";
 import TrendingCarousel from "../components/TrendingCarousel";
 import Footer from "../components/footer";
+import ShareModal from "../components/ShareModal";
 
 class Home extends Component {
   constructor(props) {
@@ -47,6 +48,8 @@ class Home extends Component {
       showTour: true,
       ip_address: "",
       isSearch: false,
+      showShareModal: false,
+      movieToBeShared: {},
     };
   }
 
@@ -196,11 +199,14 @@ class Home extends Component {
           return element;
         });
         newIndex += 1;
-        this.setState({
-          isLoading: false,
-          movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-          listIndex: newIndex,
-        });
+        this.setState(
+          {
+            isLoading: false,
+            movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+            listIndex: newIndex,
+          },
+          console.log(this.state.movies)
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -347,6 +353,29 @@ class Home extends Component {
     this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
   }
 
+  shareMovie(movie) {
+    if (navigator.share) {
+      const shareData = {
+        title: movie.Title,
+        text: movie.Title + "...." + movie.Description,
+        url:
+          window.location.hostname === "localhost"
+            ? `localhost:${window.location.port}/shared/${movie.referralID}`
+            : `https://gophie.cam/shared/${movie.referralID}`,
+      };
+
+      navigator
+        .share(shareData)
+        .then(() => console.log("share successful"))
+        .catch((err) => console.log(err));
+    } else {
+      this.setState(
+        { movieToBeShared: movie },
+        this.setState({ showShareModal: true })
+      );
+    }
+  }
+
   render() {
     const { theme } = this.state;
     const selectedTheme = theme === "light" ? lightTheme : darkTheme;
@@ -391,9 +420,11 @@ class Home extends Component {
                     render={() => {
                       return (
                         <MovieList
+                          ip_address={this.state.ip_address}
                           movies={this.state.movies}
                           history={this.props.history}
                           setDescription={this.setDescription.bind(this)}
+                          shareMovie={this.shareMovie.bind(this)}
                         />
                       );
                     }}
@@ -434,11 +465,21 @@ class Home extends Component {
 
           {/* ScrollButton Take you back to the starting of the page */}
           <ScrollButton scrollStepInPx="80" delayInMs="16.66" />
+
+          {this.state.showShareModal && (
+            <ShareModal
+              display={this.state.showShareModal}
+              onHide={() => this.setState({ showShareModal: false })}
+              movie={this.state.movieToBeShared}
+            />
+          )}
+
           {this.state.show && (
             <Popup
               show={this.state.show}
               ip_address={this.state.ip_address}
               movie={this.state.currentmovie}
+              shareMovie={this.shareMovie.bind(this)}
               onHide={this.hideDescription.bind(this)}
               server={this.state.server}
             />
