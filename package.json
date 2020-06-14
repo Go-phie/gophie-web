@@ -13,6 +13,7 @@
     "body-scroll-lock": "^3.0.2",
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
+    "material-ui-rating": "^4.0.0-beta.2",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0",
     "react-device-detect": "^1.12.1",
@@ -38,7 +39,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "ssr": "npm run build && node server.js",
+    "ssr": "node server.js",
     "format": "prettier \"src/**/*.{js,html,css}\" --write",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
@@ -64,7 +65,6 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "eslint-plugin-standard": "^4.0.1",
-    "material-ui-rating": "^4.0.0-beta.2",
     "prettier": "^2.0.5"
   }
 }
