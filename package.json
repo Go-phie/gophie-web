@@ -12,6 +12,7 @@
     "axios": "^0.18.0",
     "body-scroll-lock": "^3.0.2",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0",
     "react-device-detect": "^1.12.1",
@@ -37,6 +38,7 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
+    "ssr": "npm run build && node server.js",
     "format": "prettier \"src/**/*.{js,html,css}\" --write",
     "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
