@@ -64,7 +64,7 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^3.0.0",
     "eslint-plugin-standard": "^4.0.1",
-    "material-ui-rating": "^4.2.0",
+    "material-ui-rating": "^4.0.0-beta.2",
     "prettier": "^2.0.5"
   }
 }
