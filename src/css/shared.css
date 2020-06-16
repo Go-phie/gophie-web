@@ -2,6 +2,17 @@
     margin-top: initial !important;
 }
 
+.movie-shared-detail .gophie-modal__body--header {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+
+.movie-shared-detail .gophie-modal__body--description {
+    font-size: 1em;
+    line-height: 1.5;
+}
+
 .trending-title {
     margin: initial !important;
 }
@@ -20,4 +31,16 @@
 
 .movie-shared-detail .site-footer {
     margin-top: 10em !important;
+}
+
+.movie-shared-detail .btn-info {
+    background-color: #e7d10a !important;
+    color: #202534 !important;
+    border-color: #e7d10a !important;
+    text-transform: capitalize;
+}
+
+.movie-shared-detail .btn-info:hover {
+    background-color: #cab709 !important;
+    border-color: #cab709 !important;
 }
