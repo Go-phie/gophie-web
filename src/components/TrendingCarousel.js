@@ -73,14 +73,15 @@ class TrendingCarousel extends Component {
   }
 
   addDownload = (trendingMovie) => {
+    console.log(trendingMovie, this.props.ip_address);
     axios
       .post(this.state.trending_api + "/download/", {
         ip_address: this.props.ip_address,
         movie_name: trendingMovie.Title,
         engine: trendingMovie.Source,
-        description: trendingMovie.Description,
+        description: trendingMovie.Description ? trendingMovie : "",
         size: trendingMovie.Size,
-        year: trendingMovie.Year,
+        year: trendingMovie.Year ? trendingMovie.Year : "",
         download_link: trendingMovie.DownloadLink,
         cover_photo_link: trendingMovie.CoverPhotoLink,
       })
