@@ -39,7 +39,7 @@ const Footer = () => (
           <h6>Project</h6>
           <ul className="footer-links">
             <li>
-              <a href="#">About Us</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <a href="#">Contact Us</a>
