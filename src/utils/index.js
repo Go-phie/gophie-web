@@ -99,9 +99,10 @@ export const tourSteps = [
 ];
 
 let nm = new Map();
-nm.set("Alpha", "mycoolmoviez");
+nm.set("Styx", "mycoolmoviez");
 nm.set("Delta", "fzmovies");
-// nm.set("Kronos", "netnaija");
+nm.set("Kronos", "netnaija");
+nm.set("Alpha", "coolmoviez");
 nm.set("Iota", "besthdmovies");
 nm.set("Zeta", "tvseries");
 
