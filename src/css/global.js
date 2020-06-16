@@ -236,6 +236,10 @@ body {
   transition: .3s;
 }
 
+.gophie-modal__body--header {
+    border-bottom: 1px solid ${({ theme }) => theme.sharedBorderColor} !important;
+}
+
 .movie-shared-detail .MuiSvgIcon-root {
   fill: ${({ theme }) => theme.text} !important;
 }
