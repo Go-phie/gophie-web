@@ -7,7 +7,6 @@ import { API_ENDPOINTS, greekFromEnglish } from "../utils";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
-import { isMobile } from "react-device-detect";
 import { NetworkIcon } from "./icons";
 import CarouselSkeletonLoader from "./Loader/CarouselSkeletonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -102,30 +101,6 @@ class TrendingCarousel extends Component {
           autoPlay={this.props.deviceType !== "mobile" ? true : false}
           transitionDuration={800}
           containerClass="carousel-container"
-          beforeChange={(previousSlide, { currentSlide, onMove }) => {
-            let offset = 0;
-            if (isMobile) {
-              offset = 2;
-            } else {
-              offset = this.state.trending.length / 2;
-            }
-
-            if (
-              typeof this.state.trending[previousSlide - offset] !== "undefined"
-            ) {
-              this.setState({
-                currentmovie: this.state.trending[previousSlide - offset],
-              });
-            } else {
-              let index = (previousSlide % this.state.trending.length) - offset;
-              if (index < 0) {
-                index = this.state.trending.length + index;
-              }
-              this.setState({
-                currentmovie: this.state.trending[index],
-              });
-            }
-          }}
         >
           {this.state.trending.map((trendingMovie) => {
             if (trendingMovie.name.endsWith("Tags")) {
@@ -250,11 +225,6 @@ class TrendingCarousel extends Component {
             </p>
           </div>
         )}
-
-        {/* {!this.state.currentmovie.name ? null: (
-          <div className="trending_name">{this.state.currentmovie.name}</div>
-          )
-        } */}
       </div>
     );
   }
