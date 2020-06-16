@@ -9,3 +9,7 @@
 .nav-bar__main--has-search {
     visibility: hidden !important;
 }
+
+.nav-bar__action-buttons button:first-child {
+    visibility: hidden !important;
+}
