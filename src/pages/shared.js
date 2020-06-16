@@ -11,6 +11,8 @@ import TrendingCarousel from "../components/TrendingCarousel";
 import { GlobalStyles } from "../css/global";
 import "../css/shared.css";
 import Footer from "../components/footer";
+import NavBar from "../components/Navbar";
+
 
 class Shared extends Component {
     constructor(state) {
@@ -40,6 +42,7 @@ class Shared extends Component {
 
     componentDidMount() {
         this.getIp();
+        this.setTheme();
         const urlPath = window.location.pathname.split('/');
         const referralID = urlPath.pop();
         axios
@@ -58,6 +61,29 @@ class Shared extends Component {
                 });
                 }
             });
+    }
+
+    setTheme() {
+        const theme = localStorage.getItem("theme");
+        if (theme !== null) {
+        this.switchTheme(theme === "light" ? "dark" : "light");
+        }
+    }
+
+
+    switchTheme(mode) {
+        switch (mode) {
+        case "light":
+            localStorage.setItem("theme", "dark");
+            this.setState({ theme: "dark" });
+            break;
+        case "dark":
+            localStorage.setItem("theme", "light");
+            this.setState({ theme: "light" });
+            break;
+        default:
+            break;
+        }
     }
 
     getIp = () => {
@@ -114,12 +140,16 @@ class Shared extends Component {
         const selectedTheme = theme === "light" ? lightTheme : darkTheme;
 
         return (
-            <>
+            <div className = "movie-shared-detail" >
             <ThemeProvider theme={selectedTheme}>
             <GlobalStyles />
+                <NavBar
+                  switchTheme={() => this.switchTheme(this.state.theme)}
+                />
+
             <div className="container">
-                <div>
-                    <div className="gophie-modal mt-5"  style={{ maxHeight: '550px' }}>
+                <div style={{ marginTop: '10em' }}>
+                    <div className="gophie-modal shared-detail-content mt-5"  style={{ maxHeight: '550px' }}>
                                 <section className="gophie-modal__img">
                                     <img
                                     src={
@@ -153,7 +183,7 @@ class Shared extends Component {
                                     {/* Video Stream Play Icon */}
                                 </section>
 
-                                <section className="gophie-modal__body" style={{ background: 'aliceblue', borderBottomRightRadius: '.5em', borderTopRightRadius: '.5em' }}>
+                                <section className="gophie-modal__body" style={{ borderBottomRightRadius: '.5em', borderTopRightRadius: '.5em' }}>
                                 <div className="gophie-modal__body--header">
                                 <div id="contained-modal-title-vcenter">
                                     {this.state.movie.name}
@@ -255,12 +285,12 @@ class Shared extends Component {
             </div>
 
             <div className="mt-5">
-                <Footer/>                
+                <Footer/>
             </div>
 
 
         </ThemeProvider>
-        </>
+        </div>
         )
     }
 
