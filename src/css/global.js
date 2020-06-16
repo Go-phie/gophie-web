@@ -236,6 +236,10 @@ body {
   transition: .3s;
 }
 
+.movie-shared-detail .MuiSvgIcon-root {
+  fill: ${({ theme }) => theme.text} !important;
+}
+
 .shared-detail-content {
   color: ${({ theme }) => theme.text};
   background-color: ${({ theme }) => theme.movieBackground};   
