@@ -236,6 +236,11 @@ body {
   transition: .3s;
 }
 
+.shared-detail-content {
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.movieBackground};   
+}
+
 .dialog-theme {
   .modal-content {
     color: ${({ theme }) => theme.text};
