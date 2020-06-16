@@ -5,3 +5,7 @@
 .trending-title {
     margin: initial !important;
 }
+
+.nav-bar__main--has-search {
+    visibility: hidden !important;
+}
