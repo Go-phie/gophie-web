@@ -1,4 +1,4 @@
-.carousel-container {
+.movie-shared-detail .carousel-container {
     margin-top: initial !important;
 }
 
@@ -6,10 +6,18 @@
     margin: initial !important;
 }
 
-.nav-bar__main--has-search {
+.movie-shared-detail .nav-bar__main--has-search {
     visibility: hidden !important;
 }
 
-.nav-bar__action-buttons button:first-child {
+.movie-shared-detail .nav-bar__action-buttons button:first-child {
     visibility: hidden !important;
+}
+
+.movie-shared-detail .error-text {
+    position: initial !important;
+}
+
+.movie-shared-detail .site-footer {
+    margin-top: 10em !important;
 }
