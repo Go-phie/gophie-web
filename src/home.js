@@ -392,6 +392,7 @@ class Home extends Component {
                       return (
                         <MovieList
                           movies={this.state.movies}
+                          ip_address={this.state.ip_address}
                           history={this.props.history}
                           setDescription={this.setDescription.bind(this)}
                         />
