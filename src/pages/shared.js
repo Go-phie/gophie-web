@@ -43,6 +43,7 @@ class Shared extends Component {
     componentDidMount() {
         this.getIp();
         this.setTheme();
+        this.getAverage();
         const urlPath = window.location.pathname.split('/');
         const referralID = urlPath.pop();
         axios
@@ -100,30 +101,63 @@ class Shared extends Component {
                 });
             });
     };
-    // getAverage = () => {
-    //     axios
-    //     .post(this.state.api + "/movie/ratings/average/", {
-    //         name: this.state.name,
-    //         engine: this.state.engine,
-    //         description: this.state.description,
-    //         size: this.state.size,
-    //         year: this.state.year,
-    //         download_link: this.state.DownloadLink,
-    //         cover_photo_link: this.state.CoverPhotoLink,
-    //     })
-    //     .then((res) => {
-    //         this.setState({
-    //         ratings: res.data,
-    //         });
-    //     })
-    //     .catch((err) => {
-    //         if (err) {
-    //         this.setState({
-    //             error: true,
-    //         });
-    //         }
-    //     });
-    // };
+
+    getAverage = () => {
+        axios
+        .post(this.state.api + "/movie/ratings/average/", {
+            name: this.state.name,
+            engine: this.state.engine,
+            description: this.state.description,
+            size: this.state.size,
+            year: this.state.year,
+            download_link: this.state.DownloadLink,
+            cover_photo_link: this.state.CoverPhotoLink,
+        })
+        .then((res) => {
+            this.setState({
+            ratings: res.data,
+            });
+        })
+        .catch((err) => {
+            if (err) {
+            this.setState({
+                error: true,
+            });
+            }
+        });
+    };
+
+    rateMovie = (value) => {
+    axios
+    .post(this.state.ratings_api + "/rate/", {
+        movie_name: this.state.name,
+        engine: this.state.engine,
+        description: this.state.description,
+        size: this.state.size,
+        year: this.state.year,
+        download_link: this.state.DownloadLink,
+        cover_photo_link: this.state.CoverPhotoLink,
+        ip_address: this.state.ip_address,
+        score: value,
+      })
+      .then((res) => {
+        if (res.data !== null) {
+          this.setState({
+            ip_rating: res.data.score,
+          });
+        }
+        // retrieve average to force rerender
+        this.getAverage();
+      })
+      .catch((err) => {
+        console.log(err);
+        if (err) {
+          this.setState({
+            error: true,
+          });
+        }
+      });
+  };
 
     handlePlayRequest(e) {
         e.preventDefault();
