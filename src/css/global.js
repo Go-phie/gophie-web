@@ -310,6 +310,13 @@ body {
   padding: 1em .5em;
 }
 
+.trending-loader-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  position: absolute;
+  top: 0;
+}
+
 .trending_name {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};

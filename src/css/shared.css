@@ -44,3 +44,7 @@
     background-color: #cab709 !important;
     border-color: #cab709 !important;
 }
+
+.movie-shared-detail .trending-loader-container {
+    margin-top: 4em;
+}
