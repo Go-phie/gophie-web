@@ -150,7 +150,8 @@ class TrendingCarousel extends Component {
                 key={trendingMovie.id}
                 className="trending-carousal-image__container"
               >
-                <Image
+                {this.props.history ? (
+                                  <Image
                   className="img-fluid trending-carousal-image"
                   key={trendingMovie.id}
                   onClick={() => {
@@ -181,6 +182,24 @@ class TrendingCarousel extends Component {
                       : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
                   }
                 />
+                ): (
+                <Image
+                  className="img-fluid trending-carousal-image"
+                  key={trendingMovie.id}
+                  onMouseOver={() => {
+                    this.setState({
+                      currentmovie: trendingMovie,
+                    });
+                  }}
+                  alt={trendingMovie.name}
+                  src={
+                    trendingMovie.cover_photo_link
+                      ? trendingMovie.cover_photo_link
+                      : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+                  }
+                />
+                )}
+
 
                 <div className="carousal-image-detail">
                   <div className="carousal-image-detail--main">
