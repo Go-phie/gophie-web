@@ -309,7 +309,7 @@ class Shared extends Component {
                             </div>
                 </div>
                 
-                <div className="mb-5">
+                <div className="mb-5 position-relative">
                     <h2 className="trending-title">Trending Movies</h2> 
                     <TrendingCarousel style={{background: "green"}}
                         ip_address={this.state.ip_address}
