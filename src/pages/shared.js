@@ -41,7 +41,7 @@ class Shared extends Component {
         const urlPath = window.location.pathname.split('/');
         const referralID = urlPath.pop();
         axios
-            .post(`${this.state.api}/referral/id/`, {referral_id: referralID})
+            .post(`${this.state.api}/referral/id/?referral_id=${referralID}`)
             .then((res) => {
                 this.setState({
                     movie: res.data,
