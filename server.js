@@ -27,6 +27,41 @@ app.get("/", function (request, response) {
   });
 });
 
+app.get("/shared/:referralID", function (request, response) {
+  console.log("Shared page visited");
+  const referralID = request.params.referralID;
+  let result = null;
+  fs.readFile(filePath, "utf8", function (err, data) {
+    if (err) {
+      return console.log(err);
+    }
+    axios
+      .post(
+        `https://gophie-ocena.herokuapp.com/referral/id/?referral_id=${referralID}`
+      )
+      .then(function (json) {
+        let movie_name = json.data.name;
+        let description = json.data.description;
+        let image = json.data.cover_photo_link;
+        data = data.replace(/\$OG_TITLE/g, `Gophie - ${movie_name}`);
+        if (description.length <= 1) {
+          description = "Could not find movie description";
+        }
+        if (image.length <= 1) {
+          image =
+            "https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png";
+        }
+        data = data.replace(/\$OG_DESCRIPTION/g, description);
+        result = data.replace(/\$OG_IMAGE/g, image);
+        response.send(result);
+      })
+      .catch(function (error) {
+        console.log("Could not retrieve movie details");
+        response.redirect("/");
+      });
+  });
+});
+
 app.get("/terms", function (request, response) {
   console.log("Terms and condition page Visited");
   let result = null;
@@ -41,40 +76,6 @@ app.get("/terms", function (request, response) {
       /\$OG_IMAGE/g,
       "https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png"
     );
-    response.send(result);
-  });
-});
-
-app.get("/shared/:referralID", function (request, response) {
-  console.log("Shared page visited");
-  const referralID = request.params.referralID;
-  let result = null;
-  fs.readFile(filePath, "utf8", function (err, data) {
-    if (err) {
-      return console.log(err);
-    }
-    axios
-      .post(
-        `https://gophie-ocena.herokuapp.com/referral/id/?referral_id=${referralID}`
-      )
-      .then(function (response) {
-        let movie_name = response.data.name;
-        let description = response.data.description;
-        let image = response.data.cover_photo_link;
-        data = data.replace(/\$OG_TITLE/g, `Gophie - ${movie_name}`);
-        if (description.length <= 1) {
-          description = "Could not find movie description";
-        }
-        if (image.length <= 1) {
-          image =
-            "https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png";
-        }
-        data = data.replace(/\$OG_DESCRIPTION/g, description);
-        result = data.replace(/\$OG_IMAGE/g, image);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
     response.send(result);
   });
 });

@@ -1,5 +1,4 @@
-/* eslint-disable react/display-name */
-import React from "react";
+/* eslint-disable react/display-name */ import React from "react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export function isImageURL(url) {
@@ -119,6 +118,7 @@ export function greekFromEnglish(eng) {
 export const API_ENDPOINTS = {
   gophieMain: "https://deploy-gophie.herokuapp.com/",
   ocena: "https://gophie-ocena.herokuapp.com",
+  ip: "https://api.ipify.org?format=json",
   // ocena: "http://127.0.0.1:8000"
 };
 
