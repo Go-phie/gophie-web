@@ -199,13 +199,7 @@ class TrendingCarousel extends Component {
         </Carousel>
         {!this.state.isLoading ? null : (
           <div
-            style={{
-              overflowX: "auto",
-              scrollSnapType: "x mandatory",
-              position: "absolute",
-              top: "0",
-            }}
-            className="w-100 d-flex"
+            className="w-100 trending-loader-container d-flex"
           >
             <CarouselSkeletonLoader />
             <CarouselSkeletonLoader />

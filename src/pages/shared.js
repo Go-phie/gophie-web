@@ -26,17 +26,7 @@ class Shared extends Component {
             error: false,
             ip_address: "",
             theme: "light",
-            movie: {
-                "name": "The Departure",
-                "engine": "FzMovies",
-                "description": "Before leaving Los Angeles to start a new job in New York, Nate, with the help of his best friend John, devises a wicked plan to test his girlfriend's loyalty.\n...<more>",
-                "size": "187 MB",
-                "year": "0",
-                "download_link": "http://owmchalgthxyarnxnfl.nxknectrcmqwoxuzhmanpmoytokxraoaxgusjeyn.xyz/res/614774a84bca32182e1b81d831542d9a/98fa32d8a5f741f05723d71064566234/The_Departure_(2020)_WEB-DL_high_(fzmovies.net)_0246086ba3ce27948d9d5a5bcbe2cbbc.mp4",
-                "cover_photo_link": "https://www.fzmovies.net/imdb_images/The.Departure.2020.jpg",
-                "id": 83434,
-                "referral_id": "01c7e2df-a3d4-4e81-8ee7-78334866e17a"
-                },
+            movie: {},
         };
     }
 
@@ -44,10 +34,14 @@ class Shared extends Component {
         this.getIp();
         this.setTheme();
         this.getAverage();
+        this.getSharedMovie()
+    }
+
+    getSharedMovie = () => {
         const urlPath = window.location.pathname.split('/');
         const referralID = urlPath.pop();
         axios
-            .post(`${this.state.api}/referral/id/`, {referral_id: referralID})
+            .post(`${this.state.api}/referral/id/?referral_id=${referralID}`)
             .then((res) => {
                 this.setState({
                     movie: res.data,
@@ -309,7 +303,8 @@ class Shared extends Component {
                             </div>
                 </div>
                 
-                <div className="mb-5">
+                <div className="mb-5 position-relative">
+
                     <h2 className="trending-title">Trending Movies</h2> 
                     <TrendingCarousel style={{background: "green"}}
                         ip_address={this.state.ip_address}
