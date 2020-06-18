@@ -424,7 +424,6 @@ class Home extends Component {
                           movies={this.state.movies}
                           history={this.props.history}
                           setDescription={this.setDescription.bind(this)}
-                          shareMovie={this.shareMovie.bind(this)}
                         />
                       );
                     }}

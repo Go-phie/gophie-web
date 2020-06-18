@@ -6,6 +6,12 @@ import axios from "axios";
 import { greekFromEnglish, API_ENDPOINTS } from "../utils";
 import { isIOS } from "react-device-detect";
 import "../css/Popup.css";
+import {
+  FontAwesomeIcon
+} from "@fortawesome/react-fontawesome";
+import {
+  faShareAlt, faSpinner
+} from "@fortawesome/free-solid-svg-icons";
 
 class Popup extends Component {
   constructor(props) {
@@ -13,6 +19,8 @@ class Popup extends Component {
     this.state = {
       ratings_api: API_ENDPOINTS.ocena,
       ratings: {},
+      referralID: null,
+      loadingReferralID: false,
       ip_rating: 0,
       play: false,
       referral_id: "",
@@ -23,29 +31,12 @@ class Popup extends Component {
   componentDidMount() {
     this.getAverage();
     this.getRatings();
+    this.getShareID();
   }
 
-  shareMovie = () => {
-    axios
-      .post(this.state.ratings_api + "/referral/", {
-        ip_address: this.props.ip_address,
-        movie_name: this.props.movie.Title,
-        engine: this.props.movie.Source,
-        description: this.props.movie.Description,
-        size: this.props.movie.Size,
-        year: this.props.movie.Year,
-        download_link: this.props.movie.DownloadLink,
-        cover_photo_link: this.props.movie.CoverPhotoLink,
-      })
-      .then((res) => {
-        this.setState(
-          {
-            referral_id: res.data,
-          },
-          console.log(`Referral ID of movie is ${res.data}`)
-        );
-      });
-  };
+  shareMovie(){
+    this.props.shareMovie({...this.props.data, referralID: this.state.referralID});
+  }
 
   getAverage = () => {
     const { movie } = this.props;
@@ -84,7 +75,7 @@ class Popup extends Component {
       .then((res) => {
         if (res.data !== null) {
           this.setState({
-            ip_rating: res.data.score,
+            ip_rating: res.movie.score,
           });
         }
       })
@@ -114,7 +105,7 @@ class Popup extends Component {
       .then((res) => {
         if (res.data !== null) {
           this.setState({
-            ip_rating: res.data.score,
+            ip_rating: res.movie.score,
           });
         }
         // retrieve average to force rerender
@@ -283,6 +274,13 @@ class Popup extends Component {
                 </div>
               </section>
             )}
+            <button
+            className="download-btn share-btn"
+            onClick={() => this.shareMovie()}
+            data-tour=""
+          >
+            {this.state.loadingReferralID? <FontAwesomeIcon icon={faSpinner} /> : <FontAwesomeIcon icon={faShareAlt} />}
+          </button>
           </section>
         </Modal.Body>
       </Modal>
