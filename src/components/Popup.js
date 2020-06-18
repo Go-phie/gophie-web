@@ -91,15 +91,15 @@ class Popup extends Component {
     const { movie } = this.props;
     axios
       .post(this.state.ratings_api + "/rate/", {
+        ip_address: this.props.ip_address,
         movie_name: movie.Title,
         engine: movie.Source,
+        score: value,        
         description: movie.Description,
         size: movie.Size,
         year: movie.Year,
         download_link: movie.DownloadLink,
         cover_photo_link: movie.CoverPhotoLink,
-        ip_address: this.props.ip_address,
-        score: value,
       })
       .then((res) => {
         if (res.data !== null) {
@@ -179,6 +179,13 @@ class Popup extends Component {
             <Modal.Header className="gophie-modal__body--header" closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
                 {this.props.movie.Title}
+              <button
+                title="share movie"
+                className="download-btn share-btn"
+                onClick={() => this.shareMovie()}
+              >
+                {this.state.loadingReferralID? <FontAwesomeIcon icon={faSpinner} /> : <FontAwesomeIcon icon={faShareAlt} />}
+              </button>
               </Modal.Title>
             </Modal.Header>
             {this.state.play ? (
@@ -273,13 +280,6 @@ class Popup extends Component {
                 </div>
               </section>
             )}
-            <button
-            className="download-btn share-btn"
-            onClick={() => this.shareMovie()}
-            data-tour=""
-          >
-            {this.state.loadingReferralID? <FontAwesomeIcon icon={faSpinner} /> : <FontAwesomeIcon icon={faShareAlt} />}
-          </button>
           </section>
         </Modal.Body>
       </Modal>

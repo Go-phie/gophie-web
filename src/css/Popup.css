@@ -256,3 +256,13 @@
     max-width: 700px !important;
   }
 }
+
+
+.modal-body .download-btn {
+  position: initial !important;
+  right: 3.2em !important;
+  margin-left: 1em !important;
+  padding: .3em .5em !important;
+  border-radius: .3em !important;
+  font-size: .6em !important;
+}
