@@ -227,7 +227,7 @@ class Home extends Component {
 
   getIp = () => {
     axios
-      .get("https://api.ipify.org?format=json")
+      .get(API_ENDPOINTS.ip)
       .then((res) => {
         this.setState({
           ip_address: res.data.ip,
@@ -361,7 +361,7 @@ class Home extends Component {
         url:
           window.location.hostname === "localhost"
             ? `localhost:${window.location.port}/shared/${movie.referralID}`
-            : `https://gophie-ssr.herokuapp.com/shared/${movie.referralID}`,
+            : `https://gophie-frontend.herokuapp.com/shared/${movie.referralID}`,
       };
 
       navigator
