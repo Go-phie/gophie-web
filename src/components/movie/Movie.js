@@ -8,10 +8,10 @@ import {
 import {
   faDownload, faShareAlt, faSpinner
 } from "@fortawesome/free-solid-svg-icons";
-import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../utils";
+import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { Link } from "react-router-dom";
 import Rating from "material-ui-rating";
-import "../css/Popup.css";
+import "../../css/Popup.css";
 
 export default class Movie extends Component {
   constructor(props) {

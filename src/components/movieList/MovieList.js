@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import Movie from "./movie";
-import { greekFromEnglish } from "../utils";
+import Movie from "../movie/Movie";
+import { greekFromEnglish } from "../../utils";
 
 export default class MovieList extends Component {
   render() {
@@ -31,5 +31,3 @@ export default class MovieList extends Component {
     });
   }
 }
-
-// export default MovieList;

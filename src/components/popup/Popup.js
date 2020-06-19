@@ -3,9 +3,9 @@ import Modal from "react-bootstrap/Modal";
 import Rating from "material-ui-rating";
 import ReactPlayer from "react-player";
 import axios from "axios";
-import { greekFromEnglish, API_ENDPOINTS } from "../utils";
+import { greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { isIOS } from "react-device-detect";
-import "../css/Popup.css";
+import "../../css/Popup.css";
 
 class Popup extends Component {
   constructor(props) {

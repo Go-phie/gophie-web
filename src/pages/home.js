@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import Tour from "reactour";
 import { Route } from "react-router-dom";
 import { RetryIcon } from "../components/icons";
-import MovieList from "../components/MovieList";
+import MovieList from "../components/movieList/MovieList";
 import SkeletonLoader from "../components/Loader/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
@@ -11,8 +11,8 @@ import { v4 as uuidv4 } from "uuid";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../css/theme";
 import { GlobalStyles } from "../css/global";
-import ScrollButton from "../components/ScrollToTop";
-import Popup from "../components/Popup";
+import ScrollButton from "../components/scrollToTop/ScrollToTop";
+import Popup from "../components/popup/Popup";
 
 import {
   tourSteps,
@@ -22,11 +22,11 @@ import {
   greekFromEnglish,
   API_ENDPOINTS,
 } from "../utils";
-import NavBar from "../components/Navbar";
-import EngineOptions from "../components/EnginOptions";
-import TrendingCarousel from "../components/TrendingCarousel";
+import NavBar from "../components/navbar/Navbar";
+import EngineOptions from "../components/enginOption/EnginOptions";
+import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
 import Footer from "../components/footer";
-import ShareModal from "../components/ShareModal";
+import ShareModal from "../components/shareModal/ShareModal";
 
 class Home extends Component {
   constructor(props) {

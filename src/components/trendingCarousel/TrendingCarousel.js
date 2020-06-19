@@ -3,15 +3,16 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
 import axios from "axios";
-import { API_ENDPOINTS, greekFromEnglish } from "../utils";
+import { API_ENDPOINTS, greekFromEnglish } from "../../utils";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
 import { isMobile } from "react-device-detect";
-import { NetworkIcon } from "./icons";
-import CarouselSkeletonLoader from "./Loader/CarouselSkeletonLoader";
+import { NetworkIcon } from "../icons";
+import CarouselSkeletonLoader from "../Loader/CarouselSkeletonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
+
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { greekFromEnglish } from "../utils";
+import { greekFromEnglish } from "../../utils";
 
 export default class EngineOptions extends Component {
   render() {
