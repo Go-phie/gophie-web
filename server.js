@@ -1,13 +1,30 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 const port = process.env.PORT || 3000;
 const path = require("path");
 const fs = require("fs");
 const axios = require("axios");
+const rfs = require("rotating-file-stream");
 const filePath = path.resolve(__dirname, "./build", "index.html");
 
+const accessLogStream = rfs.createStream("access.log", {
+  interval: "1d",
+  path: path.join(__dirname, "log"),
+});
+
+// use dev mode for console logging
+app.use(morgan("dev"));
+// use full mode for stored logs
+app.use(
+  morgan(
+    ':remote-addr - :remote-user [:date[clf]] ":method :url HTTP/:http-version"' +
+      ':status :res[content-length] :response-time ms ":referrer" ":user-agent"',
+    { stream: accessLogStream }
+  )
+);
+
 app.get("/", function (request, response) {
-  console.log("Home page Visited");
   let result = null;
   fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
@@ -28,7 +45,6 @@ app.get("/", function (request, response) {
 });
 
 app.get("/shared/:referralID", function (request, response) {
-  console.log("Shared page visited");
   const referralID = request.params.referralID;
   let result = null;
   fs.readFile(filePath, "utf8", function (err, data) {
@@ -36,9 +52,7 @@ app.get("/shared/:referralID", function (request, response) {
       return console.log(err);
     }
     axios
-      .post(
-        `ocena.gophie.cam/referral/id/?referral_id=${referralID}`
-      )
+      .post(`ocena.gophie.cam/referral/id/?referral_id=${referralID}`)
       .then(function (json) {
         let movie_name = json.data.name;
         let description = json.data.description;
@@ -63,7 +77,6 @@ app.get("/shared/:referralID", function (request, response) {
 });
 
 app.get("/terms", function (request, response) {
-  console.log("Terms and condition page Visited");
   let result = null;
   fs.readFile(filePath, "utf8", function (err, data) {
     if (err) {
@@ -82,7 +95,6 @@ app.get("/terms", function (request, response) {
 
 app.get("/:engine", function (request, response) {
   const engine = request.params.engine;
-  console.log(`${engine} page Visited`);
   let result,
     description = null;
 

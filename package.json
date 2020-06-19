@@ -14,6 +14,7 @@
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "material-ui-rating": "^4.0.0-beta.2",
+    "morgan": "^1.10.0",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0",
     "react-device-detect": "^1.12.1",
@@ -28,6 +29,7 @@
     "react-spring-3d-carousel": "^1.2.0",
     "react-toggle": "^4.1.1",
     "reactour": "^1.17.0",
+    "rotating-file-stream": "^2.1.1",
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.0.1",
     "uuid": "^7.0.3"
