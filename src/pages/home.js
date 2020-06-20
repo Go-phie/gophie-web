@@ -361,7 +361,7 @@ class Home extends Component {
         url:
           window.location.hostname === "localhost"
             ? `localhost:${window.location.port}/shared/${movie.referralID}`
-            : `https://gophie-frontend.herokuapp.com/shared/${movie.referralID}`,
+            : `https://gophie.cam/shared/${movie.referralID}`,
       };
 
       navigator
