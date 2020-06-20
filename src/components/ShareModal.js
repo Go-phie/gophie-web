@@ -25,7 +25,7 @@ class ShareModal extends Component {
     if (window.location.hostname === "localhost") {
       url = `localhost:${window.location.port}/shared/${movie.referralID}`;
     } else {
-      url = `https://gophie-frontend.herokuapp.com/shared/${movie.referralID}`;
+      url = `https://gophie.cam/shared/${movie.referralID}`;
     }
 
     return (
