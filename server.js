@@ -52,7 +52,7 @@ app.get("/shared/:referralID", function (request, response) {
       return console.log(err);
     }
     axios
-      .post(`http://ocena.gophie.cam/referral/id/?referral_id=${referralID}`)
+      .post(`//ocena.gophie.cam/referral/id/?referral_id=${referralID}`)
       .then(function (json) {
         let movie_name = json.data.name;
         let description = json.data.description;
