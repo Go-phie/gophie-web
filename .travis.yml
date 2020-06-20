@@ -18,12 +18,12 @@ install:
   - yarn install
 
 script:
+  - yarn test
   - yarn build
-  - cp CNAME README.md build/
 
 deploy:
-  provider: heroku
-  api_key: $HEROKU_PRODUCTION_API_KEY
-  app: $HEROKU_APP_NAME
+  # Deploy to Server
+  provider: script
+  script: openssl aes-256-cbc -K $encrypted_2c5959d3eced_key -iv $encrypted_2c5959d3eced_iv -in scripts/alias.pem.enc -out alias.pem -d && chmod 400 alias.pem && ssh -oStrictHostKeyChecking=no -i alias.pem $SERVER_URL "./deploy.sh"
   on:
     tags: true
