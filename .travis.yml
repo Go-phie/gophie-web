@@ -18,17 +18,12 @@ install:
   - yarn install
 
 script:
+  - yarn test
   - yarn build
-  - cp CNAME README.md build/
 
 deploy:
-  provider: pages
-  local_dir: build
-  target_branch: master
-  repo: "go-phie/go-phie.github.io"
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
+  # Deploy to Server
+  provider: script
+  script: openssl aes-256-cbc -K $encrypted_2c5959d3eced_key -iv $encrypted_2c5959d3eced_iv -in scripts/alias.pem.enc -out alias.pem -d && chmod 400 alias.pem && ssh -oStrictHostKeyChecking=no -i alias.pem $SERVER_URL "./deploy.sh"
   on:
     tags: true
-    repo: Go-phie/gophie-web

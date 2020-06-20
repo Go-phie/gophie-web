@@ -45,6 +45,11 @@ body {
   z-index: 999;
 }
 
+.share-card {
+  background-color: ${({ theme }) => theme.body};
+  color: ${({ theme }) => theme.text};
+}
+
 .header-left p {
   transition: .5s ease-in-out;
 }
@@ -231,6 +236,19 @@ body {
   transition: .3s;
 }
 
+.gophie-modal__body--header {
+    border-bottom: 1px solid ${({ theme }) => theme.sharedBorderColor} !important;
+}
+
+.movie-shared-detail .MuiSvgIcon-root {
+  fill: ${({ theme }) => theme.text} !important;
+}
+
+.shared-detail-content {
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.movieBackground};   
+}
+
 .dialog-theme {
   .modal-content {
     color: ${({ theme }) => theme.text};
@@ -290,6 +308,13 @@ body {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};
   padding: 1em .5em;
+}
+
+.trending-loader-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  position: absolute;
+  top: 0;
 }
 
 .trending_name {
@@ -431,6 +456,10 @@ div.movie {
     padding: .65em;
     cursor: pointer;
     box-shadow: 0px 0px 7px -2px #121315;
+  }
+
+  .share-btn {
+    right: 3.2em;
   }
   
   .download-btn:active {
@@ -771,6 +800,10 @@ button {
     right: -9em;
   }
 
+  .share-btn {
+    right: -6.7em;
+  }
+
   .movie__about {
     border-top-right-radius: 0.39em;
     border-bottom-start-radius: initial;
@@ -863,6 +896,10 @@ button {
   .download-btn {
     bottom: .1em;
     right: -7em;
+  }
+
+  .share-btn {
+    right: -5em;
   }
 }
 

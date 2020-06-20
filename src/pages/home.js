@@ -2,17 +2,17 @@ import axios from "axios";
 import React, { Component } from "react";
 import Tour from "reactour";
 import { Route } from "react-router-dom";
-import { RetryIcon } from "./components/icons";
-import MovieList from "./components/MovieList";
-import SkeletonLoader from "./components/Loader/SkeletonLoader";
+import { RetryIcon } from "../components/icons";
+import MovieList from "../components/MovieList";
+import SkeletonLoader from "../components/Loader/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
 // style stuff
 import { ThemeProvider } from "styled-components";
-import { lightTheme, darkTheme } from "./css/theme";
-import { GlobalStyles } from "./css/global";
-import ScrollButton from "./components/ScrollToTop";
-import Popup from "./components/Popup";
+import { lightTheme, darkTheme } from "../css/theme";
+import { GlobalStyles } from "../css/global";
+import ScrollButton from "../components/ScrollToTop";
+import Popup from "../components/Popup";
 
 import {
   tourSteps,
@@ -21,11 +21,12 @@ import {
   nameToEngineMap,
   greekFromEnglish,
   API_ENDPOINTS,
-} from "./utils";
-import NavBar from "./components/Navbar";
-import EngineOptions from "./components/EnginOptions";
-import TrendingCarousel from "./components/TrendingCarousel";
-import Footer from "./components/footer";
+} from "../utils";
+import NavBar from "../components/Navbar";
+import EngineOptions from "../components/EnginOptions";
+import TrendingCarousel from "../components/TrendingCarousel";
+import Footer from "../components/footer";
+import ShareModal from "../components/ShareModal";
 
 class Home extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Home extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: API_ENDPOINTS.gophieMain,
-      server: nameToEngineMap.get("Delta"),
+      server: nameToEngineMap.get("Server1"),
       mode: "movies",
       movies: [],
       listIndex: 1,
@@ -47,6 +48,8 @@ class Home extends Component {
       showTour: true,
       ip_address: "",
       isSearch: false,
+      showShareModal: false,
+      movieToBeShared: {},
     };
   }
 
@@ -153,8 +156,8 @@ class Home extends Component {
         if (movies !== null) {
           let newmovies = movies.map((element) => {
             element.Index = uuidv4();
-            if (element.Title.endsWith("Tags")){
-              element.Title = element.Title.substr(0, element.Title.length-4)
+            if (element.Title.endsWith("Tags")) {
+              element.Title = element.Title.substr(0, element.Title.length - 4);
             }
             return element;
           });
@@ -190,17 +193,20 @@ class Home extends Component {
         let newIndex = this.state.listIndex;
         let newmovies = movies.map((element) => {
           element.Index = uuidv4();
-          if (element.Title.endsWith("Tags")){
-            element.Title = element.Title.substr(0, element.Title.length-4)
+          if (element.Title.endsWith("Tags")) {
+            element.Title = element.Title.substr(0, element.Title.length - 4);
           }
           return element;
         });
         newIndex += 1;
-        this.setState({
-          isLoading: false,
-          movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-          listIndex: newIndex,
-        });
+        this.setState(
+          {
+            isLoading: false,
+            movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+            listIndex: newIndex,
+          },
+          console.log(this.state.movies)
+        );
       })
       .catch((err) => {
         console.log(err);
@@ -221,7 +227,7 @@ class Home extends Component {
 
   getIp = () => {
     axios
-      .get("https://api.ipify.org?format=json")
+      .get(API_ENDPOINTS.ip)
       .then((res) => {
         this.setState({
           ip_address: res.data.ip,
@@ -347,6 +353,29 @@ class Home extends Component {
     this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
   }
 
+  shareMovie(movie) {
+    if (navigator.share) {
+      const shareData = {
+        title: movie.Title,
+        text: movie.Title + "...." + movie.Description,
+        url:
+          window.location.hostname === "localhost"
+            ? `localhost:${window.location.port}/shared/${movie.referralID}`
+            : `https://gophie.cam/shared/${movie.referralID}`,
+      };
+
+      navigator
+        .share(shareData)
+        .then(() => console.log("share successful"))
+        .catch((err) => console.log(err));
+    } else {
+      this.setState(
+        { movieToBeShared: movie },
+        this.setState({ showShareModal: true })
+      );
+    }
+  }
+
   render() {
     const { theme } = this.state;
     const selectedTheme = theme === "light" ? lightTheme : darkTheme;
@@ -391,10 +420,11 @@ class Home extends Component {
                     render={() => {
                       return (
                         <MovieList
-                          movies={this.state.movies}
                           ip_address={this.state.ip_address}
+                          movies={this.state.movies}
                           history={this.props.history}
                           setDescription={this.setDescription.bind(this)}
+                          shareMovie={this.shareMovie.bind(this)}
                         />
                       );
                     }}
@@ -428,18 +458,28 @@ class Home extends Component {
                   )}
                 </div>
               </main>
-            
-            <Footer />
+
+              <Footer />
             </div>
           </>
 
           {/* ScrollButton Take you back to the starting of the page */}
           <ScrollButton scrollStepInPx="80" delayInMs="16.66" />
+
+          {this.state.showShareModal && (
+            <ShareModal
+              display={this.state.showShareModal}
+              onHide={() => this.setState({ showShareModal: false })}
+              movie={this.state.movieToBeShared}
+            />
+          )}
+
           {this.state.show && (
             <Popup
               show={this.state.show}
               ip_address={this.state.ip_address}
               movie={this.state.currentmovie}
+              shareMovie={this.shareMovie.bind(this)}
               onHide={this.hideDescription.bind(this)}
               server={this.state.server}
             />

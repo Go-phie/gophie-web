@@ -11,47 +11,47 @@ export default class EngineOptions extends Component {
         <div className="engine-option__buton-container">
           <button
             className={
-              greekFromEnglish(server) === "Delta"
+              greekFromEnglish(server) === "Server1"
                 ? "shadow-none selected"
                 : "shadow-none"
             }
             onClick={handleServerChange}
-            value="Delta"
+            value="Server1"
           >
-            Delta
+            Server1
           </button>
           <button
             className={
-              greekFromEnglish(server) === "Alpha"
+              greekFromEnglish(server) === "Server2"
                 ? "shadow-none selected"
                 : "shadow-none"
             }
             onClick={handleServerChange}
-            value="Alpha"
+            value="Server2"
           >
-            Alpha
+            Server2
           </button>
           <button
             className={
-              greekFromEnglish(server) === "Iota"
+              greekFromEnglish(server) === "Server3"
                 ? "shadow-none selected"
                 : "shadow-none"
             }
             onClick={handleServerChange}
-            value="Iota"
+            value="Server3"
           >
-            Iota <small style={{ display: 'contents' }}>(HD)</small>
+            Server3 <small style={{ display: 'contents' }}>(HD)</small>
           </button>
           <button
             className={
-              greekFromEnglish(server) === "Zeta"
+              greekFromEnglish(server) === "Server4"
                 ? "shadow-none selected"
                 : "shadow-none"
             }
             onClick={handleServerChange}
-            value="Zeta"
+            value="Server4"
           >
-            Zeta <small style={{ display: 'contents' }}>(Series)</small>
+            Server4 <small style={{ display: 'contents' }}>(Series)</small>
           </button>
         </div>
       </div>
