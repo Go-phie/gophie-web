@@ -117,8 +117,8 @@ export function greekFromEnglish(eng) {
 }
 
 export const API_ENDPOINTS = {
-  gophieMain: "api.gophie.cam/",
-  ocena: "ocena.gophie.cam",
+  gophieMain: "http://api.gophie.cam/",
+  ocena: "http://ocena.gophie.cam",
   ip: "https://api.ipify.org?format=json",
   // ocena: "http://127.0.0.1:8000"
 };
