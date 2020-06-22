@@ -22,17 +22,6 @@ export default class EngineOptions extends Component {
           </button>
           <button
             className={
-              greekFromEnglish(server) === "Server2"
-                ? "shadow-none selected"
-                : "shadow-none"
-            }
-            onClick={handleServerChange}
-            value="Server2"
-          >
-            Server2
-          </button>
-          <button
-            className={
               greekFromEnglish(server) === "Server3"
                 ? "shadow-none selected"
                 : "shadow-none"
@@ -40,7 +29,7 @@ export default class EngineOptions extends Component {
             onClick={handleServerChange}
             value="Server3"
           >
-            Server3 <small style={{ display: 'contents' }}>(HD)</small>
+            Server3 <small style={{ display: "contents" }}>(HD)</small>
           </button>
           <button
             className={
@@ -51,7 +40,7 @@ export default class EngineOptions extends Component {
             onClick={handleServerChange}
             value="Server4"
           >
-            Server4 <small style={{ display: 'contents' }}>(Series)</small>
+            Server4 <small style={{ display: "contents" }}>(Series)</small>
           </button>
         </div>
       </div>
