@@ -1,5 +1,4 @@
-/* eslint-disable react/display-name */
-import React from "react";
+/* eslint-disable react/display-name */ import React from "react";
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export function isImageURL(url) {
@@ -99,11 +98,12 @@ export const tourSteps = [
 ];
 
 let nm = new Map();
-nm.set("Alpha", "mycoolmoviez");
-nm.set("Delta", "fzmovies");
+nm.set("Server2", "coolmoviez");
+nm.set("Styx", "mycoolmoviez");
+nm.set("Server1", "fzmovies");
 nm.set("Kronos", "netnaija");
-nm.set("Iota", "besthdmovies");
-nm.set("Zeta", "tvseries");
+nm.set("Server3", "besthdmovies");
+nm.set("Server4", "tvseries");
 
 export const nameToEngineMap = nm;
 
@@ -119,6 +119,7 @@ export function greekFromEnglish(eng) {
 export const API_ENDPOINTS = {
   gophieMain: "https://deploy-gophie.herokuapp.com/",
   ocena: "https://gophie-ocena.herokuapp.com",
+  ip: "https://api.ipify.org?format=json",
   // ocena: "http://127.0.0.1:8000"
 };
 

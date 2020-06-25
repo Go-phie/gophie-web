@@ -7,8 +7,7 @@ import { API_ENDPOINTS, greekFromEnglish } from "../../utils";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
-import { isMobile } from "react-device-detect";
-import { NetworkIcon } from "../icons";
+import { NetworkIcon } from "../../utils/icons";
 import CarouselSkeletonLoader from "../Loader/CarouselSkeletonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
@@ -74,14 +73,15 @@ class TrendingCarousel extends Component {
   }
 
   addDownload = (trendingMovie) => {
+    console.log(trendingMovie, this.props.ip_address);
     axios
       .post(this.state.trending_api + "/download/", {
         ip_address: this.props.ip_address,
         movie_name: trendingMovie.Title,
         engine: trendingMovie.Source,
-        description: trendingMovie.Description,
+        description: trendingMovie.Description ? trendingMovie : "",
         size: trendingMovie.Size,
-        year: trendingMovie.Year,
+        year: trendingMovie.Year ? trendingMovie.Year : "",
         download_link: trendingMovie.DownloadLink,
         cover_photo_link: trendingMovie.CoverPhotoLink,
       })
@@ -103,30 +103,6 @@ class TrendingCarousel extends Component {
           autoPlay={this.props.deviceType !== "mobile" ? true : false}
           transitionDuration={800}
           containerClass="carousel-container"
-          beforeChange={(previousSlide, { currentSlide, onMove }) => {
-            let offset = 0;
-            if (isMobile) {
-              offset = 2;
-            } else {
-              offset = this.state.trending.length / 2;
-            }
-
-            if (
-              typeof this.state.trending[previousSlide - offset] !== "undefined"
-            ) {
-              this.setState({
-                currentmovie: this.state.trending[previousSlide - offset],
-              });
-            } else {
-              let index = (previousSlide % this.state.trending.length) - offset;
-              if (index < 0) {
-                index = this.state.trending.length + index;
-              }
-              this.setState({
-                currentmovie: this.state.trending[index],
-              });
-            }
-          }}
         >
           {this.state.trending.map((trendingMovie) => {
             if (trendingMovie.name.endsWith("Tags")) {
@@ -151,7 +127,8 @@ class TrendingCarousel extends Component {
                 key={trendingMovie.id}
                 className="trending-carousal-image__container"
               >
-                <Image
+                {this.props.history ? (
+                                  <Image
                   className="img-fluid trending-carousal-image"
                   key={trendingMovie.id}
                   onClick={() => {
@@ -182,6 +159,24 @@ class TrendingCarousel extends Component {
                       : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
                   }
                 />
+                ): (
+                <Image
+                  className="img-fluid trending-carousal-image"
+                  key={trendingMovie.id}
+                  onMouseOver={() => {
+                    this.setState({
+                      currentmovie: trendingMovie,
+                    });
+                  }}
+                  alt={trendingMovie.name}
+                  src={
+                    trendingMovie.cover_photo_link
+                      ? trendingMovie.cover_photo_link
+                      : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+                  }
+                />
+                )}
+
 
                 <div className="carousal-image-detail">
                   <div className="carousal-image-detail--main">
@@ -206,13 +201,7 @@ class TrendingCarousel extends Component {
         </Carousel>
         {!this.state.isLoading ? null : (
           <div
-            style={{
-              overflowX: "auto",
-              scrollSnapType: "x mandatory",
-              position: "absolute",
-              top: "0",
-            }}
-            className="w-100 d-flex"
+            className="w-100 trending-loader-container d-flex"
           >
             <CarouselSkeletonLoader />
             <CarouselSkeletonLoader />
@@ -232,11 +221,6 @@ class TrendingCarousel extends Component {
             </p>
           </div>
         )}
-
-        {/* {!this.state.currentmovie.name ? null: (
-          <div className="trending_name">{this.state.currentmovie.name}</div>
-          )
-        } */}
       </div>
     );
   }

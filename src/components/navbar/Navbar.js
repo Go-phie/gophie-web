@@ -8,8 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import {
   GophieLogo, TvIcon,
-} from "../icons"
-import "../../css/navbar.css";
+} from "../../utils/icons"
+import "./navbar.css";
 
 class NavBar extends Component {
   render() {

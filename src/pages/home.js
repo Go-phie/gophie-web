@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { Component } from "react";
 import Tour from "reactour";
 import { Route } from "react-router-dom";
-import { RetryIcon } from "../components/icons";
+import { RetryIcon } from "../utils/icons";
 import MovieList from "../components/movieList/MovieList";
 import SkeletonLoader from "../components/Loader/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
@@ -25,7 +25,7 @@ import {
 import NavBar from "../components/navbar/Navbar";
 import EngineOptions from "../components/enginOption/EnginOptions";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
-import Footer from "../components/footer";
+import Footer from "../components/footer/Footer";
 import ShareModal from "../components/shareModal/ShareModal";
 
 class Home extends Component {
@@ -34,7 +34,7 @@ class Home extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: API_ENDPOINTS.gophieMain,
-      server: nameToEngineMap.get("Delta"),
+      server: nameToEngineMap.get("Server1"),
       mode: "movies",
       movies: [],
       listIndex: 1,
@@ -227,7 +227,7 @@ class Home extends Component {
 
   getIp = () => {
     axios
-      .get("https://api.ipify.org?format=json")
+      .get(API_ENDPOINTS.ip)
       .then((res) => {
         this.setState({
           ip_address: res.data.ip,

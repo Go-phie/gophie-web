@@ -236,6 +236,19 @@ body {
   transition: .3s;
 }
 
+.gophie-modal__body--header {
+    border-bottom: 1px solid ${({ theme }) => theme.sharedBorderColor} !important;
+}
+
+.movie-shared-detail .MuiSvgIcon-root {
+  fill: ${({ theme }) => theme.text} !important;
+}
+
+.shared-detail-content {
+  color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.movieBackground};   
+}
+
 .dialog-theme {
   .modal-content {
     color: ${({ theme }) => theme.text};
@@ -295,6 +308,13 @@ body {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};
   padding: 1em .5em;
+}
+
+.trending-loader-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  position: absolute;
+  top: 0;
 }
 
 .trending_name {

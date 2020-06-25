@@ -5,7 +5,7 @@ import ReactPlayer from "react-player";
 import axios from "axios";
 import { greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { isIOS } from "react-device-detect";
-import "./Popup.css";
+import "../../css/Popup.css";
 
 class Popup extends Component {
   constructor(props) {
@@ -205,10 +205,10 @@ class Popup extends Component {
                     height="90%"
                   />
                 </div>
-                {greekFromEnglish(this.props.movie.Source) === "Alpha" ? (
+                {greekFromEnglish(this.props.movie.Source) === "Server2" ? (
                   <div className="player-error-alert">
                     <p className="player-error-message">
-                      Streaming from alpha is problematic, suggest{" "}
+                      Streaming from Server2 is problematic, suggest{" "}
                       <a
                         className="gophie-link"
                         href={this.props.movie.DownloadLink}

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
-import "./footer.css";
+import "../../css/footer.css";
 import { Link } from "react-router-dom";
 
 const Footer = () => (
@@ -21,16 +21,16 @@ const Footer = () => (
           <h6>Discover Movies</h6>
           <ul className="footer-links">
             <li>
-              <Link to="/Alpha">Alpha</Link>
+              <Link to="/Server1">Server1</Link>
             </li>
             <li>
-              <Link to="/Delta">Delta</Link>
+              <Link to="/Server2">Server2</Link>
             </li>
             <li>
-              <Link to="/Iota">Iota</Link>
+              <Link to="/Server3">Server3</Link>
             </li>
             <li>
-              <Link to="/Zeta">Zeta</Link>
+              <Link to="/Server4">Server4</Link>
             </li>
           </ul>
         </div>
@@ -39,7 +39,7 @@ const Footer = () => (
           <h6>Project</h6>
           <ul className="footer-links">
             <li>
-              <a href="#">About Us</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <a href="#">Contact Us</a>

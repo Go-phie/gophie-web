@@ -11,7 +11,6 @@ import {
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { Link } from "react-router-dom";
 import Rating from "material-ui-rating";
-import "../../css/Popup.css";
 
 export default class Movie extends Component {
   constructor(props) {

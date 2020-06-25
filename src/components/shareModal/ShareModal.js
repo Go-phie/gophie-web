@@ -21,6 +21,7 @@ class ShareModal extends Component {
   render() {
     const { movie } = this.props;
     let url = "";
+    console.log(movie.referralID);
     if (window.location.hostname === "localhost") {
       url = `localhost:${window.location.port}/shared/${movie.referralID}`;
     } else {
