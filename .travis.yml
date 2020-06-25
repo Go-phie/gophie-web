@@ -19,7 +19,6 @@ install:
 
 script:
   - yarn test
-  - yarn build
 
 deploy:
   # Deploy to Server
