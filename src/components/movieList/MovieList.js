@@ -21,6 +21,7 @@ export default class MovieList extends Component {
             data={movie}
             id={movie.Title}
             history={this.props.history}
+            server={this.props.server}
             setDescriptionModal={this.props.setDescription}
             shareMovie={this.props.shareMovie}
             ip_address={this.props.ip_address}
