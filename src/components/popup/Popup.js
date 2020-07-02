@@ -147,8 +147,16 @@ class Popup extends Component {
   render() {
     const {
       server,
+      movie
     } = this.props;
-
+    const episodeLink = []
+    const SDownloadLink = movie.SDownloadLink;
+    for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
+      const downloadTxtStrip=downloadTxt.replace("[AnimeOut]","").replace("[Erai-raws]", "");
+      // downloadTxtStrip=downloadTxt.replace("[Erai-raws]","");
+      episodeLink.push(<a className="episode-link " href={downloadLink}>{downloadTxtStrip}</a>);
+    }
+    console.log(episodeLink)
     return (
       <Modal
         show={this.props.show}
@@ -304,16 +312,16 @@ class Popup extends Component {
                   {
                     greekFromEnglish(server) !== "Server2" ?
                       null :
-                      (<div>Just testing if its weak</div>)
+                      (<div>
+                        <div className="d-flex justify-content-between align-items-center w-100 mt-3">
+                          <div>Episodes</div>
+                          <FontAwesomeIcon icon={faArrowDown} />
+                        </div>
+                        <div className="scollable-container d-flex flex-column">
+                          {episodeLink}
+                        </div>
+                      </div>)
                   }
-                </div>
-
-                <div>
-                  <div>
-                    <div>Episode</div>
-                    <FontAwesomeIcon icon={faArrowDown} />
-                  </div>
-                  <div></div>
                 </div>
               </section>
             )}
