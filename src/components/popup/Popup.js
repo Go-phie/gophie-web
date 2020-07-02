@@ -5,6 +5,10 @@ import ReactPlayer from "react-player";
 import axios from "axios";
 import { greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { isIOS } from "react-device-detect";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowDown
+} from "@fortawesome/free-solid-svg-icons";
 import "./Popup.css";
 
 class Popup extends Component {
@@ -141,6 +145,10 @@ class Popup extends Component {
   }
 
   render() {
+    const {
+      server,
+    } = this.props;
+
     return (
       <Modal
         show={this.props.show}
@@ -173,14 +181,21 @@ class Popup extends Component {
                 <span></span>{" "}
               </a>
             ) : (
-              <a
-                id="play-video"
-                className="video-play-button"
-                href="/"
-                onClick={this.handlePlayRequest.bind(this)}
-              >
-                <span> </span>{" "}
-              </a>
+              <div>
+                  {
+                    greekFromEnglish(server) === "Server2" ?
+                      null :
+                      (<a id="play-video"
+                        className="video-play-button"
+                        href="/"
+                        onClick={
+                          this.handlePlayRequest.bind(this)
+                        } >
+                      <span> </span>{" "}
+                    </a>)
+                  }
+              </div>
+
             )}
             {/* Video Stream Play Icon */}
           </section>
@@ -276,10 +291,29 @@ class Popup extends Component {
                   </div>
                 </div>
 
-                <div className="gophie-modal__body--description">
+                <div className="gophie-modal__body--description scollable-container">
                   {this.props.movie.Description === ""
                     ? "Seems like the description for this movie is missing"
                     : this.props.movie.Description}
+                </div>
+                <div>
+
+                <div>
+
+                </div>
+                  {
+                    greekFromEnglish(server) !== "Server2" ?
+                      null :
+                      (<div>Just testing if its weak</div>)
+                  }
+                </div>
+
+                <div>
+                  <div>
+                    <div>Episode</div>
+                    <FontAwesomeIcon icon={faArrowDown} />
+                  </div>
+                  <div></div>
                 </div>
               </section>
             )}
