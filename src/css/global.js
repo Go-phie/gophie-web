@@ -1047,4 +1047,11 @@ button {
   overflow-x: hidden;
   overflow-y: scroll;
 }
+
+.episode-link {
+  line-height: 1.3em;
+  font-size: .9em;
+  margin-bottom: .5em;
+  text-transform: lowercase;
+}
 `;
