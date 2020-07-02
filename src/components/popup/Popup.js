@@ -149,14 +149,13 @@ class Popup extends Component {
       server,
       movie
     } = this.props;
+
     const episodeLink = []
     const SDownloadLink = movie.SDownloadLink;
     for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
       const downloadTxtStrip=downloadTxt.replace("[AnimeOut]","").replace("[Erai-raws]", "");
-      // downloadTxtStrip=downloadTxt.replace("[Erai-raws]","");
       episodeLink.push(<a className="episode-link " href={downloadLink}>{downloadTxtStrip}</a>);
     }
-    console.log(episodeLink)
     return (
       <Modal
         show={this.props.show}
