@@ -6,7 +6,7 @@ import {
   FontAwesomeIcon
 } from "@fortawesome/react-fontawesome";
 import {
-  faDownload, faShareAlt, faSpinner
+  faDownload, faShareAlt, faSpinner, faPlus
 } from "@fortawesome/free-solid-svg-icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { Link } from "react-router-dom";
@@ -127,6 +127,7 @@ export default class Movie extends Component {
       Source,
       Index,
     } = this.props.data;
+    const { server } = this.props;
 
     var translateStyle;
     if (this.state.hover) {
@@ -185,16 +186,38 @@ export default class Movie extends Component {
               </div>
             </div>
           </div>
-          <a
-            className="download-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-            href={DownloadLink}
-            onClick={() => this.addDownload()}
-            data-tour="my-eight-step"
-          >
-            <FontAwesomeIcon icon={faDownload} />
-          </a>
+
+          {
+            greekFromEnglish(server) !== "Server2" ?
+              (<a
+                  className="download-btn"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={DownloadLink}
+                  onClick={() => this.addDownload()}
+                  data-tour="my-eight-step"
+                >
+                <FontAwesomeIcon icon={faDownload} />
+              </a>) :
+              (<button
+                  className="download-btn"
+                  onClick={() => {
+                    this.props.history.push(
+                      `/${greekFromEnglish(this.props.data.Source)}/${Index}`
+                    );
+                    this.props.setDescriptionModal(this.props.data);
+                  }}
+                  onKeyDown={() => {
+                    this.props.history.push(
+                      `/${greekFromEnglish(this.props.data.Source)}/${Index}`
+                    );
+                    this.props.setDescriptionModal(this.props.data);
+                  }}
+                  data-tour="my-eight-step"
+                >
+                <FontAwesomeIcon icon={faPlus} />
+              </button>)
+          }
           <button
             className="download-btn share-btn"
             onClick={() => this.shareMovie()}
