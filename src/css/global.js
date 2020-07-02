@@ -1039,4 +1039,12 @@ button {
 .site-footer h6 {
   color: ${({ theme }) => theme.text};
 }
+
+.scollable-container {
+  background-color: ${({ theme }) => theme.movieBackground};
+  height: 10em;
+  padding: .5em;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
 `;
