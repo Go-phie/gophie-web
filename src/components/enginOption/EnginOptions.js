@@ -20,6 +20,18 @@ export default class EngineOptions extends Component {
           >
             Server1
           </button>
+
+          <button
+              className={
+                greekFromEnglish(server) === "Server2"
+                  ? "shadow-none selected"
+                  : "shadow-none"
+              }
+              onClick={handleServerChange}
+              value="Server2"
+            >
+            Server2 <small style={{ display: "contents" }}>(Anime)</small>
+          </button>
           <button
             className={
               greekFromEnglish(server) === "Server3"

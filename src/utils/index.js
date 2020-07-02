@@ -98,7 +98,7 @@ export const tourSteps = [
 ];
 
 let nm = new Map();
-nm.set("Server2", "coolmoviez");
+nm.set("Server2", "animeout");
 nm.set("Styx", "mycoolmoviez");
 nm.set("Server1", "fzmovies");
 nm.set("Kronos", "netnaija");
