@@ -192,6 +192,9 @@ body {
     display: flex;
     justify-content: space-between !important;
     width: 100%;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scrollbar-width: none;
   }
 
   .engine-option__buton-container button {
