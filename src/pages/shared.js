@@ -10,7 +10,7 @@ import axios from "axios";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
 import { GlobalStyles } from "../css/global";
 import "../css/shared.css";
-import Footer from "../components/footer/Footer";
+import Footer from "../components/footer/footer";
 import NavBar from "../components/navbar/Navbar";
 
 class Shared extends Component {

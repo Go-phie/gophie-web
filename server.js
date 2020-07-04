@@ -8,6 +8,7 @@ const axios = require("axios");
 const rfs = require("rotating-file-stream");
 const filePath = path.resolve(__dirname, "./build", "index.html");
 
+// Log into separate files every day
 const accessLogStream = rfs.createStream("access.log", {
   interval: "1d",
   path: path.join(__dirname, "log"),
@@ -72,7 +73,7 @@ app.get("/shared/:referralID", function (request, response) {
         response.send(result);
       })
       .catch(function (error) {
-        console.log("Could not retrieve movie details");
+        console.log("Could not retrieve movie details", error);
         response.redirect("/");
       });
   });
@@ -101,6 +102,9 @@ app.get("/:engine", function (request, response) {
     description = null;
 
   switch (engine) {
+    case "Server2":
+      description = "Download your favourite anime for free with a simple click";
+      break;
     case "Server4":
       description =
         "Download TV series for free with a simple click of the button";

@@ -25,7 +25,7 @@ import {
 import NavBar from "../components/navbar/Navbar";
 import EngineOptions from "../components/enginOption/EnginOptions";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
-import Footer from "../components/footer/Footer";
+import Footer from "../components/footer/footer";
 import ShareModal from "../components/shareModal/ShareModal";
 
 class Home extends Component {
