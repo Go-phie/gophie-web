@@ -1049,6 +1049,11 @@ button {
   padding: .5em;
   overflow-x: hidden;
   overflow-y: scroll;
+  overflow-wrap: anywhere;
+}
+
+.episode-link::first-letter {
+  text-transform:  capitalize;
 }
 
 .episode-link {
