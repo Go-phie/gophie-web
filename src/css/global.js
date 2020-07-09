@@ -1052,6 +1052,10 @@ button {
   overflow-wrap: anywhere;
 }
 
+.episode-link::first-letter {
+  text-transform:  capitalize;
+}
+
 .episode-link {
   line-height: 1.3em;
   font-size: .9em;
