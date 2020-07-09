@@ -1049,6 +1049,7 @@ button {
   padding: .5em;
   overflow-x: hidden;
   overflow-y: scroll;
+  overflow-wrap: anywhere;
 }
 
 .episode-link {
