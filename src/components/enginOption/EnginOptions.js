@@ -54,6 +54,17 @@ export default class EngineOptions extends Component {
           >
             Server4 <small style={{ display: "contents" }}>(Series)</small>
           </button>
+          <button
+            className={
+              greekFromEnglish(server) === "Server5"
+                ? "shadow-none selected"
+                : "shadow-none"
+            }
+            onClick={handleServerChange}
+            value="Server5"
+          >
+            Server5 
+          </button>
         </div>
       </div>
     );
