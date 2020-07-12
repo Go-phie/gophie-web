@@ -34,6 +34,7 @@ class Home extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: API_ENDPOINTS.gophieMain,
+      servers: ["Server1", "Server2", "Server3", "Server4"].map((item) => {return nameToEngineMap.get(item)}),
       server: nameToEngineMap.get("Server1"),
       mode: "movies",
       movies: [],
@@ -141,42 +142,44 @@ class Home extends Component {
       searchError: "",
     });
 
-    axios
-      .get(
-        this.state.api +
-          "search?query=" +
-          encodeURI(query.trim()) +
-          "&engine=" +
-          this.state.server +
-          "&page=" +
-          this.state.listIndex
-      )
-      .then((res) => {
-        const movies = res.data;
-        if (movies !== null) {
-          let newmovies = movies.map((element) => {
-            element.Index = uuidv4();
-            if (element.Title.endsWith("Tags")) {
-              element.Title = element.Title.substr(0, element.Title.length - 4);
-            }
-            return element;
-          });
+    for (var i=0; i<4; i++){
+      axios
+        .get(
+          this.state.api +
+            "search?query=" +
+            encodeURI(query.trim()) +
+            "&engine=" +
+            this.state.servers[i] +
+            "&page=" +
+            this.state.listIndex
+        )
+        .then((res) => {
+          const movies = res.data;
+          if (movies !== null) {
+            let newmovies = movies.map((element) => {
+              element.Index = uuidv4();
+              if (element.Title.endsWith("Tags")) {
+                element.Title = element.Title.substr(0, element.Title.length - 4);
+              }
+              return element;
+            });
+            this.setState({
+              movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+              isLoading: false,
+              listIndex: append ? this.state.listIndex + 1 : 1,
+            });
+          } else {
+            throw new Error("Search returned empty, try another engine perhaps");
+          }
+        })
+        .catch((err) => {
           this.setState({
-            movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-            isLoading: false,
-            listIndex: append ? this.state.listIndex + 1 : 1,
+            error: true,
+            searchError: err.message,
           });
-        } else {
-          throw new Error("Search returned empty, try another engine perhaps");
-        }
-      })
-      .catch((err) => {
-        this.setState({
-          error: true,
-          searchError: err.message,
         });
-      });
-  };
+    };
+  }
 
   performList = (append = true) => {
     this.setState({
