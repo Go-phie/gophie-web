@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { greekFromEnglish } from "../utils";
+import { greekFromEnglish } from "../../utils";
 
 export default class EngineOptions extends Component {
   render() {
@@ -11,47 +11,48 @@ export default class EngineOptions extends Component {
         <div className="engine-option__buton-container">
           <button
             className={
-              greekFromEnglish(server) === "Delta"
+              greekFromEnglish(server) === "Server1"
                 ? "shadow-none selected"
                 : "shadow-none"
             }
             onClick={handleServerChange}
-            value="Delta"
+            value="Server1"
           >
-            Delta
+            Server1
+          </button>
+
+          <button
+              className={
+                greekFromEnglish(server) === "Server2"
+                  ? "shadow-none selected"
+                  : "shadow-none"
+              }
+              onClick={handleServerChange}
+              value="Server2"
+            >
+            Server2 <small style={{ display: "contents" }}>(Anime)</small>
           </button>
           <button
             className={
-              greekFromEnglish(server) === "Alpha"
+              greekFromEnglish(server) === "Server3"
                 ? "shadow-none selected"
                 : "shadow-none"
             }
             onClick={handleServerChange}
-            value="Alpha"
+            value="Server3"
           >
-            Alpha
+            Server3 <small style={{ display: "contents" }}>(HD)</small>
           </button>
           <button
             className={
-              greekFromEnglish(server) === "Iota"
+              greekFromEnglish(server) === "Server4"
                 ? "shadow-none selected"
                 : "shadow-none"
             }
             onClick={handleServerChange}
-            value="Iota"
+            value="Server4"
           >
-            Iota <small style={{ display: 'contents' }}>(HD)</small>
-          </button>
-          <button
-            className={
-              greekFromEnglish(server) === "Zeta"
-                ? "shadow-none selected"
-                : "shadow-none"
-            }
-            onClick={handleServerChange}
-            value="Zeta"
-          >
-            Zeta <small style={{ display: 'contents' }}>(Series)</small>
+            Server4 <small style={{ display: "contents" }}>(Series)</small>
           </button>
         </div>
       </div>

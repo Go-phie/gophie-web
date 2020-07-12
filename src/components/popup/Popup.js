@@ -3,9 +3,13 @@ import Modal from "react-bootstrap/Modal";
 import Rating from "material-ui-rating";
 import ReactPlayer from "react-player";
 import axios from "axios";
-import { greekFromEnglish, API_ENDPOINTS } from "../utils";
+import { greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { isIOS } from "react-device-detect";
-import "../css/Popup.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowDown
+} from "@fortawesome/free-solid-svg-icons";
+import "./Popup.css";
 
 class Popup extends Component {
   constructor(props) {
@@ -141,6 +145,17 @@ class Popup extends Component {
   }
 
   render() {
+    const {
+      server,
+      movie
+    } = this.props;
+
+    const episodeLink = []
+    const SDownloadLink = movie.SDownloadLink;
+    for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
+      const downloadTxtStrip=downloadTxt.replace("[AnimeOut]","").replace("[Erai-raws]", "");
+      episodeLink.push(<a className="episode-link " href={downloadLink}>{downloadTxtStrip}</a>);
+    }
     return (
       <Modal
         show={this.props.show}
@@ -173,14 +188,21 @@ class Popup extends Component {
                 <span></span>{" "}
               </a>
             ) : (
-              <a
-                id="play-video"
-                className="video-play-button"
-                href="/"
-                onClick={this.handlePlayRequest.bind(this)}
-              >
-                <span> </span>{" "}
-              </a>
+              <div>
+                  {
+                    greekFromEnglish(server) === "Server2" ?
+                      null :
+                      (<a id="play-video"
+                        className="video-play-button"
+                        href="/"
+                        onClick={
+                          this.handlePlayRequest.bind(this)
+                        } >
+                      <span> </span>{" "}
+                    </a>)
+                  }
+              </div>
+
             )}
             {/* Video Stream Play Icon */}
           </section>
@@ -276,10 +298,29 @@ class Popup extends Component {
                   </div>
                 </div>
 
-                <div className="gophie-modal__body--description">
+                <div className="gophie-modal__body--description scollable-container">
                   {this.props.movie.Description === ""
                     ? "Seems like the description for this movie is missing"
                     : this.props.movie.Description}
+                </div>
+                <div>
+
+                <div>
+
+                </div>
+                  {
+                    greekFromEnglish(server) !== "Server2" ?
+                      null :
+                      (<div>
+                        <div className="d-flex justify-content-between align-items-center w-100 mt-3">
+                          <div>Episodes</div>
+                          <FontAwesomeIcon icon={faArrowDown} />
+                        </div>
+                        <div className="scollable-container d-flex flex-column">
+                          {episodeLink}
+                        </div>
+                      </div>)
+                  }
                 </div>
               </section>
             )}

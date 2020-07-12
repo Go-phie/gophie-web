@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
-import Movie from "./movie";
-import { greekFromEnglish } from "../utils";
+import Movie from "../movie/Movie";
+import { greekFromEnglish } from "../../utils";
 
 export default class MovieList extends Component {
   render() {
@@ -21,7 +21,9 @@ export default class MovieList extends Component {
             data={movie}
             id={movie.Title}
             history={this.props.history}
+            server={this.props.server}
             setDescriptionModal={this.props.setDescription}
+            shareMovie={this.props.shareMovie}
             ip_address={this.props.ip_address}
           />
           )
@@ -30,5 +32,3 @@ export default class MovieList extends Component {
     });
   }
 }
-
-// export default MovieList;
