@@ -3,6 +3,7 @@ import Home from "./pages/home";
 import React, { Component } from "react";
 import Terms from "./pages/terms";
 import Shared from "./pages/shared";
+// import Search from "./pages/search";
 
 class App extends Component {
   render() {
@@ -13,6 +14,7 @@ class App extends Component {
           <Route path="/terms" component={Terms} />
           <Route path="/(:engine)" component={Home} />
           <Route path="/" component={Home} />
+          <Route path="/:search_term" component={Home} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>

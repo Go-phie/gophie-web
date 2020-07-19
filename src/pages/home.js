@@ -27,6 +27,7 @@ import EngineOptions from "../components/enginOption/EnginOptions";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
 import Footer from "../components/footer/footer";
 import ShareModal from "../components/shareModal/ShareModal";
+import SearchList from "../components/movieList/searchList";
 
 class Home extends Component {
   constructor(props) {
@@ -38,6 +39,7 @@ class Home extends Component {
       server: nameToEngineMap.get("Server1"),
       mode: "movies",
       movies: [],
+      query: "",
       listIndex: 1,
       isLoading: false,
       show: false,
@@ -122,8 +124,11 @@ class Home extends Component {
           error: false,
           listIndex: 1,
           isSearch: true,
+          query: query,
         },
-        () => this.performSearch(query, true)
+        () => {
+          this.performSearch(query, true);
+        }
       );
     }
   }
@@ -141,15 +146,15 @@ class Home extends Component {
       error: false,
       searchError: "",
     });
-
-    for (var i=0; i<4; i++){
-      axios
+    
+    this.state.servers.map((server) => {
+        axios
         .get(
           this.state.api +
             "search?query=" +
             encodeURI(query.trim()) +
             "&engine=" +
-            this.state.servers[i] +
+            server +
             "&page=" +
             this.state.listIndex
         )
@@ -177,8 +182,11 @@ class Home extends Component {
             error: true,
             searchError: err.message,
           });
-        });
-    };
+        })
+        return (this.state.movies)
+    }
+  )
+
   }
 
   performList = (append = true) => {
@@ -410,15 +418,25 @@ class Home extends Component {
                 {!this.state.isSearch ? null : (
                   <div className="mt-1" style={{ display: "grid" }}></div>
                 )}
+
+                {/* {!this.state.isSearch ? (
+                <EngineOptions
+                  handleServerChange={this.handleServerChange.bind(this)}
+                  server={this.state.server}
+                />) : null} */}
+
                 <EngineOptions
                   handleServerChange={this.handleServerChange.bind(this)}
                   server={this.state.server}
                 />
+
               </header>
 
               <main>
                 <div className="movies" id="movie-div">
-                  <Route
+                  {!this.state.isSearch ? 
+                    (
+                    <Route
                     path={`/${greekFromEnglish(this.state.server)}`}
                     render={() => {
                       return (
@@ -433,6 +451,29 @@ class Home extends Component {
                       );
                     }}
                   />
+                  )
+                   :
+                  (
+                    <Route
+                      path={`${encodeURI(this.state.query)}`}
+                      render={() => {
+                        return (
+                          <SearchList
+                            ip_address={this.state.ip_address}
+                            movies={this.state.movies}
+                            history={this.props.history}
+                            servers={this.state.servers}
+                            query={this.state.query}
+                            setDescription={this.setDescription.bind(this)}
+                            shareMovie={this.shareMovie.bind(this)}
+                          />
+                        );
+                      }}
+                    />
+                    
+                  )
+                  }
+
                   {this.state.isLoading && !this.state.error && (
                     <div className="skeleton-movies">
                       <SkeletonLoader />

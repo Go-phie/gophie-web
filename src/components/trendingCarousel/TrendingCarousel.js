@@ -94,7 +94,6 @@ class TrendingCarousel extends Component {
     return (
       <div>
         <div className='carousel-upper'>
-          <h2 className='carousel-title'>Trending Movies</h2>
         </div>
         {/* <h2 className="trending-title">Trending Movies</h2> */}
         <Carousel
