@@ -18,7 +18,7 @@ export default class SearchList extends Component {
         filteredMovies.map((movie) => {
         return (
             <Route 
-            path={`/${query}`}
+            path={`/search/${query}`}
             key={movie.Index}
             render={() => {
             return (

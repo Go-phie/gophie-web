@@ -399,6 +399,7 @@ class Home extends Component {
               <header>
                 <NavBar
                   searchInput={this.searchInput}
+                  query={encodeURI(this.state.query)}
                   checkInputKey={this.checkKey.bind(this)}
                   handleSearch={this.handleSearchChange.bind(this)}
                   newSearch={this.newSearch.bind(this)}

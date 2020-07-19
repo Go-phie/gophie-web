@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -33,17 +34,19 @@ class NavBar extends Component {
               onKeyPress={this.props.checkInputKey}
               onChange={this.props.handleSearch}
             />
-            <button
-              onClick={this.props.newSearch}
-              className="search-btn"
-              data-tour="my-third-step"
-            >
-              <FontAwesomeIcon
-                className="form-control-feedback search-btn "
-                aria-hidden="true"
-                icon={faSearch}
-              />
-            </button>
+            <Link to={`/search${this.props.query}`} >
+              <button
+                onClick={this.props.newSearch}
+                className="search-btn"
+                data-tour="my-third-step"
+              >
+                <FontAwesomeIcon
+                  className="form-control-feedback search-btn "
+                  aria-hidden="true"
+                  icon={faSearch}
+                />
+              </button>
+            </Link>
           </div>
         </div>
 
