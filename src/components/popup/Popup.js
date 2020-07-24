@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowDown
 } from "@fortawesome/free-solid-svg-icons";
-import "./Popup.css";
 
 class Popup extends Component {
   constructor(props) {
@@ -21,12 +20,24 @@ class Popup extends Component {
       play: false,
       referral_id: "",
       error: false,
+      episodeLink: []
     };
   }
 
   componentDidMount() {
     this.getAverage();
     this.getRatings();
+
+    if (this.props.movie.Source === 'AnimeOut') {
+      const episodeLinkArray = []
+      const SDownloadLink = this.props.movie.SDownloadLink;
+      for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
+        const downloadTxtStrip=downloadTxt.replace("[AnimeOut]","").replace("[Erai-raws]", "");
+        episodeLinkArray.push(<a className="episode-link " href={downloadLink}>{downloadTxtStrip}</a>);
+      }
+
+      this.setState({episodeLink: [...episodeLinkArray]})
+    } 
   }
 
   shareMovie = () => {
@@ -147,15 +158,8 @@ class Popup extends Component {
   render() {
     const {
       server,
-      movie
     } = this.props;
 
-    const episodeLink = []
-    const SDownloadLink = movie.SDownloadLink;
-    for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
-      const downloadTxtStrip=downloadTxt.replace("[AnimeOut]","").replace("[Erai-raws]", "");
-      episodeLink.push(<a className="episode-link " href={downloadLink}>{downloadTxtStrip}</a>);
-    }
     return (
       <Modal
         show={this.props.show}
@@ -309,7 +313,7 @@ class Popup extends Component {
 
                 </div>
                   {
-                    greekFromEnglish(server) !== "Server2" ?
+                    this.props.movie.Source !== "AnimeOut" ?
                       null :
                       (<div>
                         <div className="d-flex justify-content-between align-items-center w-100 mt-3">
@@ -317,7 +321,7 @@ class Popup extends Component {
                           <FontAwesomeIcon icon={faArrowDown} />
                         </div>
                         <div className="scollable-container d-flex flex-column">
-                          {episodeLink}
+                          {this.state.episodeLink}
                         </div>
                       </div>)
                   }
