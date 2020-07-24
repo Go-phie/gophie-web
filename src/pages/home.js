@@ -35,12 +35,7 @@ class Home extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: API_ENDPOINTS.gophieMain,
-<<<<<<< HEAD
-      servers: ["Server1", "Server2", "Server3", "Server4"].map((item) => {return nameToEngineMap.get(item)}),
-      server: nameToEngineMap.get("Server1"),
-=======
       server: nameToEngineMap.get("Server5"),
->>>>>>> 956f23df9bacb7bf388bf6e2aa40ec7758abafff
       mode: "movies",
       movies: [],
       query: "",
