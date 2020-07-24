@@ -101,7 +101,7 @@ let nm = new Map();
 nm.set("Server2", "animeout");
 nm.set("Styx", "mycoolmoviez");
 nm.set("Server1", "fzmovies");
-nm.set("Kronos", "netnaija");
+nm.set("Server5", "netnaija");
 nm.set("Server3", "besthdmovies");
 nm.set("Server4", "tvseries");
 
