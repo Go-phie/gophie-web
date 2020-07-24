@@ -93,8 +93,8 @@ class TrendingCarousel extends Component {
   render() {
     return (
       <div>
-        <div className='carousel-upper'>
-        </div>
+        {/* <div className='carousel-upper'>
+        </div> */}
         {/* <h2 className="trending-title">Trending Movies</h2> */}
         <Carousel
           responsive={responsive}
