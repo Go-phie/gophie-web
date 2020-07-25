@@ -27,7 +27,6 @@ import EngineOptions from "../components/enginOption/EnginOptions";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
 import Footer from "../components/footer/footer";
 import ShareModal from "../components/shareModal/ShareModal";
-import SearchList from "../components/movieList/searchList";
 
 class Home extends Component {
   constructor(props) {
@@ -35,10 +34,9 @@ class Home extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: API_ENDPOINTS.gophieMain,
-      server: nameToEngineMap.get("Server5"),
+      server: nameToEngineMap.get("Server1"),
       mode: "movies",
       movies: [],
-      query: "",
       listIndex: 1,
       isLoading: false,
       show: false,
@@ -123,11 +121,8 @@ class Home extends Component {
           error: false,
           listIndex: 1,
           isSearch: true,
-          query: query,
         },
-        () => {
-          this.performSearch(query, true);
-        }
+        () => this.performSearch(query, true)
       );
     }
   }
@@ -145,48 +140,43 @@ class Home extends Component {
       error: false,
       searchError: "",
     });
-    
-    this.state.servers.map((server) => {
-        axios
-        .get(
-          this.state.api +
-            "search?query=" +
-            encodeURI(query.trim()) +
-            "&engine=" +
-            server +
-            "&page=" +
-            this.state.listIndex
-        )
-        .then((res) => {
-          const movies = res.data;
-          if (movies !== null) {
-            let newmovies = movies.map((element) => {
-              element.Index = uuidv4();
-              if (element.Title.endsWith("Tags")) {
-                element.Title = element.Title.substr(0, element.Title.length - 4);
-              }
-              return element;
-            });
-            this.setState({
-              movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-              isLoading: false,
-              listIndex: append ? this.state.listIndex + 1 : 1,
-            });
-          } else {
-            throw new Error("Search returned empty, try another engine perhaps");
-          }
-        })
-        .catch((err) => {
-          this.setState({
-            error: true,
-            searchError: err.message,
-          });
-        })
-        return (this.state.movies)
-    }
-  )
 
-  }
+    axios
+      .get(
+        this.state.api +
+          "search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          this.state.server +
+          "&page=" +
+          this.state.listIndex
+      )
+      .then((res) => {
+        const movies = res.data;
+        if (movies !== null) {
+          let newmovies = movies.map((element) => {
+            element.Index = uuidv4();
+            if (element.Title.endsWith("Tags")) {
+              element.Title = element.Title.substr(0, element.Title.length - 4);
+            }
+            return element;
+          });
+          this.setState({
+            movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+            isLoading: false,
+            listIndex: append ? this.state.listIndex + 1 : 1,
+          });
+        } else {
+          throw new Error("Search returned empty, try another engine perhaps");
+        }
+      })
+      .catch((err) => {
+        this.setState({
+          error: true,
+          searchError: err.message,
+        });
+      });
+  };
 
   performList = (append = true) => {
     this.setState({
@@ -398,7 +388,6 @@ class Home extends Component {
               <header>
                 <NavBar
                   searchInput={this.searchInput}
-                  query={encodeURI(this.state.query)}
                   checkInputKey={this.checkKey.bind(this)}
                   handleSearch={this.handleSearchChange.bind(this)}
                   newSearch={this.newSearch.bind(this)}
@@ -418,25 +407,15 @@ class Home extends Component {
                 {!this.state.isSearch ? null : (
                   <div className="mt-1" style={{ display: "grid" }}></div>
                 )}
-
-                {/* {!this.state.isSearch ? (
-                <EngineOptions
-                  handleServerChange={this.handleServerChange.bind(this)}
-                  server={this.state.server}
-                />) : null} */}
-
                 <EngineOptions
                   handleServerChange={this.handleServerChange.bind(this)}
                   server={this.state.server}
                 />
-
               </header>
 
               <main>
                 <div className="movies" id="movie-div">
-                  {!this.state.isSearch ? 
-                    (
-                    <Route
+                  <Route
                     path={`/${greekFromEnglish(this.state.server)}`}
                     render={() => {
                       return (
@@ -451,29 +430,6 @@ class Home extends Component {
                       );
                     }}
                   />
-                  )
-                   :
-                  (
-                    <Route
-                      path={`${encodeURI(this.state.query)}`}
-                      render={() => {
-                        return (
-                          <SearchList
-                            ip_address={this.state.ip_address}
-                            movies={this.state.movies}
-                            history={this.props.history}
-                            servers={this.state.servers}
-                            query={this.state.query}
-                            setDescription={this.setDescription.bind(this)}
-                            shareMovie={this.shareMovie.bind(this)}
-                          />
-                        );
-                      }}
-                    />
-                    
-                  )
-                  }
-
                   {this.state.isLoading && !this.state.error && (
                     <div className="skeleton-movies">
                       <SkeletonLoader />
