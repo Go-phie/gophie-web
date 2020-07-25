@@ -10,11 +10,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Switch>
+          <Route path="/search/:search_term" component={Home} />
           <Route path="/shared/:referralID" component={Shared} />
           <Route path="/terms" component={Terms} />
           <Route path="/(:engine)" component={Home} />
           <Route path="/" component={Home} />
-          <Route path="/search/:search_term" component={Home} />
           <Redirect to="/" />
         </Switch>
       </BrowserRouter>
