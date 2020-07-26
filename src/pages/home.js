@@ -4,6 +4,7 @@ import Tour from "reactour";
 import { Route } from "react-router-dom";
 import { RetryIcon } from "../utils/icons";
 import MovieList from "../components/movieList/MovieList";
+import SearchList from "../components/movieList/SearchList"
 import SkeletonLoader from "../components/Loader/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
@@ -34,7 +35,7 @@ class Home extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: API_ENDPOINTS.gophieMain,
-      server: nameToEngineMap.get("Server1"),
+      server: nameToEngineMap.get("Server5"),
       mode: "movies",
       movies: [],
       listIndex: 1,
@@ -135,48 +136,91 @@ class Home extends Component {
   }
 
   performSearch = (query, append = false) => {
+
     this.setState({
       isLoading: true,
       error: false,
       searchError: "",
     });
+    const searchServer1 = axios.get(
+      this.state.api +
+      "search?query=" +
+      encodeURI(query.trim()) +
+      "&engine=" +
+      nameToEngineMap.get("Server2") +
+      "&page=" +
+      this.state.listIndex
+    );
+
+    const searchServer2 = axios.get(
+      this.state.api +
+      "search?query=" +
+      encodeURI(query.trim()) +
+      "&engine=" +
+      nameToEngineMap.get("Server2") +
+      "&page=" +
+      this.state.listIndex
+    );
+
+    const searchServer3 = axios.get(
+      this.state.api +
+      "search?query=" +
+      encodeURI(query.trim()) +
+      "&engine=" +
+      nameToEngineMap.get("Server3") +
+      "&page=" +
+      this.state.listIndex
+    );
+
+    const searchServer4 = axios.get(
+      this.state.api +
+      "search?query=" +
+      encodeURI(query.trim()) +
+      "&engine=" +
+      nameToEngineMap.get("Server4") +
+      "&page=" +
+      this.state.listIndex
+    );
+
+    const searchServer5 = axios.get(
+      this.state.api +
+      "search?query=" +
+      encodeURI(query.trim()) +
+      "&engine=" +
+      nameToEngineMap.get("Server5") +
+      "&page=" +
+      this.state.listIndex
+    );
 
     axios
-      .get(
-        this.state.api +
-          "search?query=" +
-          encodeURI(query.trim()) +
-          "&engine=" +
-          this.state.server +
-          "&page=" +
-          this.state.listIndex
-      )
-      .then((res) => {
-        const movies = res.data;
-        if (movies !== null) {
-          let newmovies = movies.map((element) => {
-            element.Index = uuidv4();
-            if (element.Title.endsWith("Tags")) {
-              element.Title = element.Title.substr(0, element.Title.length - 4);
-            }
-            return element;
-          });
+      .all([searchServer1, searchServer2, searchServer3, searchServer4, searchServer5])
+      .then(axios.spread((searchServer1, searchServer2, searchServer3, searchServer4, searchServer5) => {
+        const concatSearchServer1 = (!searchServer1.data.length ? [] : searchServer1.data)
+        const concatSearchServer2 = (!searchServer2.data.length ? [] : searchServer2.data)
+        const concatSearchServer3 = (!searchServer3.data.length ? [] : searchServer3.data)
+        const concatSearchServer4 = (!searchServer4.data.length ? [] : searchServer4.data)
+        const concatSearchServer5 = (!searchServer5.data.length ? [] : searchServer5.data)
+
+        const movies = concatSearchServer1
+                      .concat(concatSearchServer2.data)
+                      .concat(concatSearchServer3.data)
+                      .concat(concatSearchServer4.data)
+                      .concat(concatSearchServer5.data);
+        console.log("movies:", movies);
+
           this.setState({
-            movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+            movies: [...movies],
             isLoading: false,
             listIndex: append ? this.state.listIndex + 1 : 1,
           });
-        } else {
-          throw new Error("Search returned empty, try another engine perhaps");
-        }
-      })
+      }))
       .catch((err) => {
         this.setState({
           error: true,
           searchError: err.message,
         });
       });
-  };
+  }
 
   performList = (append = true) => {
     this.setState({
@@ -407,10 +451,14 @@ class Home extends Component {
                 {!this.state.isSearch ? null : (
                   <div className="mt-1" style={{ display: "grid" }}></div>
                 )}
-                <EngineOptions
-                  handleServerChange={this.handleServerChange.bind(this)}
-                  server={this.state.server}
-                />
+
+                {this.state.isSearch ? null : (
+                  <EngineOptions
+                    handleServerChange={this.handleServerChange.bind(this)}
+                    server={this.state.server}
+                  />
+                )}
+
               </header>
 
               <main>
@@ -419,14 +467,26 @@ class Home extends Component {
                     path={`/${greekFromEnglish(this.state.server)}`}
                     render={() => {
                       return (
-                        <MovieList
-                          ip_address={this.state.ip_address}
-                          movies={this.state.movies}
-                          history={this.props.history}
-                          server={this.state.server}
-                          setDescription={this.setDescription.bind(this)}
-                          shareMovie={this.shareMovie.bind(this)}
-                        />
+                        <>
+                          {this.state.isSearch && this.state.movies.length && this.state.movies !== undefined ? 
+                            <SearchList
+                            ip_address={this.state.ip_address}
+                            movies={this.state.movies}
+                            history={this.props.history}
+                            server={this.state.server}
+                            setDescription={this.setDescription.bind(this)}
+                            shareMovie={this.shareMovie.bind(this)}
+                          /> :
+                          <MovieList
+                            ip_address={this.state.ip_address}
+                            movies={this.state.movies}
+                            history={this.props.history}
+                            server={this.state.server}
+                            setDescription={this.setDescription.bind(this)}
+                            shareMovie={this.shareMovie.bind(this)}
+                          />
+                          }
+                        </>
                       );
                     }}
                   />
