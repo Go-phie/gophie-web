@@ -3,18 +3,18 @@ import Movie from "../movie/Movie";
 
 export default class SearchList extends Component {
   render() {
-    const filteredMovies = this.props.movies.filter(
-      (movie) =>
-        movie.Title.length > 0 && movie.Size !== "" && !movie.Size.startsWith("0")
-    );
+    // const filteredMovies = this.props.movies.filter(
+    //   (movie) =>
+    //     movie.Title.length > 0 && movie.Size !== "" && !movie.Size.startsWith("0")
+    // );
     this.props.movies.map((movie, i) => {
 
-        return console.log("cheking:", movie.Title)
+        return console.log("cheking:", movie)
     });
 
           return (
               <>
-                {filteredMovies.map((movie, i) => {
+                {this.props.movies.map((movie, i) => {
                    return (<Movie
                         key={i}
                         data={movie}

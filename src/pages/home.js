@@ -4,7 +4,7 @@ import Tour from "reactour";
 import { Route } from "react-router-dom";
 import { RetryIcon } from "../utils/icons";
 import MovieList from "../components/movieList/MovieList";
-import SearchList from "../components/movieList/SearchList"
+import SearchList from "../components/movieList/searchList"
 import SkeletonLoader from "../components/Loader/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
@@ -195,17 +195,17 @@ class Home extends Component {
     axios
       .all([searchServer1, searchServer2, searchServer3, searchServer4, searchServer5])
       .then(axios.spread((searchServer1, searchServer2, searchServer3, searchServer4, searchServer5) => {
-        const concatSearchServer1 = (!searchServer1.data.length ? [] : searchServer1.data)
-        const concatSearchServer2 = (!searchServer2.data.length ? [] : searchServer2.data)
-        const concatSearchServer3 = (!searchServer3.data.length ? [] : searchServer3.data)
-        const concatSearchServer4 = (!searchServer4.data.length ? [] : searchServer4.data)
-        const concatSearchServer5 = (!searchServer5.data.length ? [] : searchServer5.data)
+        const concatSearchServer1 = (!searchServer1.data ? []: searchServer1.data)
+        // const concatSearchServer2 = (!searchServer2.data.length ? "" : searchServer2.data)
+        // const concatSearchServer3 = (!searchServer3.data.length ? "" : searchServer3.data)
+        // const concatSearchServer4 = (!searchServer4.data.length ? "" : searchServer4.data)
+        // const concatSearchServer5 = (!searchServer5.data.length ? "" : searchServer5.data)
 
         const movies = concatSearchServer1
-                      .concat(concatSearchServer2.data)
-                      .concat(concatSearchServer3.data)
-                      .concat(concatSearchServer4.data)
-                      .concat(concatSearchServer5.data);
+                      .concat(searchServer2.data)
+                      .concat(searchServer3.data)
+                      .concat(searchServer4.data)
+                      .concat(searchServer5.data);
         console.log("movies:", movies);
 
           this.setState({
@@ -468,7 +468,7 @@ class Home extends Component {
                     render={() => {
                       return (
                         <>
-                          {this.state.isSearch && this.state.movies.length && this.state.movies !== undefined ? 
+                          {this.state.isSearch ? 
                             <SearchList
                             ip_address={this.state.ip_address}
                             movies={this.state.movies}
