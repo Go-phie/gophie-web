@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,8 +12,7 @@ import {
 } from "../../utils/icons"
 import "./navbar.css";
 
-class NavBar extends Component {
-  render() {
+const NavBar = (props) => {
     return (
       <nav className="nav-bar">
         <div className="nav-bar__main d-flex">
@@ -26,17 +25,17 @@ class NavBar extends Component {
           <div className="nav-bar__main--has-search">
             <input
               type="text"
-              ref={this.props.searchInput}
+              ref={props.searchInput}
               className="form-control"
               placeholder="Search movie..."
               // eslint-disable-next-line jsx-a11y/no-autofocus
               autoFocus={true}
-              onKeyPress={this.props.checkInputKey}
-              // onChange={this.props.handleSearch}
+              onKeyPress={props.checkInputKey}
+              // onChange={props.handleSearch}
             />
-            <Link to={`/search${this.props.query}`} >
+            <Link to={`/search`} >
               <button
-                onClick={this.props.newSearch}
+                onClick={props.newSearch}
                 className="search-btn"
                 data-tour="my-third-step"
               >
@@ -56,7 +55,7 @@ class NavBar extends Component {
             className="actions-button"
             data-tour="my-first-step"
             title="Take A Tour"
-            onClick={this.props.tour}
+            onClick={props.tour}
           >
             {" "}
             <FontAwesomeIcon icon={faBlind} />{" "}
@@ -66,27 +65,17 @@ class NavBar extends Component {
             className="actions-button  ml-4"
             data-tour="my-tenth-step"
             title="Change Theme"
-            onClick={this.props.switchTheme}
+            onClick={props.switchTheme}
           >
-            {this.props.theme === "dark" ? (
+            {props.theme === "dark" ? (
               <FontAwesomeIcon icon={faSun} />
             ) : (
               <FontAwesomeIcon icon={faMoon} />
             )}
           </button>
-          {/* <a
-            className="actions-button github-button"
-            href="https://github.com/go-phie/gophie-web"
-            data-tour="my-eleventh-step"
-            title="Github Link"
-          >
-            {" "}
-            <GitMark />{" "}
-          </a> */}
         </div>
       </nav>
     );
-  }
 }
 
 export default NavBar;

@@ -4,7 +4,7 @@ import Tour from "reactour";
 import { Route } from "react-router-dom";
 import { RetryIcon } from "../utils/icons";
 import MovieList from "../components/movieList/MovieList";
-import SearchList from "../components/movieList/searchList"
+import SearchList from "../components/searchList/SearchList";
 import SkeletonLoader from "../components/Loader/SkeletonLoader";
 import { v4 as uuidv4 } from "uuid";
 
@@ -21,7 +21,7 @@ import {
   enableBody,
   nameToEngineMap,
   greekFromEnglish,
-  API_ENDPOINTS,
+  API_ENDPOINTS
 } from "../utils";
 import NavBar from "../components/navbar/Navbar";
 import EngineOptions from "../components/enginOption/EnginOptions";
@@ -35,7 +35,7 @@ class Home extends Component {
     this.searchInput = React.createRef();
     this.state = {
       api: API_ENDPOINTS.gophieMain,
-      server: nameToEngineMap.get("Server5"),
+      server: nameToEngineMap.get(""),
       mode: "movies",
       movies: [],
       listIndex: 1,
@@ -50,7 +50,7 @@ class Home extends Component {
       ip_address: "",
       isSearch: false,
       showShareModal: false,
-      movieToBeShared: {},
+      movieToBeShared: {}
     };
   }
 
@@ -90,7 +90,7 @@ class Home extends Component {
     );
     if (filteredMovies.length >= 1) {
       this.setState({
-        movies: filteredMovies,
+        movies: filteredMovies
       });
       return;
     }
@@ -104,7 +104,7 @@ class Home extends Component {
         server,
         movies: [],
         listIndex: 1,
-        isSearch: false,
+        isSearch: false
       },
       () => {
         this.performList();
@@ -121,7 +121,7 @@ class Home extends Component {
           movies: [],
           error: false,
           listIndex: 1,
-          isSearch: true,
+          isSearch: true
         },
         () => this.performSearch(query, true)
       );
@@ -136,101 +136,120 @@ class Home extends Component {
   }
 
   performSearch = (query, append = false) => {
-
     this.setState({
       isLoading: true,
       error: false,
-      searchError: "",
+      searchError: ""
     });
+
+    this.props.history.push("/search");
+
     const searchServer1 = axios.get(
       this.state.api +
-      "search?query=" +
-      encodeURI(query.trim()) +
-      "&engine=" +
-      nameToEngineMap.get("Server2") +
-      "&page=" +
-      this.state.listIndex
+        "search?query=" +
+        encodeURI(query.trim()) +
+        "&engine=" +
+        nameToEngineMap.get("Server2") +
+        "&page=" +
+        this.state.listIndex
     );
 
     const searchServer2 = axios.get(
       this.state.api +
-      "search?query=" +
-      encodeURI(query.trim()) +
-      "&engine=" +
-      nameToEngineMap.get("Server2") +
-      "&page=" +
-      this.state.listIndex
+        "search?query=" +
+        encodeURI(query.trim()) +
+        "&engine=" +
+        nameToEngineMap.get("Server2") +
+        "&page=" +
+        this.state.listIndex
     );
 
     const searchServer3 = axios.get(
       this.state.api +
-      "search?query=" +
-      encodeURI(query.trim()) +
-      "&engine=" +
-      nameToEngineMap.get("Server3") +
-      "&page=" +
-      this.state.listIndex
+        "search?query=" +
+        encodeURI(query.trim()) +
+        "&engine=" +
+        nameToEngineMap.get("Server3") +
+        "&page=" +
+        this.state.listIndex
     );
 
     const searchServer4 = axios.get(
       this.state.api +
-      "search?query=" +
-      encodeURI(query.trim()) +
-      "&engine=" +
-      nameToEngineMap.get("Server4") +
-      "&page=" +
-      this.state.listIndex
+        "search?query=" +
+        encodeURI(query.trim()) +
+        "&engine=" +
+        nameToEngineMap.get("Server4") +
+        "&page=" +
+        this.state.listIndex
     );
 
     const searchServer5 = axios.get(
       this.state.api +
-      "search?query=" +
-      encodeURI(query.trim()) +
-      "&engine=" +
-      nameToEngineMap.get("Server5") +
-      "&page=" +
-      this.state.listIndex
+        "search?query=" +
+        encodeURI(query.trim()) +
+        "&engine=" +
+        nameToEngineMap.get("Server5") +
+        "&page=" +
+        this.state.listIndex
     );
 
     axios
-      .all([searchServer1, searchServer2,searchServer3, searchServer4, searchServer5])
-      .then(axios.spread((searchServer1, searchServer2, searchServer3, searchServer4, searchServer5) => {
-        const concatSearchServer1 = (!searchServer1.data ? []: searchServer1.data)
+      .all([
+        searchServer1,
+        searchServer2,
+        searchServer3,
+        searchServer4,
+        searchServer5
+      ])
+      .then(
+        axios.spread(
+          (
+            searchServer1,
+            searchServer2,
+            searchServer3,
+            searchServer4,
+            searchServer5
+          ) => {
+            const concatSearchServer1 = !searchServer1.data
+              ? []
+              : searchServer1.data;
 
-        const movies = concatSearchServer1
-                      .concat(searchServer2.data)
-                      .concat(searchServer3.data)
-                      .concat(searchServer4.data)
-                      .concat(searchServer5.data);
-        const mainMovies = [];
+            const movies = concatSearchServer1
+              .concat(searchServer2.data)
+              .concat(searchServer3.data)
+              .concat(searchServer4.data)
+              .concat(searchServer5.data);
+            const mainMovies = [];
 
-        movies.forEach(movies => {
-            if (movies !== null) {
-              mainMovies.push(movies);
-            }
-        });
-        console.log("movies:", movies);
+            movies.forEach((movies) => {
+              if (movies !== null) {
+                mainMovies.push(movies);
+              }
+            });
 
-          this.setState({
-            movies: [...mainMovies],
-            isLoading: false,
-            isSearch: true,
-            listIndex: append ? this.state.listIndex + 1 : 1,
-          });
-      }))
+            this.setState({
+              movies: [...mainMovies],
+              isLoading: false,
+              isSearch: true,
+              listIndex: append ? this.state.listIndex + 1 : 1
+            });
+          }
+        )
+      )
       .catch((err) => {
         this.setState({
           error: true,
-          searchError: err.message,
+          searchError: err.message
         });
       });
-  }
+  };
 
   performList = (append = true) => {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: "",
+      searchError: ""
     });
     axios
       .get(
@@ -251,7 +270,7 @@ class Home extends Component {
           {
             isLoading: false,
             movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-            listIndex: newIndex,
+            listIndex: newIndex
           },
           console.log(this.state.movies)
         );
@@ -259,7 +278,7 @@ class Home extends Component {
       .catch((err) => {
         console.log(err);
         this.setState({
-          error: true,
+          error: true
         });
       });
   };
@@ -278,12 +297,12 @@ class Home extends Component {
       .get(API_ENDPOINTS.ip)
       .then((res) => {
         this.setState({
-          ip_address: res.data.ip,
+          ip_address: res.data.ip
         });
       })
       .catch((error) => {
         this.setState({
-          error: true,
+          error: true
         });
       });
   };
@@ -295,7 +314,7 @@ class Home extends Component {
         {
           listIndex: 1,
           movies: [],
-          server: nameToEngineMap.get(optionalRoute),
+          server: nameToEngineMap.get(optionalRoute)
         },
         () => {
           if (refresh) {
@@ -392,7 +411,7 @@ class Home extends Component {
   setDescription(movie) {
     this.setState({
       show: true,
-      currentmovie: movie,
+      currentmovie: movie
     });
   }
 
@@ -409,7 +428,7 @@ class Home extends Component {
         url:
           window.location.hostname === "localhost"
             ? `localhost:${window.location.port}/shared/${movie.referralID}`
-            : `https://gophie.cam/shared/${movie.referralID}`,
+            : `https://gophie.cam/shared/${movie.referralID}`
       };
 
       navigator
@@ -462,28 +481,36 @@ class Home extends Component {
                     server={this.state.server}
                   />
                 )}
-
               </header>
 
               <main>
                 <div className="movies" id="movie-div">
-
-                   {this.state.isSearch && !this.state.isLoading ? 
+                  <Route
+                    path={"/search"}
+                    render={() => {
+                      return (
+                        <>
+                          {this.state.isSearch && !this.state.isLoading ? (
                             <SearchList
-                            ip_address={this.state.ip_address}
-                            movies={this.state.movies}
-                            history={this.props.history}
-                            server={this.state.server}
-                            setDescription={this.setDescription.bind(this)}
-                            shareMovie={this.shareMovie.bind(this)}
-                          /> : null
-                    }
+                              ip_address={this.state.ip_address}
+                              movies={this.state.movies}
+                              history={this.props.history}
+                              server={this.state.server}
+                              setDescription={this.setDescription.bind(this)}
+                              shareMovie={this.shareMovie.bind(this)}
+                            />
+                          ) : null}
+                        </>
+                      );
+                    }}
+                  />
+
                   <Route
                     path={`/${greekFromEnglish(this.state.server)}`}
                     render={() => {
                       return (
                         <>
-                          {!this.state.isSearch ?
+                          {!this.state.isSearch ? (
                             <MovieList
                               ip_address={this.state.ip_address}
                               movies={this.state.movies}
@@ -491,8 +518,8 @@ class Home extends Component {
                               server={this.state.server}
                               setDescription={this.setDescription.bind(this)}
                               shareMovie={this.shareMovie.bind(this)}
-                            /> : null
-                          }
+                            />
+                          ) : null}
                         </>
                       );
                     }}
