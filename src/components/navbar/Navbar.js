@@ -32,7 +32,7 @@ class NavBar extends Component {
               // eslint-disable-next-line jsx-a11y/no-autofocus
               autoFocus={true}
               onKeyPress={this.props.checkInputKey}
-              onChange={this.props.handleSearch}
+              // onChange={this.props.handleSearch}
             />
             <Link to={`/search${this.props.query}`} >
               <button

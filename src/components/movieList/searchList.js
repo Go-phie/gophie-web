@@ -3,18 +3,19 @@ import Movie from "../movie/Movie";
 
 export default class SearchList extends Component {
   render() {
-    // const filteredMovies = this.props.movies.filter(
-    //   (movie) =>
-    //     movie.Title.length > 0 && movie.Size !== "" && !movie.Size.startsWith("0")
-    // );
+    const filteredMovies = this.props.movies.filter(
+      (movie) =>
+        movie.Title.length > 0 && movie.Size !== "" && !movie.Size.startsWith("0")
+    );
     this.props.movies.map((movie, i) => {
 
         return console.log("cheking:", movie)
     });
 
+    if (filteredMovies.length !== 0 ) {
           return (
               <>
-                {this.props.movies.map((movie, i) => {
+                {filteredMovies.map((movie, i) => {
                    return (<Movie
                         key={i}
                         data={movie}
@@ -28,5 +29,11 @@ export default class SearchList extends Component {
                 })}
               </>
           )
+    } else {
+      return (
+        <h3 class="mt-5 mb-5 pt-5 pb-5">No result Found</h3>
+      )
+    }
+
   }
 }

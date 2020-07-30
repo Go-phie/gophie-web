@@ -193,24 +193,28 @@ class Home extends Component {
     );
 
     axios
-      .all([searchServer1, searchServer2, searchServer3, searchServer4, searchServer5])
+      .all([searchServer1, searchServer2,searchServer3, searchServer4, searchServer5])
       .then(axios.spread((searchServer1, searchServer2, searchServer3, searchServer4, searchServer5) => {
         const concatSearchServer1 = (!searchServer1.data ? []: searchServer1.data)
-        // const concatSearchServer2 = (!searchServer2.data.length ? "" : searchServer2.data)
-        // const concatSearchServer3 = (!searchServer3.data.length ? "" : searchServer3.data)
-        // const concatSearchServer4 = (!searchServer4.data.length ? "" : searchServer4.data)
-        // const concatSearchServer5 = (!searchServer5.data.length ? "" : searchServer5.data)
 
         const movies = concatSearchServer1
                       .concat(searchServer2.data)
                       .concat(searchServer3.data)
                       .concat(searchServer4.data)
                       .concat(searchServer5.data);
+        const mainMovies = [];
+
+        movies.forEach(movies => {
+            if (movies !== null) {
+              mainMovies.push(movies);
+            }
+        });
         console.log("movies:", movies);
 
           this.setState({
-            movies: [...movies],
+            movies: [...mainMovies],
             isLoading: false,
+            isSearch: true,
             listIndex: append ? this.state.listIndex + 1 : 1,
           });
       }))
@@ -463,12 +467,8 @@ class Home extends Component {
 
               <main>
                 <div className="movies" id="movie-div">
-                  <Route
-                    path={`/${greekFromEnglish(this.state.server)}`}
-                    render={() => {
-                      return (
-                        <>
-                          {this.state.isSearch ? 
+
+                   {this.state.isSearch && !this.state.isLoading ? 
                             <SearchList
                             ip_address={this.state.ip_address}
                             movies={this.state.movies}
@@ -476,15 +476,22 @@ class Home extends Component {
                             server={this.state.server}
                             setDescription={this.setDescription.bind(this)}
                             shareMovie={this.shareMovie.bind(this)}
-                          /> :
-                          <MovieList
-                            ip_address={this.state.ip_address}
-                            movies={this.state.movies}
-                            history={this.props.history}
-                            server={this.state.server}
-                            setDescription={this.setDescription.bind(this)}
-                            shareMovie={this.shareMovie.bind(this)}
-                          />
+                          /> : null
+                    }
+                  <Route
+                    path={`/${greekFromEnglish(this.state.server)}`}
+                    render={() => {
+                      return (
+                        <>
+                          {!this.state.isSearch ?
+                            <MovieList
+                              ip_address={this.state.ip_address}
+                              movies={this.state.movies}
+                              history={this.props.history}
+                              server={this.state.server}
+                              setDescription={this.setDescription.bind(this)}
+                              shareMovie={this.shareMovie.bind(this)}
+                            /> : null
                           }
                         </>
                       );
