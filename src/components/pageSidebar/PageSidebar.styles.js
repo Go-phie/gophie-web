@@ -2,6 +2,7 @@ import styled from "styled-components"
 import { Link } from "react-router-dom";
 
 const Style = {
+    // Man sidebar container
     Sidebar: styled.div`
         position: fixed;
         top: 0;
@@ -12,8 +13,19 @@ const Style = {
         overflow: auto;
         border-right: 2px solid ${({ theme }) => theme.movieBackground};
         background: ${({ theme }) => theme.body};
+
+        @media (max-width: 678px) {
+            left: initial;
+            display: flex;
+            width: 100%;
+            align-items: baseline;
+            z-index: 999;
+            bottom: initial;
+            height: initial;
+        }
     `,
 
+    // sidebar logo container
     Sidebar__Logo: styled.div`
         padding: 1.5em 0;
         text-align: left;
@@ -29,17 +41,42 @@ const Style = {
             border-radius: 1.5em;
             position: absolute;
             bottom: 0;
+
+            @media (max-width: 678px) {
+                width: 2em;
+                height: .2em;
+            }
+        }
+
+        @media (max-width: 678px) {
+            padding: 1em 0;
+            margin-right: initial;
         }
     `,
 
+    // Sidebar Navigation
     Sidebar__Nav: styled.ul`
         margin: 0 1.5em;
         margin-top: 5em;
+
+        @media (max-width: 678px) {
+            display: flex;
+            margin-top: initial;
+            overflow: scroll hidden;
+            scrollbar-width: none;
+            width: 100%;
+            margin-right: initial;
+            margin-left: initial;
+        }
     `,
 
     Sidebar__NavListItem: styled.li`
         margin-top: 1em;
         list-style: none;
+
+        @media (max-width: 678px) {
+            white-space: nowrap;
+        }
     `,
 
     Sidebar__NavLink: styled(Link)`
@@ -67,6 +104,11 @@ const Style = {
             border-radius: .3em;
             background: ${({ theme }) => theme.sidebarNav};
         }
+
+        @media (max-width: 678px) {
+            padding: .5em .5em;
+            font-size: .9em;
+        }
     `,
 
     Sidebar__Footer: styled.div`
@@ -86,6 +128,10 @@ const Style = {
             font-size: .65em;
             opacity: .5;
             color: ${({ theme }) => theme.text};
+        }
+
+        @media (max-width: 678px) {
+            display: none;
         }
     `,
 

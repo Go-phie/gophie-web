@@ -4,6 +4,7 @@ import { GophieLogo } from "../../utils/icons";
 
 const PageSidebar = () => {
   let pathname = window.location.pathname;
+
   return (
     <Style.Sidebar>
       <Style.Sidebar__Logo>
@@ -13,7 +14,7 @@ const PageSidebar = () => {
         <Style.Sidebar__NavListItem>
           <Style.Sidebar__NavLink
             className={`${pathname.match("/Server1") ? "active" : ""}`}
-            to={"/Server1"}
+            to={`/Server1`}
           >
             Server1 <small>(Movies)</small>
           </Style.Sidebar__NavLink>

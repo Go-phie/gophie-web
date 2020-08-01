@@ -8,9 +8,9 @@ const AppRoute = () => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path="/(:engine)" component={Home} />
         <Route path="/shared/:referralID" component={Shared} />
         <Route path="/terms" component={Terms} />
-        <Route path="/(:engine)" component={Home} />
         <Route path="/" component={Home} />
         <Route path="/search" component={Home} />
         <Redirect to="/" />

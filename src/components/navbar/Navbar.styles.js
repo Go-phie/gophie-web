@@ -11,6 +11,9 @@ const Style = {
         width: 100%;
         padding: 1.5em;
         background-color: ${({ theme }) => theme.body};
+        @media (max-width: 678px) {
+            display: none;
+        }
     `,
 
     Navbar__HasSearch: styled.div`
@@ -44,7 +47,7 @@ const Style = {
             display: block;
             width: 100%;
             height: calc(1.5em + .75rem + 2px);
-            padding: .375rem .75rem;
+            padding: 1.5rem .75rem;
             font-size: 1rem;
             font-weight: 400;
             direction: rtl;
