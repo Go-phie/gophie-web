@@ -25,7 +25,6 @@ import {
 } from "../utils";
 import NavBar from "../components/navbar/Navbar";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
-import Footer from "../components/footer/footer";
 import ShareModal from "../components/shareModal/ShareModal";
 import PageSidebar from "../components/pageSidebar/PageSidebar";
 import MainPanel from "./home.styles";
@@ -545,8 +544,6 @@ class Home extends Component {
                   )}
                 </div>
               </main>
-
-              <Footer />
             </MainPanel>
           </>
 
