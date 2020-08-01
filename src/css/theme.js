@@ -21,7 +21,7 @@ export const darkTheme = {
   sharedBorderColor: "e4e7ef",
   movieBackground: "#202534",
   movieBoxShadow: "#080f1cde",
-  formColor: "#494e5b",
+  formColor: "#d4e0ff",
   yellow: "#e7d10a",
   yellowDark: "#D5B62E",
   sidebarNav: "#ddd9cc1a",

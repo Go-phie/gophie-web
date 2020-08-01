@@ -17,7 +17,6 @@ body {
   background-color: ${({ theme }) => theme.body}; 
   padding: 0px;
   margin: 0px;
-  margin-top: 80px;
   transition: background-color 0.3s, color 0.3s;
 }
 
@@ -25,67 +24,19 @@ body {
   background-color: #FFF;
 }
 
-.App {
-  width: 100%;
-  min-height: 100%;
-  position: relative;
-}
 
-/* navbar global style */
-.nav-bar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 1.5em 1.8em 1.5em 1.8em;
-  box-shadow: -1px 5px 5px -1px #9ea9c02b;
-  background-color: ${({ theme }) => theme.body};
-  z-index: 999;
-}
+
 
 .share-card {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.text};
 }
 
-.header-left p {
-  transition: .5s ease-in-out;
-}
-
-.header-left p:hover {
-  transform: rotate(20deg);
-}
-
-.nav-bar__main--has-search input {
-    background-color: ${({ theme }) => theme.movieBackground};
-    color: ${({ theme }) => theme.formColor};
-    outline: none;
-    border: none;
-    opacity: .9;
-}
-.nav-bar__main--has-search input:focus {
-  background-color: ${({ theme }) => theme.movieBackground};
-  color: ${({ theme }) => theme.text};
-  opacity: .9;
-}
 .search-btn {
   color: grey;
   transition: .3s;
 }
 
-/* Engine Option */
-.engine-option {
-  display: flex;
-  align-items: center;
-  height: auto;
-  margin: 0.1em 8%;
-  justify-content: space-between;
-  height: 3em;
-  border-bottom: 2px solid ${({ theme }) => theme.movieBackground};
-  margin-top: 5em;
-}
 
 .carousel-upper {
   display: flex;
@@ -95,149 +46,6 @@ body {
   margin: 0.1em 8%;
   width: 100%
 }
-
-.engine-option__title, carousel-title{
-  font-size: 1.3em;
-  color:  ${({ theme }) => theme.yellowText};
-  padding: 0;
-  margin: 0;
-  letter-spacing: .05em;
-  padding: 1em .5em;
-  font-weight: 549;
-  line-height: 0;
-}
-
-.engine-option__buton-container {
-  line-height: 0;
-  height: 100%;
-}
-
-.engine-option__buton-container button {
-  height: 100%;
-  background: none;
-  outline: none;
-  line-height: 0;
-  outline: 0;
-  border: none;
-  margin: 0 auto;
-  color:  ${({ theme }) => theme.text};
-  cursor: pointer;
-  padding: 1em 1.2em;
-  letter-spacing: .05em;
-  position: relative;
-}
-
-.tvIcon {
-  display: none;
-}
-
-.engine-option__buton-container button:hover {
-  color:  ${({ theme }) => theme.yellowText};
-}
-
-.engine-option__buton-container button:hover:after {
-  position: absolute;
-  content: '';
-  height: .19em;
-  width: 100%;
-  border-radius: 5em;
-  bottom: 0;
-  background-color:  ${({ theme }) => theme.yellowText};
-  left: 0;
-}
-
-.engine-option__buton-container button.selected{
-  color:  ${({ theme }) => theme.yellowText};
-}
-
-.engine-option__buton-container button.selected:after {
-  position: absolute;
-  content: '';
-  height: .19em;
-  width: 100%;
-  border-radius: 5em;
-  bottom: 0;
-  background-color:  ${({ theme }) => theme.yellowText};
-  left: 0;
-}
-@media (max-width: 830px) {
-  .nav-bar {
-    padding: 1em 0 1em 1em;
-  }
-
-  .nav-bar__main--has-search {
-      margin: initial;
-  }
-     
-  .nav-bar__main {
-    padding: 0 !important;
-  }
-
-  .nav-bar__main--brand {
-    margin-right: .5em;
-    width: 10%;
-  }
-
-  .actions-button {
-    font-size: 1.2em !important;
-    margin: 0 !important;
-  }
-
-  .nav-bar__action-buttons button:first-child  {
-    display: none !important;
-  }
-
-  .engine-option {
-    margin-top: 6em;
-    margin-top: 3em;
-    border: 0 !important;
-  }
-
-  .engine-option__title {
-    display: none;
-  }
-
-  .engine-option__buton-container {
-    display: flex;
-    justify-content: space-between !important;
-    width: 100%;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    scrollbar-width: none;
-  }
-
-  .engine-option__buton-container button {
-    margin: 0 !important;
-    white-space: nowrap;
-  }
-
-  
-}
-
-@media (max-width: 440px) {
-  .engine-option {
-    margin-top: 2em;
-  }
-  .engine-option__buton-container button {
-    padding: 1em .5em;
-    margin: 0 !important;
-  }
-}
-
-  @media (max-width: 375px) {
-    .tvIcon {
-      display: block;
-    }
-    .gophieLogo {
-      display: none;
-    }
-
-    .nav-bar__main {
-        justify-content: space-between;
-        padding: 1em;
-     }
-  }
-/* End engine Option */
 
 .rating-summary__container {
   top: 0;
@@ -279,48 +87,7 @@ body {
 }
 
 
-.server-selector {
-  background-color: #e7d10a;
-  border: 1px solid ${({ theme }) => theme.borderColor};
-  color: #1e2126;
-  font-weight: bold;
-  padding: 10px 25px;
-  justify-content: center;
-  font-size: 15px;
-  border-radius: 5px;
-  outline: none;
-}
 
-.year-selector {
-  background-color: #e7d10a;
-  border: 1px solid ${({ theme }) => theme.borderColor};
-  color: #1e2126;
-  font-weight: bold;
-  padding: 10px 25px;
-  width:150px;
-  margin-left:20px;
-  justify-content: center;
-  font-size: 15px;
-  border-radius: 5px;
-  outline: none;
-}
-
-@media screen and (max-width:768px){
-  .year-selector{
-    display:none;
-  }
-}
-
-.server-selector > option {
-  background-color: ${({ theme }) => theme.body};
-  color: ${({ theme }) => theme.yellowText};
-  padding: 1em .5em;
-}
-.year-selector > option {
-  background-color: ${({ theme }) => theme.body};
-  color: ${({ theme }) => theme.yellowText};
-  padding: 1em .5em;
-}
 
 .trending-loader-container {
   overflow-x: auto;
@@ -405,16 +172,6 @@ div.skeleton-movies {
   div.movie {
       width: 100%;
   }
-}
-
-@media (max-width: 450px) {
-
-    .server-selector {
-        padding: 10px .3em;
-    }
-    .year-selector {
-        padding: 10px 0px;
-    }
 }
 
 div.movie {
@@ -538,7 +295,7 @@ div.movie {
     flex-direction: column;
     justify-content: space-around;
     background-color: ${({ theme }) => theme.movieBackground}; 
-    order-bottom-left-radius: .39em;
+    border-bottom-left-radius: .39em;
     border-bottom-right-radius: .39em;
   }
   
@@ -999,7 +756,7 @@ button {
 
 #gophie-logo {
   stroke-width: 0;
-  animation: logo 5s linear 2 forwards;
+  animation: logo 5s linear 1 forwards;
 }
 
 #gophie-tv {

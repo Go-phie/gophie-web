@@ -5,33 +5,21 @@ import {
   faSearch,
   faMoon,
   faSun,
-  faBlind
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  GophieLogo, TvIcon,
-} from "../../utils/icons"
-import "./navbar.css";
+import Style from "./Navbar.styles";
 
 const NavBar = (props) => {
     return (
-      <nav className="nav-bar" style={{position: 'initial'}}>
-        <div className="nav-bar__main d-flex">
-          <div className="nav-bar__main--brand">
-            <a href="/">
-              <GophieLogo />
-              <TvIcon />
-            </a>
-          </div>
-          <div className="nav-bar__main--has-search">
+      <Style.Navbar>
+
+          <Style.Navbar__HasSearch>
             <input
               type="text"
               ref={props.searchInput}
-              className="form-control"
-              placeholder="Search movie..."
-              // eslint-disable-next-line jsx-a11y/no-autofocus
+              placeholder="Search movie"
               autoFocus={true}
               onKeyPress={props.checkInputKey}
-              // onChange={props.handleSearch}
+              onChange={props.searchInput}
             />
             <Link to={`/search`} >
               <button
@@ -46,21 +34,9 @@ const NavBar = (props) => {
                 />
               </button>
             </Link>
-          </div>
-        </div>
+          </Style.Navbar__HasSearch>
 
         {/* actions button */}
-        <div className="d-flex nav-bar__action-buttons">
-          <button
-            className="actions-button"
-            data-tour="my-first-step"
-            title="Take A Tour"
-            onClick={props.tour}
-          >
-            {" "}
-            <FontAwesomeIcon icon={faBlind} />{" "}
-          </button>
-
           <button
             className="actions-button  ml-4"
             data-tour="my-tenth-step"
@@ -73,8 +49,7 @@ const NavBar = (props) => {
               <FontAwesomeIcon icon={faMoon} />
             )}
           </button>
-        </div>
-      </nav>
+      </Style.Navbar>
     );
 }
 

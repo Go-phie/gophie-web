@@ -21,11 +21,6 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.main-panel {
-  width: calc(100% - 230px);
-  position: relative;
-  float: right
-}
 .gophie-bg {
   background-color: ${({ theme }) => theme.body} !important; 
 }
