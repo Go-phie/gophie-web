@@ -24,10 +24,11 @@ import {
   API_ENDPOINTS
 } from "../utils";
 import NavBar from "../components/navbar/Navbar";
-import EngineOptions from "../components/enginOption/EnginOptions";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
 import Footer from "../components/footer/footer";
 import ShareModal from "../components/shareModal/ShareModal";
+import PageSidebar from "../components/pageSidebar/PageSidebar";
+import MainPanel from "./home.styles";
 
 class Home extends Component {
   constructor(props) {
@@ -451,111 +452,104 @@ class Home extends Component {
         <ThemeProvider theme={selectedTheme}>
           <>
             <GlobalStyles />
-            <div className="App">
-              <header>
-                <NavBar
-                  searchInput={this.searchInput}
-                  checkInputKey={this.checkKey.bind(this)}
-                  handleSearch={this.handleSearchChange.bind(this)}
-                  newSearch={this.newSearch.bind(this)}
-                  theme={theme}
-                  tour={this.startTour}
-                  switchTheme={() => this.switchTheme(this.state.theme)}
-                />
+            <PageSidebar server={this.state.server} />
 
-                {this.state.isSearch ? null : (
-                  <TrendingCarousel
-                    setDescription={this.setDescription.bind(this)}
-                    history={this.props.history}
-                    ip_address={this.state.ip_address}
-                  />
-                )}
-
-                {!this.state.isSearch ? null : (
-                  <div className="mt-1" style={{ display: "grid" }}></div>
-                )}
-
-                {this.state.isSearch ? null : (
-                  <EngineOptions
-                    handleServerChange={this.handleServerChange.bind(this)}
-                    server={this.state.server}
-                  />
-                )}
-              </header>
-
-              <main>
-                <div className="movies" id="movie-div">
-                  <Route
-                    path={"/search"}
-                    render={() => {
-                      return (
-                        <>
-                          {this.state.isSearch && !this.state.isLoading ? (
-                            <SearchList
-                              ip_address={this.state.ip_address}
-                              movies={this.state.movies}
-                              history={this.props.history}
-                              server={this.state.server}
-                              setDescription={this.setDescription.bind(this)}
-                              shareMovie={this.shareMovie.bind(this)}
-                            />
-                          ) : null}
-                        </>
-                      );
-                    }}
+            <MainPanel>
+                <header>
+                  <NavBar
+                    searchInput={this.searchInput}
+                    checkInputKey={this.checkKey.bind(this)}
+                    handleSearch={this.handleSearchChange.bind(this)}
+                    newSearch={this.newSearch.bind(this)}
+                    theme={theme}
+                    tour={this.startTour}
+                    switchTheme={() => this.switchTheme(this.state.theme)}
                   />
 
-                  <Route
-                    path={`/${greekFromEnglish(this.state.server)}`}
-                    render={() => {
-                      return (
-                        <>
-                          {!this.state.isSearch ? (
-                            <MovieList
-                              ip_address={this.state.ip_address}
-                              movies={this.state.movies}
-                              history={this.props.history}
-                              server={this.state.server}
-                              setDescription={this.setDescription.bind(this)}
-                              shareMovie={this.shareMovie.bind(this)}
-                            />
-                          ) : null}
-                        </>
-                      );
-                    }}
-                  />
-                  {this.state.isLoading && !this.state.error && (
-                    <div className="skeleton-movies">
-                      <SkeletonLoader />
-                      <SkeletonLoader />
-                      <SkeletonLoader />
-                      <SkeletonLoader />
-                      <SkeletonLoader />
-                    </div>
+                  {this.state.isSearch ? null : (
+                    <TrendingCarousel
+                      setDescription={this.setDescription.bind(this)}
+                      history={this.props.history}
+                      ip_address={this.state.ip_address}
+                    />
                   )}
-                  {this.state.error && (
-                    <div className="error">
-                      <p className="error-text">
-                        {this.state.searchError !== ""
-                          ? this.state.searchError
-                          : "Oops..An Unknown Error Occured"}{" "}
-                      </p>
-                      {this.state.searchError ? null : (
-                        <button
-                          className="error-retry-btn"
-                          onClick={this.tryAgain.bind(this)}
-                        >
-                          <RetryIcon />
-                          Try Again
-                        </button>
-                      )}
-                    </div>
-                  )}
-                </div>
-              </main>
 
-              <Footer />
-            </div>
+                </header>
+
+                <main>
+                  <div className="movies" id="movie-div">
+                    <Route
+                      path={"/search"}
+                      render={() => {
+                        return (
+                          <>
+                            {this.state.isSearch && !this.state.isLoading ? (
+                              <SearchList
+                                ip_address={this.state.ip_address}
+                                movies={this.state.movies}
+                                history={this.props.history}
+                                server={this.state.server}
+                                setDescription={this.setDescription.bind(this)}
+                                shareMovie={this.shareMovie.bind(this)}
+                              />
+                            ) : null}
+                          </>
+                        );
+                      }}
+                    />
+
+                    <Route
+                      path={`/${greekFromEnglish(this.state.server)}`}
+                      render={() => {
+                        return (
+                          <>
+                            {!this.state.isSearch ? (
+                              <MovieList
+                                ip_address={this.state.ip_address}
+                                movies={this.state.movies}
+                                history={this.props.history}
+                                server={this.state.server}
+                                setDescription={this.setDescription.bind(this)}
+                                shareMovie={this.shareMovie.bind(this)}
+                              />
+                            ) : null}
+                          </>
+                        );
+                      }}
+                    />
+                    {this.state.isLoading && !this.state.error && (
+                      <div className="skeleton-movies">
+                        <SkeletonLoader />
+                        <SkeletonLoader />
+                        <SkeletonLoader />
+                        <SkeletonLoader />
+                        <SkeletonLoader />
+                      </div>
+                    )}
+                    {this.state.error && (
+                      <div className="error">
+                        <p className="error-text">
+                          {this.state.searchError !== ""
+                            ? this.state.searchError
+                            : "Oops..An Unknown Error Occured"}{" "}
+                        </p>
+                        {this.state.searchError ? null : (
+                          <button
+                            className="error-retry-btn"
+                            onClick={this.tryAgain.bind(this)}
+                          >
+                            <RetryIcon />
+                            Try Again
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </main>
+
+                <Footer />
+            </MainPanel>
+
           </>
 
           {/* ScrollButton Take you back to the starting of the page */}
