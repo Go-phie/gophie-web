@@ -8,6 +8,9 @@ export const lightTheme = {
   movieBackground: "#dfe1e6",
   movieBoxShadow: "#4d638e80",
   formColor: "#121620",
+  yellow: "#e7d10a",
+  yellowDark: "#D5B62E",
+  sidebarNav: "#ede9d9",
 };
 
 export const darkTheme = {
@@ -19,4 +22,7 @@ export const darkTheme = {
   movieBackground: "#202534",
   movieBoxShadow: "#080f1cde",
   formColor: "#494e5b",
+  yellow: "#e7d10a",
+  yellowDark: "#D5B62E",
+  sidebarNav: "#ddd9cc1a",
 };

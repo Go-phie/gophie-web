@@ -101,7 +101,7 @@ export function GophieLogo() {
       width="100%"
       className="gophieLogo"
       height="18"
-      viewBox="0 0 238 48"
+      viewBox="0 0 500 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
