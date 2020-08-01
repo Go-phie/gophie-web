@@ -31,6 +31,7 @@
     "reactour": "^1.17.0",
     "rotating-file-stream": "^2.1.1",
     "semantic-ui-react": "^0.88.2",
+    "string_score": "^0.1.22",
     "styled-components": "^5.0.1",
     "uuid": "^7.0.3"
   },
