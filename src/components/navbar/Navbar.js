@@ -14,7 +14,7 @@ import "./navbar.css";
 
 const NavBar = (props) => {
     return (
-      <nav className="nav-bar">
+      <nav className="nav-bar" style={{position: 'initial'}}>
         <div className="nav-bar__main d-flex">
           <div className="nav-bar__main--brand">
             <a href="/">
