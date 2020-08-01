@@ -108,7 +108,7 @@ nm.set("Server4", "tvseries");
 export const nameToEngineMap = nm;
 
 export function greekFromEnglish(eng) {
-  const lowered = eng.toLowerCase();
+  const lowered = String(eng).toLowerCase();
   for (let [key, val] of nm.entries()) {
     if (val === lowered) {
       return key;
