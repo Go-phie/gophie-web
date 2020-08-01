@@ -42,7 +42,6 @@ const Style = {
         list-style: none;
     `,
 
-
     Sidebar__NavLink: styled(Link)`
         color: ${({ theme }) => theme.text};
         padding: 1em .5em;
@@ -68,7 +67,39 @@ const Style = {
             border-radius: .3em;
             background: ${({ theme }) => theme.sidebarNav};
         }
+    `,
 
+    Sidebar__Footer: styled.div`
+        display: block;
+        position: absolute;
+        bottom: 0;
+        padding: 18px 22px;
+        width: 100%;
+
+        & > h3 {
+            font-size: .8em;
+            font-weight: 600;
+            color: ${({ theme }) => theme.text};
+        }
+
+        & > p {
+            font-size: .65em;
+            opacity: .5;
+            color: ${({ theme }) => theme.text};
+        }
+    `,
+
+    Sidebar__FooterLink: styled(Link)`
+        background: #ede9d9;
+        padding: .27em;
+        background: ${({ theme }) => theme.sidebarNav};
+        color: ${({ theme }) => theme.yellowDark};
+        text-decoration: none;
+
+        &.hover {
+            color: ${({ theme }) => theme.text};
+            opacity: .5;
+        }
     `
 }
 

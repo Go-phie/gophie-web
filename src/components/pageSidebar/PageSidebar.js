@@ -56,7 +56,16 @@ const PageSidebar = () => {
         </Style.Sidebar__NavListItem>
       </Style.Sidebar__Nav>
 
-      <div></div>
+      <Style.Sidebar__Footer>
+        <h3>
+          Gophie.cam —{" "}
+          <small>
+            {" "}
+            <Style.Sidebar__FooterLink to={"/terms"}>Terms</Style.Sidebar__FooterLink>
+          </small>
+        </h3>
+        <p>Copyright © Gophie 2020. All Right Reserved</p>
+      </Style.Sidebar__Footer>
     </Style.Sidebar>
   );
 };
