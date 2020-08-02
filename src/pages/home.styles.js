@@ -27,7 +27,7 @@ const MainPanel = styled.div`
     }
 
     .gophie-page-title {
-        color: ${({ theme }) => theme.yellowText};
+        color: ${({ theme }) => theme.text};
         margin-top: 1em;
         font-weight: 600;
         font-size: 2em;
@@ -35,7 +35,6 @@ const MainPanel = styled.div`
         display: block;
         width: 100%;
         padding-bottom: .5em;
-        opacity: .9;
 
         @media(max-width: 678px) {
             font-size: 1.1em;
