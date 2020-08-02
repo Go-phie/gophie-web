@@ -34,6 +34,7 @@ const Style = {
             margin: 0;
             border: 0;
             left: 0;
+            width: 0;
         }
 
         & > input {
