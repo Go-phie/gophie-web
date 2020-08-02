@@ -25,8 +25,6 @@ body {
 }
 
 
-
-
 .share-card {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.text};
@@ -37,15 +35,6 @@ body {
   transition: .3s;
 }
 
-
-.carousel-upper {
-  display: flex;
-  border-bottom: 2px solid ${({ theme }) => theme.movieBackground};
-  margin-top: 5em;
-  height: auto;
-  margin: 0.1em 8%;
-  width: 100%
-}
 
 .rating-summary__container {
   top: 0;
@@ -240,43 +229,7 @@ div.movie {
     color: #1e2126;
   }
 
-  .carousal-download-btn {
-    font-size: 1.1em;
-    margin-left: .5em;
-    box-shadow: none !important;
-    position: initial !important;
-  }
 
-  .carousal-image-detail {
-    position: absolute;
-    bottom: 0;
-    padding: .5em 1em;
-    user-select: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-
-  .carousal-image-detail--main {
-    line-height: 0;
-  }
-
-  .carousal-image-detail--main p:first-child {
-    background: #ffffff;
-    color: #1e2126;
-    display: inline-block;
-    padding: 1em .3em;
-    font-size: .8em;
-    font-weight: 600;
-  }
-
-  .carousal-image-detail--main p:last-child {
-    color: #ffffff;
-    font-size: 1.09em;
-    margin-top: .1em;
-    line-height: 1.2;
-  }
 
   a {
     text-decoration: none;
@@ -684,68 +637,6 @@ button {
 .gophie-link {
   color: ${({ theme }) => theme.yellowText} !important;
   text-decoration: none;
-}
-
-.trending-title {
-  color:  ${({ theme }) => theme.yellowText};
-  margin-top: 4em !important;
-  margin: 0.1em 8%;
-  font-weight: 600;
-  font-size: 1.3em;
-  padding-top: 1em;
-  padding-bottom: 1em;
-}
-
-.trending-carousal-image__container {
-  position: relative;
-  background: linear-gradient(transparent,rgba(0,0,0,.9));
-  margin: .2em;
-  min-height: 25em;
-  min-width: 5em;
-  transition: .5s all;
-  border-radius: .7em;
-  cursor: pointer;
-}
-
-.trending-carousal-image__container:hover {
-  content: '';
-  position: absolute;
-  top: 0;
-  background: linear-gradient(transparent,rgba(0,0,0,.9)) !important;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -2;
-  border-radius: 1em;
-  transition: all .5s;
-}
-
-.trending-carousal-image {
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  max-height: 25em;
-  object-fit: cover;
-  border-radius: .7em;
-  cursor: pointer;
-}
-
-.carousel-container  {
-  min-height: 25em;
-      margin-top: 6em;
-}
-
-.network-icon {
-  max-width: 4.5em;
-}
-
-.react-multiple-carousel__arrow  {
-  z-index: 100;
-}
-
-.react-multiple-carousel__arrow::before {
-  color: golden-rod !important;
 }
 
 /* Logo svg animation */

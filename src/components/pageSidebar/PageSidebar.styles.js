@@ -17,11 +17,15 @@ const Style = {
         @media (max-width: 678px) {
             left: initial;
             display: flex;
-            width: 100%;
+            width: 100% !important;
             align-items: baseline;
             z-index: 999;
             bottom: initial;
             height: initial;
+        }
+
+        @media(max-width: 1141px) {
+            width: 200px;
         }
     `,
 
@@ -111,6 +115,7 @@ const Style = {
             padding: .5em .5em;
             margin-right: .5rem;
             font-size: .8em;
+            font-weight: initial;
         }
 
         @media (max-width: 375px) {

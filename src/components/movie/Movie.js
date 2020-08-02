@@ -137,6 +137,9 @@ export default class Movie extends Component {
     }
 
     return (
+      <>
+      <h2 className="gophie-page-title">Discover Movies</h2>
+
       <div className="movie">
         <div className="movie-image">
           <img
@@ -245,6 +248,7 @@ export default class Movie extends Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

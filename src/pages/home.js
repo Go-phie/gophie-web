@@ -14,7 +14,7 @@ import { lightTheme, darkTheme } from "../css/theme";
 import { GlobalStyles } from "../css/global";
 import ScrollButton from "../components/scrollToTop/ScrollToTop";
 import Popup from "../components/popup/Popup";
-
+import MobileNavbar from "../components/mobileNav/MobileNavbar"
 import {
   tourSteps,
   disableBody,
@@ -463,6 +463,11 @@ class Home extends Component {
                   theme={theme}
                   tour={this.startTour}
                   switchTheme={() => this.switchTheme(this.state.theme)}
+                />
+
+                <MobileNavbar                   
+                  theme={theme}
+                  switchTheme={() => this.switchTheme(this.state.theme)} 
                 />
 
                 {this.state.isSearch ? null : (

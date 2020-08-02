@@ -4,13 +4,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { API_ENDPOINTS, greekFromEnglish } from "../../utils";
-import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
 import { NetworkIcon } from "../../utils/icons";
 import CarouselSkeletonLoader from "../Loader/CarouselSkeletonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import Style from "./TrendingCarousel.styles"
 
 const responsive = {
   superLargeDesktop: {
@@ -24,11 +24,11 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 2,
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1,
+    items: 2,
   },
 };
 
@@ -92,11 +92,9 @@ class TrendingCarousel extends Component {
 
   render() {
     return (
-      <div>
-        {/* <div className='carousel-upper'>
-        </div> */}
-        {/* <h2 className="trending-title">Trending Movies</h2> */}
-        <Carousel
+      <div className="mleft">
+        <h2 className="gophie-page-title">Trending Movies</h2>
+        <Style.TrendingMainCarousel
           responsive={responsive}
           deviceType={this.props.deviceType}
           keyBoardControl={true}
@@ -181,12 +179,7 @@ class TrendingCarousel extends Component {
 
 
                 <div className="carousal-image-detail">
-                  <div className="carousal-image-detail--main">
-                    <p>{greekFromEnglish(trendingMovie.engine)}</p>
-                    <p>{trendingMovie.name}</p>
-                  </div>
-
-                  <a
+                                   <a
                     className="download-btn carousal-download-btn"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -196,11 +189,12 @@ class TrendingCarousel extends Component {
                   >
                     <FontAwesomeIcon icon={faDownload} />
                   </a>
+                  <p>{trendingMovie.name}</p>
                 </div>
               </div>
             );
           })}
-        </Carousel>
+        </Style.TrendingMainCarousel>
         {!this.state.isLoading ? null : (
           <div
             className="w-100 trending-loader-container d-flex"
