@@ -79,6 +79,7 @@ const Style = {
         }
     `,
 
+    // sidebar Navigation links
     Sidebar__NavLink: styled(Link)`
         color: ${({ theme }) => theme.text};
         padding: 1em .5em;
@@ -86,6 +87,7 @@ const Style = {
         display: block;
         transition: .3s ease-in;
         font-weight: 600;
+        outline: none;
 
         &:hover {
             color: ${({ theme }) => theme.yellowDark};
@@ -107,7 +109,12 @@ const Style = {
 
         @media (max-width: 678px) {
             padding: .5em .5em;
-            font-size: .9em;
+            margin-right: .5rem;
+            font-size: .8em;
+        }
+
+        @media (max-width: 375px) {
+            font-size: .7em;
         }
     `,
 

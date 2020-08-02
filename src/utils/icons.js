@@ -99,7 +99,7 @@ export function GophieLogo() {
   return (
     <svg
       className="gophieLogo"
-      height="18"
+      height="30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       width="100%"
