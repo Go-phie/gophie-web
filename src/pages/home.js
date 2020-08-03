@@ -480,7 +480,7 @@ class Home extends Component {
               </header>
 
               <main>
-                <div className="movies" id="movie-div">
+                <div className="movies mleft" id="movie-div">
                   <Route
                     path={"/search"}
                     render={() => {

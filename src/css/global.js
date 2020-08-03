@@ -80,33 +80,6 @@ body {
 
 
 
-/* .trending_name {
-  background-color: ${({ theme }) => theme.body};
-  color: ${({ theme }) => theme.yellowText};
-  padding: .65em .5em;
-  position: absolute;
-  top: 290px;
-  z-index: 1000;
-  margin: .2em;
-  border-left: 5px solid #e0c700;
-  border-radius: 0 .2em .2em 0;
-  text-transform: capitalize;
-} */
-
-div.movies {
-  margin: 5em;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  margin-top: 1.3em;
-}
-
-@media (max-width: 991px) {
-  div.movies {
-  margin: 2em;
-  }
-}
-
 div.skeleton-movies {
   display: flex;
   flex-flow: row wrap;
@@ -140,63 +113,12 @@ div.skeleton-movies {
   justify-content: center;
 }
 
-@media (max-width: 768px) {
-  .header-left {
-    display: none;
-  }
-
-  .header-center {
-    width: 80%;
-  }
-
-  .header-right {
-    width: 20%;
-  }
-
-  div.movie {
-      width: 100%;
-  }
-}
-
-div.movie {
-    width: 220px;
-    min-height: 30vh;
-    height: 100%;
-    background: transparent;
-    position: relative;
-    margin: .9em;
-    display: block;
-  }
-  
-  div.movie-image {
-    height: 80%;
-    width: 100%;
-    left: 0;
-    position: relative;
-  }
-
-  div.movie-image img {
-    box-shadow: 2px 7px 8px 2px ${({ theme }) => theme.movieBoxShadow};
-    height: 20em;
-    width: 100%;
-    margin: auto;
-    transition: .3s;
-    border-top-left-radius: .39em;
-    border-top-right-radius: .39em;
-    cursor: pointer;
-    object-fit: cover;
-  }
-  
-  div.movie-image img:hover {
-    box-shadow: 2px -2px 8px 2px ${({ theme }) => theme.movieBoxShadow};
-    transform: translateY(-3%);
-  }
-  
   .download-btn {
     color: #1e2126;
     position: absolute;
-    bottom: -.7em;
-    right: .9em;
+    bottom: 0;
+    left: 0;
+    margin: .59em;
     text-decoration: none;
     background: #e7d10a;
     border-radius: 50%;
@@ -209,10 +131,6 @@ div.movie {
     padding: .65em;
     cursor: pointer;
     box-shadow: 0px 0px 7px -2px #121315;
-  }
-
-  .share-btn {
-    right: 3.2em;
   }
   
   .download-btn:active {
@@ -235,25 +153,6 @@ div.movie {
   }
 
   /* Movie About Details */
-  .movie__about {
-    width: 100%;
-    height: 8em;
-    padding: .5em;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: ${({ theme }) => theme.movieBackground}; 
-    border-bottom-left-radius: .39em;
-    border-bottom-right-radius: .39em;
-  }
-  
-  .movie__about .name {
-    font-size: .9em;
-    line-height: 1.5;
-    font-weight: 600;
-    color: ${({ theme }) => theme.text};
-    text-transform: capitalize;
-  }
 
   .searchInt{
     color: ${({ theme }) => theme.text}
@@ -269,30 +168,7 @@ div.movie {
       margin-bottom: 0.7em;
   }
   }
-  
-  .movie__about-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-top: .78em;
-    align-items: center
-  }
-  
-  .movie__about-meta .movie-source {
-    background-color: #e7d10a;
-    padding: .2em .5em;
-    font-size: .7em;
-    color: #121620;
-    font-weight: 600;
-    border-radius: .2em;
-  }
 
-  .movie-size {
-    font-size: .75em;
-    font-weight: 600;
-    color: ${({ theme }) => theme.text}; 
-    opacity: 0.5;
-    text-transform: uppercase;
-  }
   /* Movie About Details End */ 
 
   /* Modal boostrap style */
@@ -437,42 +313,6 @@ div.movie {
   transform: rotate(135deg);
 }
 
-.github-button{
-  padding: 0;
-  background: #121620;
-}
-
-.github-button svg path {
-  fill: #e7d10a;
-}
-
-.github-button svg path:hover {
-    background: #dcc80d;
-}
-
-/* Customize select button */
-select {
-    -webkit-appearance: none;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAYAAABuUU38AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUxJREFUeNrM1sEJwkAQBdCsngXPHsQO9O5FS7AAMVYgdqAd2IGCDWgFnryLFQiCZ8EGnJUNimiyM/tnk4HNEAg/8y6ZmMRVqz9eUJvRaSbvutCZ347bXVJy/ZnvTmdJ862Me+hAbZCTs6GHpyUi1tTSvPnqTpoWZPUa7W7ncT3vK4h4zVejy8QzM3WhVUO8ykI6jOxoGA4ig3BLHcNFSCGqGAkig2yqgpEiMsjSfY9LxYQg7L6r0X6wS29YJiYQYecemY+wHrXD1+bklGhpAhBDeu/JfIVGxaAQ9sb8CI+CQSJ+QmJg0Ii/EE2MBiIXooHRQhRCkBhNhBcEhLkwf05ZCG8ICCOpk0MULmvDSY2M8UawIRExLIQIEgHDRoghihgRIgiigBEjgiFATBACAgFgghEwSAAGgoBCBBgYAg5hYKAIFYgHBo6w9RRgAFfy160QuV8NAAAAAElFTkSuQmCC");
-  background-repeat: no-repeat;
-  background-size: 14px;
-  margin-right: 20px;
-  background-position: 90% center;
-  outline: none;
-  cursor: pointer;
-}
-
-/* Utility Styling */
-.actions-button {
-  color: grey;
-  font-size: 1.5em;
-  background: transparent;
-  border-width: 0px;
-  border-style: initial;
-  border-color: initial;
-  border-image: initial;
-  outline: none !important;
-}
 
 button {
   border-style: initial;
@@ -483,56 +323,7 @@ button {
 
 .em {
   color: #dcc80d !important;
-} /* Movie ard for small screens */
-@media (max-width: 561px) {
-  div.movie {
-    display: flex;
-    width: 100%;
-    height: initial;
-    margin: 0 0 1.5em 0;
-    max-height: 15em;
-  }
-
-
-  div.movie-image {
-    height: 100%;
-  }
-
-
-  div.movie-image img {
-    height: 100%;
-    border-bottom-left-radius: 0.3em;
-    border-top-right-radius: initial;
-    box-shadow: initial;
-    min-height: initial;
-    object-fit: cover;
-  }
-
-  .download-btn {
-    height: 43px;
-    width: 43px;
-    bottom: 0.3em;
-    right: -9em;
-  }
-
-  .share-btn {
-    right: -6.7em;
-  }
-
-  .movie__about {
-    border-top-right-radius: 0.39em;
-    border-bottom-start-radius: initial;
-    height: 100%;
-  }
-
-  .movie__about-meta {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-
-  .movie__about-meta .movie-source {
-    background-color: #d0bd0a;
-  }
+} 
 
 
 
@@ -589,11 +380,6 @@ button {
     width: 30%;
     height: 10%;
   }
-
-  .actions-button {
-    height: 2.5em;
-    width: 2.5em;
-  }
   }
   
   .gophie-alert {
@@ -607,16 +393,6 @@ button {
     color: ${({ theme }) => theme.text} !important;
 }
 
-@media (max-width: 450px) {
-  .download-btn {
-    bottom: .1em;
-    right: -7em;
-  }
-
-  .share-btn {
-    right: -5em;
-  }
-}
 
 .gophie-modal-rating-container__average--container__on-card p {
   color: ${({ theme }) => theme.text}
@@ -643,30 +419,6 @@ button {
   animation: logo 5s linear 1 forwards;
 }
 
-#gophie-tv {
-  fill: ${({ theme }) => theme.yellowText};
-  stroke: ${({ theme }) => theme.yellowText};
-  stroke-width: 0;
-  animation: logoTV 1s infinite;
-  -webkit-animation-direction: alternate-reverse;
-}
-
-@keyframes logoTV {
-  0% {
-    stroke-width: 1pt;
-    stroke-dashoffset: 1200;
-    fill-opacity: 0;
-  }
-  50% {
-    fill-opacity: 0;
-  }
-  100% {
-    stroke-dashoffset: 0;
-    fill-opacity: 1;
-    stroke-width: 0pt;
-  }
-}
-
 @keyframes logo {
   0% {
     stroke-width: 1pt;
@@ -681,16 +433,6 @@ button {
     fill-opacity: 1;
     stroke-width: 0pt;
   }
-}
-
-
-.site-footer {
-    background-color: ${({ theme }) => theme.body};
-    box-shadow: 2px 10px 10px 2px ${({ theme }) => theme.text};
-}
-
-.site-footer h6 {
-  color: ${({ theme }) => theme.text};
 }
 
 .scollable-container {

@@ -41,6 +41,24 @@ const MainPanel = styled.div`
             margin-top: 5em;
         }
     }
+
+    .movies {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: left;
+        margin-bottom: 3em;
+    }
+
+    .actions-button {
+        color: grey;
+        font-size: 1.5em;
+        background: transparent;
+        border-width: 0px;
+        border-style: initial;
+        border-color: initial;
+        border-image: initial;
+        outline: none !important;
+    }
 `
 
 export default MainPanel;

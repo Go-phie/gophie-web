@@ -321,20 +321,6 @@ body {
   text-transform: capitalize;
 }
 
-div.movies {
-  margin: 5em;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  margin-top: 1.3em;
-}
-
-@media (max-width: 991px) {
-  div.movies {
-  margin: 2em;
-  }
-}
-
 div.skeleton-movies {
   display: flex;
   flex-flow: row wrap;

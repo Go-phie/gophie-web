@@ -11,10 +11,10 @@ const Style = {
     .trending-carousal-image__container {
       position: relative;
       background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
-      min-height: 25em;
+      min-height: 22em;
       min-width: 5em;
       transition: 0.5s all;
-      border-radius: 0.7em;
+      border-radius: 1em;
       cursor: pointer;
 
       &:hover {
@@ -30,9 +30,7 @@ const Style = {
         transition: all 0.5s;
       }
 
-        @media (max-width: 1300px) {
-            min-height: 21em;
-        }
+
 
         @media (max-width: 1300px) {
             min-height: 18em;
@@ -54,7 +52,7 @@ const Style = {
       height: 100%;
       max-height: 25em;
       object-fit: cover;
-      border-radius: 0.7em;
+      border-radius: 1em;
       cursor: pointer;
     }
 

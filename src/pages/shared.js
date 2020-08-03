@@ -10,7 +10,6 @@ import axios from "axios";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
 import { GlobalStyles } from "../css/global";
 import "../css/shared.css";
-import Footer from "../components/footer/footer";
 import NavBar from "../components/navbar/Navbar";
 
 class Shared extends Component {
@@ -316,10 +315,6 @@ class Shared extends Component {
                 ip_address={this.state.ip_address}
               />
             </div>
-          </div>
-
-          <div className="mt-5">
-            <Footer />
           </div>
         </ThemeProvider>
       </div>

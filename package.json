@@ -30,7 +30,7 @@
     "react-toggle": "^4.1.1",
     "reactour": "^1.17.0",
     "rotating-file-stream": "^2.1.1",
-    "semantic-ui-react": "^0.88.2",
+    "semantic-ui-react": "^1.1.1",
     "styled-components": "^5.0.1",
     "uuid": "^7.0.3"
   },

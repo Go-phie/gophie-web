@@ -141,13 +141,6 @@ body {
   padding: 10px 15px;
 }
 
-div.movies {
-  margin: 10px 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-}
-
 div.skeleton-movies {
   display: flex;
   flex-flow: row wrap;

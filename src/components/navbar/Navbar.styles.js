@@ -13,6 +13,7 @@ const Style = {
         background-color: ${({ theme }) => theme.body};
         @media (max-width: 678px) {
             display: none;
+            padding: 1.5em !important;
         }
     `,
 
