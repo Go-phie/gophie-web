@@ -78,14 +78,9 @@ body {
 
 
 
-.trending-loader-container {
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  position: absolute;
-  top: 0;
-}
 
-.trending_name {
+
+/* .trending_name {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.yellowText};
   padding: .65em .5em;
@@ -96,7 +91,7 @@ body {
   border-left: 5px solid #e0c700;
   border-radius: 0 .2em .2em 0;
   text-transform: capitalize;
-}
+} */
 
 div.movies {
   margin: 5em;
@@ -322,9 +317,7 @@ div.movie {
   div.skeleton-movie-image {
     height: 310px;
     width: 100%;
-    margin: auto;
-    justify-content: center;
-    left: 0;
+    justify-content: flex-start;
     position: relative;
     background-color: #635c21;
     box-shadow: 4px 4px 16px 2px #1e2023;

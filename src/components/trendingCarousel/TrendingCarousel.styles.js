@@ -41,6 +41,10 @@ const Style = {
         @media (max-width: 786px) {
             min-height: 16em;
         }
+
+        @media(max-width: 678px) {
+            min-height: 15em;
+        }
     }
 
     .trending-carousal-image {
@@ -94,9 +98,10 @@ const Style = {
       }
     }
 
-    .network-icon {
-      max-width: 4.5em;
+    .react-multiple-carousel__arrow {
+      z-index: 100;
     }
+
   `
 };
 

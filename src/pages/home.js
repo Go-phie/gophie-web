@@ -506,6 +506,8 @@ class Home extends Component {
                     render={() => {
                       return (
                         <>
+                          <h2 className="gophie-page-title">Discover Movies</h2>
+
                           {!this.state.isSearch ? (
                             <MovieList
                               ip_address={this.state.ip_address}
