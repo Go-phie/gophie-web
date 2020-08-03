@@ -19,7 +19,7 @@ const NavBar = (props) => {
               placeholder="Search movie"
               autoFocus={true}
               onKeyPress={props.checkInputKey}
-              onChange={props.searchInput}
+              // onChange={props.searchInput}
             />
             <Link to={`/search`} >
               <button
