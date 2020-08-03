@@ -9,7 +9,7 @@ const Style = {
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        padding: 1.5em;
+        padding: 1.5em 3em;
         background-color: ${({ theme }) => theme.body};
         @media (max-width: 678px) {
             display: none;
