@@ -121,11 +121,15 @@ const Style = {
     }
 
     @media (max-width: 414px) {
-        width: calc(50% - 2em);
+      width: calc(50% - 1em);
 
-            &:last-child {
-                margin-right: 0 !important;
-            }
+      &:nth-child(odd) {
+        margin-right: 0 !important;
+      }
+
+      .MuiIconButton-root {
+        margin-right: 0.15em !important;
+      }
     }
   `
 };

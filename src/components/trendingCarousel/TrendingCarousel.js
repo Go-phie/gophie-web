@@ -93,7 +93,7 @@ class TrendingCarousel extends Component {
   render() {
     return (
       <div className="mleft">
-        <h2 className="gophie-page-title">Trending Movies</h2>
+        <h2 className="gophie-page-title mtop">Trending Movies</h2>
         <Style.TrendingMainCarousel
           responsive={responsive}
           deviceType={this.props.deviceType}
