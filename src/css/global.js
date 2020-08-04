@@ -190,7 +190,8 @@ div.skeleton-movies {
     display: block;
   }
 
-  div.skeleton-movie-image {
+  /* Skeleton loader item */
+  .skeleton-movie-image {
     height: 310px;
     width: 100%;
     justify-content: flex-start;
@@ -203,67 +204,12 @@ div.skeleton-movies {
     -webkit-animation-direction: alternate-reverse;
   }
 
-  .skeleton-download-btn {
-    position: absolute;
-    top: 80%;
-    right: 10%;
-    height: 50px;
-    width: 50px;
-    text-decoration: none;
-    background: #6b6320;
-    border-radius: 50%;
-    outline: none;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0px;
-    box-shadow: 0px 0px 7px -2px #121315;
-  }
-  
-  div.skeleton-movie__about p {
-    border-radius: 5px;
-  }
-  
-  p.skeleton-name {
-    font-size: 20px;
-    font-weight: 700;
-    color: #fff;
-    height: 28px;
-    width: 200px;
-    background-color: #635c21;
-    margin: 0px;
-    margin-top: 10px;
-    transition: .3s;
-    animation: blink 1s infinite;
-    animation-delay: .3s;
-    -webkit-animation-direction: alternate-reverse;
-  }
-  
-  p.skeleton-by,
-  p.pub-by {
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-    opacity: 0.5;
-    width: 150px;
-    height: 20px;
-    background-color: #635c21;
-    margin: 0px;
-    margin-top: 10px;
-    transition: .3s;
-    animation: blink 1s infinite;
-    animation-delay: .5s;
-    -webkit-animation-direction: alternate-reverse;
-  }
-  
-  
   @keyframes blink {
     to {
       opacity: .5;
     }
   }
-  
+  /* End Skeleton loader item */
 
 
  
@@ -329,58 +275,12 @@ button {
 
   div.skeleton-movies {
     display: flex;
-    flex-flow: column;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  div.skeleton-movie {
-    display: flex;
-    width: 100%;
     flex-direction: row;
-    margin: 0 0 2em 0;
-    max-height: 15em;
-    min-height: initial;
-    position: initial;
-    justify-content: space-between;
+    justify-content: left;
+    margin-bottom: 3em;
   }
 
-  div.skeleton-movie-image {
-    height: 15em;
-    width: 100%;
-    margin: 0 .5em 0 0;
-  }
 
-  div.sabout {
-    width: 100%;
-  }
-
-  .skeleton-download-btn {
-      height: 39px;
-      width: 39px;
-      bottom: -0.7em;
-      right: -9em;
-  }
-
-  div.skeleton-movie__about p {
-    border-radius: 5px;
-  }
-
-  p.skeleton-name {
-    height: 80%;
-    width: 100%;
-    margin-top: initial;
-    border-radius: .2em;
-  }
-  
-  p.skeleton-by,
-  p.pub-by {
-    width: 30%;
-    height: 10%;
-  }
-  }
   
   .gophie-alert {
     position: fixed !important;

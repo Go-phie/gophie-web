@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const CarouselSkeleton = styled.div `
   min-width: 10em !important;
-  border-radius: 89em;
+  border-radius: 1em;
   min-height: 16em !important;
   margin-right: 1em;
   overflow: hidden;
