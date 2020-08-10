@@ -11,6 +11,7 @@ import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { Link } from "react-router-dom";
 import Rating from 'material-ui-rating';
 import Style from "./movie.styles";
+import MovieSidebar from "../movieSidebar/MovieSidebar";
 export default class Movie extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +20,8 @@ export default class Movie extends Component {
       ratings: {},
       referralID: null,
       loadingReferralID: false,
-      hover: false
+      hover: false,
+      showMovieSidebar: false,
     };
     this._isMounted = false;
   }
@@ -27,6 +29,10 @@ export default class Movie extends Component {
   toggleHover = () => {
     this.setState({ hover: !this.state.hover });
   };
+
+  toggleSidebar = () => {
+    this.setState({ showMovieSidebar: !this.state.showMovieSidebar });
+  }
 
   // Add download to API to make it trackable
   addDownload = () => {
@@ -134,7 +140,7 @@ export default class Movie extends Component {
       Source,
       Index
     } = this.props.data;
-    const { server } = this.props;
+    const { server, ip_address, shareMovie } = this.props;
 
     var translateStyle;
     if (this.state.hover) {
@@ -144,106 +150,114 @@ export default class Movie extends Component {
     }
 
     return (
-      <Style.MovieCard>
-        <div className="movie-image">
-          <img
-            className="position-relative"
-            onClick={() => {
-              this.props.history.push(
-                `/${greekFromEnglish(this.props.data.Source)}/${Index}`
-              );
-              this.props.setDescriptionModal(this.props.data);
-            }}
-            style={translateStyle}
-            onMouseEnter={this.toggleHover}
-            onMouseLeave={this.toggleHover}
-            onKeyDown={() => {
-              this.props.history.push(
-                `${greekFromEnglish(this.props.data.Source)}/${Index}`
-              );
-              this.props.setDescriptionModal(this.props.data);
-            }}
-            src={
-              isImageURL(CoverPhotoLink)
-                ? CoverPhotoLink
-                : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-            }
-            alt={Title}
-          />
-          <p style={translateStyle} className="movie-size"> {Size} </p>
-
-          {greekFromEnglish(server) !== "Server2" ? (
-            <a
-              style={translateStyle}
-              className="download-btn"
-              target="_blank"
-              rel="noopener noreferrer"
-              href={DownloadLink}
-              onClick={() => this.addDownload()}
-              data-tour="my-eight-step"
-            >
-              <FontAwesomeIcon icon={faDownload} />
-            </a>
-          ) : (
-            <button
-              style={translateStyle}
-              className="download-btn"
-              onClick={() => {
+      <>
+        <Style.MovieCard>
+          <div className="movie-image">
+            <img
+              className="position-relative"
+                onClick={() => {
                 this.props.history.push(
-                  `/${greekFromEnglish(this.props.data.Source)}/${Index}`
+                  `${greekFromEnglish(this.props.data.Source)}/${Index}`
                 );
-                this.props.setDescriptionModal(this.props.data);
+                this.toggleSidebar();
               }}
+                  
+              style={translateStyle}
+              onMouseEnter={this.toggleHover}
+              onMouseLeave={this.toggleHover}
               onKeyDown={() => {
                 this.props.history.push(
-                  `/${greekFromEnglish(this.props.data.Source)}/${Index}`
+                  `${greekFromEnglish(this.props.data.Source)}/${Index}`
                 );
-                this.props.setDescriptionModal(this.props.data);
+                this.toggleSidebar();
               }}
-              data-tour="my-eight-step"
-            >
-              <FontAwesomeIcon icon={faPlus} />
-            </button>
-          )}
+              src={
+                isImageURL(CoverPhotoLink)
+                  ? CoverPhotoLink
+                  : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+              }
+              alt={Title}
+            />
+            <p style={translateStyle} className="movie-size"> {Size} </p>
 
-          {/* <button
-            className="download-btn share-btn"
-            onClick={() => this.shareMovie()}
-            data-tour=""
-          >
-            {this.state.loadingReferralID? <FontAwesomeIcon icon={faSpinner} /> : <FontAwesomeIcon icon={faShareAlt} />}
-          </button> */}
-        </div>
-        <div className="movie__about">
-          <Link to={`/${greekFromEnglish(Source)}/${Index}`}>
-            <h3
-              className="name"
-              onClick={() => {
-                this.props.setDescriptionModal(this.props.data);
-              }}
+            {greekFromEnglish(server) !== "Server2" ? (
+              <a
+                style={translateStyle}
+                className="download-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={DownloadLink}
+                onClick={() => this.addDownload()}
+                data-tour="my-eight-step"
+              >
+                <FontAwesomeIcon icon={faDownload} />
+              </a>
+            ) : (
+              <button
+                style={translateStyle}
+                className="download-btn"
+                onClick={() => {
+                  this.props.history.push(
+                    `/${greekFromEnglish(this.props.data.Source)}/${Index}`
+                  );
+                  this.toggleSidebar();
+                }}
+                onKeyDown={() => {
+                  this.props.history.push(
+                    `/${greekFromEnglish(this.props.data.Source)}/${Index}`
+                  );
+                  this.toggleSidebar();
+                }}
+                data-tour="my-eight-step"
+              >
+                <FontAwesomeIcon icon={faPlus} />
+              </button>
+            )}
+
+            {/* <button
+              className="download-btn share-btn"
+              onClick={() => this.shareMovie()}
+              data-tour=""
             >
-              {" "}
-              {Title}{" "}
-            </h3>
-          </Link>
-          
-          {/* Meta about - star rating and movie source */}
-          <div className="movie__about-meta">
-            <div className="movie-rating">
-              <Rating
-                value={Math.round(
-                  this.state.ratings.average_ratings
-                    ? this.state.ratings.average_ratings
-                    : 0
-                )}
-                max={5}
-                readOnly
-              />
-            </div>
-            <p className="movie-source"> {greekFromEnglish(Source)} </p>
+              {this.state.loadingReferralID? <FontAwesomeIcon icon={faSpinner} /> : <FontAwesomeIcon icon={faShareAlt} />}
+            </button> */}
           </div>
-        </div>
-      </Style.MovieCard>
+          <div className="movie__about">
+            <Link to={`/${greekFromEnglish(Source)}/${Index}`}>
+              <h3
+                className="name"
+                onClick={() => {
+                  this.toggleSidebar();
+                }}
+              >
+                {" "}
+                {Title}{" "}
+              </h3>
+            </Link>
+            
+            {/* Meta about - star rating and movie source */}
+            <div className="movie__about-meta">
+              <div className="movie-rating">
+                <Rating
+                  value={Math.round(
+                    this.state.ratings.average_ratings
+                      ? this.state.ratings.average_ratings
+                      : 0
+                  )}
+                  max={5}
+                  readOnly
+                />
+              </div>
+              <p className="movie-source"> {greekFromEnglish(Source)} </p>
+            </div>
+          </div>
+        </Style.MovieCard>
+        {
+          this.state.showMovieSidebar ? (
+              <MovieSidebar toggle={this.toggleSidebar} movie={this.props.data} ip_address={ip_address} shareMovie={shareMovie} server={server}/>
+          ): null
+        }
+      </>
     );
   }
 }

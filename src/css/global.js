@@ -197,16 +197,15 @@ body {
     justify-content: flex-start;
     position: relative;
     background-color: #635c21;
-    box-shadow: 4px 4px 16px 2px #1e2023;
     border-radius: 3px;
     transition: .3s;
-    animation: blink 1s infinite;
+    animation: blink 1.5s infinite;
     -webkit-animation-direction: alternate-reverse;
   }
 
   @keyframes blink {
     to {
-      opacity: .5;
+      opacity: .7;
     }
   }
   /* End Skeleton loader item */

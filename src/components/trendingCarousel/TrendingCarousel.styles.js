@@ -8,6 +8,10 @@ const Style = {
             margin-right: 1.1em;
         }
     }
+
+    .network-icon {
+      margin: 0 !important;
+    }
     .trending-carousal-image__container {
       position: relative;
       background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));

@@ -10,26 +10,27 @@ import { NetworkIcon } from "../../utils/icons";
 import CarouselSkeletonLoader from "../Loader/CarouselSkeletonLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
-import Style from "./TrendingCarousel.styles"
+import Style from "./TrendingCarousel.styles";
+import MovieSidebar from "../movieSidebar/MovieSidebar";
 
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5,
+    items: 5
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4,
+    items: 4
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 3,
+    items: 3
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2,
-  },
+    items: 2
+  }
 };
 
 class TrendingCarousel extends Component {
@@ -41,8 +42,13 @@ class TrendingCarousel extends Component {
       error: false,
       currentmovie: { name: "" },
       isLoading: true,
+      showMovieSidebar: false,
     };
   }
+
+  toggleSidebar = () => {
+    this.setState({ showMovieSidebar: !this.state.showMovieSidebar });
+  };
 
   componentDidMount() {
     const options = {
@@ -51,22 +57,22 @@ class TrendingCarousel extends Component {
       data: {
         filter_by: "weeks",
         filter_num: 4,
-        top: 10,
-      },
+        top: 10
+      }
     };
 
     axios(options)
       .then((res) => {
         this.setState({
           trending: res.data,
-          isLoading: false,
+          isLoading: false
         });
       })
       .catch((err) => {
         if (err) {
           this.setState({
             error: true,
-            isLoading: false,
+            isLoading: false
           });
         }
       });
@@ -83,7 +89,7 @@ class TrendingCarousel extends Component {
         size: trendingMovie.Size,
         year: trendingMovie.Year ? trendingMovie.Year : "",
         download_link: trendingMovie.DownloadLink,
-        cover_photo_link: trendingMovie.CoverPhotoLink,
+        cover_photo_link: trendingMovie.CoverPhotoLink
       })
       .then(() => {
         console.log(`added ${trendingMovie.Title} to downloads on ocena`);
@@ -104,7 +110,7 @@ class TrendingCarousel extends Component {
           transitionDuration={800}
           containerClass="carousel-container"
         >
-          {this.state.trending.map((trendingMovie) => {
+          {this.state.trending.map((trendingMovie, i) => {
             if (trendingMovie.name.endsWith("Tags")) {
               trendingMovie.name = trendingMovie.name.substr(
                 0,
@@ -120,85 +126,85 @@ class TrendingCarousel extends Component {
               Size: trendingMovie.size,
               Source: trendingMovie.engine,
               Year: trendingMovie.year,
-              Description: trendingMovie.description,
+              Description: trendingMovie.description
             };
+
             return (
-              <div
-                key={trendingMovie.id}
-                className="trending-carousal-image__container"
-              >
-                {this.props.history ? (
-                                  <Image
-                  className="img-fluid trending-carousal-image"
-                  key={trendingMovie.id}
-                  onClick={() => {
-                    this.props.history.push(
-                      `/${greekFromEnglish(trendingMovie.engine)}/${
-                        trendingMovie.referral_id
-                      }`
-                    );
-                    this.props.setDescription(movie_obj);
-                  }}
-                  onKeyDown={() => {
-                    this.props.history.push(
-                      `/${greekFromEnglish(trendingMovie.engine)}/${
-                        trendingMovie.referral_id
-                      }`
-                    );
-                    this.props.setDescription(movie_obj);
-                  }}
-                  onMouseOver={() => {
-                    this.setState({
-                      currentmovie: trendingMovie,
-                    });
-                  }}
-                  alt={trendingMovie.name}
-                  src={
-                    trendingMovie.cover_photo_link
-                      ? trendingMovie.cover_photo_link
-                      : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-                  }
-                />
-                ): (
-                <Image
-                  className="img-fluid trending-carousal-image"
-                  key={trendingMovie.id}
-                  onMouseOver={() => {
-                    this.setState({
-                      currentmovie: trendingMovie,
-                    });
-                  }}
-                  alt={trendingMovie.name}
-                  src={
-                    trendingMovie.cover_photo_link
-                      ? trendingMovie.cover_photo_link
-                      : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-                  }
-                />
-                )}
+                <div key={i} className="trending-carousal-image__container">
+                  {/* {this.props.history ? (
+                    <Image
+                      className="img-fluid trending-carousal-image"
+                      onClick={() => {
+                        this.props.history.push(
+                          `/${greekFromEnglish(trendingMovie.engine)}/${
+                            trendingMovie.referral_id
+                          }`
+                        );
+                        this.toggleSidebar();
+                      }}
+                      onKeyDown={() => {
+                        this.props.history.push(
+                          `/${greekFromEnglish(trendingMovie.engine)}/${
+                            trendingMovie.referral_id
+                          }`
+                        );
+                        this.toggleSidebar();
+                      }}
+                      onMouseOver={() => {
+                        this.setState({
+                          currentmovie: trendingMovie
+                        });
+                      }}
+                      alt={trendingMovie.name}
+                      src={
+                        trendingMovie.cover_photo_link
+                          ? trendingMovie.cover_photo_link
+                          : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+                      }
+                    />
+                  ) : ( */}
+                    <Image
+                      className="img-fluid trending-carousal-image"
+                      onMouseOver={() => {
+                        this.setState({
+                          currentmovie: trendingMovie
+                        });
+                      }}
+                      alt={trendingMovie.name}
+                      src={
+                        trendingMovie.cover_photo_link
+                          ? trendingMovie.cover_photo_link
+                          : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+                      }
+                    />
+                  {/* )} */}
 
+                  <div className="carousal-image-detail">
+                    <a
+                      className="download-btn carousal-download-btn"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href={movie_obj.DownloadLink}
+                      onClick={() => this.addDownload(movie_obj)}
+                      data-tour="my-eight-step"
+                    >
+                      <FontAwesomeIcon icon={faDownload} />
+                    </a>
+                    <p>{trendingMovie.name}</p>
+                  </div>
 
-                <div className="carousal-image-detail">
-                                   <a
-                    className="download-btn carousal-download-btn"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={movie_obj.DownloadLink}
-                    onClick={() => this.addDownload(movie_obj)}
-                    data-tour="my-eight-step"
-                  >
-                    <FontAwesomeIcon icon={faDownload} />
-                  </a>
-                  <p>{trendingMovie.name}</p>
+                  {this.state.showMovieSidebar ? (
+                    <MovieSidebar
+                      toggle={this.toggleSidebar}
+                      movie={movie_obj}
+                    />
+                  ) : null}
                 </div>
-              </div>
             );
           })}
         </Style.TrendingMainCarousel>
         {!this.state.isLoading ? null : (
-          <div
-            className="w-100 trending-loader-container d-flex"
-          >
+          <div className="w-100 trending-loader-container d-flex">
             <CarouselSkeletonLoader />
             <CarouselSkeletonLoader />
             <CarouselSkeletonLoader />
@@ -208,10 +214,7 @@ class TrendingCarousel extends Component {
 
         {!this.state.error ? null : (
           <div className="error">
-            <p
-              style={{ position: "absolute", top: "9em", left: 0, right: 0 }}
-              className="error-text"
-            >
+            <p className="error-text">
               <NetworkIcon />
               <p>Try Again</p>
             </p>
