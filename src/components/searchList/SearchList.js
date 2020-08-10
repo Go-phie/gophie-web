@@ -7,9 +7,9 @@ const SearchList = (props) => {
     (movie) =>
       movie.Title.length > 0 && movie.Size !== "" && !movie.Size.startsWith("0")
   );
-  filteredMovies.sort(function(a, b){
-    return b.Title.score(props.query) - a.Title.score(props.query)
-  })
+  // filteredMovies.sort(function(a, b){
+  //     return b.Title.score(props.query) - a.Title.score(props.query)
+  // })
 
   return (
     <>
@@ -29,7 +29,7 @@ const SearchList = (props) => {
           );
         })
       ) : (
-        <h3 className="mt-5 mb-5 pt-5 pb-5">No result Found</h3>
+        <h3 className="mt-5 mb-5 pt-5 pb-5 text-center">No result Found</h3>
       )}
     </>
   );
