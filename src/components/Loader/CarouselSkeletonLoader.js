@@ -6,10 +6,7 @@ const CarouselSkeleton = styled.div `
   border-radius: 1em;
   min-height: 16em !important;
   margin-right: 1em;
-  overflow: hidden;
   box-shadow: none;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
 
   @media (max-width: 1300px) {
     height: 18em  !important;

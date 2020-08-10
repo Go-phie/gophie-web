@@ -12,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Style from "./TrendingCarousel.styles";
 import MovieSidebar from "../movieSidebar/MovieSidebar";
+import { styled } from "@material-ui/core";
 
 const responsive = {
   superLargeDesktop: {
@@ -204,12 +205,12 @@ class TrendingCarousel extends Component {
           })}
         </Style.TrendingMainCarousel>
         {!this.state.isLoading ? null : (
-          <div className="w-100 trending-loader-container d-flex">
+          <Style.TrendingLoaderContainer className="w-100 d-flex">
             <CarouselSkeletonLoader />
             <CarouselSkeletonLoader />
             <CarouselSkeletonLoader />
             <CarouselSkeletonLoader />
-          </div>
+          </Style.TrendingLoaderContainer>
         )}
 
         {!this.state.error ? null : (

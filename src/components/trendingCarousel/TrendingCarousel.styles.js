@@ -4,9 +4,9 @@ import Carousel from "react-multi-carousel";
 const Style = {
   TrendingMainCarousel: styled(Carousel)`
     .react-multi-carousel-item--active {
-        &:not(:last-child) {
-            margin-right: 1.1em;
-        }
+      &:not(:last-child) {
+        margin-right: 1.1em;
+      }
     }
 
     .network-icon {
@@ -34,19 +34,17 @@ const Style = {
         transition: all 0.5s;
       }
 
+      @media (max-width: 1300px) {
+        min-height: 18em;
+      }
 
+      @media (max-width: 786px) {
+        min-height: 16em;
+      }
 
-        @media (max-width: 1300px) {
-            min-height: 18em;
-        }
-
-        @media (max-width: 786px) {
-            min-height: 16em;
-        }
-
-        @media(max-width: 678px) {
-            min-height: 15em;
-        }
+      @media (max-width: 678px) {
+        min-height: 15em;
+      }
     }
 
     .trending-carousal-image {
@@ -80,11 +78,11 @@ const Style = {
         font-size: 1em;
         line-height: 1.2;
         margin: initial;
-        margin-left: .8em;
+        margin-left: 0.8em;
         text-align: right;
 
         @media (max-width: 1300px) {
-            font-size: .85em;
+          font-size: 0.85em;
         }
       }
 
@@ -92,10 +90,10 @@ const Style = {
         font-size: 1.1em;
         box-shadow: none !important;
         position: initial !important;
-        padding: .87em;
+        padding: 0.87em;
 
         @media (max-width: 1300px) {
-            padding: .8em;
+          padding: 0.8em;
         }
       }
     }
@@ -103,7 +101,12 @@ const Style = {
     .react-multiple-carousel__arrow {
       z-index: 100;
     }
+  `,
 
+  TrendingLoaderContainer: styled.div`
+    overflow: hidden;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
   `
 };
 
