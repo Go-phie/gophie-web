@@ -177,7 +177,7 @@ body {
   .skeleton-movies {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: left;
     width: 100%;
   }
 

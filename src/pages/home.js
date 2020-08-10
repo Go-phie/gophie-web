@@ -451,7 +451,7 @@ class Home extends Component {
         <ThemeProvider theme={selectedTheme}>
           <>
             <GlobalStyles />
-            <PageSidebar />
+            <PageSidebar handleServerChange={this.handleServerChange.bind(this)} />
 
             <MainPanel>
               <header>
@@ -491,7 +491,6 @@ class Home extends Component {
                               ip_address={this.state.ip_address}
                               movies={this.state.movies}
                               history={this.props.history}
-                              query={this.searchInput.current.value}
                               server={this.state.server}
                               setDescription={this.setDescription.bind(this)}
                               shareMovie={this.shareMovie.bind(this)}
@@ -508,7 +507,6 @@ class Home extends Component {
                       return (
                         <>
                           <h2 className="gophie-page-title">Discover Movies</h2>
-
                           {!this.state.isSearch ? (
                             <MovieList
                               ip_address={this.state.ip_address}

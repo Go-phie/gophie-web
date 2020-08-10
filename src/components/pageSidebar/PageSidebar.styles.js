@@ -84,7 +84,7 @@ const Style = {
     `,
 
     // sidebar Navigation links
-    Sidebar__NavLink: styled(Link)`
+    Sidebar__NavLink: styled.button`
         color: ${({ theme }) => theme.text};
         padding: 1em .5em;
         text-decoration: none;
@@ -92,10 +92,14 @@ const Style = {
         transition: .3s ease-in;
         font-weight: 600;
         outline: none;
+        background: transparent;
+        border-radius: .3em;
+        width: 100%;
+        text-align: left;
+
 
         &:hover {
             color: ${({ theme }) => theme.yellowDark};
-            border-radius: .3em;
             background: ${({ theme }) => theme.sidebarNav};
         }
 

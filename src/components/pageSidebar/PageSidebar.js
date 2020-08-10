@@ -2,7 +2,7 @@ import React from "react";
 import Style from "./PageSidebar.styles";
 import { GophieLogo } from "../../utils/icons";
 
-const PageSidebar = () => {
+const PageSidebar = (props) => {
   let pathname = window.location.pathname;
 
   return (
@@ -14,7 +14,8 @@ const PageSidebar = () => {
         <Style.Sidebar__NavListItem>
           <Style.Sidebar__NavLink
             className={`${pathname.match("/Server1") ? "active" : ""}`}
-            to={`/Server1`}
+            onClick={props.handleServerChange}
+            value="Server1"
           >
             Server1 <small>(Movies)</small>
           </Style.Sidebar__NavLink>
@@ -23,7 +24,8 @@ const PageSidebar = () => {
         <Style.Sidebar__NavListItem>
           <Style.Sidebar__NavLink
             className={`${pathname.match("/Server2") ? "active" : ""}`}
-            to={"/Server2"}
+            onClick={props.handleServerChange}
+            value="Server2"
           >
             Server2 <small>(Anime)</small>
           </Style.Sidebar__NavLink>
@@ -32,7 +34,8 @@ const PageSidebar = () => {
         <Style.Sidebar__NavListItem>
           <Style.Sidebar__NavLink
             className={`${pathname.match("/Server3") ? "active" : ""}`}
-            to={"/Server3"}
+            onClick={props.handleServerChange}
+            value="Server3"
           >
             Server3 <small>(HD)</small>
           </Style.Sidebar__NavLink>
@@ -41,7 +44,8 @@ const PageSidebar = () => {
         <Style.Sidebar__NavListItem>
           <Style.Sidebar__NavLink
             className={`${pathname.match("/Server4") ? "active" : ""}`}
-            to={"/Server4"}
+            onClick={props.handleServerChange}
+            value="Server4"
           >
             Server4 <small>(Series)</small>
           </Style.Sidebar__NavLink>
@@ -50,7 +54,8 @@ const PageSidebar = () => {
         <Style.Sidebar__NavListItem>
           <Style.Sidebar__NavLink
             className={`${pathname.match("/Server5") ? "active" : ""}`}
-            to={"/Server5"}
+            onClick={props.handleServerChange}
+            value="Server5"
           >
             Server5 <small>(Movies)</small>
           </Style.Sidebar__NavLink>
