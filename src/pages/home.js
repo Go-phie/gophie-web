@@ -455,6 +455,7 @@ class Home extends Component {
 
             <MainPanel>
               <header>
+                
                 <NavBar
                   searchInput={this.searchInput}
                   checkInputKey={this.checkKey.bind(this)}
@@ -465,7 +466,11 @@ class Home extends Component {
                   switchTheme={() => this.switchTheme(this.state.theme)}
                 />
 
-                <MobileNavbar                   
+                <MobileNavbar
+                  searchInput={this.searchInput}
+                  checkInputKey={this.checkKey.bind(this)}
+                  handleSearch={this.handleSearchChange.bind(this)}
+                  newSearch={this.newSearch.bind(this)}                   
                   theme={theme}
                   switchTheme={() => this.switchTheme(this.state.theme)} 
                 />
