@@ -1,11 +1,15 @@
 import React from "react";
 import Movie from "../../components/movie/Movie";
+require("string_score");
 
 const SearchList = (props) => {
-  const filteredMovies = props.movies.filter(
+  let filteredMovies = props.movies.filter(
     (movie) =>
       movie.Title.length > 0 && movie.Size !== "" && !movie.Size.startsWith("0")
   );
+  filteredMovies.sort(function(a, b){
+    return b.Title.score(props.query) - a.Title.score(props.query)
+  })
 
   return (
     <>

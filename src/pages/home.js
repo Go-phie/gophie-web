@@ -491,6 +491,7 @@ class Home extends Component {
                               ip_address={this.state.ip_address}
                               movies={this.state.movies}
                               history={this.props.history}
+                              query={this.searchInput.current.value}
                               server={this.state.server}
                               setDescription={this.setDescription.bind(this)}
                               shareMovie={this.shareMovie.bind(this)}
