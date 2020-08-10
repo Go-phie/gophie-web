@@ -39,7 +39,7 @@ const Style = {
             border-radius: 0;
             display: block;
             height: calc(1.5em + .75rem + 2px);
-            padding: .7rem 1rem;
+            padding: 1.5rem 1rem;
             font-size: 1rem;
             font-weight: 400;
             border-radius: .25rem;

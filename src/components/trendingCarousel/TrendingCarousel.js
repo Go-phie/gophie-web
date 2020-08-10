@@ -107,7 +107,7 @@ class TrendingCarousel extends Component {
           keyBoardControl={true}
           infinite={true}
           ssr={true}
-          autoPlay={this.props.deviceType !== "mobile" ? true : false}
+          // autoPlay={this.props.deviceType !== "mobile" ? true : false}
           transitionDuration={800}
           containerClass="carousel-container"
         >
