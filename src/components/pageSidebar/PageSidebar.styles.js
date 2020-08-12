@@ -18,7 +18,7 @@ const Style = {
             left: initial;
             display: flex;
             width: 100% !important;
-            align-items: baseline;
+            align-items: initial;
             z-index: 999;
             bottom: initial;
             height: initial;

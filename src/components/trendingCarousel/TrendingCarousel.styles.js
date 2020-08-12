@@ -70,9 +70,11 @@ const Style = {
       user-select: none;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-end;
       width: 100%;
-
+        @media (max-width: 678px) {
+          padding: 1.1em .7em;
+        }
       p {
         color: #ffffff;
         font-size: 1em;
@@ -80,6 +82,7 @@ const Style = {
         margin: initial;
         margin-left: 0.8em;
         text-align: right;
+
 
         @media (max-width: 1300px) {
           font-size: 0.85em;
@@ -91,6 +94,7 @@ const Style = {
         box-shadow: none !important;
         position: initial !important;
         padding: 0.87em;
+        margin: 0;
 
         @media (max-width: 1300px) {
           padding: 0.8em;

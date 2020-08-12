@@ -10,6 +10,7 @@ import { isIOS } from "react-device-detect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSpinner,
+  faTimes,
   faShareAlt,
   faDownload
 } from "@fortawesome/free-solid-svg-icons";
@@ -22,15 +23,15 @@ export default function MovieSidebar(props) {
   const { toggle, movie, ip_address, server, shareMovie } = props;
 
   const ratings_api = API_ENDPOINTS.ocena;
-  const [ratings, setRating] = useState({});
+  // const [ratings, setRating] = useState({});
   const [ipRating, setIpRating] = useState(0);
   const [play, setPlay] = useState(false);
-  const [raferralId, setReferralId] = useState("");
+  // const [raferralId, setReferralId] = useState("");
   const [error, setError] = useState(false);
   const [episodeLink, setEpisodeLink] = useState([]);
   const [description, setDescription] = useState();
   const [readMore, setReadMore] = useState(false);
-  const [loadingReferralId, setLoadingReferralId] = useState(false);
+  // const [loadingReferralId, setLoadingReferralId] = useState(false);
 
   const handlePlayRequest = (e) => {
     e.preventDefault();
@@ -106,11 +107,12 @@ export default function MovieSidebar(props) {
   //   }
   // }
   const truncate = () => {
-    if (movie.Description){
-    if (movie.Description.length > 350) {
-      setDescription(movie.Description);
-      setReadMore(false);
-    }}
+    if (movie.Description) {
+      if (movie.Description.length > 350) {
+        setDescription(movie.Description);
+        setReadMore(false);
+      }
+    }
   };
 
   useEffect(() => {
@@ -140,17 +142,18 @@ export default function MovieSidebar(props) {
       setEpisodeLink([...episodeLinkArray]);
     }
 
-    if (movie.Description){
-    if (movie.Description.length > 350) {
-      const truncatedText = movie.Description.substring(0, 350).replace(
-        /\w+$/,
-        ""
-      );
-      setDescription(truncatedText);
+    if (movie.Description) {
+      if (movie.Description.length > 350) {
+        const truncatedText = movie.Description.substring(0, 350).replace(
+          /\w+$/,
+          ""
+        );
+        setDescription(truncatedText);
 
-      setReadMore(true);
-      console.log("sidebar movie", movie)
-    }}
+        setReadMore(true);
+        console.log("sidebar movie", movie);
+      }
+    }
   }, []);
   useEffect(() => {
     if (toggle === false) {
@@ -194,7 +197,7 @@ export default function MovieSidebar(props) {
             }}
           >
             <button onClick={toggle} className={"cancel-btn"}>
-              X{" "}
+              <FontAwesomeIcon icon={faTimes} />
             </button>
             <div className="siderbar-header mt-4">
               <h3> {movie.Title} </h3>

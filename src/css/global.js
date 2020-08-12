@@ -196,18 +196,37 @@ body {
     width: 100%;
     justify-content: flex-start;
     position: relative;
-    background-color: #635c21;
+    background-color: ${({ theme }) => theme.sidebarNav};
     border-radius: 3px;
     transition: .3s;
-    animation: blink 1.5s infinite;
-    -webkit-animation-direction: alternate-reverse;
+    overflow: hidden;
   }
 
-  @keyframes blink {
-    to {
-      opacity: .7;
-    }
-  }
+.skeleton-movie-image::after { 
+      display: block; 
+      content: ""; 
+      position: absolute; 
+      width: 100%; 
+      height: 100%; 
+      transform: translateX(-100%); 
+      background: -webkit-gradient(linear, left top, 
+                  right top, from(transparent),  
+                  color-stop(rgba(255, 255, 255, 0.2)), 
+                  to(transparent)); 
+                    
+      background: linear-gradient(90deg, transparent, 
+              rgba(255, 255, 255, 0.2), transparent); 
+  
+      /* Adding animation */ 
+      animation: loading 0.8s infinite; 
+  } 
+  
+  /* Loading Animation */ 
+  @keyframes loading { 
+      100% { 
+          transform: translateX(100%); 
+      } 
+  } 
   /* End Skeleton loader item */
 
 

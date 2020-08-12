@@ -64,8 +64,7 @@ const Style = {
         transition: 0.25s ease-in;
 
         &:hover {
-          color: ${({ theme }) => theme.text};
-          opacity: 0.5;
+          background: ${({ theme }) => theme.sidebarNav};
         }
       }
     }
