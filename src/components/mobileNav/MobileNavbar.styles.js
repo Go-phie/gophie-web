@@ -45,7 +45,7 @@ const Style = {
             border-radius: .25rem;
             width: 100%;
             margin: 0 1.5em;
-            box-shadow: -1px 7px 10px #121620;
+            box-shadow: -1px -1px 7px ${({ theme }) => theme.movieBoxShadow};
         }
 
         a {
