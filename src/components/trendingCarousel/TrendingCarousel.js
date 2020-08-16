@@ -3,7 +3,7 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
 import axios from "axios";
-import { API_ENDPOINTS, greekFromEnglish } from "../../utils";
+import { API_ENDPOINTS } from "../../utils";
 import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
 import { NetworkIcon } from "../../utils/icons";
@@ -12,7 +12,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Style from "./TrendingCarousel.styles";
 import MovieSidebar from "../movieSidebar/MovieSidebar";
-import { styled } from "@material-ui/core";
 
 const responsive = {
   superLargeDesktop: {

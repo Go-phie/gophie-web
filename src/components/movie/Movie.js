@@ -3,13 +3,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faDownload,
-  faPlus
-} from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { Link } from "react-router-dom";
-import Rating from 'material-ui-rating';
+import Rating from "material-ui-rating";
 import Style from "./movie.styles";
 import MovieSidebar from "../movieSidebar/MovieSidebar";
 export default class Movie extends Component {
@@ -21,7 +18,7 @@ export default class Movie extends Component {
       referralID: null,
       loadingReferralID: false,
       hover: false,
-      showMovieSidebar: false,
+      showMovieSidebar: false
     };
     this._isMounted = false;
   }
@@ -32,7 +29,7 @@ export default class Movie extends Component {
 
   toggleSidebar = () => {
     this.setState({ showMovieSidebar: !this.state.showMovieSidebar });
-  }
+  };
 
   // Add download to API to make it trackable
   addDownload = () => {
@@ -155,13 +152,12 @@ export default class Movie extends Component {
           <div className="movie-image">
             <img
               className="position-relative"
-                onClick={() => {
+              onClick={() => {
                 this.props.history.push(
                   `${greekFromEnglish(this.props.data.Source)}/${Index}`
                 );
                 this.toggleSidebar();
               }}
-                  
               style={translateStyle}
               onMouseEnter={this.toggleHover}
               onMouseLeave={this.toggleHover}
@@ -178,7 +174,10 @@ export default class Movie extends Component {
               }
               alt={Title}
             />
-            <p style={translateStyle} className="movie-size"> {Size} </p>
+            <p style={translateStyle} className="movie-size">
+              {" "}
+              {Size}{" "}
+            </p>
 
             {greekFromEnglish(server) !== "Server2" ? (
               <a
@@ -208,7 +207,6 @@ export default class Movie extends Component {
                   );
                   this.toggleSidebar();
                 }}
-                data-tour="my-eight-step"
               >
                 <FontAwesomeIcon icon={faPlus} />
               </button>
@@ -234,7 +232,7 @@ export default class Movie extends Component {
                 {Title}{" "}
               </h3>
             </Link>
-            
+
             {/* Meta about - star rating and movie source */}
             <div className="movie__about-meta">
               <div className="movie-rating">
@@ -252,11 +250,15 @@ export default class Movie extends Component {
             </div>
           </div>
         </Style.MovieCard>
-        {
-          this.state.showMovieSidebar ? (
-              <MovieSidebar toggle={this.toggleSidebar} movie={this.props.data} ip_address={ip_address} shareMovie={shareMovie} server={server}/>
-          ): null
-        }
+        {this.state.showMovieSidebar ? (
+          <MovieSidebar
+            toggle={this.toggleSidebar}
+            movie={this.props.data}
+            ip_address={ip_address}
+            shareMovie={shareMovie}
+            server={server}
+          />
+        ) : null}
       </>
     );
   }

@@ -20,18 +20,18 @@ export default function MovieSidebar(props) {
   let refSidebarContent = useRef(null);
   let sidebarTimeline = useRef();
 
-  const { toggle, movie, ip_address, server, shareMovie } = props;
+  const { toggle, movie, ip_address, server } = props;
 
   const ratings_api = API_ENDPOINTS.ocena;
   // const [ratings, setRating] = useState({});
   const [ipRating, setIpRating] = useState(0);
   const [play, setPlay] = useState(false);
-  // const [raferralId, setReferralId] = useState("");
+  const [referralID, setReferralID] = useState("");
   const [error, setError] = useState(false);
   const [episodeLink, setEpisodeLink] = useState([]);
   const [description, setDescription] = useState();
   const [readMore, setReadMore] = useState(false);
-  // const [loadingReferralId, setLoadingReferralId] = useState(false);
+  const [loadingReferralID, setLoadingReferralID] = useState(false);
 
   const handlePlayRequest = (e) => {
     e.preventDefault();
@@ -66,46 +66,35 @@ export default function MovieSidebar(props) {
       });
   };
 
-  // const getShareID = (action) => {
-  //   axios
-  //     .post(this.state.ratings_api + "/referral/", {
-  //       ip_address: ip_address,
-  //       movie_name: movie.Title,
-  //       engine: movie.Source,
-  //       description: movie.Description,
-  //       size: movie.Size,
-  //       year: movie.Year,
-  //       download_link: movie.DownloadLink,
-  //       cover_photo_link: movie.CoverPhotoLink
-  //     })
-  //     .then((res) => {
-  //       const { data } = res;
-  //       if (action) {
-  //         setLoadingReferralId(false);
-  //       }
-  //       this.setState({ referralID: data }, () => {
-  //         if (action) {
-  //           this.shareMovie();
-  //         }
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       this.setState({ loadingReferralID: false });
-  //       console.log(err);
-  //     });
-  // };
+  const getShareID = (action) => {
+    axios
+      .post(ratings_api + "/referral/", {
+        ip_address: ip_address,
+        movie_name: movie.Title,
+        engine: movie.Source,
+        description: movie.Description,
+        size: movie.Size,
+        year: movie.Year,
+        download_link: movie.DownloadLink,
+        cover_photo_link: movie.CoverPhotoLink
+      })
+      .then((res) => {
+        const { data } = res;
+        if (action) {
+          setLoadingReferralID(false);
+        }
+        setReferralID(data, () => {
+          if (action) {
+            shareMovie();
+          }
+        });
+      })
+      .catch((err) => {
+        setLoadingReferralID(false);
+        console.log(err);
+      });
+  };
 
-  // const shareMovie = () => {
-  //   if (this.state.referralID) {
-  //     this.props.shareMovie({
-  //       ...this.props.data,
-  //       referralID: this.state.referralID
-  //     });
-  //   } else {
-  //     this.setState({ loadingReferralID: true });
-  //     this.getShareID("share");
-  //   }
-  // }
   const truncate = () => {
     if (movie.Description) {
       if (movie.Description.length > 350) {
@@ -114,6 +103,61 @@ export default function MovieSidebar(props) {
       }
     }
   };
+
+  const shareMovie = () => {
+    if (referralID) {
+      props.shareMovie({
+        ...movie,
+        referralID: referralID
+      });
+    } else {
+      setLoadingReferralID(true);
+      getShareID("share");
+    }
+  };
+
+  useEffect(() => {
+    const getShareID = (action) => {
+      axios
+        .post(ratings_api + "/referral/", {
+          ip_address: ip_address,
+          movie_name: movie.Title,
+          engine: movie.Source,
+          description: movie.Description,
+          size: movie.Size,
+          year: movie.Year,
+          download_link: movie.DownloadLink,
+          cover_photo_link: movie.CoverPhotoLink
+        })
+        .then((res) => {
+          const { data } = res;
+          if (action) {
+            setLoadingReferralID(false);
+          }
+          setReferralID(data, () => {
+            if (action) {
+              shareMovie();
+            }
+          });
+        })
+        .catch((err) => {
+          setLoadingReferralID(false);
+          console.log(err);
+        });
+    };
+    const shareMovie = () => {
+      if (referralID) {
+        props.shareMovie({
+          ...movie,
+          referralID: referralID
+        });
+      } else {
+        setLoadingReferralID(true);
+        getShareID("share");
+      }
+    };
+    getShareID();
+  }, [referralID]);
 
   useEffect(() => {
     if (movie.Source === "AnimeOut") {
@@ -154,7 +198,8 @@ export default function MovieSidebar(props) {
         console.log("sidebar movie", movie);
       }
     }
-  }, []);
+  }, [movie]);
+
   useEffect(() => {
     if (toggle === false) {
       gsap.to(refLi, {
@@ -177,6 +222,7 @@ export default function MovieSidebar(props) {
       });
     }
   }, [toggle]);
+
   return (
     <MovieSidebarPortal>
       <Style.MovieOverlayStyle className={toggle ? "isOnOverlay" : ""} />{" "}
@@ -315,7 +361,11 @@ export default function MovieSidebar(props) {
                     download
                   </a>
                   <button className="sidebar-share-btn" onClick={shareMovie}>
-                    <FontAwesomeIcon icon={faShareAlt} />
+                    {loadingReferralID ? (
+                      <FontAwesomeIcon icon={faSpinner} />
+                    ) : (
+                      <FontAwesomeIcon icon={faShareAlt} />
+                    )}
                   </button>
                 </div>
               ) : (
@@ -323,11 +373,14 @@ export default function MovieSidebar(props) {
                   <div className="sidebar-footer-header d-flex justify-content-between align-items-center">
                     <p>Episodes</p>
                     <button
-                      className="gbtn gbtn-secondary mr-3"
                       className="sidebar-share-btn"
                       onClick={shareMovie}
                     >
-                      <FontAwesomeIcon icon={faShareAlt} />
+                      {loadingReferralID ? (
+                        <FontAwesomeIcon icon={faSpinner} />
+                      ) : (
+                        <FontAwesomeIcon icon={faShareAlt} />
+                      )}
                     </button>
                   </div>
 

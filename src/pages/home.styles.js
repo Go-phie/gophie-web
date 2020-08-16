@@ -65,6 +65,10 @@ const MainPanel = styled.div`
     border-image: initial;
     outline: none !important;
   }
+
+  main {
+    background: ${({ theme }) => theme.body};
+  }
 `;
 
 export default MainPanel;
