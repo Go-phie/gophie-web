@@ -53,6 +53,7 @@ const Style = {
             font-size: 1rem;
             font-weight: 400;
             direction: rtl;
+            box-shadow: none;
             line-height: 1.5;
             transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 
@@ -63,6 +64,7 @@ const Style = {
                 outline: none;
                 border-bottom: 2px solid ${({ theme }) => theme.movieBackground};
                 border-radius: .2em;
+                box-shadow: none;
             }
         }
     `

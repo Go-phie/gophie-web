@@ -46,6 +46,11 @@ const Style = {
             width: 100%;
             margin: 0 1.5em;
             box-shadow: -1px -1px 7px ${({ theme }) => theme.movieBoxShadow};
+
+            &:focus {
+                background-color: ${({ theme }) => theme.movieBackground};
+                box-shadow: -1px -1px 7px ${({ theme }) => theme.movieBoxShadow};
+            }
         }
 
         a {

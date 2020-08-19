@@ -455,17 +455,6 @@ class Home extends Component {
 
             <MainPanel>
               <header>
-                
-                <NavBar
-                  searchInput={this.searchInput}
-                  checkInputKey={this.checkKey.bind(this)}
-                  handleSearch={this.handleSearchChange.bind(this)}
-                  newSearch={this.newSearch.bind(this)}
-                  theme={theme}
-                  tour={this.startTour}
-                  switchTheme={() => this.switchTheme(this.state.theme)}
-                />
-
                 <MobileNavbar
                   searchInput={this.searchInput}
                   checkInputKey={this.checkKey.bind(this)}
@@ -473,7 +462,17 @@ class Home extends Component {
                   newSearch={this.newSearch.bind(this)}                   
                   theme={theme}
                   switchTheme={() => this.switchTheme(this.state.theme)} 
+                />                
+                <NavBar
+                  searchInput={this.searchInput}
+                  checkInputKey={this.checkKey.bind(this)}
+                  handleSearch={this.handleSearchChange.bind(this)}
+                  newSearch={this.newSearch.bind(this)}
+                  theme={theme}
+                  switchTheme={() => this.switchTheme(this.state.theme)}
                 />
+
+
 
                 {this.state.isSearch ? null : (
                   <TrendingCarousel

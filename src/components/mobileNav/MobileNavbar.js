@@ -1,50 +1,38 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Style from "./MobileNavbar.styles";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMoon,
   faSun,
   faHome,
-  faSearch
+  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import SearchInput from "../searchInput/SearchInput";
 
 const MobileNavbar = (props) => {
   const [mobileSearch, setMobileSearch] = useState(false);
 
-
   return (
     <>
-      <Style.MobileSearch className={mobileSearch ? "show-mobile-searchbar" : ""}>
-        <input
-          type="text"
-          ref={props.searchInput}
-          placeholder="Search movie"
-          autoFocus={true}
-          onKeyPress={props.checkInputKey}
-          // onChange={props.searchInput}
+      <Style.MobileSearch
+        className={mobileSearch ? "show-mobile-searchbar" : ""}
+      >
+        <SearchInput
+          searchInput={props.searchInput}
+          checkInputKey={props.checkInputKey}
+          newSearch={props.newSearch}
         />
-
-        <Link to={`/search`}>
-          <button
-            onClick={props.newSearch}
-            className="search-btn"
-            data-tour="my-third-step"
-          >
-            <FontAwesomeIcon
-              className="form-control-feedback search-btn "
-              aria-hidden="true"
-              icon={faSearch}
-            />
-          </button>
-        </Link>
       </Style.MobileSearch>
       <Style.MobileNavbar>
         <button className="actions-button" title="Home">
           <FontAwesomeIcon icon={faHome} />
         </button>
 
-        <button className="actions-button" title="Search" onClick={() => setMobileSearch(!mobileSearch)}>
+        <button
+          className="actions-button"
+          title="Search"
+          onClick={() => setMobileSearch(!mobileSearch)}
+        >
           <FontAwesomeIcon icon={faSearch} />
         </button>
         <button
