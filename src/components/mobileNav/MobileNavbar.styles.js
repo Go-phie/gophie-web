@@ -33,7 +33,6 @@ const Style = {
 
         input {
             background-color: ${({ theme }) => theme.movieBackground};
-            color: ${({ theme }) => theme.formColor};
             outline: none;
             border: none;
             border-radius: 0;
@@ -50,6 +49,7 @@ const Style = {
             &:focus {
                 background-color: ${({ theme }) => theme.movieBackground};
                 box-shadow: -1px -1px 7px ${({ theme }) => theme.movieBoxShadow};
+                color: ${({ theme }) => theme.formColor};
             }
         }
 
