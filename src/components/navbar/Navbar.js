@@ -11,6 +11,7 @@ const NavBar = (props) => {
           searchInput={props.searchInput}
           checkInputKey={props.checkInputKey}
           newSearch={props.newSearch}
+          checkKeyOnChange={props.checkKeyOnChange}
         />
       </Style.Navbar__HasSearch>
 

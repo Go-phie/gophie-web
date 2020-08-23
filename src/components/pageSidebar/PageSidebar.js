@@ -60,6 +60,16 @@ const PageSidebar = (props) => {
             Server5 <small>(Movies)</small>
           </Style.Sidebar__NavLink>
         </Style.Sidebar__NavListItem>
+
+        <Style.Sidebar__NavListItem>
+          <Style.Sidebar__NavLink
+            className={`${pathname.match("/Server6") ? "active" : ""}`}
+            onClick={props.handleServerChange}
+            value="Server6"
+          >
+            Server6 <small>(Korean)</small>
+          </Style.Sidebar__NavLink>
+        </Style.Sidebar__NavListItem>
       </Style.Sidebar__Nav>
 
       <Style.Sidebar__Footer>

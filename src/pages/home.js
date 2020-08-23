@@ -32,7 +32,6 @@ import MainPanel from "./home.styles";
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.searchInput = React.createRef();
     this.state = {
       api: API_ENDPOINTS.gophieMain,
       server: nameToEngineMap.get("Server5"),
@@ -50,7 +49,8 @@ class Home extends Component {
       ip_address: "",
       isSearch: false,
       showShareModal: false,
-      movieToBeShared: {}
+      movieToBeShared: {},
+      searchInput: "",
     };
   }
 
@@ -58,8 +58,8 @@ class Home extends Component {
     return el.getBoundingClientRect().bottom <= window.innerHeight;
   };
 
-  handleScroll = () => {
-    const query = this.searchInput.current.value;
+  handleScroll = (e) => {
+    const query = this.state.searchInput;
     const { isLoading, hasMore, error, server } = this.state;
     const wrappedElement = document.getElementById("movie-div");
 
@@ -98,7 +98,7 @@ class Home extends Component {
 
   handleServerChange(event) {
     let server = nameToEngineMap.get(event.target.value);
-    this.searchInput.current.value = "";
+    event.target.value = "";
     this.setState(
       {
         server,
@@ -113,8 +113,8 @@ class Home extends Component {
     );
   }
 
-  newSearch() {
-    let query = this.searchInput.current.value;
+  newSearch(event) {
+    let query = event.target.value;
     if (query.trim().length > 1) {
       this.setState(
         {
@@ -131,10 +131,13 @@ class Home extends Component {
   checkKey(e) {
     if (e.charCode !== 13) return;
     this.setState({ movies: [], listIndex: 1, isSearch: true });
-    let query = this.searchInput.current.value;
+    let query = e.target.value;
     this.performSearch(query);
   }
 
+  checkKeyOnChange = (e) => {
+    this.setState({ searchInput: e.target.value.toLowerCase() });
+  } 
   performSearch = (query, append = false) => {
     this.setState({
       isLoading: true,
@@ -194,13 +197,24 @@ class Home extends Component {
         this.state.listIndex
     );
 
+    const searchServer6 = axios.get(
+      this.state.api +
+        "search?query=" +
+        encodeURI(query.trim()) +
+        "&engine=" +
+        nameToEngineMap.get("Server6") +
+        "&page=" +
+        this.state.listIndex
+    );
+
     axios
       .all([
         searchServer1,
         searchServer2,
         searchServer3,
         searchServer4,
-        searchServer5
+        searchServer5,
+        searchServer6,
       ])
       .then(
         axios.spread(
@@ -209,7 +223,8 @@ class Home extends Component {
             searchServer2,
             searchServer3,
             searchServer4,
-            searchServer5
+            searchServer5,
+            searchServer6,
           ) => {
             const concatSearchServer1 = !searchServer1.data
               ? []
@@ -219,7 +234,8 @@ class Home extends Component {
               .concat(searchServer2.data)
               .concat(searchServer3.data)
               .concat(searchServer4.data)
-              .concat(searchServer5.data);
+              .concat(searchServer5.data)
+              .concat(searchServer6.data);
             const mainMovies = [];
 
             movies.forEach((movies) => {
@@ -283,8 +299,8 @@ class Home extends Component {
       });
   };
 
-  tryAgain() {
-    let query = this.searchInput.current.value;
+  tryAgain(e) {
+    let query = e.target.value;
     if (query.trim().length > 1) {
       this.performSearch(query.trim());
     } else {
@@ -456,18 +472,20 @@ class Home extends Component {
             <MainPanel>
               <header>
                 <MobileNavbar
-                  searchInput={this.searchInput}
-                  checkInputKey={this.checkKey.bind(this)}
-                  handleSearch={this.handleSearchChange.bind(this)}
-                  newSearch={this.newSearch.bind(this)}                   
-                  theme={theme}
-                  switchTheme={() => this.switchTheme(this.state.theme)} 
-                />                
-                <NavBar
-                  searchInput={this.searchInput}
+                  searchInput={this.state.searchInput}
                   checkInputKey={this.checkKey.bind(this)}
                   handleSearch={this.handleSearchChange.bind(this)}
                   newSearch={this.newSearch.bind(this)}
+                  checkKeyOnChange={this.checkKeyOnChange}
+                  theme={theme}
+                  switchTheme={() => this.switchTheme(this.state.theme)} 
+                />
+                <NavBar
+                  searchInput={this.state.searchInput}
+                  checkInputKey={this.checkKey.bind(this)}
+                  handleSearch={this.handleSearchChange.bind(this)}
+                  newSearch={this.newSearch.bind(this)}
+                  checkKeyOnChange={this.checkKeyOnChange}
                   theme={theme}
                   switchTheme={() => this.switchTheme(this.state.theme)}
                 />

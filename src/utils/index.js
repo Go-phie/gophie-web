@@ -104,6 +104,7 @@ nm.set("Server1", "fzmovies");
 nm.set("Server5", "netnaija");
 nm.set("Server3", "besthdmovies");
 nm.set("Server4", "tvseries");
+nm.set("Server6", "kdramahood");
 
 export const nameToEngineMap = nm;
 
