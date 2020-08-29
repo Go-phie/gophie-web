@@ -153,18 +153,12 @@ export default class Movie extends Component {
             <img
               className="position-relative"
               onClick={() => {
-                this.props.history.push(
-                  `${greekFromEnglish(this.props.data.Source)}/${Index}`
-                );
                 this.toggleSidebar();
               }}
               style={translateStyle}
               onMouseEnter={this.toggleHover}
               onMouseLeave={this.toggleHover}
               onKeyDown={() => {
-                this.props.history.push(
-                  `${greekFromEnglish(this.props.data.Source)}/${Index}`
-                );
                 this.toggleSidebar();
               }}
               src={
@@ -196,29 +190,15 @@ export default class Movie extends Component {
                 style={translateStyle}
                 className="download-btn"
                 onClick={() => {
-                  this.props.history.push(
-                    `/${greekFromEnglish(this.props.data.Source)}/${Index}`
-                  );
                   this.toggleSidebar();
                 }}
                 onKeyDown={() => {
-                  this.props.history.push(
-                    `/${greekFromEnglish(this.props.data.Source)}/${Index}`
-                  );
                   this.toggleSidebar();
                 }}
               >
                 <FontAwesomeIcon icon={faPlus} />
               </button>
             )}
-
-            {/* <button
-              className="download-btn share-btn"
-              onClick={() => this.shareMovie()}
-              data-tour=""
-            >
-              {this.state.loadingReferralID? <FontAwesomeIcon icon={faSpinner} /> : <FontAwesomeIcon icon={faShareAlt} />}
-            </button> */}
           </div>
           <div className="movie__about">
             <Link to={`/${greekFromEnglish(Source)}/${Index}`}>
