@@ -27,6 +27,7 @@ export default function MovieSidebar(props) {
   const [ipRating, setIpRating] = useState(0);
   const [play, setPlay] = useState(false);
   const [referralID, setReferralID] = useState("");
+  // eslint-disable-next-line
   const [error, setError] = useState(false);
   const [episodeLink, setEpisodeLink] = useState([]);
   const [description, setDescription] = useState();
@@ -157,7 +158,7 @@ export default function MovieSidebar(props) {
       }
     };
     getShareID();
-  }, [referralID]);
+  }, [referralID, ip_address, movie, props, ratings_api]);
 
   useEffect(() => {
     if (movie.Source === "AnimeOut") {
