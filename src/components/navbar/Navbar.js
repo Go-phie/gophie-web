@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import Style from "./Navbar.styles";
 import SearchInput from "../searchInput/SearchInput";
+
 const NavBar = (props) => {
   return (
     <Style.Navbar>

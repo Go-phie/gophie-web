@@ -42,13 +42,9 @@ class TrendingCarousel extends Component {
       error: false,
       currentmovie: { name: "" },
       isLoading: true,
-      showMovieSidebar: false,
+      showMovieSidebar: false
     };
   }
-
-  toggleSidebar = () => {
-    this.setState({ showMovieSidebar: !this.state.showMovieSidebar });
-  };
 
   componentDidMount() {
     const options = {
@@ -96,6 +92,13 @@ class TrendingCarousel extends Component {
       });
   };
 
+  openModal = (id) => {
+    this.setState({
+      showMovieSidebar: {
+        [id]: !this.state.showMovieSidebar
+      }
+    });
+  };
   render() {
     return (
       <div className="mleft">
@@ -130,76 +133,47 @@ class TrendingCarousel extends Component {
             };
 
             return (
-                <div key={i} className="trending-carousal-image__container">
-                  {/* {this.props.history ? (
-                    <Image
-                      className="img-fluid trending-carousal-image"
-                      onClick={() => {
-                        this.props.history.push(
-                          `/${greekFromEnglish(trendingMovie.engine)}/${
-                            trendingMovie.referral_id
-                          }`
-                        );
-                        this.toggleSidebar();
-                      }}
-                      onKeyDown={() => {
-                        this.props.history.push(
-                          `/${greekFromEnglish(trendingMovie.engine)}/${
-                            trendingMovie.referral_id
-                          }`
-                        );
-                        this.toggleSidebar();
-                      }}
-                      onMouseOver={() => {
-                        this.setState({
-                          currentmovie: trendingMovie
-                        });
-                      }}
-                      alt={trendingMovie.name}
-                      src={
-                        trendingMovie.cover_photo_link
-                          ? trendingMovie.cover_photo_link
-                          : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-                      }
-                    />
-                  ) : ( */}
-                    <Image
-                      className="img-fluid trending-carousal-image"
-                      onMouseOver={() => {
-                        this.setState({
-                          currentmovie: trendingMovie
-                        });
-                      }}
-                      alt={trendingMovie.name}
-                      src={
-                        trendingMovie.cover_photo_link
-                          ? trendingMovie.cover_photo_link
-                          : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-                      }
-                    />
-                  {/* )} */}
-
-                  <div className="carousal-image-detail">
-                    <a
-                      className="download-btn carousal-download-btn"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      href={movie_obj.DownloadLink}
-                      onClick={() => this.addDownload(movie_obj)}
-                      data-tour="my-eight-step"
-                    >
-                      <FontAwesomeIcon icon={faDownload} />
-                    </a>
-                    <p>{trendingMovie.name}</p>
-                  </div>
-
-                  {this.state.showMovieSidebar ? (
-                    <MovieSidebar
-                      toggle={this.toggleSidebar}
-                      movie={movie_obj}
-                    />
-                  ) : null}
+              <div key={i} className="trending-carousal-image__container">
+                <Image
+                  className="img-fluid trending-carousal-image"
+                  onMouseOver={() => {
+                    this.setState({
+                      currentmovie: trendingMovie
+                    });
+                  }}
+                  onKeyDown={() => {
+                    this.openModal(i);
+                  }}
+                  onClick={() => {
+                    this.openModal(i);
+                  }}
+                  alt={trendingMovie.name}
+                  src={
+                    trendingMovie.cover_photo_link
+                      ? trendingMovie.cover_photo_link
+                      : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
+                  }
+                />
+                <div className="carousal-image-detail">
+                  <a
+                    className="download-btn carousal-download-btn"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={movie_obj.DownloadLink}
+                    onClick={() => this.addDownload(movie_obj)}
+                    data-tour="my-eight-step"
+                  >
+                    <FontAwesomeIcon icon={faDownload} />
+                  </a>
+                  <p>{trendingMovie.name}</p>
                 </div>
+                {this.state.showMovieSidebar[i] ? (
+                  <MovieSidebar
+                    toggle={() => this.openModal(i)}
+                    movie={movie_obj}
+                  />
+                ) : null}
+              </div>
             );
           })}
         </Style.TrendingMainCarousel>
