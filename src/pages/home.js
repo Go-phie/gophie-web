@@ -14,7 +14,7 @@ import { lightTheme, darkTheme } from "../css/theme";
 import { GlobalStyles } from "../css/global";
 import ScrollButton from "../components/scrollToTop/ScrollToTop";
 import Popup from "../components/popup/Popup";
-import MobileNavbar from "../components/mobileNav/MobileNavbar"
+import MobileNavbar from "../components/mobileNav/MobileNavbar";
 import {
   tourSteps,
   disableBody,
@@ -50,7 +50,7 @@ class Home extends Component {
       isSearch: false,
       showShareModal: false,
       movieToBeShared: {},
-      searchInput: "",
+      searchInput: ""
     };
   }
 
@@ -137,7 +137,7 @@ class Home extends Component {
 
   checkKeyOnChange = (e) => {
     this.setState({ searchInput: e.target.value.toLowerCase() });
-  } 
+  };
   performSearch = (query, append = false) => {
     this.setState({
       isLoading: true,
@@ -147,35 +147,47 @@ class Home extends Component {
 
     this.props.history.push("/search");
 
-    const searchServer1 = axios.get(
-      this.state.api +
-        "search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server2") +
-        "&page=" +
-        this.state.listIndex
-    );
+    const searchServer1 = axios
+      .get(
+        this.state.api +
+          "search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server1") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
 
-    const searchServer2 = axios.get(
-      this.state.api +
-        "search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server2") +
-        "&page=" +
-        this.state.listIndex
-    );
+    const searchServer2 = axios
+      .get(
+        this.state.api +
+          "search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server2") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
 
-    const searchServer3 = axios.get(
-      this.state.api +
-        "search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server3") +
-        "&page=" +
-        this.state.listIndex
-    );
+    const searchServer3 = axios
+      .get(
+        this.state.api +
+          "search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server3") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
 
     const searchServer4 = axios.get(
       this.state.api +
@@ -187,25 +199,33 @@ class Home extends Component {
         this.state.listIndex
     );
 
-    const searchServer5 = axios.get(
-      this.state.api +
-        "search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server5") +
-        "&page=" +
-        this.state.listIndex
-    );
+    const searchServer5 = axios
+      .get(
+        this.state.api +
+          "search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server5") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
 
-    const searchServer6 = axios.get(
-      this.state.api +
-        "search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server6") +
-        "&page=" +
-        this.state.listIndex
-    );
+    const searchServer6 = axios
+      .get(
+        this.state.api +
+          "search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server6") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
 
     axios
       .all([
@@ -214,7 +234,7 @@ class Home extends Component {
         searchServer3,
         searchServer4,
         searchServer5,
-        searchServer6,
+        searchServer6
       ])
       .then(
         axios.spread(
@@ -224,18 +244,31 @@ class Home extends Component {
             searchServer3,
             searchServer4,
             searchServer5,
-            searchServer6,
+            searchServer6
           ) => {
-            const concatSearchServer1 = !searchServer1.data
-              ? []
-              : searchServer1.data;
+            const concatSearchServer1 =
+              searchServer2 === null ? [] : searchServer1.data;
+            const concatSearchServer2 =
+              searchServer2 === null ? [] : searchServer2.data;
+
+            const concatSearchServer3 =
+              searchServer3 === null ? [] : searchServer3.data;
+
+            const concatSearchServer4 =
+              searchServer4 === null ? [] : searchServer4.data;
+
+            const concatSearchServer5 =
+              searchServer5 === null ? [] : searchServer5.data;
+
+            const concatSearchServer6 =
+              searchServer6 === null ? [] : searchServer6.data;
 
             const movies = concatSearchServer1
-              .concat(searchServer2.data)
-              .concat(searchServer3.data)
-              .concat(searchServer4.data)
-              .concat(searchServer5.data)
-              .concat(searchServer6.data);
+              .concat(concatSearchServer2)
+              .concat(concatSearchServer3)
+              .concat(concatSearchServer4)
+              .concat(concatSearchServer5)
+              .concat(concatSearchServer6);
             const mainMovies = [];
 
             movies.forEach((movies) => {
@@ -467,7 +500,9 @@ class Home extends Component {
         <ThemeProvider theme={selectedTheme}>
           <>
             <GlobalStyles />
-            <PageSidebar handleServerChange={this.handleServerChange.bind(this)} />
+            <PageSidebar
+              handleServerChange={this.handleServerChange.bind(this)}
+            />
 
             <MainPanel>
               <header>
@@ -478,7 +513,7 @@ class Home extends Component {
                   newSearch={this.newSearch.bind(this)}
                   checkKeyOnChange={this.checkKeyOnChange}
                   theme={theme}
-                  switchTheme={() => this.switchTheme(this.state.theme)} 
+                  switchTheme={() => this.switchTheme(this.state.theme)}
                 />
                 <NavBar
                   searchInput={this.state.searchInput}
@@ -489,8 +524,6 @@ class Home extends Component {
                   theme={theme}
                   switchTheme={() => this.switchTheme(this.state.theme)}
                 />
-
-
 
                 {this.state.isSearch ? null : (
                   <TrendingCarousel
