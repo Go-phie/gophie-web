@@ -349,7 +349,7 @@ export default function MovieSidebar(props) {
 
             <div className="sidebar-footer mt-4">
               {/* if AnimeOut engine add the download link */}
-              {greekFromEnglish(server) !== "Server2" ? (
+              {greekFromEnglish(movie.Source) !== "Server2" ? (
                 <div>
                   <a
                     href={movie.DownloadLink}
@@ -373,10 +373,7 @@ export default function MovieSidebar(props) {
                 <>
                   <div className="sidebar-footer-header d-flex justify-content-between align-items-center">
                     <p>Episodes</p>
-                    <button
-                      className="sidebar-share-btn"
-                      onClick={shareMovie}
-                    >
+                    <button className="sidebar-share-btn" onClick={shareMovie}>
                       {loadingReferralID ? (
                         <FontAwesomeIcon icon={faSpinner} />
                       ) : (
