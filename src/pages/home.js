@@ -543,6 +543,12 @@ class Home extends Component {
                     render={() => {
                       return (
                         <>
+                          <h2 className="gophie-page-title">
+                            Search Result
+                            {!this.state.searchInput ? null : (
+                              <>: {this.state.searchInput}</>
+                            )}
+                          </h2>
                           {this.state.isSearch && !this.state.isLoading ? (
                             <SearchList
                               ip_address={this.state.ip_address}
