@@ -82,7 +82,8 @@ const Style = {
       position: absolute;
       transition: 0.5s;
       opacity: 0;
-      margin: 2rem;
+      width: 100%;
+      padding: 2rem;
       word-wrap: anywhere;
     }
 
