@@ -19,7 +19,12 @@ const SkeletonLoaderStyle = styled.div`
 
   @media (max-width: 678px) {
     height: 15em !important;
-    width: calc(50% - 0) !important;
+    width: calc(33.333% - 1em) !important;
+  }
+
+  @media (max-width: 414px) {
+    height: 15em !important;
+    width: calc(50% - 1em) !important;
   }
 `;
 const SkeletonLoader = () => {
