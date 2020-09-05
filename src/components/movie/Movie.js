@@ -173,7 +173,8 @@ export default class Movie extends Component {
               {Size}{" "}
             </p>
 
-            {greekFromEnglish(server) !== "Server2" ? (
+            {greekFromEnglish(server) !== "Server2" &&
+            greekFromEnglish(server) !== "Server6" ? (
               <a
                 style={translateStyle}
                 className="download-btn"

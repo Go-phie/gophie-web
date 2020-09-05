@@ -161,7 +161,7 @@ export default function MovieSidebar(props) {
   }, [referralID, ip_address, movie, props, ratings_api]);
 
   useEffect(() => {
-    if (movie.Source === "AnimeOut") {
+    if (movie.Source === "AnimeOut" || movie.Source === "KDramaHood") {
       const episodeLinkArray = [];
       const SDownloadLink = movie.SDownloadLink;
       for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
@@ -169,7 +169,7 @@ export default function MovieSidebar(props) {
           .replace("[AnimeOut]", "")
           .replace("[Erai-raws]", "");
         episodeLinkArray.push(
-          <div className="sidebar-footer-download">
+          <div key={movie.Index} className="sidebar-footer-download">
             <p>{downloadTxtStrip}</p>
             <a
               href={downloadLink}
@@ -255,7 +255,8 @@ export default function MovieSidebar(props) {
               />
             </div>
 
-            {greekFromEnglish(server) === "Server2" ? (
+            {greekFromEnglish(server) === "Server2" ||
+            greekFromEnglish(server) === "Server6" ? (
               <img
                 src={
                   movie.CoverPhotoLink === ""
@@ -348,8 +349,9 @@ export default function MovieSidebar(props) {
             </div>
 
             <div className="sidebar-footer mt-4">
-              {/* if AnimeOut engine add the download link */}
-              {greekFromEnglish(movie.Source) !== "Server2" ? (
+              {/* if AnimeOut or  kdramahood engine add the download link */}
+              {greekFromEnglish(movie.Source) !== "Server2" &&
+              greekFromEnglish(movie.Source) !== "Server6" ? (
                 <div>
                   <a
                     href={movie.DownloadLink}
