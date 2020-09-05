@@ -506,24 +506,26 @@ class Home extends Component {
 
             <MainPanel>
               <header>
-                <MobileNavbar
-                  searchInput={this.state.searchInput}
-                  checkInputKey={this.checkKey.bind(this)}
-                  handleSearch={this.handleSearchChange.bind(this)}
-                  newSearch={this.newSearch.bind(this)}
-                  checkKeyOnChange={this.checkKeyOnChange}
-                  theme={theme}
-                  switchTheme={() => this.switchTheme(this.state.theme)}
-                />
-                <NavBar
-                  searchInput={this.state.searchInput}
-                  checkInputKey={this.checkKey.bind(this)}
-                  handleSearch={this.handleSearchChange.bind(this)}
-                  newSearch={this.newSearch.bind(this)}
-                  checkKeyOnChange={this.checkKeyOnChange}
-                  theme={theme}
-                  switchTheme={() => this.switchTheme(this.state.theme)}
-                />
+                <div className="mtop">
+                  <MobileNavbar
+                    searchInput={this.state.searchInput}
+                    checkInputKey={this.checkKey.bind(this)}
+                    handleSearch={this.handleSearchChange.bind(this)}
+                    newSearch={this.newSearch.bind(this)}
+                    checkKeyOnChange={this.checkKeyOnChange}
+                    theme={theme}
+                    switchTheme={() => this.switchTheme(this.state.theme)}
+                  />
+                  <NavBar
+                    searchInput={this.state.searchInput}
+                    checkInputKey={this.checkKey.bind(this)}
+                    handleSearch={this.handleSearchChange.bind(this)}
+                    newSearch={this.newSearch.bind(this)}
+                    checkKeyOnChange={this.checkKeyOnChange}
+                    theme={theme}
+                    switchTheme={() => this.switchTheme(this.state.theme)}
+                  />
+                </div>
 
                 {this.state.isSearch ? null : (
                   <TrendingCarousel
