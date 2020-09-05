@@ -5,7 +5,7 @@ import {
   faMoon,
   faSun,
   faHome,
-  faSearch,
+  faSearch
 } from "@fortawesome/free-solid-svg-icons";
 import SearchInput from "../searchInput/SearchInput";
 
@@ -26,7 +26,9 @@ const MobileNavbar = (props) => {
       </Style.MobileSearch>
       <Style.MobileNavbar>
         <button className="actions-button" title="Home">
-          <FontAwesomeIcon icon={faHome} />
+          <a style={{ color: "inherit" }} href="/">
+            <FontAwesomeIcon icon={faHome} />
+          </a>
         </button>
 
         <button

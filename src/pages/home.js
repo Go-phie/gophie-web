@@ -509,6 +509,7 @@ class Home extends Component {
                 <div className="mtop">
                   <MobileNavbar
                     searchInput={this.state.searchInput}
+                    handleServerChange={this.handleServerChange.bind(this)}
                     checkInputKey={this.checkKey.bind(this)}
                     handleSearch={this.handleSearchChange.bind(this)}
                     newSearch={this.newSearch.bind(this)}
