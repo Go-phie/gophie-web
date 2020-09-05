@@ -552,6 +552,7 @@ class Home extends Component {
                           </h2>
                           {this.state.isSearch && !this.state.isLoading ? (
                             <SearchList
+                              searchInput={this.state.searchInput}
                               ip_address={this.state.ip_address}
                               movies={this.state.movies}
                               history={this.props.history}
