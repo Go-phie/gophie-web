@@ -97,7 +97,7 @@ export default function MovieSidebar(props) {
   };
 
   const truncate = () => {
-    if (movie.Description) {
+    if (movie.Description === "") {
       if (movie.Description.length > 350) {
         setDescription(movie.Description);
         setReadMore(false);
@@ -333,11 +333,11 @@ export default function MovieSidebar(props) {
 
             {/* sidebar movie description */}
             <div className="sidebar-description mt-4">
-              {movie.Description === "" ? (
+              {movie.Description === "" || movie.Description === null ? (
                 "Seems like the description for this movie is missing"
               ) : (
                 <p>
-                  {description}{" "}
+                  {description}
                   <span
                     className={readMore === true ? "" : "hidden"}
                     onClick={truncate}
