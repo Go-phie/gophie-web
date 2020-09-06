@@ -97,7 +97,7 @@ export default function MovieSidebar(props) {
   };
 
   const truncate = () => {
-    if (movie.Description === "") {
+    if (movie.Description) {
       if (movie.Description.length > 350) {
         setDescription(movie.Description);
         setReadMore(false);
