@@ -177,7 +177,6 @@ class Shared extends Component {
             <div style={{ marginTop: "10em" }}>
               <div
                 className="gophie-modal shared-detail-content mt-5"
-                style={{ maxHeight: "550px" }}
               >
                 <section className="gophie-modal__img">
                   <img
