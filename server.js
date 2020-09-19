@@ -25,9 +25,9 @@ app.use(
   )
 );
 
-app.get("/", function (request, response) {
+app.get("/", (request, response) => {
   let result = null;
-  fs.readFile(filePath, "utf8", function (err, data) {
+  fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       return console.log(err);
     }
@@ -45,10 +45,10 @@ app.get("/", function (request, response) {
   });
 });
 
-app.get("/shared/:referralID", function (request, response) {
+app.get("/shared/:referralID", (request, response) => {
   const referralID = request.params.referralID;
   let result = null;
-  fs.readFile(filePath, "utf8", function (err, data) {
+  fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       return console.log(err);
     }
@@ -56,7 +56,7 @@ app.get("/shared/:referralID", function (request, response) {
       .post(
         `https://gophie-ocena.herokuapp.com/referral/id/?referral_id=${referralID}`
       )
-      .then(function (json) {
+      .then((json) => {
         let movie_name = json.data.name;
         let description = json.data.description;
         let image = json.data.cover_photo_link;
@@ -72,16 +72,16 @@ app.get("/shared/:referralID", function (request, response) {
         result = data.replace(/\$OG_IMAGE/g, image);
         response.send(result);
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log("Could not retrieve movie details", error);
         response.redirect("/");
       });
   });
 });
 
-app.get("/terms", function (request, response) {
+app.get("/terms", (request, response) => {
   let result = null;
-  fs.readFile(filePath, "utf8", function (err, data) {
+  fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       return console.log(err);
     }
@@ -96,7 +96,7 @@ app.get("/terms", function (request, response) {
   });
 });
 
-app.get("/:engine", function (request, response) {
+app.get("/:engine", (request, response) => {
   const engine = request.params.engine;
   let result,
     description = null;
@@ -117,7 +117,7 @@ app.get("/:engine", function (request, response) {
       description = "Download Movies with a simple click of the button";
       break;
   }
-  fs.readFile(filePath, "utf8", function (err, data) {
+  fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
       return console.log(err);
     }
@@ -134,7 +134,7 @@ app.get("/:engine", function (request, response) {
 
 app.use(express.static(path.resolve(__dirname, "./build")));
 
-app.get("*", function (request, response) {
+app.get("*", (request, response) => {
   response.sendFile(filePath);
 });
 
