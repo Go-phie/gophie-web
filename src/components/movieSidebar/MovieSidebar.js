@@ -20,7 +20,7 @@ export default function MovieSidebar(props) {
   let refSidebarContent = useRef(null);
   let sidebarTimeline = useRef();
 
-  const { toggle, movie, ip_address, server } = props;
+  const { toggle, movie, ip_address } = props;
 
   const ratings_api = API_ENDPOINTS.ocena;
   // const [ratings, setRating] = useState({});
