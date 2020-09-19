@@ -260,7 +260,7 @@ export default function MovieSidebar(props) {
               <img
                 src={
                   movie.CoverPhotoLink === ""
-                    ? "No image"
+                    ? "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
                     : movie.CoverPhotoLink
                 }
                 alt={movie.Title}
@@ -314,7 +314,7 @@ export default function MovieSidebar(props) {
                 <img
                   src={
                     movie.CoverPhotoLink === ""
-                      ? "No image"
+                      ? "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
                       : movie.CoverPhotoLink
                   }
                   alt={movie.Title}
