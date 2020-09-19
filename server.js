@@ -140,7 +140,7 @@ app.get("*", (request, response) => {
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-// app.get("/search/:search_term", function (request, response) {
+// app.get("/search/:search_term", (request, response) => {
 //   const data = request.params.page
 //   console.log("here")
 //     response.send(data);
