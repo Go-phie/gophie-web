@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import MovieSidebarPortal from "./MovieSidebarPortal";
 import Style from "./MovieSidebar.styles";
@@ -26,7 +26,7 @@ export default function MovieSidebar(props) {
   // const [ratings, setRating] = useState({});
   const [ipRating, setIpRating] = useState(0);
   const [play, setPlay] = useState(false);
-  const [referralID, setReferralID] = useState("");
+  const [referralID, setReferralID] = useState(null);
   // eslint-disable-next-line
   const [error, setError] = useState(false);
   const [episodeLink, setEpisodeLink] = useState([]);
@@ -105,7 +105,7 @@ export default function MovieSidebar(props) {
     }
   };
 
-  const shareMovie = useCallback(() => {
+  const shareMovie = () => {
     if (referralID) {
       props.shareMovie({
         ...movie,
@@ -115,7 +115,7 @@ export default function MovieSidebar(props) {
       setLoadingReferralID(true);
       getShareID("share");
     }
-  }, []);
+  };
 
   useEffect(() => {
     const getShareID = (action) => {
@@ -135,30 +135,16 @@ export default function MovieSidebar(props) {
           if (action) {
             setLoadingReferralID(false);
           }
-          setReferralID(data, () => {
-            if (action) {
-              shareMovie();
-            }
-          });
+          setReferralID(data, action ? shareMovie() : null);
         })
         .catch((err) => {
           setLoadingReferralID(false);
           console.log(err);
         });
     };
-    const shareMovie = () => {
-      if (referralID) {
-        props.shareMovie({
-          ...movie,
-          referralID: referralID
-        });
-      } else {
-        setLoadingReferralID(true);
-        getShareID("share");
-      }
-    };
     getShareID();
-  }, [referralID, ip_address, movie, props, ratings_api]);
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     if (movie.Source === "AnimeOut" || movie.Source === "KDramaHood") {
@@ -169,7 +155,10 @@ export default function MovieSidebar(props) {
           .replace("[AnimeOut]", "")
           .replace("[Erai-raws]", "");
         episodeLinkArray.push(
-          <div key={movie.Index} className="sidebar-footer-download">
+          <div
+            key={`${movie.Index}${downloadLink}`}
+            className="sidebar-footer-download"
+          >
             <p>{downloadTxtStrip}</p>
             <a
               href={downloadLink}
@@ -196,7 +185,6 @@ export default function MovieSidebar(props) {
         setDescription(truncatedText);
 
         setReadMore(true);
-        console.log("sidebar movie", movie);
       }
     }
   }, [movie]);
@@ -255,8 +243,7 @@ export default function MovieSidebar(props) {
               />
             </div>
 
-            {greekFromEnglish(server) === "Server2" ||
-            greekFromEnglish(server) === "Server6" ? (
+            {movie.IsSeries ? (
               <img
                 src={
                   movie.CoverPhotoLink === ""
@@ -350,8 +337,7 @@ export default function MovieSidebar(props) {
 
             <div className="sidebar-footer mt-4">
               {/* if AnimeOut or  kdramahood engine add the download link */}
-              {greekFromEnglish(movie.Source) !== "Server2" &&
-              greekFromEnglish(movie.Source) !== "Server6" ? (
+              {!movie.IsSeries ? (
                 <div>
                   <a
                     href={movie.DownloadLink}
