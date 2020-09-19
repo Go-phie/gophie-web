@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import { gsap } from "gsap";
 import MovieSidebarPortal from "./MovieSidebarPortal";
 import Style from "./MovieSidebar.styles";
@@ -105,7 +105,7 @@ export default function MovieSidebar(props) {
     }
   };
 
-  const shareMovie = () => {
+  const shareMovie = useCallback(() => {
     if (referralID) {
       props.shareMovie({
         ...movie,
@@ -115,7 +115,7 @@ export default function MovieSidebar(props) {
       setLoadingReferralID(true);
       getShareID("share");
     }
-  };
+  }, []);
 
   useEffect(() => {
     const getShareID = (action) => {

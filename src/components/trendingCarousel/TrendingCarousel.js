@@ -98,7 +98,20 @@ class TrendingCarousel extends Component {
         [id]: !this.state.showMovieSidebar
       }
     });
+
+    if (
+      this.state.showMovieSidebar[id] === false ||
+      this.state.showMovieSidebar[id] === undefined
+    ) {
+      this.setState({
+        showMovieSidebar: {
+          [id]: true
+        }
+      });
+    }
+    console.log(id, this.state.showMovieSidebar[id]);
   };
+
   render() {
     return (
       <div className="mleft">
@@ -133,19 +146,17 @@ class TrendingCarousel extends Component {
             };
 
             return (
-              <div key={i} className="trending-carousal-image__container">
+              <div
+                key={trendingMovie.referral_id}
+                className="trending-carousal-image__container"
+              >
                 <Image
                   className="img-fluid trending-carousal-image"
-                  onMouseOver={() => {
-                    this.setState({
-                      currentmovie: trendingMovie
-                    });
-                  }}
                   onKeyDown={() => {
-                    this.openModal(i);
+                    this.openModal(trendingMovie.referral_id);
                   }}
                   onClick={() => {
-                    this.openModal(i);
+                    this.openModal(trendingMovie.referral_id);
                   }}
                   alt={trendingMovie.name}
                   src={
@@ -167,9 +178,9 @@ class TrendingCarousel extends Component {
                   </a>
                   <p>{trendingMovie.name}</p>
                 </div>
-                {this.state.showMovieSidebar[i] ? (
+                {this.state.showMovieSidebar[trendingMovie.referral_id] ? (
                   <MovieSidebar
-                    toggle={() => this.openModal(i)}
+                    toggle={() => this.openModal(trendingMovie.referral_id)}
                     movie={movie_obj}
                   />
                 ) : null}

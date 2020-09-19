@@ -194,6 +194,7 @@ const Style = {
     &.isOnOverlay {
       width: 100% !important;
       opacity: 0.8;
+      z-index: 101;
     }
   `
 };
