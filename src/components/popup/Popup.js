@@ -33,7 +33,7 @@ class Popup extends Component {
       const SDownloadLink = this.props.movie.SDownloadLink;
       for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
         const downloadTxtStrip=downloadTxt.replace("[AnimeOut]","").replace("[Erai-raws]", "");
-        episodeLinkArray.push(<a className="episode-link " href={downloadLink}>{downloadTxtStrip}</a>);
+        episodeLinkArray.push(<a className="episode-link " href={downloadLink} key={downloadLink}>{downloadTxtStrip}</a>);
       }
 
       this.setState({episodeLink: [...episodeLinkArray]})

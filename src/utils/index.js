@@ -2,7 +2,8 @@
 import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export function isImageURL(url) {
-  return url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+  return url.match(/\.(jpeg|jpg|gif|png|googleusercontent)$/) != null ||
+    url.match(/(h3uo)$/) != null;
 }
 
 export const tourSteps = [
