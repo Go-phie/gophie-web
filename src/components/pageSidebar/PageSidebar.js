@@ -17,7 +17,8 @@ const PageSidebar = (props) => {
             <Style.Sidebar__NavLink
               className={`${pathname.match("/Server1") ? "active" : ""}`}
               onClick={props.handleServerChange}
-              value="Server1"
+              onChange={props.handleServerChange}
+              data-value="Server1"
             >
               Server1 <small>(Movies)</small>
             </Style.Sidebar__NavLink>
@@ -27,7 +28,8 @@ const PageSidebar = (props) => {
             <Style.Sidebar__NavLink
               className={`${pathname.match("/Server2") ? "active" : ""}`}
               onClick={props.handleServerChange}
-              value="Server2"
+              onChange={props.handleServerChange}
+              data-value="Server2"
             >
               Server2 <small>(Anime)</small>
             </Style.Sidebar__NavLink>
@@ -37,7 +39,8 @@ const PageSidebar = (props) => {
             <Style.Sidebar__NavLink
               className={`${pathname.match("/Server3") ? "active" : ""}`}
               onClick={props.handleServerChange}
-              value="Server3"
+              onChange={props.handleServerChange}
+              data-value="Server3"
             >
               Server3 <small>(HD)</small>
             </Style.Sidebar__NavLink>
@@ -47,7 +50,8 @@ const PageSidebar = (props) => {
             <Style.Sidebar__NavLink
               className={`${pathname.match("/Server4") ? "active" : ""}`}
               onClick={props.handleServerChange}
-              value="Server4"
+              onChange={props.handleServerChange}
+              data-value="Server4"
             >
               Server4 <small>(Series)</small>
             </Style.Sidebar__NavLink>
@@ -57,7 +61,8 @@ const PageSidebar = (props) => {
             <Style.Sidebar__NavLink
               className={`${pathname.match("/Server5") ? "active" : ""}`}
               onClick={props.handleServerChange}
-              value="Server5"
+              onChange={props.handleServerChange}
+              data-value="Server5"
             >
               Server5 <small>(Movies)</small>
             </Style.Sidebar__NavLink>
@@ -67,7 +72,8 @@ const PageSidebar = (props) => {
             <Style.Sidebar__NavLink
               className={`${pathname.match("/Server6") ? "active" : ""}`}
               onClick={props.handleServerChange}
-              value="Server6"
+              onChange={props.handleServerChange}
+              data-value="Server6"
             >
               Server6 <small>(Korean)</small>
             </Style.Sidebar__NavLink>

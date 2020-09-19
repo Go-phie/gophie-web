@@ -97,8 +97,10 @@ class Home extends Component {
   }
 
   handleServerChange(event) {
-    let server = nameToEngineMap.get(event.target.value);
-    event.target.value = "";
+    event.persist();
+    let server = nameToEngineMap.get(
+      event.currentTarget.getAttribute("data-value")
+    );
     this.setState(
       {
         server,
