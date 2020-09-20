@@ -8,11 +8,11 @@ import axios from "axios";
 import { greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { isIOS } from "react-device-detect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { DownloadIcon, ShareIcon } from "../../utils/icons";
+
 import {
   faSpinner,
   faTimes,
-  faShareAlt,
-  faDownload
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function MovieSidebar(props) {
@@ -166,7 +166,7 @@ export default function MovieSidebar(props) {
               rel="noopener noreferrer"
               className="gbtn gbtn-primary"
             >
-              <FontAwesomeIcon icon={faDownload} className="mr-2" />
+              <DownloadIcon className="mr-2" />
               download
             </a>
           </div>
@@ -346,14 +346,14 @@ export default function MovieSidebar(props) {
                     className="gbtn gbtn-secondary mr-3"
                   >
                     {" "}
-                    <FontAwesomeIcon icon={faDownload} className="mr-2" />
+                    <DownloadIcon className="mr-2" />
                     download
                   </a>
                   <button className="sidebar-share-btn" onClick={shareMovie}>
                     {loadingReferralID ? (
                       <FontAwesomeIcon icon={faSpinner} />
                     ) : (
-                      <FontAwesomeIcon icon={faShareAlt} />
+                      <ShareIcon />
                     )}
                   </button>
                 </div>
@@ -365,7 +365,7 @@ export default function MovieSidebar(props) {
                       {loadingReferralID ? (
                         <FontAwesomeIcon icon={faSpinner} />
                       ) : (
-                        <FontAwesomeIcon icon={faShareAlt} />
+                        <ShareIcon />
                       )}
                     </button>
                   </div>
