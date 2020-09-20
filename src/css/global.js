@@ -20,6 +20,10 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
+.modal-open .modal {
+  z-index: 10000;
+}
+
 .body-light {
   background-color: #FFF;
 }

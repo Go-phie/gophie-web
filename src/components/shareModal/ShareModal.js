@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
@@ -14,22 +14,22 @@ import {
   TelegramShareButton,
   TelegramIcon,
   RedditShareButton,
-  RedditIcon,
+  RedditIcon
 } from "react-share";
 
-class ShareModal extends Component {
-  render() {
-    const { movie } = this.props;
-    let url = "";
-    console.log(movie.referralID);
-    if (window.location.hostname === "localhost") {
-      url = `localhost:${window.location.port}/shared/${movie.referralID}`;
-    } else {
-      url = `https://gophie.cam/shared/${movie.referralID}`;
-    }
+const ShareModal = (props) => {
+  const { movie } = props;
+  let url = "";
+  console.log(movie.referralID);
+  if (window.location.hostname === "localhost") {
+    url = `localhost:${window.location.port}/shared/${movie.referralID}`;
+  } else {
+    url = `https://gophie.cam/shared/${movie.referralID}`;
+  }
 
-    return (
-      <Modal show={this.props.display} onHide={this.props.onHide}>
+  return (
+    <>
+      <Modal show={props.display} onHide={props.onHide}>
         <Modal.Header closeButton className="share-card">
           <Modal.Title>Share a Movie</Modal.Title>
         </Modal.Header>
@@ -65,13 +65,13 @@ class ShareModal extends Component {
           </Container>
         </Modal.Body>
         <Modal.Footer className="share-card">
-          <Button variant="warning" onClick={this.props.onHide}>
+          <Button variant="warning" onClick={props.onHide}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
-    );
-  }
-}
+    </>
+  );
+};
 
 export default ShareModal;
