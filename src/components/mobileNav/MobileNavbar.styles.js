@@ -13,6 +13,10 @@ const Style = {
         background-color: ${({ theme }) => theme.body};
         display: none;
 
+        .active {
+            color: #e7d10a !important;
+        }
+        
         @media (max-width: 678px) {
             display: flex;
         }

@@ -28,7 +28,7 @@ const MobileNavbar = (props) => {
       <Style.MobileNavbar>
         <button
           className={`${
-            pathname.match("/Server2") ? "active" : ""
+            pathname.match("/Server5") ? "active" : ""
           } actions-button`}
           onClick={props.handleServerChange}
           onChange={props.handleServerChange}
@@ -39,7 +39,9 @@ const MobileNavbar = (props) => {
         </button>
 
         <button
-          className="actions-button"
+          className={`${
+            pathname.match("/search") ? "active" : ""
+          } actions-button`}
           title="Search"
           onClick={() => setMobileSearch(!mobileSearch)}
         >
