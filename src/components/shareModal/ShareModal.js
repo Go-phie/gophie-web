@@ -1,9 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -29,46 +27,53 @@ const ShareModal = (props) => {
 
   return (
     <>
-      <Modal show={props.display} onHide={props.onHide}>
-        <Modal.Header closeButton className="share-card">
-          <Modal.Title>Share a Movie</Modal.Title>
+      <Modal
+        show={props.display}
+        onHide={props.onHide}
+        className="share-card"
+        centered
+        aria-labelledby="contained-modal-title-vcenter"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Share Movie</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="show-grid share-card">
+        <Modal.Body className="show-grid mt-5">
           <Container>
-            <Row>
-              <Col xs={2} md={1}>
-                <FacebookShareButton url={url} quote={movie.Title}>
-                  <FacebookIcon size={32} round={true} />
-                </FacebookShareButton>
-              </Col>
-              <Col xs={2} md={1}>
-                <TwitterShareButton url={url} title={movie.Title}>
-                  <TwitterIcon size={32} round={true} />
-                </TwitterShareButton>
-              </Col>
-              <Col xs={2} md={1}>
-                <WhatsappShareButton url={url} title={movie.Title}>
-                  <WhatsappIcon size={32} round={true} />
-                </WhatsappShareButton>
-              </Col>
-              <Col xs={2} md={1}>
-                <TelegramShareButton url={url} title={movie.Title}>
-                  <TelegramIcon size={32} round={true} />
-                </TelegramShareButton>
-              </Col>
-              <Col xs={2} md={1}>
-                <RedditShareButton url={url} title={movie.Title}>
-                  <RedditIcon size={32} round={true} />
-                </RedditShareButton>
-              </Col>
+            <Row className="justify-content-between">
+              <FacebookShareButton url={url} quote={movie.Title}>
+                <FacebookIcon size={50} round={true} />
+              </FacebookShareButton>
+
+              <TwitterShareButton
+                url={url}
+                title={movie.Title}
+                className="mb-2 mr-3"
+              >
+                <TwitterIcon size={50} round={true} />
+              </TwitterShareButton>
+
+              <WhatsappShareButton
+                url={url}
+                title={movie.Title}
+                className="mb-2 mr-3"
+              >
+                <WhatsappIcon size={50} round={true} />
+              </WhatsappShareButton>
+
+              <TelegramShareButton
+                url={url}
+                title={movie.Title}
+                className="mb-2 mr-3"
+              >
+                <TelegramIcon size={50} round={true} />
+              </TelegramShareButton>
+
+              <RedditShareButton url={url} title={movie.Title} className="mb-2">
+                <RedditIcon size={50} round={true} />
+              </RedditShareButton>
             </Row>
           </Container>
         </Modal.Body>
-        <Modal.Footer className="share-card">
-          <Button variant="warning" onClick={props.onHide}>
-            Close
-          </Button>
-        </Modal.Footer>
       </Modal>
     </>
   );

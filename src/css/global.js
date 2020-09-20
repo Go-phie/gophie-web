@@ -20,19 +20,43 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.modal-open .modal {
-  z-index: 10000;
-}
 
 .body-light {
   background-color: #FFF;
 }
 
 
-.share-card {
+/* share card modal */
+.modal-open .modal {
+  z-index: 10000;
+}
+
+.share-card .modal-content {
   background-color: ${({ theme }) => theme.body};
   color: ${({ theme }) => theme.text};
+  padding: 4em;
 }
+
+.share-card .modal-header {
+  border-bottom: none !important;
+  padding: 0 !important;
+}
+
+.share-card .modal-body {
+  padding: 0 !important;
+}
+
+.share-card .close {
+    color: ${({ theme }) => theme.text};
+}
+
+ @media (max-width: 561px) {
+  .share-card .modal-content {
+    padding: 1em;
+  }
+ }
+/* End share card modal */
+
 
 .search-btn {
   color: grey;
