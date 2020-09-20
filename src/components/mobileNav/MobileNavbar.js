@@ -11,6 +11,7 @@ import SearchInput from "../searchInput/SearchInput";
 
 const MobileNavbar = (props) => {
   const [mobileSearch, setMobileSearch] = useState(false);
+  let pathname = window.location.pathname;
 
   return (
     <>
@@ -25,10 +26,16 @@ const MobileNavbar = (props) => {
         />
       </Style.MobileSearch>
       <Style.MobileNavbar>
-        <button className="actions-button" title="Home">
-          <a style={{ color: "inherit" }} href="/">
-            <FontAwesomeIcon icon={faHome} />
-          </a>
+        <button
+          className={`${
+            pathname.match("/Server2") ? "active" : ""
+          } actions-button`}
+          onClick={props.handleServerChange}
+          onChange={props.handleServerChange}
+          data-value="Server5"
+          title="Home"
+        >
+          <FontAwesomeIcon icon={faHome} />
         </button>
 
         <button
