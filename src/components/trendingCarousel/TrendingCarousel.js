@@ -8,10 +8,9 @@ import "react-multi-carousel/lib/styles.css";
 import { Image } from "semantic-ui-react";
 import { NetworkIcon } from "../../utils/icons";
 import CarouselSkeletonLoader from "../Loader/CarouselSkeletonLoader";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Style from "./TrendingCarousel.styles";
 import MovieSidebar from "../movieSidebar/MovieSidebar";
+import { DownloadIcon } from "../../utils/icons";
 
 const responsive = {
   superLargeDesktop: {
@@ -174,7 +173,7 @@ class TrendingCarousel extends Component {
                     onClick={() => this.addDownload(movie_obj)}
                     data-tour="my-eight-step"
                   >
-                    <FontAwesomeIcon icon={faDownload} />
+                    <DownloadIcon />
                   </a>
                   <p>{trendingMovie.name}</p>
                 </div>

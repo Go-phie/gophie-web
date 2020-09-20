@@ -3,12 +3,13 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload, faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { Link } from "react-router-dom";
 import Rating from "material-ui-rating";
 import Style from "./movie.styles";
 import MovieSidebar from "../movieSidebar/MovieSidebar";
+import { DownloadIcon } from "../../utils/icons";
 export default class Movie extends Component {
   constructor(props) {
     super(props);
@@ -184,7 +185,7 @@ export default class Movie extends Component {
                 onClick={() => this.addDownload()}
                 data-tour="my-eight-step"
               >
-                <FontAwesomeIcon icon={faDownload} />
+                <DownloadIcon />
               </a>
             ) : (
               <button

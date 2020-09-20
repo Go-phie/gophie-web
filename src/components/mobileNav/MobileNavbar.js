@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import Style from "./MobileNavbar.styles";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMoon,
-  faSun,
-  faHome,
-  faSearch
-} from "@fortawesome/free-solid-svg-icons";
 import SearchInput from "../searchInput/SearchInput";
+import { HomeIcon, SearchIcon, SunIcon, MoonIcon } from "../../utils/icons";
 
 const MobileNavbar = (props) => {
   const [mobileSearch, setMobileSearch] = useState(false);
@@ -35,7 +29,7 @@ const MobileNavbar = (props) => {
           data-value="Server5"
           title="Home"
         >
-          <FontAwesomeIcon icon={faHome} />
+          <HomeIcon />
         </button>
 
         <button
@@ -45,18 +39,14 @@ const MobileNavbar = (props) => {
           title="Search"
           onClick={() => setMobileSearch(!mobileSearch)}
         >
-          <FontAwesomeIcon icon={faSearch} />
+          <SearchIcon />
         </button>
         <button
           className="actions-button"
           title="Change Theme"
           onClick={props.switchTheme}
         >
-          {props.theme === "dark" ? (
-            <FontAwesomeIcon icon={faSun} />
-          ) : (
-            <FontAwesomeIcon icon={faMoon} />
-          )}
+          {props.theme === "dark" ? <SunIcon /> : <MoonIcon />}
         </button>
       </Style.MobileNavbar>
     </>

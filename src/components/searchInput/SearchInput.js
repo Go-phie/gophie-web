@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { SearchIcon } from "../../utils/icons";
 
 const SearchInput = (props) => {
   return (
@@ -22,10 +21,9 @@ const SearchInput = (props) => {
           className="search-btn"
           data-tour="my-third-step"
         >
-          <FontAwesomeIcon
+          <SearchIcon
             className="form-control-feedback search-btn "
             aria-hidden="true"
-            icon={faSearch}
           />
         </button>
       </Link>

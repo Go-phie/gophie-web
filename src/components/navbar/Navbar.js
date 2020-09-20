@@ -1,8 +1,7 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import Style from "./Navbar.styles";
 import SearchInput from "../searchInput/SearchInput";
+import { SunIcon, MoonIcon } from "../../utils/icons";
 
 const NavBar = (props) => {
   return (
@@ -24,9 +23,9 @@ const NavBar = (props) => {
         onClick={props.switchTheme}
       >
         {props.theme === "dark" ? (
-          <FontAwesomeIcon icon={faSun} />
+          <SunIcon />
         ) : (
-          <FontAwesomeIcon icon={faMoon} />
+          <MoonIcon />
         )}
       </button>
     </Style.Navbar>
