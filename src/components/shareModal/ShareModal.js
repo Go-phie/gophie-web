@@ -40,7 +40,11 @@ const ShareModal = (props) => {
         <Modal.Body className="show-grid mt-5">
           <Container>
             <Row className="justify-content-between">
-              <FacebookShareButton url={url} quote={movie.Title}>
+              <FacebookShareButton
+                url={url}
+                quote={movie.Title}
+                className="mb-2 mr-3"
+              >
                 <FacebookIcon size={50} round={true} />
               </FacebookShareButton>
 
