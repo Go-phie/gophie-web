@@ -10,10 +10,7 @@ import { isIOS } from "react-device-detect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DownloadIcon, ShareIcon } from "../../utils/icons";
 
-import {
-  faSpinner,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 export default function MovieSidebar(props) {
   let refLi = useRef([]);
@@ -166,8 +163,10 @@ export default function MovieSidebar(props) {
               rel="noopener noreferrer"
               className="gbtn gbtn-primary align-items-center"
             >
-              <DownloadIcon className="mr-2" />{"  "}
-               download
+              <span className="mr-1">
+                <DownloadIcon />
+              </span>
+              download
             </a>
           </div>
         );
@@ -345,7 +344,9 @@ export default function MovieSidebar(props) {
                     rel="noopener noreferrer"
                     className="gbtn gbtn-secondary mr-3"
                   >
-                    <DownloadIcon className="mr-2" />{" "}
+                    <span className="mr-1">
+                      <DownloadIcon />
+                    </span>
                     download
                   </a>
                   <button className="sidebar-share-btn" onClick={shareMovie}>
