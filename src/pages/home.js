@@ -34,7 +34,7 @@ class Home extends Component {
     super(props);
     this.state = {
       api: API_ENDPOINTS.gophieMain,
-      server: nameToEngineMap.get("Server5"),
+      server: nameToEngineMap.get("Server1"),
       mode: "movies",
       movies: [],
       listIndex: 1,

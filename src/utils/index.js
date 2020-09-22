@@ -78,36 +78,16 @@ export const tourSteps = [
   {
     selector: '[data-tour="my-seventh-step"]',
     content: `Check out the average rating of a movie to show you how much people liked/disliked it`
-  },
-  {
-    selector: '[class="close"]',
-    content: `Close the modal and proceed to next step`
-  },
-  {
-    selector: '[data-tour="my-eight-step"]',
-    content: `Click this button to download the movie`
-  },
-  {
-    selector: '[data-tour="my-ninth-step"]',
-    content: `Click this button to scroll back to the top of the page`
-  },
-  {
-    selector: '[data-tour="my-tenth-step"]',
-    content: `Click this button to switch between light and dark modes`
-  },
-  {
-    selector: '[data-tour="my-eleventh-step"]',
-    content: `This links to the entire suite of gophie projects for interested developers. If you like this project, give it a star and if you have any complaints, raise an issue`
   }
 ];
 
 let nm = new Map();
 nm.set("Styx", "mycoolmoviez");
-nm.set("Server1", "fzmovies");
+nm.set("Server1", "netnaija");
 nm.set("Server2", "animeout");
 nm.set("Server3", "besthdmovies");
 nm.set("Server4", "tvseries");
-nm.set("Server5", "netnaija");
+nm.set("Server5", "fzmovies");
 nm.set("Server6", "kdramahood");
 
 export const nameToEngineMap = nm;

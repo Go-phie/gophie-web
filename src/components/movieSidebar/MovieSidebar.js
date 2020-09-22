@@ -164,10 +164,10 @@ export default function MovieSidebar(props) {
               href={downloadLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="gbtn gbtn-primary"
+              className="gbtn gbtn-primary align-items-center"
             >
-              <DownloadIcon className="mr-2" />
-              download
+              <DownloadIcon className="mr-2" />{"  "}
+               download
             </a>
           </div>
         );
@@ -345,8 +345,7 @@ export default function MovieSidebar(props) {
                     rel="noopener noreferrer"
                     className="gbtn gbtn-secondary mr-3"
                   >
-                    {" "}
-                    <DownloadIcon className="mr-2" />
+                    <DownloadIcon className="mr-2" />{" "}
                     download
                   </a>
                   <button className="sidebar-share-btn" onClick={shareMovie}>
