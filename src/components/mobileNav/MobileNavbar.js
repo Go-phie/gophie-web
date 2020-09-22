@@ -22,11 +22,11 @@ const MobileNavbar = (props) => {
       <Style.MobileNavbar>
         <button
           className={`${
-            pathname.match("/Server5") ? "active" : ""
+            pathname.match("/Server1") ? "active" : ""
           } actions-button`}
           onClick={props.handleServerChange}
           onChange={props.handleServerChange}
-          data-value="Server5"
+          data-value="Server1"
           title="Home"
         >
           <HomeIcon />
