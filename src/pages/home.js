@@ -32,6 +32,7 @@ import MainPanel from "./home.styles";
 class Home extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       api: API_ENDPOINTS.gophieMain,
       server: nameToEngineMap.get("Server1"),
@@ -496,7 +497,7 @@ class Home extends Component {
 
   render() {
     const { theme } = this.state;
-    const selectedTheme = theme === "light" ? lightTheme : darkTheme;
+    const selectedTheme = theme !== "light" ? lightTheme : darkTheme;
     return (
       <>
         <ThemeProvider theme={selectedTheme}>
@@ -504,6 +505,7 @@ class Home extends Component {
             <GlobalStyles />
             <PageSidebar
               handleServerChange={this.handleServerChange.bind(this)}
+              tour={this.startTour}
             />
 
             <MainPanel>

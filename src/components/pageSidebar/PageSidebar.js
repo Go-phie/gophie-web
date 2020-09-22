@@ -18,6 +18,7 @@ const PageSidebar = (props) => {
               className={`${pathname.match("/Server1") ? "active" : ""}`}
               onClick={props.handleServerChange}
               onChange={props.handleServerChange}
+              data-tour="server1"
               data-value="Server1"
             >
               Server1 <small>(Movies)</small>
@@ -29,6 +30,7 @@ const PageSidebar = (props) => {
               className={`${pathname.match("/Server2") ? "active" : ""}`}
               onClick={props.handleServerChange}
               onChange={props.handleServerChange}
+              data-tour="server2"
               data-value="Server2"
             >
               Server2 <small>(Anime)</small>
@@ -40,6 +42,7 @@ const PageSidebar = (props) => {
               className={`${pathname.match("/Server3") ? "active" : ""}`}
               onClick={props.handleServerChange}
               onChange={props.handleServerChange}
+              data-tour="server3"
               data-value="Server3"
             >
               Server3 <small>(HD)</small>
@@ -51,6 +54,7 @@ const PageSidebar = (props) => {
               className={`${pathname.match("/Server4") ? "active" : ""}`}
               onClick={props.handleServerChange}
               onChange={props.handleServerChange}
+              data-tour="server4"
               data-value="Server4"
             >
               Server4 <small>(Series)</small>
@@ -62,6 +66,7 @@ const PageSidebar = (props) => {
               className={`${pathname.match("/Server5") ? "active" : ""}`}
               onClick={props.handleServerChange}
               onChange={props.handleServerChange}
+              data-tour="server5"
               data-value="Server5"
             >
               Server5 <small>(Movies)</small>
@@ -73,6 +78,7 @@ const PageSidebar = (props) => {
               className={`${pathname.match("/Server6") ? "active" : ""}`}
               onClick={props.handleServerChange}
               onChange={props.handleServerChange}
+              data-tour="server6"
               data-value="Server6"
             >
               Server6 <small>(Korean)</small>
