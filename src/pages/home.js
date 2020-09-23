@@ -30,6 +30,8 @@ import PageSidebar from "../components/pageSidebar/PageSidebar";
 import MainPanel from "./home.styles";
 
 class Home extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
 
@@ -51,7 +53,9 @@ class Home extends Component {
       isSearch: false,
       showShareModal: false,
       movieToBeShared: {},
-      searchInput: ""
+      searchInput: "",
+      movieFilterServer: "",
+      movieSearchResult: []
     };
   }
 
@@ -91,7 +95,8 @@ class Home extends Component {
     );
     if (filteredMovies.length >= 1) {
       this.setState({
-        movies: filteredMovies
+        movies: filteredMovies,
+        movieSearchResult: filteredMovies
       });
       return;
     }
@@ -121,6 +126,7 @@ class Home extends Component {
     if (query.trim().length > 1) {
       this.setState(
         {
+          movieSearchResult: [],
           movies: [],
           error: false,
           listIndex: 1,
@@ -282,6 +288,7 @@ class Home extends Component {
 
             this.setState({
               movies: [...mainMovies],
+              movieSearchResult: [...mainMovies],
               isLoading: false,
               isSearch: true,
               listIndex: append ? this.state.listIndex + 1 : 1
@@ -394,6 +401,7 @@ class Home extends Component {
 
   UNSAFE_componentWillMount() {
     this.setTour();
+
     this.manageHistory(this.props, false);
   }
 
@@ -407,6 +415,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
+
     this.getIp();
     this.setTheme();
     this.performList();
@@ -418,6 +428,8 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
+
     document.removeEventListener("scroll", this.handleScroll);
   }
 
@@ -495,6 +507,76 @@ class Home extends Component {
     }
   }
 
+  // movie search result filter-by server
+  filterMovieSearch = (event) => {
+    let server = event.target.getAttribute("data-filtered-value");
+
+    if (this._isMounted) {
+      if (server === "all") {
+        this.setState({
+          movieSearchResult: this.state.movies,
+          movieFilterServer: ""
+        });
+      } else if (server === "server1") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.Source.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server1");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server1"
+        });
+      } else if (server === "server2") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.Source.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server2");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server2"
+        });
+        console.log("server1 something");
+      } else if (server === "server3") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.Source.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server3");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server3"
+        });
+      } else if (server === "server4") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.Source.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server4");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server4"
+        });
+      } else if (server === "server5") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.Source.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server5");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server5"
+        });
+      } else if (server === "server6") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.Source.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server6");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server6"
+        });
+      }
+    }
+    console.log(server);
+  };
+
   render() {
     const { theme } = this.state;
     const selectedTheme = theme !== "light" ? lightTheme : darkTheme;
@@ -548,17 +630,101 @@ class Home extends Component {
                     render={() => {
                       return (
                         <>
-                          <h2 className="gophie-page-title">
-                            Search Result
-                            {!this.state.searchInput ? null : (
-                              <>: {this.state.searchInput}</>
-                            )}
-                          </h2>
+                          <div className="gophie-search-header">
+                            <h2 className="gophie-page-title">
+                              Search Result
+                              {!this.state.searchInput ? null : (
+                                <>: {this.state.searchInput}</>
+                              )}
+                            </h2>
+
+                            <div className="gophie-search-filter-container">
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === ""
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="all"
+                              >
+                                all
+                              </button>
+
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server1"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server1"
+                              >
+                                server1
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server2"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server2"
+                              >
+                                server2
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server3"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server3"
+                              >
+                                server3
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server4"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server4"
+                              >
+                                server4
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server5"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server5"
+                              >
+                                server5
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server6"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server6"
+                              >
+                                server6
+                              </button>
+                            </div>
+                          </div>
+
                           {this.state.isSearch && !this.state.isLoading ? (
                             <SearchList
                               searchInput={this.state.searchInput}
                               ip_address={this.state.ip_address}
-                              movies={this.state.movies}
+                              movies={this.state.movieSearchResult}
                               history={this.props.history}
                               server={this.state.server}
                               setDescription={this.setDescription.bind(this)}
@@ -577,14 +743,16 @@ class Home extends Component {
                         <>
                           <h2 className="gophie-page-title">Discover Movies</h2>
                           {!this.state.isSearch ? (
-                            <MovieList
-                              ip_address={this.state.ip_address}
-                              movies={this.state.movies}
-                              history={this.props.history}
-                              server={this.state.server}
-                              setDescription={this.setDescription.bind(this)}
-                              shareMovie={this.shareMovie.bind(this)}
-                            />
+                            <>
+                              <MovieList
+                                ip_address={this.state.ip_address}
+                                movies={this.state.movies}
+                                history={this.props.history}
+                                server={this.state.server}
+                                setDescription={this.setDescription.bind(this)}
+                                shareMovie={this.shareMovie.bind(this)}
+                              />
+                            </>
                           ) : null}
                         </>
                       );
