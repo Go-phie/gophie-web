@@ -19,24 +19,24 @@ export const tourSteps = [
   },
   {
     selector: '[data-tour="server2"]',
-    content: `Download latest ANIME`
-  },
-  {
-    selector: '[data-tour="server3"]',
-    content: `Download latest HD MOVIES`
-  },
-  {
-    selector: '[data-tour="server4"]',
-    content: `Download latest SERIES`
-  },
-  {
-    selector: '[data-tour="server5"]',
-    content: `Download latest MOVIES`
-  },
-  {
-    selector: '[data-tour="server6"]',
-    content: `Download latest KOREAN MOVIES`
+    content: `Download latest ANIME - (scroll to checkout our various server)`
   }
+  // {
+  //   selector: '[data-tour="server3"]',
+  //   content: `Download latest HD MOVIES`
+  // },
+  // {
+  //   selector: '[data-tour="server4"]',
+  //   content: `Download latest SERIES`
+  // },
+  // {
+  //   selector: '[data-tour="server5"]',
+  //   content: `Download latest MOVIES`
+  // },
+  // {
+  //   selector: '[data-tour="server6"]',
+  //   content: `Download latest KOREAN MOVIES`
+  // }
 ];
 
 let nm = new Map();
