@@ -19,7 +19,7 @@ export const tourSteps = [
   },
   {
     selector: '[data-tour="server2"]',
-    content: `Download latest ANIME - (scroll to checkout our various server)`
+    content: `Download latest ANIME - (scroll to checkout our various servers)`
   }
   // {
   //   selector: '[data-tour="server3"]',
@@ -40,7 +40,7 @@ export const tourSteps = [
 ];
 
 let nm = new Map();
-nm.set("Styx", "mycoolmoviez");
+//nm.set("Styx", "mycoolmoviez");
 nm.set("Server1", "netnaija");
 nm.set("Server2", "animeout");
 nm.set("Server3", "besthdmovies");
