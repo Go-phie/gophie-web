@@ -96,7 +96,7 @@ class Shared extends Component {
   getAverage = () => {
     const { movie } = this.state;
     axios
-      .post(this.state.api + "/movie/ratings/average/", {
+      .post(this.state.api + "/movie/ratings/average", {
         referral_id: movie.referral_id
       })
       .then((res) => {
@@ -116,7 +116,7 @@ class Shared extends Component {
   rateMovie = (value) => {
     const { movie } = this.state;
     axios
-      .post(this.state.api + "/rate/", {
+      .post(this.state.api + "/rate", {
         referral_id: movie.referral_id,
         ip_address: this.state.ip_address,
         score: value,
@@ -296,7 +296,6 @@ class Shared extends Component {
             </div>
 
             <div className="mb-5 position-relative">
-              <h2 className="trending-title">Trending Movies</h2>
               <TrendingCarousel
                 style={{ background: "green" }}
                 ip_address={this.state.ip_address}

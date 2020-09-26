@@ -35,7 +35,7 @@ export default class Movie extends Component {
   // Add download to API to make it trackable
   addDownload = () => {
     axios
-      .post(this.state.ratings_api + "/download/", {
+      .post(this.state.ratings_api + "/download", {
         ip_address: this.props.ip_address,
         referral_id: this.props.data.referral_id,
       })
@@ -47,7 +47,7 @@ export default class Movie extends Component {
   getAverage = () => {
     const { data } = this.props;
     axios
-      .post(this.state.ratings_api + "/movie/ratings/average/", {
+      .post(this.state.ratings_api + "/movie/ratings/average", {
         referral_id: data.referral_id,
       })
       .then((res) => {
@@ -68,7 +68,7 @@ export default class Movie extends Component {
     const { data } = this.props;
 
     axios
-      .post(this.state.ratings_api + "/referral/", {
+      .post(this.state.ratings_api + "/referral", {
         ip_address: this.props.ip_address,
         referral_id: data.referral_id,
       })
@@ -84,7 +84,12 @@ export default class Movie extends Component {
         });
       })
       .catch((err) => {
-        this.setState({ loadingReferralID: false });
+        this.setState({ 
+          loadingReferralID: false,
+          referralID: data.referral_id 
+        },() => {
+          this.shareMovie(); 
+        });
         console.log(err);
       });
   };
