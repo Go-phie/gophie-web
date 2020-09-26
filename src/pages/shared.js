@@ -97,13 +97,7 @@ class Shared extends Component {
     const { movie } = this.state;
     axios
       .post(this.state.api + "/movie/ratings/average/", {
-        name: movie.name,
-        engine: movie.engine,
-        description: movie.description,
-        size: movie.size,
-        year: movie.year,
-        download_link: movie.download_link,
-        cover_photo_link: movie.cover_photo_link,
+        referral_id: movie.referral_id
       })
       .then((res) => {
         this.setState({
@@ -123,13 +117,7 @@ class Shared extends Component {
     const { movie } = this.state;
     axios
       .post(this.state.api + "/rate/", {
-        movie_name: movie.name,
-        engine: movie.engine,
-        description: movie.description,
-        size: movie.size,
-        year: movie.year,
-        download_link: movie.download_link,
-        cover_photo_link: movie.cover_photo_link,
+        referral_id: movie.referral_id,
         ip_address: this.state.ip_address,
         score: value,
       })

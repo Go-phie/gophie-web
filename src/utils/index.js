@@ -47,6 +47,7 @@ nm.set("Server3", "besthdmovies");
 nm.set("Server4", "tvseries");
 nm.set("Server5", "fzmovies");
 nm.set("Server6", "kdramahood");
+nm.set("Server7", "takanimelist");
 
 export const nameToEngineMap = nm;
 
@@ -60,7 +61,6 @@ export function greekFromEnglish(eng) {
 }
 
 export const API_ENDPOINTS = {
-  gophieMain: "https://deploy-gophie.herokuapp.com/",
   ocena: "https://gophie-ocena.herokuapp.com",
   ip: "https://api.ipify.org?format=json"
   // ocena: "http://127.0.0.1:8000"

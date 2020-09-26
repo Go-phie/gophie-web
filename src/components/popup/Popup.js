@@ -28,9 +28,9 @@ class Popup extends Component {
     this.getAverage();
     this.getRatings();
 
-    if (this.props.movie.Source === 'AnimeOut') {
+    if (this.props.movie.engine === 'AnimeOut') {
       const episodeLinkArray = []
-      const SDownloadLink = this.props.movie.SDownloadLink;
+      const SDownloadLink = this.props.movie.s_download_link;
       for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
         const downloadTxtStrip=downloadTxt.replace("[AnimeOut]","").replace("[Erai-raws]", "");
         episodeLinkArray.push(<a className="episode-link " href={downloadLink} key={downloadLink}>{downloadTxtStrip}</a>);
@@ -44,13 +44,7 @@ class Popup extends Component {
     axios
       .post(this.state.ratings_api + "/referral/", {
         ip_address: this.props.ip_address,
-        movie_name: this.props.movie.Title,
-        engine: this.props.movie.Source,
-        description: this.props.movie.Description,
-        size: this.props.movie.Size,
-        year: this.props.movie.Year,
-        download_link: this.props.movie.DownloadLink,
-        cover_photo_link: this.props.movie.CoverPhotoLink,
+        referral_id: this.props.movie.referral_id,
       })
       .then((res) => {
         this.setState(
@@ -66,13 +60,7 @@ class Popup extends Component {
     const { movie } = this.props;
     axios
       .post(this.state.ratings_api + "/movie/ratings/average/", {
-        name: movie.Title,
-        engine: movie.Source,
-        description: movie.Description,
-        size: movie.Size,
-        year: movie.Year,
-        download_link: movie.DownloadLink,
-        cover_photo_link: movie.CoverPhotoLink,
+        referral_id: movie.referral_id,
       })
       .then((res) => {
         this.setState({
@@ -92,8 +80,7 @@ class Popup extends Component {
     const { movie } = this.props;
     axios
       .post(this.state.ratings_api + "/movie/rating/", {
-        movie_name: movie.Title,
-        engine: movie.Source,
+        referral_id: movie.referral_id,
         ip_address: this.props.ip_address,
       })
       .then((res) => {
@@ -116,13 +103,7 @@ class Popup extends Component {
     const { movie } = this.props;
     axios
       .post(this.state.ratings_api + "/rate/", {
-        movie_name: movie.Title,
-        engine: movie.Source,
-        description: movie.Description,
-        size: movie.Size,
-        year: movie.Year,
-        download_link: movie.DownloadLink,
-        cover_photo_link: movie.CoverPhotoLink,
+        referral_id: movie.referral_id,
         ip_address: this.props.ip_address,
         score: value,
       })
@@ -174,11 +155,11 @@ class Popup extends Component {
           <section className="gophie-modal__img">
             <img
               src={
-                this.props.movie.CoverPhotoLink === ""
+                this.props.movie.cover_photo_link === ""
                   ? "No image"
-                  : this.props.movie.CoverPhotoLink
+                  : this.props.movie.cover_photo_link
               }
-              alt={this.props.movie.Title}
+              alt={this.props.movie.name}
             />
 
             {/* Video Stream Play Icon */}
@@ -214,14 +195,14 @@ class Popup extends Component {
           <section className="gophie-modal__body">
             <Modal.Header className="gophie-modal__body--header" closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
-                {this.props.movie.Title}
+                {this.props.movie.name}
               </Modal.Title>
             </Modal.Header>
             {this.state.play ? (
               <div>
                 <div className="player-wrapper">
                   <ReactPlayer
-                    url={this.props.movie.DownloadLink}
+                    url={this.props.movie.download_link}
                     className="react-player"
                     playing
                     playsinline
@@ -231,13 +212,13 @@ class Popup extends Component {
                     height="90%"
                   />
                 </div>
-                {greekFromEnglish(this.props.movie.Source) === "Alpha" ? (
+                {greekFromEnglish(this.props.movie.engine) === "Alpha" ? (
                   <div className="player-error-alert">
                     <p className="player-error-message">
                       Streaming from alpha is problematic, suggest{" "}
                       <a
                         className="gophie-link"
-                        href={this.props.movie.DownloadLink}
+                        href={this.props.movie.download_link}
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -303,9 +284,9 @@ class Popup extends Component {
                 </div>
 
                 <div className="gophie-modal__body--description scollable-container">
-                  {this.props.movie.Description === ""
+                  {this.props.movie.description === ""
                     ? "Seems like the description for this movie is missing"
-                    : this.props.movie.Description}
+                    : this.props.movie.description}
                 </div>
                 <div>
 
@@ -313,7 +294,7 @@ class Popup extends Component {
 
                 </div>
                   {
-                    this.props.movie.Source !== "AnimeOut" ?
+                    this.props.movie.name !== "AnimeOut" ?
                       null :
                       (<div>
                         <div className="d-flex justify-content-between align-items-center w-100 mt-3">

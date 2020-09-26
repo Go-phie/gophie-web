@@ -39,13 +39,7 @@ export default function MovieSidebar(props) {
   const rateMovie = (value) => {
     axios
       .post(ratings_api + "/rate/", {
-        movie_name: movie.Title,
-        engine: movie.Source,
-        description: movie.Description,
-        size: movie.Size,
-        year: movie.Year,
-        download_link: movie.DownloadLink,
-        cover_photo_link: movie.CoverPhotoLink,
+        referral_id: movie.referral_id,
         ip_address: ip_address,
         score: value
       })
@@ -68,13 +62,7 @@ export default function MovieSidebar(props) {
     axios
       .post(ratings_api + "/referral/", {
         ip_address: ip_address,
-        movie_name: movie.Title,
-        engine: movie.Source,
-        description: movie.Description,
-        size: movie.Size,
-        year: movie.Year,
-        download_link: movie.DownloadLink,
-        cover_photo_link: movie.CoverPhotoLink
+        referral_id: movie.cover_photo_link
       })
       .then((res) => {
         const { data } = res;
@@ -119,13 +107,7 @@ export default function MovieSidebar(props) {
       axios
         .post(ratings_api + "/referral/", {
           ip_address: ip_address,
-          movie_name: movie.Title,
-          engine: movie.Source,
-          description: movie.Description,
-          size: movie.Size,
-          year: movie.Year,
-          download_link: movie.DownloadLink,
-          cover_photo_link: movie.CoverPhotoLink
+          referral_id: movie.cover_photo_link
         })
         .then((res) => {
           const { data } = res;
@@ -144,9 +126,9 @@ export default function MovieSidebar(props) {
   }, []);
 
   useEffect(() => {
-    if (movie.Source === "AnimeOut" || movie.Source === "KDramaHood") {
+    if (movie.is_series) {
       const episodeLinkArray = [];
-      const SDownloadLink = movie.SDownloadLink;
+      const SDownloadLink = movie.s_download_link;
       for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
         const downloadTxtStrip = downloadTxt
           .replace("[AnimeOut]", "")
@@ -175,9 +157,9 @@ export default function MovieSidebar(props) {
       setEpisodeLink([...episodeLinkArray]);
     }
 
-    if (movie.Description) {
-      if (movie.Description.length > 350) {
-        const truncatedText = movie.Description.substring(0, 350).replace(
+    if (movie.description) {
+      if (movie.description.length > 350) {
+        const truncatedText = movie.description.substring(0, 350).replace(
           /\w+$/,
           ""
         );
@@ -234,7 +216,7 @@ export default function MovieSidebar(props) {
               <FontAwesomeIcon icon={faTimes} />
             </button>
             <div className="siderbar-header mt-4">
-              <h3> {movie.Title} </h3>
+              <h3> {movie.name} </h3>
               <Rating
                 value={ipRating}
                 max={5}
@@ -242,19 +224,19 @@ export default function MovieSidebar(props) {
               />
             </div>
 
-            {movie.IsSeries ? (
+            {movie.is_series ? (
               <img
                 src={
-                  movie.CoverPhotoLink === ""
+                  movie.cover_photo_link === ""
                     ? "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-                    : movie.CoverPhotoLink
+                    : movie.cover_photo_link
                 }
-                alt={movie.Title}
+                alt={movie.name}
                 className="sidebar-image-cover mt-4"
               />
             ) : play ? (
               <div>
-                {greekFromEnglish(movie.Source) === "Server5" ? (
+                {greekFromEnglish(movie.engine) === "Server5" ? (
                   <div className="player-error-alert">
                     <p className="player-error-message">
                       Streaming from alpha is problematic, suggest{" "}
@@ -284,7 +266,7 @@ export default function MovieSidebar(props) {
                 ) : null}
                 <div className="player-wrapper">
                   <ReactPlayer
-                    url={movie.DownloadLink}
+                    url={movie.download_link}
                     className="react-player"
                     playing
                     playsinline
@@ -299,11 +281,11 @@ export default function MovieSidebar(props) {
               <div className="position-relative">
                 <img
                   src={
-                    movie.CoverPhotoLink === ""
+                    movie.cover_photo_link === ""
                       ? "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
-                      : movie.CoverPhotoLink
+                      : movie.cover_photo_link
                   }
-                  alt={movie.Title}
+                  alt={movie.name}
                   className="sidebar-image-cover mt-4"
                 />
                 <a
@@ -319,7 +301,7 @@ export default function MovieSidebar(props) {
 
             {/* sidebar movie description */}
             <div className="sidebar-description mt-4">
-              {movie.Description === "" || movie.Description === null ? (
+              {movie.description === "" || movie.description === null ? (
                 "Seems like the description for this movie is missing"
               ) : (
                 <p>
@@ -336,10 +318,10 @@ export default function MovieSidebar(props) {
 
             <div className="sidebar-footer mt-4">
               {/* if AnimeOut or  kdramahood engine add the download link */}
-              {!movie.IsSeries ? (
+              {!movie.is_series ? (
                 <div>
                   <a
-                    href={movie.DownloadLink}
+                    href={movie.download_link}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="gbtn gbtn-secondary mr-3"

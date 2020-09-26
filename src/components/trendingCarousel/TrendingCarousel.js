@@ -58,6 +58,7 @@ class TrendingCarousel extends Component {
 
     axios(options)
       .then((res) => {
+        console.log(res)
         this.setState({
           trending: res.data,
           isLoading: false
@@ -78,16 +79,10 @@ class TrendingCarousel extends Component {
     axios
       .post(this.state.trending_api + "/download/", {
         ip_address: this.props.ip_address,
-        movie_name: trendingMovie.Title,
-        engine: trendingMovie.Source,
-        description: trendingMovie.Description ? trendingMovie : "",
-        size: trendingMovie.Size,
-        year: trendingMovie.Year ? trendingMovie.Year : "",
-        download_link: trendingMovie.DownloadLink,
-        cover_photo_link: trendingMovie.CoverPhotoLink
+        referral_id: trendingMovie.referral_id
       })
       .then(() => {
-        console.log(`added ${trendingMovie.Title} to downloads on ocena`);
+        console.log(`added ${trendingMovie.name} to downloads on ocena`);
       });
   };
 
@@ -132,17 +127,6 @@ class TrendingCarousel extends Component {
                 trendingMovie.name.length - 4
               );
             }
-            let movie_obj = {
-              Title: trendingMovie.name,
-              Id: trendingMovie.referral_id,
-              key: trendingMovie.referral_id,
-              DownloadLink: trendingMovie.download_link,
-              CoverPhotoLink: trendingMovie.cover_photo_link,
-              Size: trendingMovie.size,
-              Source: trendingMovie.engine,
-              Year: trendingMovie.year,
-              Description: trendingMovie.description
-            };
 
             return (
               <div
@@ -169,8 +153,8 @@ class TrendingCarousel extends Component {
                     className="download-btn carousal-download-btn"
                     target="_blank"
                     rel="noopener noreferrer"
-                    href={movie_obj.DownloadLink}
-                    onClick={() => this.addDownload(movie_obj)}
+                    href={trendingMovie.download_link}
+                    onClick={() => this.addDownload(trendingMovie)}
                     data-tour="my-eight-step"
                   >
                     <DownloadIcon />
@@ -180,7 +164,7 @@ class TrendingCarousel extends Component {
                 {this.state.showMovieSidebar[trendingMovie.referral_id] ? (
                   <MovieSidebar
                     toggle={() => this.openModal(trendingMovie.referral_id)}
-                    movie={movie_obj}
+                    movie={trendingMovie}
                   />
                 ) : null}
               </div>

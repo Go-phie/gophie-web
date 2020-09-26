@@ -36,7 +36,7 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      api: API_ENDPOINTS.gophieMain,
+      api: API_ENDPOINTS.ocena,
       server: nameToEngineMap.get("Server1"),
       mode: "movies",
       movies: [],
@@ -91,7 +91,7 @@ class Home extends Component {
     }
 
     const filteredMovies = this.state.movies.filter((movie) =>
-      movie.Title.toLowerCase().includes(query)
+      movie.name.toLowerCase().includes(query)
     );
     if (filteredMovies.length >= 1) {
       this.setState({
@@ -159,7 +159,7 @@ class Home extends Component {
     const searchServer1 = axios
       .get(
         this.state.api +
-          "search?query=" +
+          "/search?query=" +
           encodeURI(query.trim()) +
           "&engine=" +
           nameToEngineMap.get("Server1") +
@@ -173,7 +173,7 @@ class Home extends Component {
     const searchServer2 = axios
       .get(
         this.state.api +
-          "search?query=" +
+          "/search?query=" +
           encodeURI(query.trim()) +
           "&engine=" +
           nameToEngineMap.get("Server2") +
@@ -187,7 +187,7 @@ class Home extends Component {
     const searchServer3 = axios
       .get(
         this.state.api +
-          "search?query=" +
+          "/search?query=" +
           encodeURI(query.trim()) +
           "&engine=" +
           nameToEngineMap.get("Server3") +
@@ -200,7 +200,7 @@ class Home extends Component {
 
     const searchServer4 = axios.get(
       this.state.api +
-        "search?query=" +
+        "/search?query=" +
         encodeURI(query.trim()) +
         "&engine=" +
         nameToEngineMap.get("Server4") +
@@ -211,7 +211,7 @@ class Home extends Component {
     const searchServer5 = axios
       .get(
         this.state.api +
-          "search?query=" +
+          "/search?query=" +
           encodeURI(query.trim()) +
           "&engine=" +
           nameToEngineMap.get("Server5") +
@@ -225,7 +225,7 @@ class Home extends Component {
     const searchServer6 = axios
       .get(
         this.state.api +
-          "search?query=" +
+          "/search?query=" +
           encodeURI(query.trim()) +
           "&engine=" +
           nameToEngineMap.get("Server6") +
@@ -312,15 +312,15 @@ class Home extends Component {
     });
     axios
       .get(
-        `${this.state.api}list?page=${this.state.listIndex}&engine=${this.state.server}`
+        `${this.state.api}/list?page=${this.state.listIndex}&engine=${this.state.server}`
       )
       .then((res) => {
         const movies = res.data;
         let newIndex = this.state.listIndex;
         let newmovies = movies.map((element) => {
           element.Index = uuidv4();
-          if (element.Title.endsWith("Tags")) {
-            element.Title = element.Title.substr(0, element.Title.length - 4);
+          if (element.name.endsWith("Tags")) {
+            element.name = element.name.substr(0, element.name.length - 4);
           }
           return element;
         });
@@ -487,12 +487,12 @@ class Home extends Component {
   shareMovie(movie) {
     if (navigator.share) {
       const shareData = {
-        title: movie.Title,
-        text: movie.Title + "...." + movie.Description,
+        title: movie.name,
+        text: movie.name + "...." + movie.description,
         url:
           window.location.hostname === "localhost"
-            ? `localhost:${window.location.port}/shared/${movie.referralID}`
-            : `https://gophie.cam/shared/${movie.referralID}`
+            ? `localhost:${window.location.port}/shared/${movie.referral_id}`
+            : `https://gophie.cam/shared/${movie.referral_id}`
       };
 
       navigator
@@ -520,7 +520,7 @@ class Home extends Component {
       } else if (server === "server1") {
         this.setState({
           movieSearchResult: this.state.movies.filter((movie) => {
-            const movieSource = movie.Source.toLowerCase();
+            const movieSource = movie.engine.toLowerCase();
             const movieSourceMap = nameToEngineMap.get("Server1");
             return movieSource.includes(movieSourceMap);
           }),
@@ -529,7 +529,7 @@ class Home extends Component {
       } else if (server === "server2") {
         this.setState({
           movieSearchResult: this.state.movies.filter((movie) => {
-            const movieSource = movie.Source.toLowerCase();
+            const movieSource = movie.engine.toLowerCase();
             const movieSourceMap = nameToEngineMap.get("Server2");
             return movieSource.includes(movieSourceMap);
           }),
@@ -539,7 +539,7 @@ class Home extends Component {
       } else if (server === "server3") {
         this.setState({
           movieSearchResult: this.state.movies.filter((movie) => {
-            const movieSource = movie.Source.toLowerCase();
+            const movieSource = movie.engine.toLowerCase();
             const movieSourceMap = nameToEngineMap.get("Server3");
             return movieSource.includes(movieSourceMap);
           }),
@@ -548,7 +548,7 @@ class Home extends Component {
       } else if (server === "server4") {
         this.setState({
           movieSearchResult: this.state.movies.filter((movie) => {
-            const movieSource = movie.Source.toLowerCase();
+            const movieSource = movie.engine.toLowerCase();
             const movieSourceMap = nameToEngineMap.get("Server4");
             return movieSource.includes(movieSourceMap);
           }),
@@ -557,7 +557,7 @@ class Home extends Component {
       } else if (server === "server5") {
         this.setState({
           movieSearchResult: this.state.movies.filter((movie) => {
-            const movieSource = movie.Source.toLowerCase();
+            const movieSource = movie.engine.toLowerCase();
             const movieSourceMap = nameToEngineMap.get("Server5");
             return movieSource.includes(movieSourceMap);
           }),
@@ -566,7 +566,7 @@ class Home extends Component {
       } else if (server === "server6") {
         this.setState({
           movieSearchResult: this.state.movies.filter((movie) => {
-            const movieSource = movie.Source.toLowerCase();
+            const movieSource = movie.engine.toLowerCase();
             const movieSourceMap = nameToEngineMap.get("Server6");
             return movieSource.includes(movieSourceMap);
           }),

@@ -6,10 +6,10 @@ require("string_score");
 const SearchList = (props) => {
   let filteredMovies = props.movies.filter(
     (movie) =>
-      movie.Title.length > 0 && movie.Size !== "" && !movie.Size.startsWith("0")
+      movie.name.length > 0 && movie.size !== "" && !movie.size.startsWith("0")
   );
   filteredMovies.sort(function (a, b) {
-    return b.Title.score(props.searchInput) - a.Title.score(props.searchInput);
+    return b.name.score(props.searchInput) - a.name.score(props.searchInput);
   });
 
   return (
@@ -20,7 +20,7 @@ const SearchList = (props) => {
             <Movie
               key={i}
               data={movie}
-              id={movie.Title}
+              id={movie.name}
               history={props.history}
               server={props.server}
               setDescriptionModal={props.setDescription}

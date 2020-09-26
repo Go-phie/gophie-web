@@ -84,6 +84,18 @@ const PageSidebar = (props) => {
               Server6 <small>(Korean)</small>
             </Style.Sidebar__NavLink>
           </Style.Sidebar__NavListItem>
+
+          <Style.Sidebar__NavListItem>
+            <Style.Sidebar__NavLink
+              className={`${pathname.match("/Server7") ? "active" : ""}`}
+              onClick={props.handleServerChange}
+              onChange={props.handleServerChange}
+              data-tour="server6"
+              data-value="Server7"
+            >
+              Server7 <small>(Anime)</small>
+            </Style.Sidebar__NavLink>
+          </Style.Sidebar__NavListItem>
         </Style.Sidebar__Nav>
 
         <Style.Sidebar__Footer>

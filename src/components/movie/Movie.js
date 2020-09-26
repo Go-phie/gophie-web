@@ -37,16 +37,10 @@ export default class Movie extends Component {
     axios
       .post(this.state.ratings_api + "/download/", {
         ip_address: this.props.ip_address,
-        movie_name: this.props.data.Title,
-        engine: this.props.data.Source,
-        description: this.props.data.Description,
-        size: this.props.data.Size,
-        year: this.props.data.Year,
-        download_link: this.props.data.DownloadLink,
-        cover_photo_link: this.props.data.CoverPhotoLink
+        referral_id: this.props.data.referral_id,
       })
       .then(() => {
-        console.log(`added ${this.props.data.Title} to downloads on ocena`);
+        console.log(`added ${this.props.data.name} to downloads on ocena`);
       });
   };
 
@@ -54,13 +48,7 @@ export default class Movie extends Component {
     const { data } = this.props;
     axios
       .post(this.state.ratings_api + "/movie/ratings/average/", {
-        name: data.Title,
-        engine: data.Source,
-        description: data.Description,
-        size: data.Size,
-        year: data.Year,
-        download_link: data.DownloadLink,
-        cover_photo_link: data.CoverPhotoLink
+        referral_id: data.referral_id,
       })
       .then((res) => {
         this.setState({
@@ -82,13 +70,7 @@ export default class Movie extends Component {
     axios
       .post(this.state.ratings_api + "/referral/", {
         ip_address: this.props.ip_address,
-        movie_name: data.Title,
-        engine: data.Source,
-        description: data.Description,
-        size: data.Size,
-        year: data.Year,
-        download_link: data.DownloadLink,
-        cover_photo_link: data.CoverPhotoLink
+        referral_id: data.referral_id,
       })
       .then((res) => {
         const { data } = res;
@@ -131,11 +113,11 @@ export default class Movie extends Component {
 
   render() {
     const {
-      CoverPhotoLink,
-      DownloadLink,
-      Size,
-      Title,
-      Source,
+      cover_photo_link,
+      download_link,
+      size,
+      name,
+      engine,
       Index
     } = this.props.data;
     const { server, ip_address, shareMovie } = this.props;
@@ -163,15 +145,15 @@ export default class Movie extends Component {
                 this.toggleSidebar();
               }}
               src={
-                isImageURL(CoverPhotoLink)
-                  ? CoverPhotoLink
+                isImageURL(cover_photo_link)
+                  ? cover_photo_link
                   : "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png"
               }
-              alt={Title}
+              alt={name}
             />
             <p style={translateStyle} className="movie-size">
               {" "}
-              {Size}{" "}
+              {size}{" "}
             </p>
 
             {greekFromEnglish(server) !== "Server2" &&
@@ -181,7 +163,7 @@ export default class Movie extends Component {
                 className="download-btn"
                 target="_blank"
                 rel="noopener noreferrer"
-                href={DownloadLink}
+                href={download_link}
                 onClick={() => this.addDownload()}
                 data-tour="my-eight-step"
               >
@@ -203,7 +185,7 @@ export default class Movie extends Component {
             )}
           </div>
           <div className="movie__about">
-            <Link to={`/${greekFromEnglish(Source)}/${Index}`}>
+            <Link to={`/${greekFromEnglish(engine)}/${Index}`}>
               <h3
                 className="name"
                 onClick={() => {
@@ -211,7 +193,7 @@ export default class Movie extends Component {
                 }}
               >
                 {" "}
-                {Title}{" "}
+                {name}{" "}
               </h3>
             </Link>
 
@@ -228,7 +210,7 @@ export default class Movie extends Component {
                   readOnly
                 />
               </div>
-              <p className="movie-source"> {greekFromEnglish(Source)} </p>
+              <p className="movie-source"> {greekFromEnglish(engine)} </p>
             </div>
           </div>
         </Style.MovieCard>

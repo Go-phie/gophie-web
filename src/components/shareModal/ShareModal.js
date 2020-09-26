@@ -18,11 +18,11 @@ import {
 const ShareModal = (props) => {
   const { movie } = props;
   let url = "";
-  console.log(movie.referralID);
+  console.log(movie.referral_id);
   if (window.location.hostname === "localhost") {
-    url = `localhost:${window.location.port}/shared/${movie.referralID}`;
+    url = `localhost:${window.location.port}/shared/${movie.referral_id}`;
   } else {
-    url = `https://gophie.cam/shared/${movie.referralID}`;
+    url = `https://gophie.cam/shared/${movie.referral_id}`;
   }
 
   return (
@@ -42,7 +42,7 @@ const ShareModal = (props) => {
             <Row className="justify-content-between">
               <FacebookShareButton
                 url={url}
-                quote={movie.Title}
+                quote={movie.name}
                 className="mb-2 mr-3"
               >
                 <FacebookIcon size={50} round={true} />
@@ -50,7 +50,7 @@ const ShareModal = (props) => {
 
               <TwitterShareButton
                 url={url}
-                title={movie.Title}
+                title={movie.name}
                 className="mb-2 mr-3"
               >
                 <TwitterIcon size={50} round={true} />
@@ -58,7 +58,7 @@ const ShareModal = (props) => {
 
               <WhatsappShareButton
                 url={url}
-                title={movie.Title}
+                title={movie.name}
                 className="mb-2 mr-3"
               >
                 <WhatsappIcon size={50} round={true} />
@@ -66,13 +66,13 @@ const ShareModal = (props) => {
 
               <TelegramShareButton
                 url={url}
-                title={movie.Title}
+                title={movie.name}
                 className="mb-2 mr-3"
               >
                 <TelegramIcon size={50} round={true} />
               </TelegramShareButton>
 
-              <RedditShareButton url={url} title={movie.Title} className="mb-2">
+              <RedditShareButton url={url} title={movie.name} className="mb-2">
                 <RedditIcon size={50} round={true} />
               </RedditShareButton>
             </Row>
