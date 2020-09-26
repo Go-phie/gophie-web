@@ -103,6 +103,7 @@ app.get("/:engine", function (request, response) {
 
   switch (engine) {
     case "Server2":
+    case "Server7":
       description = "Download your favourite anime for free with a simple click";
       break;
     case "Server4":
