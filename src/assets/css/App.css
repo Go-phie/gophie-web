@@ -19,7 +19,7 @@ body {
   background-color: #fff;
 }
 
-.App {
+/* .App {
   width: 100%;
   min-height: 100%;
   position: relative;
@@ -113,7 +113,7 @@ body {
   border: none;
   cursor: pointer;
   outline: none;
-}
+} */
 /* 
 .options ul {
   display: inline-flex;
@@ -124,7 +124,7 @@ body {
   
 } */
 
-.server-selector {
+/* .server-selector {
   background-color: #e7d10a;
   border: none;
   color: #1e2126;
@@ -133,12 +133,19 @@ body {
   font-size: 15px;
   border-radius: 5px;
   outline: none;
-}
+} */
 
-.server-selector > option {
+/* .server-selector > option {
   background-color: #1e2126;
   color: #e7d10a;
   padding: 10px 15px;
+}
+
+div.movies {
+  margin: 10px 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 div.skeleton-movies {
@@ -186,4 +193,10 @@ div.skeleton-movies {
   .header-right {
     width: 20%;
   }
+} */
+
+.main-panel {
+  width: calc(100% - 230px);
+  position: relative;
+  float: right
 }

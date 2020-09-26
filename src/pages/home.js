@@ -14,7 +14,7 @@ import { lightTheme, darkTheme } from "../css/theme";
 import { GlobalStyles } from "../css/global";
 import ScrollButton from "../components/scrollToTop/ScrollToTop";
 import Popup from "../components/popup/Popup";
-
+import MobileNavbar from "../components/mobileNav/MobileNavbar";
 import {
   tourSteps,
   disableBody,
@@ -24,17 +24,19 @@ import {
   API_ENDPOINTS
 } from "../utils";
 import NavBar from "../components/navbar/Navbar";
-import EngineOptions from "../components/enginOption/EnginOptions";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
-import Footer from "../components/footer/footer";
 import ShareModal from "../components/shareModal/ShareModal";
+import PageSidebar from "../components/pageSidebar/PageSidebar";
+import MainPanel from "./home.styles";
 
 class Home extends Component {
+  _isMounted = false;
+
   constructor(props) {
     super(props);
-    this.searchInput = React.createRef();
+
     this.state = {
-      api: API_ENDPOINTS.gophieMain,
+      api: API_ENDPOINTS.ocena,
       server: nameToEngineMap.get("Server5"),
       mode: "movies",
       movies: [],
@@ -50,7 +52,10 @@ class Home extends Component {
       ip_address: "",
       isSearch: false,
       showShareModal: false,
-      movieToBeShared: {}
+      movieToBeShared: {},
+      searchInput: "",
+      movieFilterServer: "",
+      movieSearchResult: []
     };
   }
 
@@ -58,8 +63,8 @@ class Home extends Component {
     return el.getBoundingClientRect().bottom <= window.innerHeight;
   };
 
-  handleScroll = () => {
-    const query = this.searchInput.current.value;
+  handleScroll = (e) => {
+    const query = this.state.searchInput;
     const { isLoading, hasMore, error, server } = this.state;
     const wrappedElement = document.getElementById("movie-div");
 
@@ -86,19 +91,22 @@ class Home extends Component {
     }
 
     const filteredMovies = this.state.movies.filter((movie) =>
-      movie.Title.toLowerCase().includes(query)
+      movie.name.toLowerCase().includes(query)
     );
     if (filteredMovies.length >= 1) {
       this.setState({
-        movies: filteredMovies
+        movies: filteredMovies,
+        movieSearchResult: filteredMovies
       });
       return;
     }
   }
 
   handleServerChange(event) {
-    let server = nameToEngineMap.get(event.target.value);
-    this.searchInput.current.value = "";
+    event.persist();
+    let server = nameToEngineMap.get(
+      event.currentTarget.getAttribute("data-value")
+    );
     this.setState(
       {
         server,
@@ -113,11 +121,12 @@ class Home extends Component {
     );
   }
 
-  newSearch() {
-    let query = this.searchInput.current.value;
+  newSearch(event) {
+    let query = event.target.value;
     if (query.trim().length > 1) {
       this.setState(
         {
+          movieSearchResult: [],
           movies: [],
           error: false,
           listIndex: 1,
@@ -131,10 +140,13 @@ class Home extends Component {
   checkKey(e) {
     if (e.charCode !== 13) return;
     this.setState({ movies: [], listIndex: 1, isSearch: true });
-    let query = this.searchInput.current.value;
+    let query = e.target.value;
     this.performSearch(query);
   }
 
+  checkKeyOnChange = (e) => {
+    this.setState({ searchInput: e.target.value.toLowerCase() });
+  };
   performSearch = (query, append = false) => {
     this.setState({
       isLoading: true,
@@ -144,39 +156,51 @@ class Home extends Component {
 
     this.props.history.push("/search");
 
-    const searchServer1 = axios.get(
-      this.state.api +
-        "search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server2") +
-        "&page=" +
-        this.state.listIndex
-    );
+    const searchServer1 = axios
+      .get(
+        this.state.api +
+          "/search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server1") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
 
-    const searchServer2 = axios.get(
-      this.state.api +
-        "search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server2") +
-        "&page=" +
-        this.state.listIndex
-    );
+    const searchServer2 = axios
+      .get(
+        this.state.api +
+          "/search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server2") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
 
-    const searchServer3 = axios.get(
-      this.state.api +
-        "search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server3") +
-        "&page=" +
-        this.state.listIndex
-    );
+    const searchServer3 = axios
+      .get(
+        this.state.api +
+          "/search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server3") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
 
     const searchServer4 = axios.get(
       this.state.api +
-        "search?query=" +
+        "/search?query=" +
         encodeURI(query.trim()) +
         "&engine=" +
         nameToEngineMap.get("Server4") +
@@ -184,15 +208,33 @@ class Home extends Component {
         this.state.listIndex
     );
 
-    const searchServer5 = axios.get(
-      this.state.api +
-        "search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server5") +
-        "&page=" +
-        this.state.listIndex
-    );
+    const searchServer5 = axios
+      .get(
+        this.state.api +
+          "/search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server5") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
+
+    const searchServer6 = axios
+      .get(
+        this.state.api +
+          "/search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          nameToEngineMap.get("Server6") +
+          "&page=" +
+          this.state.listIndex
+      )
+      .catch(() => {
+        return null;
+      });
 
     axios
       .all([
@@ -200,7 +242,8 @@ class Home extends Component {
         searchServer2,
         searchServer3,
         searchServer4,
-        searchServer5
+        searchServer5,
+        searchServer6
       ])
       .then(
         axios.spread(
@@ -209,17 +252,32 @@ class Home extends Component {
             searchServer2,
             searchServer3,
             searchServer4,
-            searchServer5
+            searchServer5,
+            searchServer6
           ) => {
-            const concatSearchServer1 = !searchServer1.data
-              ? []
-              : searchServer1.data;
+            const concatSearchServer1 =
+              searchServer2 === null ? [] : searchServer1.data;
+            const concatSearchServer2 =
+              searchServer2 === null ? [] : searchServer2.data;
+
+            const concatSearchServer3 =
+              searchServer3 === null ? [] : searchServer3.data;
+
+            const concatSearchServer4 =
+              searchServer4 === null ? [] : searchServer4.data;
+
+            const concatSearchServer5 =
+              searchServer5 === null ? [] : searchServer5.data;
+
+            const concatSearchServer6 =
+              searchServer6 === null ? [] : searchServer6.data;
 
             const movies = concatSearchServer1
-              .concat(searchServer2.data)
-              .concat(searchServer3.data)
-              .concat(searchServer4.data)
-              .concat(searchServer5.data);
+              .concat(concatSearchServer2)
+              .concat(concatSearchServer3)
+              .concat(concatSearchServer4)
+              .concat(concatSearchServer5)
+              .concat(concatSearchServer6);
             const mainMovies = [];
 
             movies.forEach((movies) => {
@@ -230,6 +288,7 @@ class Home extends Component {
 
             this.setState({
               movies: [...mainMovies],
+              movieSearchResult: [...mainMovies],
               isLoading: false,
               isSearch: true,
               listIndex: append ? this.state.listIndex + 1 : 1
@@ -253,15 +312,15 @@ class Home extends Component {
     });
     axios
       .get(
-        `${this.state.api}list?page=${this.state.listIndex}&engine=${this.state.server}`
+        `${this.state.api}/list?page=${this.state.listIndex}&engine=${this.state.server}`
       )
       .then((res) => {
         const movies = res.data;
         let newIndex = this.state.listIndex;
         let newmovies = movies.map((element) => {
           element.Index = uuidv4();
-          if (element.Title.endsWith("Tags")) {
-            element.Title = element.Title.substr(0, element.Title.length - 4);
+          if (element.name.endsWith("Tags")) {
+            element.name = element.name.substr(0, element.name.length - 4);
           }
           return element;
         });
@@ -283,8 +342,8 @@ class Home extends Component {
       });
   };
 
-  tryAgain() {
-    let query = this.searchInput.current.value;
+  tryAgain(e) {
+    let query = e.target.value;
     if (query.trim().length > 1) {
       this.performSearch(query.trim());
     } else {
@@ -342,6 +401,7 @@ class Home extends Component {
 
   UNSAFE_componentWillMount() {
     this.setTour();
+
     this.manageHistory(this.props, false);
   }
 
@@ -355,6 +415,8 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
+
     this.getIp();
     this.setTheme();
     this.performList();
@@ -366,6 +428,8 @@ class Home extends Component {
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
+
     document.removeEventListener("scroll", this.handleScroll);
   }
 
@@ -423,12 +487,12 @@ class Home extends Component {
   shareMovie(movie) {
     if (navigator.share) {
       const shareData = {
-        title: movie.Title,
-        text: movie.Title + "...." + movie.Description,
+        title: movie.name,
+        text: movie.name + "...." + movie.description,
         url:
           window.location.hostname === "localhost"
-            ? `localhost:${window.location.port}/shared/${movie.referralID}`
-            : `https://gophie.cam/shared/${movie.referralID}`
+            ? `localhost:${window.location.port}/shared/${movie.referral_id}`
+            : `https://gophie.cam/shared/${movie.referral_id}`
       };
 
       navigator
@@ -443,25 +507,112 @@ class Home extends Component {
     }
   }
 
+  // movie search result filter-by server
+  filterMovieSearch = (event) => {
+    let server = event.target.getAttribute("data-filtered-value");
+
+    if (this._isMounted) {
+      if (server === "all") {
+        this.setState({
+          movieSearchResult: this.state.movies,
+          movieFilterServer: ""
+        });
+      } else if (server === "server1") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.engine.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server1");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server1"
+        });
+      } else if (server === "server2") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.engine.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server2");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server2"
+        });
+        console.log("server1 something");
+      } else if (server === "server3") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.engine.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server3");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server3"
+        });
+      } else if (server === "server4") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.engine.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server4");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server4"
+        });
+      } else if (server === "server5") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.engine.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server5");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server5"
+        });
+      } else if (server === "server6") {
+        this.setState({
+          movieSearchResult: this.state.movies.filter((movie) => {
+            const movieSource = movie.engine.toLowerCase();
+            const movieSourceMap = nameToEngineMap.get("Server6");
+            return movieSource.includes(movieSourceMap);
+          }),
+          movieFilterServer: "Server6"
+        });
+      }
+    }
+    console.log(server);
+  };
+
   render() {
     const { theme } = this.state;
-    const selectedTheme = theme === "light" ? lightTheme : darkTheme;
+    const selectedTheme = theme !== "light" ? lightTheme : darkTheme;
     return (
       <>
         <ThemeProvider theme={selectedTheme}>
           <>
             <GlobalStyles />
-            <div className="App">
+            <PageSidebar
+              handleServerChange={this.handleServerChange.bind(this)}
+              tour={this.startTour}
+            />
+
+            <MainPanel>
               <header>
-                <NavBar
-                  searchInput={this.searchInput}
-                  checkInputKey={this.checkKey.bind(this)}
-                  handleSearch={this.handleSearchChange.bind(this)}
-                  newSearch={this.newSearch.bind(this)}
-                  theme={theme}
-                  tour={this.startTour}
-                  switchTheme={() => this.switchTheme(this.state.theme)}
-                />
+                <div className="mtop">
+                  <MobileNavbar
+                    searchInput={this.state.searchInput}
+                    handleServerChange={this.handleServerChange.bind(this)}
+                    checkInputKey={this.checkKey.bind(this)}
+                    handleSearch={this.handleSearchChange.bind(this)}
+                    newSearch={this.newSearch.bind(this)}
+                    checkKeyOnChange={this.checkKeyOnChange}
+                    theme={theme}
+                    switchTheme={() => this.switchTheme(this.state.theme)}
+                  />
+                  <NavBar
+                    searchInput={this.state.searchInput}
+                    checkInputKey={this.checkKey.bind(this)}
+                    handleSearch={this.handleSearchChange.bind(this)}
+                    newSearch={this.newSearch.bind(this)}
+                    checkKeyOnChange={this.checkKeyOnChange}
+                    theme={theme}
+                    switchTheme={() => this.switchTheme(this.state.theme)}
+                  />
+                </div>
 
                 {this.state.isSearch ? null : (
                   <TrendingCarousel
@@ -470,32 +621,111 @@ class Home extends Component {
                     ip_address={this.state.ip_address}
                   />
                 )}
-
-                {!this.state.isSearch ? null : (
-                  <div className="mt-1" style={{ display: "grid" }}></div>
-                )}
-
-                {this.state.isSearch ? null : (
-                  <EngineOptions
-                    handleServerChange={this.handleServerChange.bind(this)}
-                    server={this.state.server}
-                  />
-                )}
               </header>
 
               <main>
-                <div className="movies" id="movie-div">
+                <div className="movies mleft" id="movie-div">
                   <Route
                     path={"/search"}
                     render={() => {
                       return (
                         <>
+                          <div className="gophie-search-header">
+                            <h2 className="gophie-page-title">
+                              Search Result
+                              {!this.state.searchInput ? null : (
+                                <>: {this.state.searchInput}</>
+                              )}
+                            </h2>
+
+                            <div className="gophie-search-filter-container">
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === ""
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="all"
+                              >
+                                all
+                              </button>
+
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server1"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server1"
+                              >
+                                server1
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server2"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server2"
+                              >
+                                server2
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server3"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server3"
+                              >
+                                server3
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server4"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server4"
+                              >
+                                server4
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server5"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server5"
+                              >
+                                server5
+                              </button>
+                              <button
+                                className={`${
+                                  this.state.movieFilterServer === "Server6"
+                                    ? "active"
+                                    : ""
+                                } mr-1`}
+                                onClick={this.filterMovieSearch}
+                                data-filtered-value="server6"
+                              >
+                                server6
+                              </button>
+                            </div>
+                          </div>
+
                           {this.state.isSearch && !this.state.isLoading ? (
                             <SearchList
+                              searchInput={this.state.searchInput}
                               ip_address={this.state.ip_address}
-                              movies={this.state.movies}
+                              movies={this.state.movieSearchResult}
                               history={this.props.history}
-                              query={this.searchInput.current.value}
                               server={this.state.server}
                               setDescription={this.setDescription.bind(this)}
                               shareMovie={this.shareMovie.bind(this)}
@@ -511,15 +741,18 @@ class Home extends Component {
                     render={() => {
                       return (
                         <>
+                          <h2 className="gophie-page-title">Discover Movies</h2>
                           {!this.state.isSearch ? (
-                            <MovieList
-                              ip_address={this.state.ip_address}
-                              movies={this.state.movies}
-                              history={this.props.history}
-                              server={this.state.server}
-                              setDescription={this.setDescription.bind(this)}
-                              shareMovie={this.shareMovie.bind(this)}
-                            />
+                            <>
+                              <MovieList
+                                ip_address={this.state.ip_address}
+                                movies={this.state.movies}
+                                history={this.props.history}
+                                server={this.state.server}
+                                setDescription={this.setDescription.bind(this)}
+                                shareMovie={this.shareMovie.bind(this)}
+                              />
+                            </>
                           ) : null}
                         </>
                       );
@@ -554,9 +787,7 @@ class Home extends Component {
                   )}
                 </div>
               </main>
-
-              <Footer />
-            </div>
+            </MainPanel>
           </>
 
           {/* ScrollButton Take you back to the starting of the page */}

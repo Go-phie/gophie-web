@@ -1,12 +1,30 @@
-import React, {
-    Component
-} from "react";
+import React from "react";
+import styled from "styled-components";
 
-export default class CarouselSkeletonLoader extends Component {
-  render() {
-    return (
-        <div style={{ minWidth: '16em', borderRadius: '.7em', minHeight: '25em', margin: '.2em', overflow: 'hidden', boxShadow: 'none'}} className="skeleton-movie-image">
-        </div>
-    );
+const CarouselSkeleton = styled.div `
+  min-width: 10em !important;
+  border-radius: 1em;
+  min-height: 16em !important;
+  margin-right: 1em;
+  box-shadow: none;
+
+  @media (max-width: 1300px) {
+    height: 18em  !important;
+    width: 12em !important;
   }
+
+  @media (max-width: 786px) {
+    height: 16 em!important;
+  }
+
+  @media(max-width: 678px) {
+    height: 15em !important;
+    width: 10em !important;
+  }
+`
+const CarouselSkeletonLoader = () => {
+  return (<CarouselSkeleton className="skeleton-movie-image"></CarouselSkeleton>
+  );
 }
+
+export default CarouselSkeletonLoader;

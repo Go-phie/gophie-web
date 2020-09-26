@@ -10,7 +10,6 @@ import axios from "axios";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
 import { GlobalStyles } from "../css/global";
 import "../css/shared.css";
-import Footer from "../components/footer/footer";
 import NavBar from "../components/navbar/Navbar";
 
 class Shared extends Component {
@@ -97,14 +96,8 @@ class Shared extends Component {
   getAverage = () => {
     const { movie } = this.state;
     axios
-      .post(this.state.api + "/movie/ratings/average/", {
-        name: movie.name,
-        engine: movie.engine,
-        description: movie.description,
-        size: movie.size,
-        year: movie.year,
-        download_link: movie.download_link,
-        cover_photo_link: movie.cover_photo_link,
+      .post(this.state.api + "/movie/ratings/average", {
+        referral_id: movie.referral_id
       })
       .then((res) => {
         this.setState({
@@ -123,14 +116,8 @@ class Shared extends Component {
   rateMovie = (value) => {
     const { movie } = this.state;
     axios
-      .post(this.state.api + "/rate/", {
-        movie_name: movie.name,
-        engine: movie.engine,
-        description: movie.description,
-        size: movie.size,
-        year: movie.year,
-        download_link: movie.download_link,
-        cover_photo_link: movie.cover_photo_link,
+      .post(this.state.api + "/rate", {
+        referral_id: movie.referral_id,
         ip_address: this.state.ip_address,
         score: value,
       })
@@ -309,16 +296,11 @@ class Shared extends Component {
             </div>
 
             <div className="mb-5 position-relative">
-              <h2 className="trending-title">Trending Movies</h2>
               <TrendingCarousel
                 style={{ background: "green" }}
                 ip_address={this.state.ip_address}
               />
             </div>
-          </div>
-
-          <div className="mt-5">
-            <Footer />
           </div>
         </ThemeProvider>
       </div>
