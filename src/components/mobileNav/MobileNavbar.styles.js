@@ -26,7 +26,7 @@ const Style = {
         position: fixed;
         z-index: 999;
         bottom: 0;
-        transition: 1.5s all;
+        transition: .7s all;
         justify-content: center;
         width: 100%;
         display: none;
