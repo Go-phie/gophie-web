@@ -90,7 +90,6 @@ const Style = {
     .sidebar-description {
       p {
         display: -webkit-box;
-        -webkit-line-clamp: 10;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }

@@ -28,6 +28,8 @@ export default function MovieSidebar(props) {
   const [error, setError] = useState(false);
   const [episodeLink, setEpisodeLink] = useState([]);
   const [description, setDescription] = useState();
+  const [fullDescription, setFullDescription] = useState();
+
   const [readMore, setReadMore] = useState(false);
   const [loadingReferralID, setLoadingReferralID] = useState(false);
 
@@ -82,9 +84,9 @@ export default function MovieSidebar(props) {
   };
 
   const truncate = () => {
-    if (movie.Description) {
-      if (movie.Description.length > 350) {
-        setDescription(movie.Description);
+    if (fullDescription) {
+      if (fullDescription.length > 350) {
+        setDescription(fullDescription);
         setReadMore(false);
       }
     }
@@ -159,14 +161,17 @@ export default function MovieSidebar(props) {
     }
 
     if (movie.description) {
+      console.log(movie.description);
       if (movie.description.length > 350) {
-        const truncatedText = movie.description.substring(0, 350).replace(
-          /\w+$/,
-          ""
-        );
+        const truncatedText = movie.description
+          .substring(0, 350)
+          .replace(/\w+$/, "");
         setDescription(truncatedText);
-
+        setFullDescription(movie.description);
         setReadMore(true);
+      } else {
+        setDescription(movie.description);
+        setReadMore(false);
       }
     }
   }, [movie]);
