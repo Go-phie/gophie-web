@@ -51,7 +51,6 @@ export default function MovieSidebar(props) {
         }
       })
       .catch((err) => {
-        console.log(err);
         if (err) {
           setError({
             error: true
@@ -79,7 +78,6 @@ export default function MovieSidebar(props) {
       })
       .catch((err) => {
         setLoadingReferralID(false);
-        console.log(err);
       });
   };
 
@@ -121,7 +119,6 @@ export default function MovieSidebar(props) {
         .catch((err) => {
           setLoadingReferralID(false);
           setReferralID(movie.referral_id, action ? shareMovie() : null);
-          console.log(err);
         });
     };
     getShareID();
@@ -161,7 +158,6 @@ export default function MovieSidebar(props) {
     }
 
     if (movie.description) {
-      console.log(movie.description);
       if (movie.description.length > 350) {
         const truncatedText = movie.description
           .substring(0, 350)
