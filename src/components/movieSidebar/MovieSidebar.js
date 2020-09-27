@@ -179,7 +179,7 @@ export default function MovieSidebar(props) {
   useEffect(() => {
     if (toggle === false) {
       gsap.to(refLi, {
-        duration: 0.5,
+        duration: 0.4,
         scaleX: 0,
         transformOrigin: "right",
         stagger: 0.1
@@ -187,7 +187,7 @@ export default function MovieSidebar(props) {
     } else {
       sidebarTimeline.current = gsap.timeline();
       sidebarTimeline.current.to(refLi.current, {
-        duration: 0.5,
+        duration: 0.4,
         scaleX: 1,
         transformOrigin: "right",
         stagger: 0.2
