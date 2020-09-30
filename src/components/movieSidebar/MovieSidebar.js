@@ -126,7 +126,7 @@ export default function MovieSidebar(props) {
   }, []);
 
   useEffect(() => {
-    if (movie.is_series) {
+    if (movie.is_series && movie.s_download_link) {
       const episodeLinkArray = [];
       const SDownloadLink = movie.s_download_link;
       for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
