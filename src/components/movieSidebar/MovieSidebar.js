@@ -28,6 +28,8 @@ export default function MovieSidebar(props) {
   const [error, setError] = useState(false);
   const [episodeLink, setEpisodeLink] = useState([]);
   const [description, setDescription] = useState();
+  const [fullDescription, setFullDescription] = useState();
+
   const [readMore, setReadMore] = useState(false);
   const [loadingReferralID, setLoadingReferralID] = useState(false);
 
@@ -49,7 +51,6 @@ export default function MovieSidebar(props) {
         }
       })
       .catch((err) => {
-        console.log(err);
         if (err) {
           setError({
             error: true
@@ -77,14 +78,13 @@ export default function MovieSidebar(props) {
       })
       .catch((err) => {
         setLoadingReferralID(false);
-        console.log(err);
       });
   };
 
   const truncate = () => {
-    if (movie.Description) {
-      if (movie.Description.length > 350) {
-        setDescription(movie.Description);
+    if (fullDescription) {
+      if (fullDescription.length > 350) {
+        setDescription(fullDescription);
         setReadMore(false);
       }
     }
@@ -119,7 +119,6 @@ export default function MovieSidebar(props) {
         .catch((err) => {
           setLoadingReferralID(false);
           setReferralID(movie.referral_id, action ? shareMovie() : null);
-          console.log(err);
         });
     };
     getShareID();
@@ -160,13 +159,15 @@ export default function MovieSidebar(props) {
 
     if (movie.description) {
       if (movie.description.length > 350) {
-        const truncatedText = movie.description.substring(0, 350).replace(
-          /\w+$/,
-          ""
-        );
+        const truncatedText = movie.description
+          .substring(0, 350)
+          .replace(/\w+$/, "");
         setDescription(truncatedText);
-
+        setFullDescription(movie.description);
         setReadMore(true);
+      } else {
+        setDescription(movie.description);
+        setReadMore(false);
       }
     }
   }, [movie]);
@@ -174,7 +175,7 @@ export default function MovieSidebar(props) {
   useEffect(() => {
     if (toggle === false) {
       gsap.to(refLi, {
-        duration: 0.5,
+        duration: 0.4,
         scaleX: 0,
         transformOrigin: "right",
         stagger: 0.1
@@ -182,7 +183,7 @@ export default function MovieSidebar(props) {
     } else {
       sidebarTimeline.current = gsap.timeline();
       sidebarTimeline.current.to(refLi.current, {
-        duration: 0.5,
+        duration: 0.4,
         scaleX: 1,
         transformOrigin: "right",
         stagger: 0.2

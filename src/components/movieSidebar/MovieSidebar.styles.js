@@ -85,12 +85,15 @@ const Style = {
       width: 100%;
       padding: 2rem;
       word-wrap: anywhere;
+
+      @media (max-width: 678px) {
+        padding: 1rem;
+      }
     }
 
     .sidebar-description {
       p {
         display: -webkit-box;
-        -webkit-line-clamp: 10;
         -webkit-box-orient: vertical;
         overflow: hidden;
       }
