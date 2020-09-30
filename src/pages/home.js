@@ -122,7 +122,7 @@ class Home extends Component {
   }
 
   newSearch(event) {
-    let query = event.target.value;
+    const query = this.state.searchInput
     if (query.trim().length > 1) {
       this.setState(
         {
