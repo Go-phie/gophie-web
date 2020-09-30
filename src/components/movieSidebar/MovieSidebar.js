@@ -63,7 +63,7 @@ export default function MovieSidebar(props) {
     axios
       .post(ratings_api + "/referral", {
         ip_address: ip_address,
-        referral_id: movie.cover_photo_link
+        referral_id: movie.referral_id
       })
       .then((res) => {
         const { data } = res;
@@ -107,7 +107,7 @@ export default function MovieSidebar(props) {
       axios
         .post(ratings_api + "/referral", {
           ip_address: ip_address,
-          referral_id: movie.cover_photo_link
+          referral_id: movie.referral_id
         })
         .then((res) => {
           const { data } = res;
