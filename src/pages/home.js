@@ -156,133 +156,28 @@ class Home extends Component {
 
     this.props.history.push("/search");
 
-    const searchServer1 = axios
-      .get(
-        this.state.api +
-          "/search?query=" +
-          encodeURI(query.trim()) +
-          "&engine=" +
-          nameToEngineMap.get("Server1") +
-          "&page=" +
-          this.state.listIndex
+    let serverAxios = Array.from(nameToEngineMap.values())
+    for (let i=0; i < serverAxios.length; i++){
+      serverAxios[i] = axios.get(this.state.api + "/search?query="+
+        encodeURI(query.trim()) + "&engine=" + serverAxios[i] +
+          "&page=" + this.state.listIndex
       )
-      .catch(() => {
-        return null;
-      });
+    }
 
-    const searchServer2 = axios
-      .get(
-        this.state.api +
-          "/search?query=" +
-          encodeURI(query.trim()) +
-          "&engine=" +
-          nameToEngineMap.get("Server2") +
-          "&page=" +
-          this.state.listIndex
-      )
-      .catch(() => {
-        return null;
-      });
-
-    const searchServer3 = axios
-      .get(
-        this.state.api +
-          "/search?query=" +
-          encodeURI(query.trim()) +
-          "&engine=" +
-          nameToEngineMap.get("Server3") +
-          "&page=" +
-          this.state.listIndex
-      )
-      .catch(() => {
-        return null;
-      });
-
-    const searchServer4 = axios.get(
-      this.state.api +
-        "/search?query=" +
-        encodeURI(query.trim()) +
-        "&engine=" +
-        nameToEngineMap.get("Server4") +
-        "&page=" +
-        this.state.listIndex
-    );
-
-    const searchServer5 = axios
-      .get(
-        this.state.api +
-          "/search?query=" +
-          encodeURI(query.trim()) +
-          "&engine=" +
-          nameToEngineMap.get("Server5") +
-          "&page=" +
-          this.state.listIndex
-      )
-      .catch(() => {
-        return null;
-      });
-
-    const searchServer6 = axios
-      .get(
-        this.state.api +
-          "/search?query=" +
-          encodeURI(query.trim()) +
-          "&engine=" +
-          nameToEngineMap.get("Server6") +
-          "&page=" +
-          this.state.listIndex
-      )
-      .catch(() => {
-        return null;
-      });
-
-    axios
-      .all([
-        searchServer1,
-        searchServer2,
-        searchServer3,
-        searchServer4,
-        searchServer5,
-        searchServer6
-      ])
-      .then(
-        axios.spread(
+    axios.all(serverAxios)
+      .then(axios.spread(
           (
-            searchServer1,
-            searchServer2,
-            searchServer3,
-            searchServer4,
-            searchServer5,
-            searchServer6
+            ...serverResults
           ) => {
-            const concatSearchServer1 =
-              searchServer2 === null ? [] : searchServer1.data;
-            const concatSearchServer2 =
-              searchServer2 === null ? [] : searchServer2.data;
-
-            const concatSearchServer3 =
-              searchServer3 === null ? [] : searchServer3.data;
-
-            const concatSearchServer4 =
-              searchServer4 === null ? [] : searchServer4.data;
-
-            const concatSearchServer5 =
-              searchServer5 === null ? [] : searchServer5.data;
-
-            const concatSearchServer6 =
-              searchServer6 === null ? [] : searchServer6.data;
-
-            const movies = concatSearchServer1
-              .concat(concatSearchServer2)
-              .concat(concatSearchServer3)
-              .concat(concatSearchServer4)
-              .concat(concatSearchServer5)
-              .concat(concatSearchServer6);
-            const mainMovies = [];
-
-            movies.forEach((movies) => {
-              if (movies !== null) {
-                mainMovies.push(movies);
+            let mainMovies = []
+            let movies = []
+            for (let i=0; i< serverResults.length; i++){
+              let data = serverResults[i].data
+              movies = movies.concat(data)
+            }
+            movies.forEach((movie) => {
+              if (movie !== null) {
+                mainMovies.push(movie);
               }
             });
 
