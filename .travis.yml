@@ -4,25 +4,20 @@ node_js:
 dist: trusty
 sudo: false
 
-branches:
-  only:
-  - master
-  - /^v\d+\.\d+\.\d+.*$/
-
 cache:
   directories:
-    - node_modules
+  - node_modules
 
 install:
-  - npm install -g yarn
+  - npm install -g yarn pm2
   - yarn install
 
 script:
   - yarn test
 
 deploy:
-  # Deploy to Server
   provider: script
-  script: openssl aes-256-cbc -K $encrypted_2c5959d3eced_key -iv $encrypted_2c5959d3eced_iv -in scripts/alias.pem.enc -out alias.pem -d && chmod 400 alias.pem && ssh -oStrictHostKeyChecking=no -i alias.pem $SERVER_URL "./deploy.sh"
+  script: openssl aes-256-cbc -K $encrypted_06838b60b58f_key -iv $encrypted_06838b60b58f_iv -in ./scripts/gophie-private-key.pem.enc -out gophie-private-key.pem -d && chmod 400 gophie-private-key.pem  && pm2 deploy ecosystem.config.js production
   on:
+    branch: master
     tags: true
