@@ -3,7 +3,7 @@
 <div align="center">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 <a href="#contributors">
-  <img src="https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square" alt="All Contributors">
+  <img src="https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square" alt="All Contributors">
   </a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <a href="https://travis-ci.com/go-phie/gophie-web">
@@ -39,6 +39,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/SLKhadeeja"><img src="https://avatars2.githubusercontent.com/u/43624344?v=4" width="100px;" alt=""/><br /><sub><b>SLKhadeeja</b></sub></a><br /><a href="https://github.com/Go-phie/gophie-web/commits?author=SLKhadeeja" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Amenacliff"><img src="https://avatars3.githubusercontent.com/u/47929647?v=4" width="100px;" alt=""/><br /><sub><b>Amena Cliff</b></sub></a><br /><a href="https://github.com/Go-phie/gophie-web/commits?author=Amenacliff" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/AdeolaFaraday"><img src="https://avatars3.githubusercontent.com/u/48641310?v=4" width="100px;" alt=""/><br /><sub><b>AdeolaFaraday</b></sub></a><br /><a href="https://github.com/Go-phie/gophie-web/commits?author=AdeolaFaraday" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Mohamilr"><img src="https://avatars1.githubusercontent.com/u/45388249?v=4" width="100px;" alt=""/><br /><sub><b>Mohamilr</b></sub></a><br /><a href="https://github.com/Go-phie/gophie-web/commits?author=Mohamilr" title="Code">💻</a></td>
   </tr>
 </table>
 
