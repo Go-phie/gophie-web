@@ -3,6 +3,14 @@
 
 <head>
   <meta charset="utf-8" />
+  <!-- manifest -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1a1917">
+  <meta name="msapplication-TileColor" content="#e7d10a">
+  <meta name="theme-color" content="#e7d10a">
+  <!--  -->
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Righteous&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -21,17 +29,15 @@
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:title" content="$OG_TITLE">
-  <meta name="twitter:description"
-    content="$OG_DESCRIPTION">
-  <meta name="twitter:image"
-    content="$OG_IMAGE">
+  <meta name="twitter:description" content="$OG_DESCRIPTION">
+  <meta name="twitter:image" content="$OG_IMAGE">
   <meta name="twitter:card" content="summary_large_image">
 
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="manifest" href="./manifest.json" />
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -60,6 +66,18 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="movieSidebar"></div>
   <div id="root"></div>
+  <script>
+    if(navigator.serviceWorker) {
+      try {
+        window.addEventListener('load', async () => {
+          const register = await navigator.serviceWorker.register('/service-worker.js', {scope: '/(:engine)/'});
+        });
+      }
+      catch (e) {
+        console.error(e);
+      }
+    }
+  </script>
 </body>
 
 </html>
