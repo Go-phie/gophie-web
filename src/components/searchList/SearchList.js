@@ -30,7 +30,12 @@ const SearchList = (props) => {
           );
         })
       ) : (
-        <h3 className="mt-5 mb-5 pt-5 pb-5 text-center">No result Found</h3>
+        <h3
+          className="mt-5 mb-5 pt-5 pb-5 text-center"
+          style={{ margin: "0 auto" }}
+        >
+          No result Found
+        </h3>
       )}
     </>
   );
