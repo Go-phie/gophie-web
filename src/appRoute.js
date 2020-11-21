@@ -3,10 +3,12 @@ import Home from "./pages/home";
 import React from "react";
 import Terms from "./pages/terms";
 import Shared from "./pages/shared";
+import { GlobalStyles } from "./css/global";
 
 const AppRoute = () => {
   return (
     <BrowserRouter>
+    <GlobalStyles />
       <Switch>
         <Route path="/(:engine)" component={Home} />
         <Route path="/shared/:referralID" component={Shared} />

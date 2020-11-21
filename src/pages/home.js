@@ -11,7 +11,6 @@ import { v4 as uuidv4 } from "uuid";
 // style stuff
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../css/theme";
-import { GlobalStyles } from "../css/global";
 import ScrollButton from "../components/scrollToTop/ScrollToTop";
 import Popup from "../components/popup/Popup";
 import MobileNavbar from "../components/mobileNav/MobileNavbar";
@@ -479,7 +478,6 @@ class Home extends Component {
       <>
         <ThemeProvider theme={selectedTheme}>
           <>
-            <GlobalStyles />
             <PageSidebar
               handleServerChange={this.handleServerChange.bind(this)}
               tour={this.startTour}
