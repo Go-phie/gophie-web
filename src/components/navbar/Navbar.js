@@ -22,11 +22,7 @@ const NavBar = (props) => {
         title="Change Theme"
         onClick={props.switchTheme}
       >
-        {props.theme === "dark" ? (
-          <SunIcon />
-        ) : (
-          <MoonIcon />
-        )}
+        {props.theme === "dark" ? <SunIcon /> : <MoonIcon />}
       </button>
     </Style.Navbar>
   );

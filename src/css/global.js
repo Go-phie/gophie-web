@@ -1,6 +1,8 @@
-import { createGlobalStyle } from "styled-components";
+import {
+  createGlobalStyle
+} from "styled-components";
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle `
 
 
 * {
@@ -152,6 +154,11 @@ body {
     padding: .65em;
     cursor: pointer;
     box-shadow: 0px 0px 7px -2px #121315;
+  }
+
+  .actions-button {
+    background: transparent !important;
+    color: ${({ theme }) => theme.text} !important;
   }
   
   .download-btn:active {

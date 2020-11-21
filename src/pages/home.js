@@ -468,7 +468,7 @@ class Home extends Component {
                   newSearch={this.newSearch.bind(this)}
                   checkKeyOnChange={this.checkKeyOnChange}
                   theme={this.props.theme}
-                  switchTheme={() => this.props.switchTheme(this.props.theme)}
+                  switchTheme={this.props.switchTheme}
                 />
                 <NavBar
                   searchInput={this.state.searchInput}
@@ -477,7 +477,7 @@ class Home extends Component {
                   newSearch={this.newSearch.bind(this)}
                   checkKeyOnChange={this.checkKeyOnChange}
                   theme={this.props.theme}
-                  switchTheme={() => this.props.switchTheme(this.props.theme)}
+                  switchTheme={this.props.switchTheme}
                 />
               </div>
 

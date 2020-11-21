@@ -127,7 +127,7 @@ class Shared extends Component {
   render() {
     return (
       <div className="movie-shared-detail">
-        <NavBar switchTheme={() => this.props.switchTheme(this.props.theme)} />
+        <NavBar theme={this.props.theme} switchTheme={this.props.switchTheme} />
 
         <div className="container">
           <div style={{ marginTop: "10em" }}>

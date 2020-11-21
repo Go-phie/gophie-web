@@ -12,6 +12,7 @@ const AppRoute = () => {
   const selectedTheme = theme !== "light" ? lightTheme : darkTheme;
 
   const switchTheme = (mode) => {
+    console.log("still changes", mode);
     switch (mode) {
       case "light":
         localStorage.setItem("theme", "dark");
@@ -32,6 +33,10 @@ const AppRoute = () => {
       switchTheme(theme === "light" ? "dark" : "light");
     }
   };
+
+  useEffect(() => {
+    setTheme();
+  }, [settheme]);
 
   useEffect(() => {
     setTheme();
