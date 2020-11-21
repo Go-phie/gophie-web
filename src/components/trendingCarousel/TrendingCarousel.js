@@ -58,7 +58,7 @@ class TrendingCarousel extends Component {
 
     axios(options)
       .then((res) => {
-        console.log(res)
+        console.log(res);
         this.setState({
           trending: res.data,
           isLoading: false
@@ -142,6 +142,12 @@ class TrendingCarousel extends Component {
                     this.openModal(trendingMovie.referral_id);
                   }}
                   alt={trendingMovie.name}
+                  onError={(e) => (
+                    // eslint-disable-next-line
+                    (e.target.onerror = null),
+                    (e.target.src =
+                      "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png")
+                  )}
                   src={
                     trendingMovie.cover_photo_link
                       ? trendingMovie.cover_photo_link

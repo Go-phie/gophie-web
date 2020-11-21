@@ -1,5 +1,8 @@
 /* eslint-disable react/display-name */
-import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
+import {
+  disableBodyScroll,
+  enableBodyScroll
+} from "body-scroll-lock";
 
 export function isImageURL(url) {
   return (
@@ -8,8 +11,7 @@ export function isImageURL(url) {
   );
 }
 
-export const tourSteps = [
-  {
+export const tourSteps = [{
     selector: '[data-tour="my-first-step"]',
     content: `Welcome to Gophie. It is a free movie download site without ads created using the power of web scraping by Bisoncorps.`
   },
@@ -41,13 +43,13 @@ export const tourSteps = [
 
 let nm = new Map();
 //nm.set("Styx", "mycoolmoviez");
-nm.set("Server1", "netnaija");
-nm.set("Server2", "animeout");
+nm.set("Server1", "fzmovies");
+nm.set("Server2", "takanimelist");
 nm.set("Server3", "besthdmovies");
 nm.set("Server4", "tvseries");
-nm.set("Server5", "fzmovies");
+nm.set("Server5", "netnaija");
 nm.set("Server6", "kdramahood");
-nm.set("Server7", "takanimelist");
+nm.set("Server7", "animeout");
 
 export const nameToEngineMap = nm;
 
