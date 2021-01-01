@@ -37,7 +37,7 @@ export default class Movie extends Component {
     axios
       .post(this.state.ratings_api + "/download", {
         ip_address: this.props.ip_address,
-        referral_id: this.props.data.referral_id,
+        referral_id: this.props.data.referral_id
       })
       .then(() => {
         console.log(`added ${this.props.data.name} to downloads on ocena`);
@@ -48,7 +48,7 @@ export default class Movie extends Component {
     const { data } = this.props;
     axios
       .post(this.state.ratings_api + "/movie/ratings/average", {
-        referral_id: data.referral_id,
+        referral_id: data.referral_id
       })
       .then((res) => {
         this.setState({
@@ -70,7 +70,7 @@ export default class Movie extends Component {
     axios
       .post(this.state.ratings_api + "/referral", {
         ip_address: this.props.ip_address,
-        referral_id: data.referral_id,
+        referral_id: data.referral_id
       })
       .then((res) => {
         const { data } = res;
@@ -84,12 +84,15 @@ export default class Movie extends Component {
         });
       })
       .catch((err) => {
-        this.setState({ 
-          loadingReferralID: false,
-          referralID: data.referral_id 
-        },() => {
-          this.shareMovie(); 
-        });
+        this.setState(
+          {
+            loadingReferralID: false,
+            referralID: data.referral_id
+          },
+          () => {
+            this.shareMovie();
+          }
+        );
         console.log(err);
       });
   };
@@ -146,6 +149,12 @@ export default class Movie extends Component {
               style={translateStyle}
               onMouseEnter={this.toggleHover}
               onMouseLeave={this.toggleHover}
+              onError={(e) => (
+                // eslint-disable-next-line
+                (e.target.onerror = null),
+                (e.target.src =
+                  "https://raw.githubusercontent.com/Go-phie/gophie-web/master/public/no-pic.png")
+              )}
               onKeyDown={() => {
                 this.toggleSidebar();
               }}
