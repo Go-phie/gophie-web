@@ -1,26 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   list-style: none;
-  font-family:'Ubuntu',
-  sans-serif;
-
+  font-family: "Ubuntu", sans-serif;
 }
 
-
 body {
-  font-family:'Ubuntu',
-  sans-serif;
-  background-color: #1e2126; 
+  font-family: "Ubuntu", sans-serif;
+  background-color: #1e2126;
   padding: 0px;
   margin: 0px;
   margin-top: 80px;
 }
 
 .body-light {
-  background-color: #FFF;
+  background-color: #fff;
 }
 
 .App {
@@ -42,7 +38,9 @@ body {
   z-index: 999;
 }
 
-.header-left, .header-center, .header-right {
+.header-left,
+.header-center,
+.header-right {
   width: 10%;
   height: 100%;
   display: inline-flex;
@@ -86,14 +84,14 @@ body {
 .search-btn {
   border-radius: 0 6px 6px 0;
   background: #ffe401;
-  color: #FFF;
+  color: #fff;
   border: none;
   outline: none;
   padding: 5px 20px;
   cursor: pointer;
   height: 100%;
   width: 100%;
-  transition: .3s;
+  transition: 0.3s;
 }
 
 .search-btn:hover {
@@ -141,13 +139,6 @@ body {
   background-color: #1e2126;
   color: #e7d10a;
   padding: 10px 15px;
-}
-
-div.movies {
-  margin: 10px 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
 }
 
 div.skeleton-movies {

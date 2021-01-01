@@ -3,35 +3,41 @@
 
 <head>
   <meta charset="utf-8" />
+  <!-- manifest -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"> -->
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#1a1917">
+  <meta name="msapplication-TileColor" content="#e7d10a">
+  <meta name="theme-color" content="#e7d10a">
+  <!--  -->
   <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
   <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Righteous&display=swap" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="theme-color" content="#ffe401" />
+  <!-- Web Monetization -->
+  <meta name="monetization" content="$ilp.uphold.com/i3JFXhPdYM9j" />
 
   <!-- Google verification -->
   <meta name="google-site-verification" content="qjgYZnEi5VCX4DfeRVNzlu75M_HqoaL_vBHqEz1LIug" />
 
   <!-- Twitter Meta Tags -->
-   <meta property="og:title" content="Gophie">
-   <meta property="og:description"
-     content="Search, stream and download movies without having to bump into ads for free">
-   <meta property="og:image"
-     content="https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png">
-   <meta property="og:url" content="https://gophie.cam/">
+  <meta property="og:title" content="$OG_TITLE">
+  <meta property="og:description" content="$OG_DESCRIPTION">
+  <meta property="og:image" content="$OG_IMAGE">
+  <meta property="og:url" content="https://gophie.cam/">
 
-   <!-- Twitter Meta Tags -->
-   <meta name="twitter:title" content="Gophie">
-   <meta name="twitter:description"
-     content="Search, stream and download movies without having to bump into ads for free">
-   <meta name="twitter:image"
-     content="https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png">
-   <meta name="twitter:card" content="summary_large_image">
-   
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:title" content="$OG_TITLE">
+  <meta name="twitter:description" content="$OG_DESCRIPTION">
+  <meta name="twitter:image" content="$OG_IMAGE">
+  <meta name="twitter:card" content="summary_large_image">
+
   <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <link rel="manifest" href="./manifest.json" />
   <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -42,30 +48,36 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
   <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-164011056-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164011056-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
 
-  gtag('config', 'UA-164011056-1');
-</script>
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-164011056-1');
+  </script>
   <title>Gophie Web</title>
 </head>
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="movieSidebar"></div>
   <div id="root"></div>
-  <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
+  <script>
+    if(navigator.serviceWorker) {
+      try {
+        window.addEventListener('load', async () => {
+          const register = await navigator.serviceWorker.register('/service-worker.js', {scope: '/(:engine)/'});
+        });
+      }
+      catch (e) {
+        console.error(e);
+      }
+    }
+  </script>
 </body>
 
 </html>

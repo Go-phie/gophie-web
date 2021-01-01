@@ -1,34 +1,23 @@
 language: node_js
 node_js:
-  - "9"
+  - 13
 dist: trusty
 sudo: false
 
-branches:
-  only:
-  - master
-  - /^v\d+\.\d+\.\d+.*$/
-
 cache:
   directories:
-    - node_modules
+  - node_modules
 
 install:
-  - npm install -g yarn
+  - npm install -g yarn pm2
   - yarn install
 
 script:
-  - yarn build
-  - cp CNAME README.md build/
+  - yarn test
 
 deploy:
-  provider: pages
-  local_dir: build
-  target_branch: master
-  repo: "go-phie/go-phie.github.io"
-  skip_cleanup: true
-  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-  keep_history: true
+  provider: script
+  script: openssl aes-256-cbc -K $encrypted_06838b60b58f_key -iv $encrypted_06838b60b58f_iv -in ./scripts/gophie-private-key.pem.enc -out gophie-private-key.pem -d && chmod 400 gophie-private-key.pem  && pm2 deploy ecosystem.config.js production
   on:
+    branch: master
     tags: true
-    repo: Go-phie/gophie-web

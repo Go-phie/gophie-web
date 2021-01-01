@@ -1,20 +1,38 @@
 {
   "name": "gophie-web",
-  "version": "0.1.0",
+  "version": "0.2.2",
   "homepage": "https://go-phie.github.io/",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "@material-ui/core": "^4.9.11",
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.18.0",
-    "body-scroll-lock": "^3.0.1",
+    "body-scroll-lock": "^3.0.2",
     "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "gsap": "^3.4.2",
+    "material-ui-rating": "^4.0.0-beta.2",
+    "morgan": "^1.10.0",
     "react": "^16.8.3",
     "react-bootstrap": "^1.0.0",
+    "react-device-detect": "^1.12.1",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5",
+    "react-icons": "^3.10.0",
+    "react-multi-carousel": "^2.5.5",
+    "react-player": "^2.0.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
+    "react-share": "^4.2.0",
+    "react-spring": "^8.0.27",
+    "react-spring-3d-carousel": "^1.2.0",
     "react-toggle": "^4.1.1",
     "reactour": "^1.17.0",
+    "rotating-file-stream": "^2.1.1",
+    "semantic-ui-react": "^0.88.2",
+    "string_score": "^0.1.22",
     "styled-components": "^5.0.1",
     "uuid": "^7.0.3"
   },
@@ -24,7 +42,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
-    "deploy": "gh-pages -d build"
+    "deploy": "gh-pages -d build",
+    "ssr": "node server.js",
+    "format": "prettier \"src/**/*.{js,html,css}\" --write",
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,6 +57,18 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "material-ui-rating": "^4.2.0"
+    "@reach/router": "^1.3.3",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0",
+    "eslint-plugin-standard": "^4.0.1",
+    "prettier": "^2.0.5"
   }
 }
