@@ -63,7 +63,7 @@ class Home extends Component {
     return el.getBoundingClientRect().bottom <= window.innerHeight;
   };
 
-  handleScroll = (e) => {
+  handleScroll = () => {
     const query = this.state.searchInput;
     const { isLoading, hasMore, error, server } = this.state;
     const wrappedElement = document.getElementById("movie-div");
@@ -121,7 +121,7 @@ class Home extends Component {
     );
   }
 
-  newSearch(event) {
+  newSearch() {
     const query = this.state.searchInput
     if (query.trim().length > 1) {
       this.setState(
@@ -254,7 +254,7 @@ class Home extends Component {
           ip_address: res.data.ip
         });
       })
-      .catch((error) => {
+      .catch(() => {
         this.setState({
           error: true
         });

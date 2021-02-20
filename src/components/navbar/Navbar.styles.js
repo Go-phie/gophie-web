@@ -17,6 +17,34 @@ const Style = {
         }
     `,
 
+    Sidebar__Logo: styled.div`
+    padding: 1.5em 0;
+    text-align: left;
+    position: relative;
+    margin: 0 1.5em;
+
+    &:before {
+      width: 3em;
+      height: 0.3em;
+      content: "";
+      display: block;
+      background: ${({ theme }) => theme.yellowDark};
+      border-radius: 1.5em;
+      position: absolute;
+      bottom: 0;
+
+      @media (max-width: 678px) {
+        width: 2em;
+        height: 0.2em;
+      }
+    }
+
+    @media (max-width: 678px) {
+      padding: 1em 0;
+      margin-right: initial;
+    }
+  `,
+
     Navbar__HasSearch: styled.div`
         width: 100%;
         max-width: 25em;
@@ -69,5 +97,7 @@ const Style = {
         }
     `
 }
+
+
 
 export default Style;

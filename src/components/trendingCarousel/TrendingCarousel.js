@@ -120,7 +120,7 @@ class TrendingCarousel extends Component {
           transitionDuration={800}
           containerClass="carousel-container"
         >
-          {this.state.trending.map((trendingMovie, i) => {
+          {this.state.trending.map((trendingMovie) => {
             if (trendingMovie.name.endsWith("Tags")) {
               trendingMovie.name = trendingMovie.name.substr(
                 0,

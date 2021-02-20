@@ -13,7 +13,7 @@
     "body-scroll-lock": "^3.0.2",
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
-    "gsap": "^3.4.2",
+    "gsap": "^3.6.0",
     "material-ui-rating": "^4.0.0-beta.2",
     "morgan": "^1.10.0",
     "react": "^16.8.3",
@@ -34,7 +34,8 @@
     "semantic-ui-react": "^0.88.2",
     "string_score": "^0.1.22",
     "styled-components": "^5.0.1",
-    "uuid": "^7.0.3"
+    "uuid": "^7.0.3",
+    "yarn": "^1.22.10"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -59,7 +60,7 @@
   "devDependencies": {
     "@reach/router": "^1.3.3",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
+    "eslint": "^7.11.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.20.2",
