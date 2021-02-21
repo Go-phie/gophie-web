@@ -2,14 +2,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { Link } from "react-router-dom";
 import Rating from "material-ui-rating";
 import Style from "./movie.styles";
 import MovieSidebar from "../movieSidebar/MovieSidebar";
-import { DownloadIcon } from "../../utils/icons";
 export default class Movie extends Component {
   constructor(props) {
     super(props);
@@ -122,7 +119,6 @@ export default class Movie extends Component {
   render() {
     const {
       cover_photo_link,
-      download_link,
       size,
       name,
       engine,
@@ -170,33 +166,6 @@ export default class Movie extends Component {
               {size}{" "}
             </p>
 
-            {greekFromEnglish(server) !== "Server2" &&
-            greekFromEnglish(server) !== "Server6" ? (
-              <a
-                style={translateStyle}
-                className="download-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-                href={download_link}
-                onClick={() => this.addDownload()}
-                data-tour="my-eight-step"
-              >
-                <DownloadIcon />
-              </a>
-            ) : (
-              <button
-                style={translateStyle}
-                className="download-btn"
-                onClick={() => {
-                  this.toggleSidebar();
-                }}
-                onKeyDown={() => {
-                  this.toggleSidebar();
-                }}
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </button>
-            )}
           </div>
           <div className="movie__about">
             <Link to={`/${greekFromEnglish(engine)}/${Index}`}>
