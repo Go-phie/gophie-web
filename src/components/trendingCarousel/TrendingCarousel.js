@@ -58,7 +58,6 @@ class TrendingCarousel extends Component {
 
     axios(options)
       .then((res) => {
-        console.log(res);
         this.setState({
           trending: res.data,
           isLoading: false
@@ -75,7 +74,6 @@ class TrendingCarousel extends Component {
   }
 
   addDownload = (trendingMovie) => {
-    console.log(trendingMovie, this.props.ip_address);
     axios
       .post(this.state.trending_api + "/download/", {
         ip_address: this.props.ip_address,
@@ -103,7 +101,6 @@ class TrendingCarousel extends Component {
         }
       });
     }
-    console.log(id, this.state.showMovieSidebar[id]);
   };
 
   render() {

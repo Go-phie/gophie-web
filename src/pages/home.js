@@ -1,4 +1,5 @@
 import axios from "axios";
+import axiosRetry from 'axios-retry';
 import React, { Component } from "react";
 import Tour from "reactour";
 import { Route } from "react-router-dom";
@@ -147,6 +148,7 @@ class Home extends Component {
   checkKeyOnChange = (e) => {
     this.setState({ searchInput: e.target.value.toLowerCase() });
   };
+
   performSearch = (query, append = false) => {
     this.setState({
       isLoading: true,
@@ -155,15 +157,30 @@ class Home extends Component {
     });
 
     this.props.history.push("/search");
+    
+    // Set axiosRetryLogic
+    axiosRetry(axios, { 
+      retries: 3,
+      shouldResetTimeout: true,
+      retryCondition: (error) => {
+        // retry whenever timeout is hit
+        // TODO: Somehow inform user that search is still ongoing
+        return error.code === 'ECONNABORTED'
+      }
+    });
+
 
     let serverAxios = Array.from(nameToEngineMap.values())
     for (let i=0; i < serverAxios.length; i++){
       serverAxios[i] = axios.get(this.state.api + "/search?query="+
         encodeURI(query.trim()) + "&engine=" + serverAxios[i] +
-          "&page=" + this.state.listIndex
+          "&page=" + this.state.listIndex,
+        {
+          timeout: 30000
+        }
       )
     }
-
+    
     axios.all(serverAxios)
       .then(axios.spread(
           (
@@ -194,6 +211,7 @@ class Home extends Component {
       .catch((err) => {
         this.setState({
           error: true,
+          isLoading: false,
           searchError: err.message
         });
       });
@@ -226,7 +244,6 @@ class Home extends Component {
             movies: append ? [...this.state.movies, ...newmovies] : newmovies,
             listIndex: newIndex
           },
-          console.log(this.state.movies)
         );
       })
       .catch((err) => {

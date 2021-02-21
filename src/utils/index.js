@@ -47,7 +47,7 @@ nm.set("Server1", "fzmovies");
 nm.set("Server2", "takanimelist");
 nm.set("Server3", "besthdmovies");
 nm.set("Server4", "tvseries");
-nm.set("Server5", "netnaija");
+//nm.set("Server5", "netnaija");
 nm.set("Server6", "kdramahood");
 nm.set("Server7", "animeout");
 
@@ -63,7 +63,8 @@ export function greekFromEnglish(eng) {
 }
 
 export const API_ENDPOINTS = {
-  ocena: "https://gophie-ocena.herokuapp.com",
+//  ocena: "https://gophie-ocena.herokuapp.com",
+  ocena: "https://staging-ocena.herokuapp.com",
   ip: "https://api.ipify.org?format=json"
   // ocena: "http://127.0.0.1:8000"
 };
