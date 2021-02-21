@@ -165,6 +165,7 @@ class Home extends Component {
       retryCondition: (error) => {
         // retry whenever timeout is hit
         // TODO: Somehow inform user that search is still ongoing
+        console.log("retrying timedout request", error.config)
         return error.code === 'ECONNABORTED'
       }
     });

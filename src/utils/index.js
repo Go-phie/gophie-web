@@ -63,8 +63,8 @@ export function greekFromEnglish(eng) {
 }
 
 export const API_ENDPOINTS = {
-//  ocena: "https://gophie-ocena.herokuapp.com",
-  ocena: "https://staging-ocena.herokuapp.com",
+//  ocena: "https://staging-ocena.herokuapp.com",
+  ocena: "https://gophie-ocena.herokuapp.com",
   ip: "https://api.ipify.org?format=json"
   // ocena: "http://127.0.0.1:8000"
 };
