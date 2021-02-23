@@ -10,7 +10,6 @@ import { NetworkIcon } from "../../utils/icons";
 import CarouselSkeletonLoader from "../Loader/CarouselSkeletonLoader";
 import Style from "./TrendingCarousel.styles";
 import MovieSidebar from "../movieSidebar/MovieSidebar";
-import { DownloadIcon } from "../../utils/icons";
 
 const responsive = {
   superLargeDesktop: {
@@ -120,7 +119,7 @@ class TrendingCarousel extends Component {
           transitionDuration={800}
           containerClass="carousel-container"
         >
-          {this.state.trending.map((trendingMovie, i) => {
+          {this.state.trending.map((trendingMovie) => {
             if (trendingMovie.name.endsWith("Tags")) {
               trendingMovie.name = trendingMovie.name.substr(
                 0,
@@ -155,16 +154,6 @@ class TrendingCarousel extends Component {
                   }
                 />
                 <div className="carousal-image-detail">
-                  <a
-                    className="download-btn carousal-download-btn"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={trendingMovie.download_link}
-                    onClick={() => this.addDownload(trendingMovie)}
-                    data-tour="my-eight-step"
-                  >
-                    <DownloadIcon />
-                  </a>
                   <p>{trendingMovie.name}</p>
                 </div>
                 {this.state.showMovieSidebar[trendingMovie.referral_id] ? (
