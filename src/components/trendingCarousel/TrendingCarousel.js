@@ -171,6 +171,7 @@ class TrendingCarousel extends Component {
                   <MovieSidebar
                     toggle={() => this.openModal(trendingMovie.referral_id)}
                     movie={trendingMovie}
+                    shareMovie={this.props.shareMovie}
                   />
                 ) : null}
               </div>
