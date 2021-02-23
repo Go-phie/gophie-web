@@ -23,7 +23,7 @@ class Shared extends Component {
       referral_id: "",
       error: false,
       ip_address: "",
-      theme: "light",
+      theme: localStorage.getItem("theme") === "light" ? "dark" : "light",
       movie: {},
     };
   }
@@ -152,7 +152,7 @@ class Shared extends Component {
 
   render() {
     const { theme } = this.state;
-    const selectedTheme = theme === "light" ? lightTheme : darkTheme;
+    const selectedTheme = theme !== "light" ? lightTheme : darkTheme;
 
     return (
       <div className="movie-shared-detail">
