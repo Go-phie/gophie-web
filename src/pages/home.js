@@ -514,6 +514,7 @@ class Home extends Component {
                     setDescription={this.setDescription.bind(this)}
                     history={this.props.history}
                     ip_address={this.state.ip_address}
+                    shareMovie={this.shareMovie.bind(this)}
                   />
                 )}
               </header>
