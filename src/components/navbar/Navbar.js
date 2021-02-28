@@ -1,11 +1,20 @@
 import React from "react";
 import Style from "./Navbar.styles";
 import SearchInput from "../searchInput/SearchInput";
+import { Link } from "react-router-dom";
+import { GophieLogo } from "../../utils/icons";
 import { SunIcon, MoonIcon } from "../../utils/icons";
 
 const NavBar = (props) => {
   return (
     <Style.Navbar>
+      {props.sharedPage && 
+          <Style.Sidebar__Logo>
+            <Link to="/">
+              <GophieLogo />
+            </Link>
+          </Style.Sidebar__Logo>
+      }
       <Style.Navbar__HasSearch>
         <SearchInput
           searchInput={props.searchInput}

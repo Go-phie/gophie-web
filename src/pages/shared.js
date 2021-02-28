@@ -86,7 +86,7 @@ class Shared extends Component {
           ip_address: res.data.ip,
         });
       })
-      .catch((error) => {
+      .catch(() => {
         this.setState({
           error: true,
         });
@@ -158,7 +158,7 @@ class Shared extends Component {
       <div className="movie-shared-detail">
         <ThemeProvider theme={selectedTheme}>
           <GlobalStyles />
-          <NavBar switchTheme={() => this.switchTheme(this.state.theme)} />
+          <NavBar sharedPage theme={theme} switchTheme={() => this.switchTheme(this.state.theme)} />
 
           <div className="container">
             <div style={{ marginTop: "10em" }}>

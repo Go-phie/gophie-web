@@ -76,7 +76,7 @@ export default function MovieSidebar(props) {
           }
         });
       })
-      .catch((err) => {
+      .catch(() => {
         setLoadingReferralID(false);
       });
   };
@@ -116,7 +116,7 @@ export default function MovieSidebar(props) {
           }
           setReferralID(data, action ? shareMovie() : null);
         })
-        .catch((err) => {
+        .catch(() => {
           setLoadingReferralID(false);
           setReferralID(movie.referral_id, action ? shareMovie() : null);
         });
@@ -311,6 +311,9 @@ export default function MovieSidebar(props) {
                   <span
                     className={readMore === true ? "" : "hidden"}
                     onClick={truncate}
+                    onKeyDown={truncate}
+                    role = "button"
+                    tabIndex={0}
                   >
                     ... Read more
                   </span>
