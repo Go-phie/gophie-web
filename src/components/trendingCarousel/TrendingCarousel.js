@@ -10,7 +10,6 @@ import { NetworkIcon } from "../../utils/icons";
 import CarouselSkeletonLoader from "../Loader/CarouselSkeletonLoader";
 import Style from "./TrendingCarousel.styles";
 import MovieSidebar from "../movieSidebar/MovieSidebar";
-import { DownloadIcon } from "../../utils/icons";
 
 const responsive = {
   superLargeDesktop: {
@@ -58,7 +57,6 @@ class TrendingCarousel extends Component {
 
     axios(options)
       .then((res) => {
-        console.log(res);
         this.setState({
           trending: res.data,
           isLoading: false
@@ -75,7 +73,6 @@ class TrendingCarousel extends Component {
   }
 
   addDownload = (trendingMovie) => {
-    console.log(trendingMovie, this.props.ip_address);
     axios
       .post(this.state.trending_api + "/download/", {
         ip_address: this.props.ip_address,
@@ -103,7 +100,6 @@ class TrendingCarousel extends Component {
         }
       });
     }
-    console.log(id, this.state.showMovieSidebar[id]);
   };
 
   render() {
@@ -155,22 +151,13 @@ class TrendingCarousel extends Component {
                   }
                 />
                 <div className="carousal-image-detail">
-                  <a
-                    className="download-btn carousal-download-btn"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    href={trendingMovie.download_link}
-                    onClick={() => this.addDownload(trendingMovie)}
-                    data-tour="my-eight-step"
-                  >
-                    <DownloadIcon />
-                  </a>
                   <p>{trendingMovie.name}</p>
                 </div>
                 {this.state.showMovieSidebar[trendingMovie.referral_id] ? (
                   <MovieSidebar
                     toggle={() => this.openModal(trendingMovie.referral_id)}
                     movie={trendingMovie}
+                    shareMovie={this.props.shareMovie}
                   />
                 ) : null}
               </div>

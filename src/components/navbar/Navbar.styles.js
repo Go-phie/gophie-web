@@ -95,6 +95,18 @@ const Style = {
                 box-shadow: none;
             }
         }
+    `,
+    Button: styled.div`
+      .actions-button {
+        color: grey;
+        font-size: 1.5em;
+        background: transparent;
+        border-width: 0px;
+        border-style: initial;
+        border-color: initial;
+        border-image: initial;
+        outline: none !important;
+      }
     `
 }
 

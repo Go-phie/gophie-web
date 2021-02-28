@@ -25,18 +25,20 @@ const NavBar = (props) => {
       </Style.Navbar__HasSearch>
 
       {/* actions button */}
-      <button
-        className="actions-button  ml-4"
-        data-tour="my-tenth-step"
-        title="Change Theme"
-        onClick={props.switchTheme}
-      >
-        {props.theme === "dark" ? (
-          <SunIcon />
-        ) : (
-          <MoonIcon />
-        )}
-      </button>
+      <Style.Button>
+        <button
+          className="actions-button  ml-4"
+          data-tour="my-tenth-step"
+          title="Change Theme"
+          onClick={props.switchTheme}
+        >
+          {props.theme === "dark" ? (
+            <SunIcon />
+          ) : (
+            <MoonIcon />
+          )}
+        </button>
+      </Style.Button>
     </Style.Navbar>
   );
 };
