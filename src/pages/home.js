@@ -338,15 +338,17 @@ class Home extends Component {
       localStorage.setItem("viewedTour", "true");
     }
     document.addEventListener("scroll", this.handleScroll);
+    window.addEventListener('storage', this.setTheme);
   }
 
   componentWillUnmount() {
     this._isMounted = false;
 
     document.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener('storage', this.setTheme);
   }
 
-  setTheme() {
+  setTheme = () => {
     const theme = localStorage.getItem("theme");
     if (theme !== null) {
       this.switchTheme(theme === "light" ? "dark" : "light");
@@ -370,7 +372,7 @@ class Home extends Component {
     this.setState({ showTour: true });
   };
 
-  switchTheme(mode) {
+  switchTheme = (mode) => {
     switch (mode) {
       case "light":
         localStorage.setItem("theme", "dark");

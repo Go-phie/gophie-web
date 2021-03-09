@@ -32,6 +32,11 @@ class Shared extends Component {
     this.getIp();
     this.setTheme();
     this.getSharedMovie();
+    window.addEventListener('storage', this.setTheme);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('storage', this.setTheme);
   }
 
   getSharedMovie = () => {
@@ -56,14 +61,14 @@ class Shared extends Component {
       });
   };
 
-  setTheme() {
+  setTheme = () => {
     const theme = localStorage.getItem("theme");
     if (theme !== null) {
       this.switchTheme(theme === "light" ? "dark" : "light");
     }
   }
 
-  switchTheme(mode) {
+  switchTheme = (mode) => {
     switch (mode) {
       case "light":
         localStorage.setItem("theme", "dark");
