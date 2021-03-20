@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 import Style from "./MobileNavbar.styles";
 import SearchInput from "../searchInput/SearchInput";
-import { HomeIcon, SearchIcon, SunIcon, MoonIcon } from "../../utils/icons";
+import {
+  HomeIcon,
+  SearchIcon,
+  SunIcon,
+  MoonIcon,
+  MusicNotes,
+} from "../../utils/icons";
+import { useHistory } from "react-router";
 
 const MobileNavbar = (props) => {
   const [mobileSearch, setMobileSearch] = useState(false);
   let pathname = window.location.pathname;
+  const history = useHistory();
 
   return (
     <>
@@ -41,6 +49,17 @@ const MobileNavbar = (props) => {
         >
           <SearchIcon />
         </button>
+
+        <button
+          className={`${
+            pathname.match("/music") ? "active" : ""
+          } actions-button`}
+          title="Music"
+          onClick={() => history.push("/music")}
+        >
+          <MusicNotes />
+        </button>
+
         <button
           className="actions-button"
           title="Change Theme"

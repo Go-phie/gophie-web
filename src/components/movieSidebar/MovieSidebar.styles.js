@@ -199,7 +199,7 @@ const Style = {
       opacity: 0.8;
       z-index: 101;
     }
-  `
+  `,
 };
 
 export default Style;

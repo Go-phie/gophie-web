@@ -32,11 +32,11 @@ class Shared extends Component {
     this.getIp();
     this.setTheme();
     this.getSharedMovie();
-    window.addEventListener('storage', this.setTheme);
+    window.addEventListener("storage", this.setTheme);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('storage', this.setTheme);
+    window.removeEventListener("storage", this.setTheme);
   }
 
   getSharedMovie = () => {
@@ -66,7 +66,7 @@ class Shared extends Component {
     if (theme !== null) {
       this.switchTheme(theme === "light" ? "dark" : "light");
     }
-  }
+  };
 
   switchTheme = (mode) => {
     switch (mode) {
@@ -81,7 +81,7 @@ class Shared extends Component {
       default:
         break;
     }
-  }
+  };
 
   getIp = () => {
     axios
@@ -102,7 +102,7 @@ class Shared extends Component {
     const { movie } = this.state;
     axios
       .post(this.state.api + "/movie/ratings/average", {
-        referral_id: movie.referral_id
+        referral_id: movie.referral_id,
       })
       .then((res) => {
         this.setState({
@@ -163,13 +163,15 @@ class Shared extends Component {
       <div className="movie-shared-detail">
         <ThemeProvider theme={selectedTheme}>
           <GlobalStyles />
-          <NavBar sharedPage theme={theme} switchTheme={() => this.switchTheme(this.state.theme)} />
+          <NavBar
+            sharedPage
+            theme={theme}
+            switchTheme={() => this.switchTheme(this.state.theme)}
+          />
 
           <div className="container">
             <div style={{ marginTop: "10em" }}>
-              <div
-                className="gophie-modal shared-detail-content mt-5"
-              >
+              <div className="gophie-modal shared-detail-content mt-5">
                 <section className="gophie-modal__img">
                   <img
                     src={

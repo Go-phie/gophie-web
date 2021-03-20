@@ -1,8 +1,5 @@
 /* eslint-disable react/display-name */
-import {
-  disableBodyScroll,
-  enableBodyScroll
-} from "body-scroll-lock";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export function isImageURL(url) {
   return (
@@ -11,18 +8,19 @@ export function isImageURL(url) {
   );
 }
 
-export const tourSteps = [{
+export const tourSteps = [
+  {
     selector: '[data-tour="my-first-step"]',
-    content: `Welcome to Gophie. It is a free movie download site without ads created using the power of web scraping by Bisoncorps.`
+    content: `Welcome to Gophie. It is a free movie download site without ads created using the power of web scraping by Bisoncorps.`,
   },
   {
     selector: '[data-tour="server1"]',
-    content: `Download latest MOVIES`
+    content: `Download latest MOVIES`,
   },
   {
     selector: '[data-tour="server2"]',
-    content: `Download latest ANIME - (scroll to checkout our various servers)`
-  }
+    content: `Download latest ANIME - (scroll to checkout our various servers)`,
+  },
   // {
   //   selector: '[data-tour="server3"]',
   //   content: `Download latest HD MOVIES`
@@ -63,9 +61,9 @@ export function greekFromEnglish(eng) {
 }
 
 export const API_ENDPOINTS = {
-//  ocena: "https://staging-ocena.herokuapp.com",
+  //  ocena: "https://staging-ocena.herokuapp.com",
   ocena: "https://gophie-ocena.herokuapp.com",
-  ip: "https://api.ipify.org?format=json"
+  ip: "https://api.ipify.org?format=json",
   // ocena: "http://127.0.0.1:8000"
 };
 

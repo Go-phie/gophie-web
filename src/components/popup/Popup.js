@@ -6,9 +6,7 @@ import axios from "axios";
 import { greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { isIOS } from "react-device-detect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowDown
-} from "@fortawesome/free-solid-svg-icons";
+import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
 
 class Popup extends Component {
   constructor(props) {
@@ -20,7 +18,7 @@ class Popup extends Component {
       play: false,
       referral_id: "",
       error: false,
-      episodeLink: []
+      episodeLink: [],
     };
   }
 
@@ -28,16 +26,22 @@ class Popup extends Component {
     this.getAverage();
     this.getRatings();
 
-    if (this.props.movie.engine === 'AnimeOut') {
-      const episodeLinkArray = []
+    if (this.props.movie.engine === "AnimeOut") {
+      const episodeLinkArray = [];
       const SDownloadLink = this.props.movie.s_download_link;
       for (const [downloadTxt, downloadLink] of Object.entries(SDownloadLink)) {
-        const downloadTxtStrip=downloadTxt.replace("[AnimeOut]","").replace("[Erai-raws]", "");
-        episodeLinkArray.push(<a className="episode-link " href={downloadLink} key={downloadLink}>{downloadTxtStrip}</a>);
+        const downloadTxtStrip = downloadTxt
+          .replace("[AnimeOut]", "")
+          .replace("[Erai-raws]", "");
+        episodeLinkArray.push(
+          <a className="episode-link " href={downloadLink} key={downloadLink}>
+            {downloadTxtStrip}
+          </a>
+        );
       }
 
-      this.setState({episodeLink: [...episodeLinkArray]})
-    } 
+      this.setState({ episodeLink: [...episodeLinkArray] });
+    }
   }
 
   shareMovie = () => {
@@ -137,9 +141,7 @@ class Popup extends Component {
   }
 
   render() {
-    const {
-      server,
-    } = this.props;
+    const { server } = this.props;
 
     return (
       <Modal
@@ -174,20 +176,17 @@ class Popup extends Component {
               </a>
             ) : (
               <div>
-                  {
-                    greekFromEnglish(server) === "Server2" ?
-                      null :
-                      (<a id="play-video"
-                        className="video-play-button"
-                        href="/"
-                        onClick={
-                          this.handlePlayRequest.bind(this)
-                        } >
-                      <span> </span>{" "}
-                    </a>)
-                  }
+                {greekFromEnglish(server) === "Server2" ? null : (
+                  <a
+                    id="play-video"
+                    className="video-play-button"
+                    href="/"
+                    onClick={this.handlePlayRequest.bind(this)}
+                  >
+                    <span> </span>{" "}
+                  </a>
+                )}
               </div>
-
             )}
             {/* Video Stream Play Icon */}
           </section>
@@ -289,23 +288,18 @@ class Popup extends Component {
                     : this.props.movie.description}
                 </div>
                 <div>
-
-                <div>
-
-                </div>
-                  {
-                    this.props.movie.name !== "AnimeOut" ?
-                      null :
-                      (<div>
-                        <div className="d-flex justify-content-between align-items-center w-100 mt-3">
-                          <div>Episodes</div>
-                          <FontAwesomeIcon icon={faArrowDown} />
-                        </div>
-                        <div className="scollable-container d-flex flex-column">
-                          {this.state.episodeLink}
-                        </div>
-                      </div>)
-                  }
+                  <div></div>
+                  {this.props.movie.name !== "AnimeOut" ? null : (
+                    <div>
+                      <div className="d-flex justify-content-between align-items-center w-100 mt-3">
+                        <div>Episodes</div>
+                        <FontAwesomeIcon icon={faArrowDown} />
+                      </div>
+                      <div className="scollable-container d-flex flex-column">
+                        {this.state.episodeLink}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </section>
             )}

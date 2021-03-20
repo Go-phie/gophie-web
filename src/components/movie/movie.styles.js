@@ -131,7 +131,7 @@ const Style = {
         margin-right: 0.15em !important;
       }
     }
-  `
+  `,
 };
 
 export default Style;

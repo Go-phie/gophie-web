@@ -43,7 +43,7 @@ export default function MovieSidebar(props) {
       .post(ratings_api + "/rate", {
         referral_id: movie.referral_id,
         ip_address: ip_address,
-        score: value
+        score: value,
       })
       .then((res) => {
         if (res.data !== null) {
@@ -53,7 +53,7 @@ export default function MovieSidebar(props) {
       .catch((err) => {
         if (err) {
           setError({
-            error: true
+            error: true,
           });
         }
       });
@@ -63,7 +63,7 @@ export default function MovieSidebar(props) {
     axios
       .post(ratings_api + "/referral", {
         ip_address: ip_address,
-        referral_id: movie.referral_id
+        referral_id: movie.referral_id,
       })
       .then((res) => {
         const { data } = res;
@@ -94,7 +94,7 @@ export default function MovieSidebar(props) {
     if (referralID) {
       props.shareMovie({
         ...movie,
-        referralID: referralID
+        referralID: referralID,
       });
     } else {
       setLoadingReferralID(true);
@@ -107,7 +107,7 @@ export default function MovieSidebar(props) {
       axios
         .post(ratings_api + "/referral", {
           ip_address: ip_address,
-          referral_id: movie.referral_id
+          referral_id: movie.referral_id,
         })
         .then((res) => {
           const { data } = res;
@@ -178,7 +178,7 @@ export default function MovieSidebar(props) {
         duration: 0.4,
         scaleX: 0,
         transformOrigin: "right",
-        stagger: 0.1
+        stagger: 0.1,
       });
     } else {
       sidebarTimeline.current = gsap.timeline();
@@ -186,11 +186,11 @@ export default function MovieSidebar(props) {
         duration: 0.4,
         scaleX: 1,
         transformOrigin: "right",
-        stagger: 0.2
+        stagger: 0.2,
       });
       sidebarTimeline.current.to(refSidebarContent, {
         duration: 0.1,
-        opacity: 1
+        opacity: 1,
       });
     }
   }, [toggle]);
@@ -312,7 +312,7 @@ export default function MovieSidebar(props) {
                     className={readMore === true ? "" : "hidden"}
                     onClick={truncate}
                     onKeyDown={truncate}
-                    role = "button"
+                    role="button"
                     tabIndex={0}
                   >
                     ... Read more

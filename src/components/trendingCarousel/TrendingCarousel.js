@@ -15,20 +15,20 @@ const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
     breakpoint: { max: 4000, min: 3000 },
-    items: 5
+    items: 5,
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 4
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 3
+    items: 3,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 2
-  }
+    items: 2,
+  },
 };
 
 class TrendingCarousel extends Component {
@@ -40,7 +40,7 @@ class TrendingCarousel extends Component {
       error: false,
       currentmovie: { name: "" },
       isLoading: true,
-      showMovieSidebar: false
+      showMovieSidebar: false,
     };
   }
 
@@ -51,22 +51,22 @@ class TrendingCarousel extends Component {
       data: {
         filter_by: "weeks",
         filter_num: 4,
-        top: 10
-      }
+        top: 10,
+      },
     };
 
     axios(options)
       .then((res) => {
         this.setState({
           trending: res.data,
-          isLoading: false
+          isLoading: false,
         });
       })
       .catch((err) => {
         if (err) {
           this.setState({
             error: true,
-            isLoading: false
+            isLoading: false,
           });
         }
       });
@@ -76,7 +76,7 @@ class TrendingCarousel extends Component {
     axios
       .post(this.state.trending_api + "/download/", {
         ip_address: this.props.ip_address,
-        referral_id: trendingMovie.referral_id
+        referral_id: trendingMovie.referral_id,
       })
       .then(() => {
         console.log(`added ${trendingMovie.name} to downloads on ocena`);
@@ -86,8 +86,8 @@ class TrendingCarousel extends Component {
   openModal = (id) => {
     this.setState({
       showMovieSidebar: {
-        [id]: !this.state.showMovieSidebar
-      }
+        [id]: !this.state.showMovieSidebar,
+      },
     });
 
     if (
@@ -96,8 +96,8 @@ class TrendingCarousel extends Component {
     ) {
       this.setState({
         showMovieSidebar: {
-          [id]: true
-        }
+          [id]: true,
+        },
       });
     }
   };

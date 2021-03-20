@@ -6,8 +6,6 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toggle/style.css";
 
-ReactDOM.render(
-    <AppRoute />
-, document.getElementById("root"));
+ReactDOM.render(<AppRoute />, document.getElementById("root"));
 
 serviceWorker.unregister();
