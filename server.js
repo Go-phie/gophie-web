@@ -25,7 +25,7 @@ app.use(
   )
 );
 
-app.get("/", (request, response) => {
+var common = (request, response, description) => {
   let result = null;
   fs.readFile(filePath, "utf8", (err, data) => {
     if (err) {
@@ -35,7 +35,7 @@ app.get("/", (request, response) => {
     data = data.replace(/\$OG_TITLE/g, "Gophie");
     data = data.replace(
       /\$OG_DESCRIPTION/g,
-      "Search, stream and download movies, series and anime without bumping into a single ad on your favourite movie aggregator site"
+      description
     );
     result = data.replace(
       /\$OG_IMAGE/g,
@@ -43,6 +43,23 @@ app.get("/", (request, response) => {
     );
     response.send(result);
   });
+
+}
+
+app.get("/", (request, response) => {
+  common(
+    request, 
+    response,
+    "Search, stream and download movies, series and anime without bumping into a single ad on your favourite movie aggregator site",
+  )
+});
+
+app.get("/music", (request, response) => {
+  common(
+    request, 
+    response,
+    "Search, stream and download music without bumping into a single ad",
+  )
 });
 
 app.get("/shared/:referralID", (request, response) => {

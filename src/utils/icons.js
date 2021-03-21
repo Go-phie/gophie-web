@@ -345,7 +345,7 @@ export function MovieReel() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      xmlnsSvgjs="http://svgjs.com/svgjs"
+      xmlnssvgjs="http://svgjs.com/svgjs"
       version="1.1"
       width="24"
       height="24"
@@ -374,7 +374,7 @@ export function MusicNotes() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      xmlnsSvgjs="http://svgjs.com/svgjs"
+      xmlnssvgjs="http://svgjs.com/svgjs"
       version="1.1"
       width="24"
       height="24"
@@ -431,7 +431,7 @@ export function ExpandIcon() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      xmlnsSvgjs="http://svgjs.com/svgjs"
+      xmlnssvgjs="http://svgjs.com/svgjs"
       version="1.1"
       width="10"
       height="10"
@@ -475,7 +475,7 @@ export function CollapseIcon() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      xmlnsSvgjs="http://svgjs.com/svgjs"
+      xmlnssvgjs="http://svgjs.com/svgjs"
       version="1.1"
       width="10"
       height="10"
@@ -519,7 +519,7 @@ export function GoToIcon() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      xmlnsSvgjs="http://svgjs.com/svgjs"
+      xmlnssvgjs="http://svgjs.com/svgjs"
       version="1.1"
       width="10"
       height="10"

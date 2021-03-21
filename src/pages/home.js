@@ -333,10 +333,11 @@ class Home extends Component {
     this.getIp();
     this.setTheme();
     this.performList();
-    if (!localStorage.getItem("viewedTour")) {
-      this.startTour();
-      localStorage.setItem("viewedTour", "true");
-    }
+//    SCRAP TOUR
+//    if (!localStorage.getItem("viewedTour")) {
+//      this.startTour();
+//      localStorage.setItem("viewedTour", "true");
+//    }
     document.addEventListener("scroll", this.handleScroll);
     window.addEventListener("storage", this.setTheme);
   }

@@ -49,22 +49,32 @@ nm.set("Server4", "tvseries");
 nm.set("Server6", "kdramahood");
 nm.set("Server7", "animeout");
 
+let me = new Map();
+me.set("Server1", "myfreemp3");
+me.set("Server2", "mp3s");
+export const musicEngines = me;
+
+
 export const nameToEngineMap = nm;
 
-export function greekFromEnglish(eng) {
-  const lowered = String(eng).toLowerCase();
-  for (let [key, val] of nm.entries()) {
+function toServerName(map, name) {
+  const lowered = String(name).toLowerCase();
+  for (let [key, val] of map.entries()) {
     if (val === lowered) {
       return key;
     }
   }
+};
+
+export function greekFromEnglish(eng) {
+  return toServerName(nm, eng);
 }
 
 export const API_ENDPOINTS = {
   //  ocena: "https://staging-ocena.herokuapp.com",
   ocena: "https://gophie-ocena.herokuapp.com",
   ip: "https://api.ipify.org?format=json",
-  // ocena: "http://127.0.0.1:8000"
+  mythra: "https://mythra.gophie.cam",
 };
 
 export const disableBody = (target) => disableBodyScroll(target);

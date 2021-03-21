@@ -1,18 +1,12 @@
 import React, { Component } from "react";
 import { GlobalStyles } from "../css/global";
-import axios from "axios";
 import MobileNavbar from "../components/mobileNav/MobileNavbar";
 import PageSidebar from "../components/pageSidebar/PageSidebar";
 import MainPanel from "./home.styles";
 import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../css/theme";
 import NavBar from "../components/navbar/Navbar";
-import { 
-  API_ENDPOINTS, 
-  musicEngines, 
-  nameToEngineMap,
-  greekFromEnglish
-} from "../utils";
+import { API_ENDPOINTS, musicEngines, greekFromEnglish } from "../utils";
 
 export class Music extends Component {
   constructor(props) {
@@ -20,22 +14,18 @@ export class Music extends Component {
 
     this.state = {
       api: API_ENDPOINTS.mythra,
-      server: musicEngines.get("Server1"),
-      music: [],
-      query: "Mirrors",
+      server: nameToEngineMap.get("Server1"),
+      mode: "music",
+      movies: [],
+      listIndex: 1,
       isLoading: false,
+      show: false,
       error: false,
       theme: "light",
+      ip_address: "",
+      isSearch: false,
     };
   }
-
-
-  setTheme = () => {
-    const theme = localStorage.getItem("theme");
-    if (theme !== null) {
-      this.switchTheme(theme === "light" ? "dark" : "light");
-    }
-  };
 
   handleServerChange(event) {
     event.persist();
@@ -47,6 +37,7 @@ export class Music extends Component {
         server,
         movies: [],
         listIndex: 1,
+        isSearch: false,
       },
       () => {
         this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
@@ -54,31 +45,12 @@ export class Music extends Component {
     );
   }
 
-  getMusic = () => {
-    this.setState({
-      isLoading: true,
-    });
-    axios.get(
-      `${this.state.api}/search?engine=${this.state.server}&query=${this.state.query}`
-    )
-    .then((res) => {
-      const music = res.data;
-      this.setState({
-        isLoading: false,
-        music,
-      })
-    })
-
-  }
-
-  componentDidMount() {
-    this.getMusic();
-    window.addEventListener("storage", this.setTheme);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("storage", this.setTheme);
-  }
+  setTheme = () => {
+    const theme = localStorage.getItem("theme");
+    if (theme !== null) {
+      this.switchTheme(theme === "light" ? "dark" : "light");
+    }
+  };
 
   switchTheme = (mode) => {
     switch (mode) {
@@ -100,8 +72,6 @@ export class Music extends Component {
     const selectedTheme = theme !== "light" ? lightTheme : darkTheme;
 
     return (
-      // Movie servers should not be showing on the Mobile music page
-      // So MobileNavbar should be looked at
       <>
         <ThemeProvider theme={selectedTheme}>
           <>
@@ -130,7 +100,8 @@ export class Music extends Component {
           </>
         </ThemeProvider>
       </>
-    ); }
+    );
+  }
 }
 
 export default Music;
