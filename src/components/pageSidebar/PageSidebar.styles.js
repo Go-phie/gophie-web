@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Style = {
   // Man sidebar container
@@ -47,7 +47,7 @@ const Style = {
     &:before {
       width: 3em;
       height: 0.3em;
-      content: "";
+      content: '';
       display: block;
       background: ${({ theme }) => theme.yellowDark};
       border-radius: 1.5em;
@@ -168,10 +168,23 @@ const Style = {
   `,
 
   DropDown__Content: styled.div`
-    display: none;
+    /* display: none; */
+
+    opacity: 0;
+    height: 0px;
+    visibility: hidden;
+    margin-bottom: -15px;
 
     &.open {
-      display: block;
+      /* display: block; */
+      -webkit-transition: opacity 0.6s ease-in-out 0.15s;
+      -moz-transition: opacity 0.6s ease-in-out 0.15s;
+      -o-transition: opacity 0.6s ease-in-out 0.15s;
+      -ms-transition: opacity 0.6s ease-in-out 0.15s;
+      transition: opacity 0.6s ease-in-out 0.15s;
+      height: auto;
+      opacity: 1;
+      visibility: visible;
     }
 
     @media (max-width: 678px) {
@@ -215,7 +228,7 @@ const Style = {
       color: ${({ theme }) => theme.text};
       opacity: 0.5;
     }
-  `,
-};
+  `
+}
 
-export default Style;
+export default Style
