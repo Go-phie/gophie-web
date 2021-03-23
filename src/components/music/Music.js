@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Styles } from './music.styles'
 import { DownloadIcon } from '../../utils/icons'
+import ReactPlayer from 'react-player'
+import axios from 'axios'
 
 const MusicGroup = ({
   artiste,
@@ -18,13 +20,41 @@ const MusicGroup = ({
   const handleStopRequest = () => {
     setState(prevState => ({ ...prevState, play: false }))
   }
+
+  const downloadMovie = () => {
+    const headers = {
+      'Content-Type': 'application/force-download'
+    }
+    axios
+      .get(downloadLink, {
+        headers: headers
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
   return (
     <Styles.MusicCard background={pictureLink}>
       <div className='image-group'>
         {state.play ? (
-          <button className='player-stop-button' onClick={handleStopRequest}>
-            <span></span>
-          </button>
+          <div className='group'>
+            <button className='player-stop-button' onClick={handleStopRequest}>
+              <span></span>
+            </button>
+            <ReactPlayer
+              url={downloadLink}
+              className='react-player'
+              playing
+              playsinline
+              pip
+              controls
+              width='100%'
+              height='90%'
+            />
+          </div>
         ) : (
           <button className='player-button' onClick={handlePlayRequest}>
             <span></span>
@@ -43,8 +73,8 @@ const MusicGroup = ({
           <small>{collection}</small>
         </div>
         <div>
-          <a
-            href={downloadLink}
+          <button
+            onClick={() => downloadMovie()}
             target='_blank'
             rel='noopener noreferrer'
             className='gbtn gbtn-secondary mr-3'
@@ -53,7 +83,7 @@ const MusicGroup = ({
               <DownloadIcon />
             </span>
             download
-          </a>
+          </button>
         </div>
       </div>
     </Styles.MusicCard>

@@ -43,6 +43,15 @@ export const Styles = {
           opacity: 0.6;
         }
       }
+      .group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .react-player {
+          z-index: 5;
+          background: transparent;
+        }
+      }
       .player-stop-button {
         cursor: pointer;
         display: flex;
