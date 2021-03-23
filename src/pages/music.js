@@ -99,6 +99,7 @@ export class Music extends Component {
     const { theme } = this.state
     const selectedTheme = theme !== 'light' ? lightTheme : darkTheme
     console.log(this.state)
+    const { music } = this.state
 
     return (
       // Movie servers should not be showing on the Mobile music page
@@ -128,7 +129,21 @@ export class Music extends Component {
 
                   <main>
                     <div className='movies mleft' id='movie-div'>
-                      <MusicGroup />
+                      {music.length > 0
+                        ? music.map((song, i) => {
+                            return (
+                              <MusicGroup
+                                key={i}
+                                artiste={song.artiste}
+                                title={song.title}
+                                collection={song.collection}
+                                duration={song.duration}
+                                downloadLink={song.download_link}
+                                pictureLink={song.picture_link}
+                              />
+                            )
+                          })
+                        : null}
                     </div>
                   </main>
                 </div>
