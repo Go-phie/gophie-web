@@ -72,6 +72,15 @@ export class Music extends Component {
           music
         })
       })
+      .catch(error => {
+        console.error(error)
+        // If Server 1 is unavailable
+        if (this.state.server===musicEngines.get("Server1")){
+          this.setState({
+            server: musicEngines.get("Server2")
+          }, () =>  this.getMusic() )
+        }
+      })
   }
 
   componentDidMount () {
@@ -105,7 +114,6 @@ export class Music extends Component {
   render () {
     const { theme } = this.state
     const selectedTheme = theme !== 'light' ? lightTheme : darkTheme
-    console.log(this.state)
     const { music } = this.state
 
     return (
