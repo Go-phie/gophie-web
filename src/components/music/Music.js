@@ -2,6 +2,7 @@ import React from 'react'
 import { Styles } from './music.styles'
 import { DownloadIcon } from '../../utils/icons'
 import ReactPlayer from 'react-player'
+import { API_ENDPOINTS } from '../../utils'
 
 const MusicGroup = ({
   id,
@@ -22,7 +23,7 @@ const MusicGroup = ({
   }
 
   const downloadMusic = () => {
-    fetch('https://gophie-cors.herokuapp.com/' + downloadLink, {
+    fetch(API_ENDPOINTS.cors + downloadLink, {
       method: 'GET',
       headers: {
         'Content-Type': 'text/html'

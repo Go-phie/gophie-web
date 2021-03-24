@@ -8,6 +8,7 @@ import MainPanel from './home.styles'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from '../css/theme'
 import NavBar from '../components/navbar/Navbar'
+import MusicSkeletonLoader from '../components/Loader/MusicSkeletonLoader'
 import {
   API_ENDPOINTS,
   musicEngines,
@@ -26,7 +27,8 @@ export class Music extends Component {
       query: 'Mirrors',
       isLoading: false,
       error: false,
-      theme: 'light'
+      theme: 'light',
+      currentMusic: null
     }
   }
 
@@ -154,6 +156,14 @@ export class Music extends Component {
                             )
                           })
                         : null}
+                      {this.state.isLoading && !this.state.error && (
+                        <div className='skeleton-movies'>
+                          <MusicSkeletonLoader />
+                          <MusicSkeletonLoader />
+                          <MusicSkeletonLoader />
+                          <MusicSkeletonLoader />
+                        </div>
+                      )}
                     </div>
                   </main>
                 </div>
