@@ -43,14 +43,12 @@ export const Styles = {
           opacity: 0.6;
         }
       }
-      .group {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        .react-player {
-          z-index: 5;
-          background: transparent;
-        }
+
+      .music-react-player {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: 5;
       }
       .player-stop-button {
         cursor: pointer;
@@ -107,8 +105,8 @@ export const Styles = {
 
     .music-details {
       position: relative;
-      padding-top: 10px;
-      padding-bottom: 20px;
+      padding-top: 5px;
+      padding-bottom: 5px;
       display: flex;
       height: 130px;
       flex-direction: column;

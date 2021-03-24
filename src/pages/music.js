@@ -46,7 +46,8 @@ export class Music extends Component {
       {
         server,
         movies: [],
-        listIndex: 1
+        listIndex: 1,
+        currentMusic: null
       },
       () => {
         this.props.history.push(`/${greekFromEnglish(this.state.server)}`)
@@ -95,6 +96,10 @@ export class Music extends Component {
     }
   }
 
+  setCurrentMusic = id => {
+    this.setState({ currentMusic: id })
+  }
+
   render () {
     const { theme } = this.state
     const selectedTheme = theme !== 'light' ? lightTheme : darkTheme
@@ -140,6 +145,11 @@ export class Music extends Component {
                                 duration={song.duration}
                                 downloadLink={song.download_link}
                                 pictureLink={song.picture_link}
+                                id={song.index}
+                                setCurrentMusic={this.setCurrentMusic.bind(
+                                  this
+                                )}
+                                play={this.state.currentMusic === song.index}
                               />
                             )
                           })
