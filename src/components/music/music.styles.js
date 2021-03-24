@@ -56,7 +56,7 @@ export const Styles = {
         justify-content: center;
         align-items: center;
         background: black;
-        opacity: 0.2;
+        opacity: 0.6;
 
         z-index: 3;
         width: 48px;
@@ -66,9 +66,6 @@ export const Styles = {
         span {
           border-left: 14px solid #fff;
           border-top: 14px solid #fff;
-        }
-        &:hover {
-          opacity: 0.6;
         }
       }
 
