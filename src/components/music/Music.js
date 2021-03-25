@@ -23,8 +23,6 @@ const MusicGroup = ({
   const [progress, setProgress] = useState(0)
   const [total, setTotal] = useState(0)
 
-  const cancelTokenSource = axios.CancelToken.source()
-
   const handlePlayRequest = () => {
     // Set MediaMetadata for player
     if ('mediaSession' in navigator) {
@@ -63,8 +61,7 @@ const MusicGroup = ({
             setTotal(p.total)
           }
           setProgress(p.loaded)
-        },
-        cancelToken: cancelTokenSource.token
+        }
       })
       .then(setloadingDownload(true))
       .then(response => {
@@ -95,7 +92,8 @@ const MusicGroup = ({
   }
 
   const cancelDownLoad = () => {
-    cancelTokenSource.cancel('canceled request')
+    console.log('logging: ', cancelToken)
+    cancelToken.cancel('canceled request')
   }
   return (
     <Styles.MusicCard background={pictureLink}>
