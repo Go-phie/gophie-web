@@ -4,6 +4,7 @@ export const Styles = {
     width: 70%;
     display: flex;
     align-items: center;
+    justify-content: center;
     margin: 5em auto;
 
     @media (max-width: 678px) {
