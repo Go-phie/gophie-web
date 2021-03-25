@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 export const Styles = {
   MusicSearch: styled.div`
     width: 70%;
@@ -21,6 +21,7 @@ export const Styles = {
       border-bottom-left-radius: 3rem;
       border-left: none;
       padding: 10px;
+      color: ${({ theme }) => theme.text};
 
       @media (max-width: 678px) {
         height: 45px;
@@ -39,5 +40,5 @@ export const Styles = {
         height: 45px;
       }
     }
-  `,
-};
+  `
+}

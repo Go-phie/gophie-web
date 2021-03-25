@@ -87,7 +87,7 @@ export const Styles = {
         color: #fff;
         background-color: rgba(0, 0, 0, 0.6);
         border-radius: 0.5em;
-        opacity: 0.9;
+        opacity: 1;
       }
 
       &::after {

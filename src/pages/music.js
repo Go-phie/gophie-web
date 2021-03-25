@@ -70,7 +70,7 @@ export class Music extends Component {
   }
 
   handleMusicSearch = () => {
-    this.setState({ music: [] })
+    this.setState({ music: [], listMusic: [] })
     this.getMusic()
   }
 
