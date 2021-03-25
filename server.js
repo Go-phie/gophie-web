@@ -8,6 +8,9 @@ const axios = require('axios')
 const rfs = require('rotating-file-stream')
 const filePath = path.resolve(__dirname, './build', 'index.html')
 
+const defaultImage =
+  'https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png'
+
 // Log into separate files every day
 const accessLogStream = rfs.createStream('access.log', {
   interval: '1d',
@@ -25,16 +28,21 @@ app.use(
   )
 )
 
-var common = (request, response, description) => {
+var common = (
+  request, 
+  response, 
+  description,
+  title = 'Gophie',
+  image = defaultImage) => {
   let result = null
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       return console.log(err)
     }
     // edit links for link preview
-    data = data.replace(/\$OG_TITLE/g, 'Gophie')
+    data = data.replace(/\$OG_TITLE/g, title)
     data = data.replace(/\$OG_DESCRIPTION/g, description)
-    result = data.replace(/\$OG_IMAGE/g, defaultImage)
+    result = data.replace(/\$OG_IMAGE/g, image)
     response.send(result)
   })
 }
@@ -57,11 +65,6 @@ app.get('/music', (request, response) => {
 
 app.get('/shared/:referralID', (request, response) => {
   const referralID = request.params.referralID
-  let result = null
-  fs.readFile(filePath, 'utf8', (err, data) => {
-    if (err) {
-      return console.log(err)
-    }
     axios
       .post(
         `https://gophie-ocena.herokuapp.com/referral/id/?referral_id=${referralID}`
@@ -70,22 +73,19 @@ app.get('/shared/:referralID', (request, response) => {
         let movie_name = json.data.name
         let description = json.data.description
         let image = json.data.cover_photo_link
-        data = data.replace(/\$OG_TITLE/g, `Gophie - ${movie_name}`)
+        let title = `Gophie - ${movie_name}`
         if (description.length <= 1) {
           description = 'Could not find movie description'
         }
         if (image.length <= 1) {
           image = defaultImage
         }
-        data = data.replace(/\$OG_DESCRIPTION/g, description)
-        result = data.replace(/\$OG_IMAGE/g, image)
-        response.send(result)
+        common(request, response, description, title, image)
       })
       .catch(error => {
         console.log('Could not retrieve movie details', error)
         response.redirect('/')
       })
-  })
 })
 
 app.get('/terms', (request, response) => {
@@ -95,6 +95,7 @@ app.get('/terms', (request, response) => {
 app.get('/:engine', (request, response) => {
   const engine = request.params.engine
   let description = null
+  let title = `Gophie - ${engine}`
 
   switch (engine) {
     case 'Server2':
@@ -113,7 +114,7 @@ app.get('/:engine', (request, response) => {
       description = 'Download Movies with a simple click of the button'
       break
   }
-  common(request, response, description)
+  common(request, response, description, title)
 })
 
 app.use(express.static(path.resolve(__dirname, './build')))
