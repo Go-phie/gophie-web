@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { Styles } from './music.styles'
 import { DownloadIcon } from '../../utils/icons'
 import ReactPlayer from 'react-player'
-import axios from 'axios'
+import Axios from 'axios'
+// import Iframe from './Iframe'
+import fileDownload from 'js-file-downloader'
 
 const MusicGroup = ({
   artiste,
@@ -22,19 +24,11 @@ const MusicGroup = ({
   }
 
   const downloadMovie = () => {
-    const headers = {
-      'Content-Type': 'application/force-download'
-    }
-    axios
-      .get(downloadLink, {
-        headers: headers
-      })
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    Axios.get(downloadLink, {
+      responseType: 'blob'
+    }).then(res => {
+      fileDownload(res.data, `${title}.mp3`)
+    })
   }
   return (
     <Styles.MusicCard background={pictureLink}>
