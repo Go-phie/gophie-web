@@ -24,6 +24,14 @@ const MusicGroup = ({
   const [total, setTotal] = useState(0)
 
   const handlePlayRequest = () => {
+    // Set MediaMetadata for player
+    if ('mediaSession' in navigator){
+      navigator.mediaSession.metadata = new window.MediaMetadata({
+        title,
+        artist: artiste,
+        album:  collection, 
+      })
+    }
     setCurrentMusic(id)
   }
   const handleStopRequest = () => {
@@ -81,15 +89,6 @@ const MusicGroup = ({
            console.error(error)
          }
       })
-  }
-
-  // Set MediaMetadata for player
-  if ('mediaSession' in navigator){
-    navigator.mediaSession.metadata = new window.MediaMetadata({
-      title,
-      artist: artiste,
-      album:  collection, 
-    })
   }
 
   return (
