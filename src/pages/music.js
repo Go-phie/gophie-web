@@ -84,6 +84,14 @@ export class Music extends Component {
     this.setState({
       isLoading: true
     })
+    axios.interceptors.response.use((response) => response, (error) => {
+      if (typeof error.response === 'undefined') {
+        alert('A network error occurred. '
+          + 'This could be a CORS issue or a dropped internet connection. '
+          + 'It is not possible for us to know.')
+      }
+      return Promise.reject(error)
+    })
     axios
       .get(
         `${this.state.api}/search?engine=${this.state.server}&query=${this.state.query}`
