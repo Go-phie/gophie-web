@@ -1,5 +1,5 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const SkeletonLoaderStyle = styled.div`
   width: 100% !important;
@@ -26,11 +26,11 @@ const SkeletonLoaderStyle = styled.div`
     height: 15em !important;
     width: calc(50% - 1em) !important;
   }
-`
+`;
 const MusicSkeletonLoader = () => {
   return (
-    <SkeletonLoaderStyle className='skeleton-movie-image'></SkeletonLoaderStyle>
-  )
-}
+    <SkeletonLoaderStyle className="skeleton-movie-image"></SkeletonLoaderStyle>
+  );
+};
 
-export default MusicSkeletonLoader
+export default MusicSkeletonLoader;

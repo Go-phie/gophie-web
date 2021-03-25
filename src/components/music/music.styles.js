@@ -1,24 +1,33 @@
-import styled from 'styled-components'
-import svgIcon from './assets/icon.svg'
+import styled from "styled-components";
+import svgIcon from "./assets/icon.svg";
 export const Styles = {
   MusicCard: styled.div`
-    width: 100%;
-    height: auto;
+    height: 120px;
+    width: calc(100% - 5em);
     display: flex;
     align-items: center;
-    margin-bottom: 1.5em;
-    margin-right: 3em;
+    justify-content: space-between;
+    margin: 1em auto;
     border-radius: 1em;
     background: transparent;
     box-shadow: 2px -2px 8px 2px ${({ theme }) => theme.movieBoxShadow};
+    padding: 10px 5px;
+
+    @media (max-width: 678px) {
+      width: calc(100% - 1.5em);
+    }
+
     .image-group {
       position: relative;
       display: flex;
       height: 100%;
-      width: 179px;
+      width: 10%;
       justify-content: center;
       align-items: center;
-      margin-right: 3em;
+
+      @media (max-width: 678px) {
+        width: 30%;
+      }
 
       .player-button {
         cursor: pointer;
@@ -82,7 +91,7 @@ export const Styles = {
       }
 
       &::after {
-        content: '';
+        content: "";
         opacity: 0.5;
         top: 0;
         display: block;
@@ -101,20 +110,30 @@ export const Styles = {
     }
 
     .music-details {
+      width: 60%;
+      height: 100%;
       position: relative;
-      padding-top: 5px;
-      padding-bottom: 5px;
+      padding: 5px;
       display: flex;
-      height: 130px;
       flex-direction: column;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: flex-end;
       color: ${({ theme }) => theme.text};
 
       h2 {
         font-size: 1.2rem;
         font-weight: 600;
         margin-bottom: 2px;
+
+        @media (max-width: 678px) {
+          font-size: 0.8rem;
+        }
+      }
+
+      small {
+        font-size: xx-small;
+        color: #d5b62e;
+        line-height: 1px !important;
       }
     }
 
@@ -132,15 +151,19 @@ export const Styles = {
       &:hover {
         background: #cfbb1e;
       }
+
+      @media (max-width: 678px) {
+        font-size: x-small;
+      }
     }
 
     .gbtn-secondary {
-      padding: 0.9em 1.5em;
+      padding: 0.5em;
     }
 
     .gbtn-primary {
       font-size: 0.72em;
       padding: 0.55em 1.2em;
     }
-  `
-}
+  `,
+};

@@ -1,4 +1,10 @@
-import { BrowserRouter, HashRouter, Switch, Redirect, Route } from "react-router-dom";
+import {
+  BrowserRouter,
+  HashRouter,
+  Switch,
+  Redirect,
+  Route,
+} from "react-router-dom";
 import Home from "./pages/home";
 import React from "react";
 import Terms from "./pages/terms";
@@ -6,15 +12,15 @@ import Shared from "./pages/shared";
 import Music from "./pages/music";
 
 const getRouter = () => {
-  let router = BrowserRouter
-  if (window.location.host === "netlify.app"){
-    router = HashRouter 
+  let router = BrowserRouter;
+  if (window.location.hostname === "netlify.app") {
+    router = HashRouter;
   }
-  return router
-}
+  return router;
+};
 
 const AppRoute = () => {
-  const Router = getRouter()
+  const Router = getRouter();
 
   return (
     <Router>
