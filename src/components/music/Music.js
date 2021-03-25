@@ -1,12 +1,12 @@
 import axios from 'axios'
-import React, { useState } from "react";
-import { Styles } from "./music.styles";
-import { DownloadIcon } from "../../utils/icons";
-import ReactPlayer from "react-player";
-import { API_ENDPOINTS } from "../../utils";
-import WaveLoading from "../Loader/WaveLoading";
-import { Progress } from 'react-sweet-progress';
-import "react-sweet-progress/lib/style.css";
+import React, { useState } from 'react'
+import { Styles } from './music.styles'
+import { DownloadIcon } from '../../utils/icons'
+import ReactPlayer from 'react-player'
+import { API_ENDPOINTS } from '../../utils'
+import WaveLoading from '../Loader/WaveLoading'
+import { Progress } from 'react-sweet-progress'
+import 'react-sweet-progress/lib/style.css'
 
 const MusicGroup = ({
   id,
@@ -19,9 +19,9 @@ const MusicGroup = ({
   setCurrentMusic,
   play
 }) => {
-  const [loadingDownload, setloadingDownload] = useState(false);
-  const [progress, setProgress] = useState(0);
-  const [total, setTotal] = useState(0);
+  const [loadingDownload, setloadingDownload] = useState(false)
+  const [progress, setProgress] = useState(0)
+  const [total, setTotal] = useState(0)
 
   const handlePlayRequest = () => {
     setCurrentMusic(id)
@@ -31,32 +31,33 @@ const MusicGroup = ({
   }
 
   const handleEndDownload = () => {
-    setloadingDownload(false);
-    setProgress(0);
-    setTotal(0);
+    setloadingDownload(false)
+    setProgress(0)
+    setTotal(0)
   }
 
   const downloadMusic = () => {
-    axios.request({
-      url: API_ENDPOINTS.cors + downloadLink, 
-      method: 'GET',
-      headers: {
-        'Content-Type': 'text/html'
-      },
-      onDownloadProgress: (p) => {
-        if(total===0){
-          setTotal(p.total)
-        };
-        setProgress(p.loaded)
-      }
-    })
+    axios
+      .request({
+        url: API_ENDPOINTS.cors + downloadLink,
+        method: 'GET',
+        headers: {
+          'Content-Type': 'text/html'
+        },
+        onDownloadProgress: p => {
+          if (total === 0) {
+            setTotal(p.total)
+          }
+          setProgress(p.loaded)
+        }
+      })
       .then(setloadingDownload(true))
-      .then((response) => {
+      .then(response => {
         // Create blob link to download
         const url = window.URL.createObjectURL(new Blob([response.data]))
         const link = document.createElement('a')
         link.href = url
-        link.setAttribute('download', `${title}.mp3`)
+        link.setAttribute('download', `${title}-${artiste}.mp3`)
 
         // Append to html link element page
         document.body.appendChild(link)
@@ -65,10 +66,10 @@ const MusicGroup = ({
         link.click()
 
         // Clean up and remove the link
-        link.parentNode.removeChild(link);
-        handleEndDownload();
-      });
-  };
+        link.parentNode.removeChild(link)
+        handleEndDownload()
+      })
+  }
   return (
     <Styles.MusicCard background={pictureLink}>
       <div className='image-group'>
@@ -110,35 +111,32 @@ const MusicGroup = ({
             onClick={() => downloadMusic()}
             target='_blank'
             rel='noopener noreferrer'
-            className='gbtn gbtn-secondary mr-3'
+            className='gbtn gbtn-secondary'
             disabled={loadingDownload}
           >
-          {total ?
-            (<Progress
-              type="circle"
-              width={30}
-              status="default"
-              theme={{
-                default: {
-                  color: "#fff"
-                }
-              }}
-              percent={Math.floor(progress/total*100)}
-              />)
-            :
-            (
-              loadingDownload ? (
+            {total ? (
+              <Progress
+                type='circle'
+                width={30}
+                status='default'
+                theme={{
+                  default: {
+                    trailColor: 'lime',
+                    color: 'green'
+                  }
+                }}
+                percent={Math.floor((progress / total) * 100)}
+              />
+            ) : loadingDownload ? (
               <WaveLoading />
             ) : (
               <>
-                <span className="mr-1">
+                <span className='mr-1'>
                   <DownloadIcon />
                 </span>
                 download
               </>
-            )
-            )
-          }
+            )}
           </button>
         </div>
       </div>

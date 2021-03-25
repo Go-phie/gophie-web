@@ -88,14 +88,14 @@ export class Music extends Component {
       )
       .then(res => {
         let durationRe = /:(\d)$/
-        const music = res.data.map((song) => {
+        const music = res.data.map(song => {
           song.duration = song.duration.trim()
           let match = durationRe.exec(song.duration)
-          if (match !== null){
+          if (match !== null) {
             song.duration = song.duration.slice(0, -1) + `0${match[1]}`
           }
           return song
-        });
+        })
         this.setState({
           isLoading: false,
           music,
@@ -120,9 +120,9 @@ export class Music extends Component {
 
   handleScroll = () => {
     const wrappedElement = document.getElementById('music-div')
-    const { listIndex, isLast, music, listMusic } = this.state
+    const { listIndex, isLast, music, listMusic, isLoading, error } = this.state
     if (this.isBottom(wrappedElement)) {
-      if (isLast) return
+      if (isLast || isLoading || error) return
       this.setState({ isLoading: true })
       setTimeout(() => {
         const newIndex = listIndex + 5
