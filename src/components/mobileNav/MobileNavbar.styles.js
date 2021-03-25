@@ -19,7 +19,7 @@ const Style = {
 
     .actions-button {
       background-color: transparent;
-      color: #fff;
+      color: #737075;
     }
 
     @media (max-width: 678px) {
