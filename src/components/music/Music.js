@@ -27,7 +27,7 @@ const MusicGroup = ({
     // Set MediaMetadata for player
     if ('mediaSession' in navigator){
       navigator.mediaSession.metadata = new window.MediaMetadata({
-        title,
+        title: title,
         artist: artiste,
         album:  collection, 
       })
@@ -56,6 +56,7 @@ const MusicGroup = ({
         headers: {
           'Content-Type': 'text/html'
         },
+        responseType: 'blob',
         onDownloadProgress: p => {
           if (total === 0) {
             setTotal(p.total)
