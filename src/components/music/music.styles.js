@@ -11,7 +11,7 @@ export const Styles = {
     border-radius: 1em;
     background: transparent;
     box-shadow: 2px -2px 8px 2px ${({ theme }) => theme.movieBoxShadow};
-    padding: 10px 5px;
+    /* padding: 10px 5px; */
 
     @media (max-width: 678px) {
       width: calc(100% - 1.5em);
@@ -87,7 +87,7 @@ export const Styles = {
         color: #fff;
         background-color: rgba(0, 0, 0, 0.6);
         border-radius: 0.5em;
-        opacity: 0.9;
+        opacity: 1;
       }
 
       &::after {
@@ -110,20 +110,27 @@ export const Styles = {
     }
 
     .music-details {
+      padding: 10px 20px;
       width: 60%;
       height: 100%;
       position: relative;
-      padding: 5px;
+      /* padding: 5px; */
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: flex-end;
       color: ${({ theme }) => theme.text};
 
+      .text-group {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+      }
+
       h2 {
         font-size: 1.2rem;
         font-weight: 600;
-        margin-bottom: 2px;
+        margin-bottom: 12px;
 
         @media (max-width: 678px) {
           font-size: 0.8rem;

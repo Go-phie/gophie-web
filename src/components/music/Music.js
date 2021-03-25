@@ -96,7 +96,7 @@ const MusicGroup = ({
         <div className='duration'>{duration}</div>
       </div>
       <div className='music-details'>
-        <div>
+        <div className='text-group'>
           <h2 title={title}>
             <span>
               {artiste.substring(0, 20)} {artiste.length > 20 ? '...' : null}
