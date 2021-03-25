@@ -173,7 +173,7 @@ export class Music extends Component {
     const { music } = this.state
     this.setState({ currentMusic: id }, () => {
       if (id === null) {
-        navigator.mediaSession.metadata = null
+        navigator.mediaSession = null
         return
       }
       if ('mediaSession' in navigator) {
