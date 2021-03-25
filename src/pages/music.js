@@ -63,6 +63,21 @@ export class Music extends Component {
     )
   }
 
+  checkKey (e) {
+    if (e.charCode !== 13) return
+    this.setState({ music: [], isLoading: true })
+    this.getMusic()
+  }
+
+  handleMusicSearch = () => {
+    this.setState({ music: [] })
+    this.getMusic()
+  }
+
+  checkKeyOnChange = e => {
+    this.setState({ query: e.target.value.toLowerCase() })
+  }
+
   getMusic = () => {
     this.setState({
       isLoading: true
@@ -181,7 +196,12 @@ export class Music extends Component {
                   />
 
                   <main>
-                    <MusicSearchInput />
+                    <MusicSearchInput
+                      query={this.state.query}
+                      checkInputKey={this.checkKey.bind(this)}
+                      checkKeyOnChange={this.checkKeyOnChange}
+                      newSearch={this.handleMusicSearch.bind(this)}
+                    />
                     <div className='music'>
                       {listMusic.length > 0
                         ? listMusic.map((song, i) => {

@@ -6,6 +6,12 @@ export const Styles = {
     align-items: center;
     margin: 5em auto;
 
+    @media (max-width: 678px) {
+      width: 80%;
+      margin: 2em auto;
+      margin-top: 3em;
+    }
+
     .form-control {
       width: 80%;
       background-color: transparent;
@@ -14,6 +20,11 @@ export const Styles = {
       border-top-left-radius: 3rem;
       border-bottom-left-radius: 3rem;
       border-left: none;
+      padding: 10px;
+
+      @media (max-width: 678px) {
+        height: 45px;
+      }
     }
 
     .search-btn {
@@ -23,6 +34,10 @@ export const Styles = {
       border-top-right-radius: 3rem;
       border-bottom-right-radius: 3rem;
       color: #212529;
+
+      @media (max-width: 678px) {
+        height: 45px;
+      }
     }
   `,
 };
