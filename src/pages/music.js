@@ -1,105 +1,124 @@
-import React, { Component } from 'react'
-import { GlobalStyles } from '../css/global'
-import axios from 'axios'
-import MobileNavbar from '../components/mobileNav/MobileNavbar'
-import PageSidebar from '../components/pageSidebar/PageSidebar'
-import MusicGroup from '../components/music/Music'
-import MainPanel from './home.styles'
-import { ThemeProvider } from 'styled-components'
-import { lightTheme, darkTheme } from '../css/theme'
-import NavBar from '../components/navbar/Navbar'
+import React, { Component } from "react";
+import { GlobalStyles } from "../css/global";
+import axios from "axios";
+import MobileNavbar from "../components/mobileNav/MobileNavbar";
+import PageSidebar from "../components/pageSidebar/PageSidebar";
+import MusicGroup from "../components/music/Music";
+import MainPanel from "./home.styles";
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "../css/theme";
+import NavBar from "../components/navbar/Navbar";
+import MusicSkeletonLoader from "../components/Loader/MusicSkeletonLoader";
+import MusicSearchInput from "../components/musicSearchInput/MusicSearchInput";
 import {
   API_ENDPOINTS,
   musicEngines,
   nameToEngineMap,
-  greekFromEnglish
-} from '../utils'
+  greekFromEnglish,
+} from "../utils";
 
 export class Music extends Component {
-  constructor (props) {
-    super(props)
+  constructor(props) {
+    super(props);
 
     this.state = {
       api: API_ENDPOINTS.mythra,
-      server: musicEngines.get('Server1'),
+      server: musicEngines.get("Server1"),
       music: [],
-      query: 'Mirrors',
+      query: "Mirrors",
       isLoading: false,
       error: false,
-      theme: 'light'
-    }
+      theme: "light",
+      currentMusic: null,
+    };
   }
 
   setTheme = () => {
-    const theme = localStorage.getItem('theme')
+    const theme = localStorage.getItem("theme");
     if (theme !== null) {
-      this.switchTheme(theme === 'light' ? 'dark' : 'light')
+      this.switchTheme(theme === "light" ? "dark" : "light");
     }
-  }
+  };
 
-  handleServerChange (event) {
-    event.persist()
+  handleServerChange(event) {
+    event.persist();
     let server = nameToEngineMap.get(
-      event.currentTarget.getAttribute('data-value')
-    )
+      event.currentTarget.getAttribute("data-value")
+    );
     this.setState(
       {
         server,
         movies: [],
-        listIndex: 1
+        listIndex: 1,
+        currentMusic: null,
       },
       () => {
-        this.props.history.push(`/${greekFromEnglish(this.state.server)}`)
+        this.props.history.push(`/${greekFromEnglish(this.state.server)}`);
       }
-    )
+    );
   }
 
   getMusic = () => {
     this.setState({
-      isLoading: true
-    })
+      isLoading: true,
+    });
     axios
       .get(
         `${this.state.api}/search?engine=${this.state.server}&query=${this.state.query}`
       )
-      .then(res => {
-        const music = res.data
+      .then((res) => {
+        const music = res.data;
         this.setState({
           isLoading: false,
-          music
-        })
+          music,
+        });
       })
+      .catch((error) => {
+        console.error(error);
+        // If Server 1 is unavailable
+        if (this.state.server === musicEngines.get("Server1")) {
+          this.setState(
+            {
+              server: musicEngines.get("Server2"),
+            },
+            () => this.getMusic()
+          );
+        }
+      });
+  };
+
+  componentDidMount() {
+    this.getMusic();
+    window.addEventListener("storage", this.setTheme);
   }
 
-  componentDidMount () {
-    this.getMusic()
-    window.addEventListener('storage', this.setTheme)
+  componentWillUnmount() {
+    window.removeEventListener("storage", this.setTheme);
   }
 
-  componentWillUnmount () {
-    window.removeEventListener('storage', this.setTheme)
-  }
-
-  switchTheme = mode => {
+  switchTheme = (mode) => {
     switch (mode) {
-      case 'light':
-        localStorage.setItem('theme', 'dark')
-        this.setState({ theme: 'dark' })
-        break
-      case 'dark':
-        localStorage.setItem('theme', 'light')
-        this.setState({ theme: 'light' })
-        break
+      case "light":
+        localStorage.setItem("theme", "dark");
+        this.setState({ theme: "dark" });
+        break;
+      case "dark":
+        localStorage.setItem("theme", "light");
+        this.setState({ theme: "light" });
+        break;
       default:
-        break
+        break;
     }
-  }
+  };
 
-  render () {
-    const { theme } = this.state
-    const selectedTheme = theme !== 'light' ? lightTheme : darkTheme
-    console.log(this.state)
-    const { music } = this.state
+  setCurrentMusic = (id) => {
+    this.setState({ currentMusic: id });
+  };
+
+  render() {
+    const { theme } = this.state;
+    const selectedTheme = theme !== "light" ? lightTheme : darkTheme;
+    const { music } = this.state;
 
     return (
       // Movie servers should not be showing on the Mobile music page
@@ -115,7 +134,7 @@ export class Music extends Component {
 
             <MainPanel>
               <header>
-                <div className='mtop'>
+                <div className="mtop">
                   <MobileNavbar
                     theme={theme}
                     switchTheme={() => this.switchTheme(this.state.theme)}
@@ -128,7 +147,8 @@ export class Music extends Component {
                   />
 
                   <main>
-                    <div className='movies mleft' id='movie-div'>
+                    <MusicSearchInput />
+                    <div className="music">
                       {music.length > 0
                         ? music.map((song, i) => {
                             return (
@@ -140,10 +160,23 @@ export class Music extends Component {
                                 duration={song.duration}
                                 downloadLink={song.download_link}
                                 pictureLink={song.picture_link}
+                                id={song.index}
+                                setCurrentMusic={this.setCurrentMusic.bind(
+                                  this
+                                )}
+                                play={this.state.currentMusic === song.index}
                               />
-                            )
+                            );
                           })
                         : null}
+                      {this.state.isLoading && !this.state.error && (
+                        <div className="skeleton-movies">
+                          <MusicSkeletonLoader />
+                          <MusicSkeletonLoader />
+                          <MusicSkeletonLoader />
+                          <MusicSkeletonLoader />
+                        </div>
+                      )}
                     </div>
                   </main>
                 </div>
@@ -152,8 +185,8 @@ export class Music extends Component {
           </>
         </ThemeProvider>
       </>
-    )
+    );
   }
 }
 
-export default Music
+export default Music;

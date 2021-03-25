@@ -1,59 +1,76 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Styles } from './music.styles'
 import { DownloadIcon } from '../../utils/icons'
 import ReactPlayer from 'react-player'
-import Axios from 'axios'
-// import Iframe from './Iframe'
-import fileDownload from 'js-file-downloader'
+import { API_ENDPOINTS } from '../../utils'
 
 const MusicGroup = ({
+  id,
   artiste,
   title,
   collection,
   duration,
   downloadLink,
-  pictureLink
+  pictureLink,
+  setCurrentMusic,
+  play
 }) => {
-  const [state, setState] = useState({ play: false })
-
   const handlePlayRequest = () => {
-    setState(prevState => ({ ...prevState, play: true }))
+    setCurrentMusic(id)
   }
   const handleStopRequest = () => {
-    setState(prevState => ({ ...prevState, play: false }))
+    setCurrentMusic(null)
   }
 
-  const downloadMovie = () => {
-    Axios.get(downloadLink, {
-      responseType: 'blob'
-    }).then(res => {
-      fileDownload(res.data, `${title}.mp3`)
+  const downloadMusic = () => {
+    fetch(API_ENDPOINTS.cors + downloadLink, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'text/html'
+      }
     })
+      .then(response => response.blob())
+      .then(blob => {
+        // Create blob link to download
+        const url = window.URL.createObjectURL(new Blob([blob]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', `${title}.mp3`)
+
+        // Append to html link element page
+        document.body.appendChild(link)
+
+        // Start download
+        link.click()
+
+        // Clean up and remove the link
+        link.parentNode.removeChild(link)
+      })
   }
   return (
     <Styles.MusicCard background={pictureLink}>
       <div className='image-group'>
-        {state.play ? (
-          <div className='group'>
-            <button className='player-stop-button' onClick={handleStopRequest}>
-              <span></span>
-            </button>
-            <ReactPlayer
-              url={downloadLink}
-              className='react-player'
-              playing
-              playsinline
-              pip
-              controls
-              width='100%'
-              height='90%'
-            />
-          </div>
+        {play ? (
+          <button className='player-stop-button' onClick={handleStopRequest}>
+            <span></span>
+          </button>
         ) : (
           <button className='player-button' onClick={handlePlayRequest}>
             <span></span>
           </button>
         )}
+        {play ? (
+          <ReactPlayer
+            url={downloadLink}
+            className='music-react-player'
+            playing
+            playsinline
+            pip
+            controls
+            width='100%'
+            height='30%'
+          />
+        ) : null}
         <div className='duration'>{duration}</div>
       </div>
       <div className='music-details'>
@@ -68,7 +85,7 @@ const MusicGroup = ({
         </div>
         <div>
           <button
-            onClick={() => downloadMovie()}
+            onClick={() => downloadMusic()}
             target='_blank'
             rel='noopener noreferrer'
             className='gbtn gbtn-secondary mr-3'

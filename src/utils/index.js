@@ -54,7 +54,6 @@ me.set("Server1", "myfreemp3");
 me.set("Server2", "mp3s");
 export const musicEngines = me;
 
-
 export const nameToEngineMap = nm;
 
 function toServerName(map, name) {
@@ -64,7 +63,7 @@ function toServerName(map, name) {
       return key;
     }
   }
-};
+}
 
 export function greekFromEnglish(eng) {
   return toServerName(nm, eng);
@@ -75,6 +74,7 @@ export const API_ENDPOINTS = {
   ocena: "https://gophie-ocena.herokuapp.com",
   ip: "https://api.ipify.org?format=json",
   mythra: "https://mythra.gophie.cam",
+  cors: "https://gophie-cors.herokuapp.com/",
 };
 
 export const disableBody = (target) => disableBodyScroll(target);
