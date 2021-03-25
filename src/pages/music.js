@@ -25,6 +25,9 @@ export class Music extends Component {
       api: API_ENDPOINTS.mythra,
       server: musicEngines.get('Server1'),
       music: [],
+      listMusic: [],
+      listIndex: 10,
+      isLast: false,
       query: 'Mirrors',
       isLoading: false,
       error: false,
@@ -48,8 +51,10 @@ export class Music extends Component {
     this.setState(
       {
         server,
-        movies: [],
-        listIndex: 1,
+        music: [],
+        listMusic: [],
+        listIndex: 10,
+        isLast: false,
         currentMusic: null
       },
       () => {
@@ -70,7 +75,10 @@ export class Music extends Component {
         const music = res.data
         this.setState({
           isLoading: false,
-          music
+          music,
+          listMusic: music.slice(0, 10),
+          listIndex: 10,
+          isLast: music.length > 10 ? false : true
         })
       })
       .catch(error => {
@@ -87,14 +95,39 @@ export class Music extends Component {
       })
   }
 
+  handleScroll = () => {
+    const wrappedElement = document.getElementById('music-div')
+    const { listIndex, isLast, music, listMusic } = this.state
+    if (this.isBottom(wrappedElement)) {
+      if (isLast) return
+      this.setState({ isLoading: true })
+      setTimeout(() => {
+        const newIndex = listIndex + 5
+        this.setState({
+          listIndex: newIndex,
+          listMusic: [...listMusic, ...music.splice(listIndex, 5)],
+          isLast: music.length <= newIndex,
+          isLoading: false
+        })
+      }, 4000)
+      console.log('reached the bottom')
+    }
+  }
+
+  isBottom = el => {
+    return el.getBoundingClientRect().bottom <= window.innerHeight
+  }
+
   componentDidMount () {
     this.getMusic()
     this.setTheme()
     window.addEventListener('storage', this.setTheme)
+    document.addEventListener('scroll', this.handleScroll)
   }
 
   componentWillUnmount () {
     window.removeEventListener('storage', this.setTheme)
+    document.removeEventListener('scroll', this.handleScroll)
   }
 
   switchTheme = mode => {
@@ -119,7 +152,7 @@ export class Music extends Component {
   render () {
     const { theme } = this.state
     const selectedTheme = theme !== 'light' ? lightTheme : darkTheme
-    const { music } = this.state
+    const { listMusic } = this.state
 
     return (
       // Movie servers should not be showing on the Mobile music page
@@ -135,7 +168,7 @@ export class Music extends Component {
 
             <MainPanel>
               <header>
-                <div className='mtop'>
+                <div className='mtop' id='music-div'>
                   <MobileNavbar
                     theme={theme}
                     switchTheme={() => this.switchTheme(this.state.theme)}
@@ -150,8 +183,8 @@ export class Music extends Component {
                   <main>
                     <MusicSearchInput />
                     <div className='music'>
-                      {music.length > 0
-                        ? music.map((song, i) => {
+                      {listMusic.length > 0
+                        ? listMusic.map((song, i) => {
                             return (
                               <MusicGroup
                                 key={i}
