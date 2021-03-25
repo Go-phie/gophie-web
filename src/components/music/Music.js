@@ -1,9 +1,12 @@
+import axios from 'axios'
 import React, { useState } from "react";
 import { Styles } from "./music.styles";
 import { DownloadIcon } from "../../utils/icons";
 import ReactPlayer from "react-player";
 import { API_ENDPOINTS } from "../../utils";
 import WaveLoading from "../Loader/WaveLoading";
+import { Progress } from 'react-sweet-progress';
+import "react-sweet-progress/lib/style.css";
 
 const MusicGroup = ({
   id,
@@ -17,6 +20,8 @@ const MusicGroup = ({
   play
 }) => {
   const [loadingDownload, setloadingDownload] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [total, setTotal] = useState(0);
 
   const handlePlayRequest = () => {
     setCurrentMusic(id)
@@ -25,18 +30,30 @@ const MusicGroup = ({
     setCurrentMusic(null)
   }
 
+  const handleEndDownload = () => {
+    setloadingDownload(false);
+    setProgress(0);
+    setTotal(0);
+  }
+
   const downloadMusic = () => {
-    fetch(API_ENDPOINTS.cors + downloadLink, {
+    axios.request({
+      url: API_ENDPOINTS.cors + downloadLink, 
       method: 'GET',
       headers: {
         'Content-Type': 'text/html'
+      },
+      onDownloadProgress: (p) => {
+        if(total===0){
+          setTotal(p.total)
+        };
+        setProgress(p.loaded)
       }
     })
       .then(setloadingDownload(true))
-      .then((response) => response.blob())
-      .then((blob) => {
+      .then((response) => {
         // Create blob link to download
-        const url = window.URL.createObjectURL(new Blob([blob]))
+        const url = window.URL.createObjectURL(new Blob([response.data]))
         const link = document.createElement('a')
         link.href = url
         link.setAttribute('download', `${title}.mp3`)
@@ -49,7 +66,7 @@ const MusicGroup = ({
 
         // Clean up and remove the link
         link.parentNode.removeChild(link);
-        setloadingDownload(false);
+        handleEndDownload();
       });
   };
   return (
@@ -94,8 +111,23 @@ const MusicGroup = ({
             target='_blank'
             rel='noopener noreferrer'
             className='gbtn gbtn-secondary mr-3'
+            disabled={loadingDownload}
           >
-            {loadingDownload ? (
+          {total ?
+            (<Progress
+              type="circle"
+              width={30}
+              status="default"
+              theme={{
+                default: {
+                  color: "#fff"
+                }
+              }}
+              percent={Math.floor(progress/total*100)}
+              />)
+            :
+            (
+              loadingDownload ? (
               <WaveLoading />
             ) : (
               <>
@@ -104,7 +136,9 @@ const MusicGroup = ({
                 </span>
                 download
               </>
-            )}
+            )
+            )
+          }
           </button>
         </div>
       </div>

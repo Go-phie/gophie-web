@@ -71,6 +71,7 @@ export function greekFromEnglish(eng) {
 
 export const API_ENDPOINTS = {
   //  ocena: "https://staging-ocena.herokuapp.com",
+  //  cors: "http://localhost:9001/",
   ocena: "https://gophie-ocena.herokuapp.com",
   ip: "https://api.ipify.org?format=json",
   mythra: "https://mythra.gophie.cam",

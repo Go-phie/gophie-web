@@ -25,7 +25,7 @@ export class Music extends Component {
       api: API_ENDPOINTS.mythra,
       server: musicEngines.get('Server1'),
       music: [],
-      query: "",
+      query: "Mirrors",
       isLoading: false,
       error: false,
       theme: 'light',
@@ -82,7 +82,15 @@ export class Music extends Component {
         `${this.state.api}/search?engine=${this.state.server}&query=${this.state.query}`
       )
       .then(res => {
-        const music = res.data
+        let durationRe = /:(\d)$/
+        const music = res.data.map((song) => {
+          song.duration = song.duration.trim()
+          let match = durationRe.exec(song.duration)
+          if (match !== null){
+            song.duration = song.duration.slice(0, -1) + `0${match[1]}`
+          }
+          return song
+        });
         this.setState({
           isLoading: false,
           music
