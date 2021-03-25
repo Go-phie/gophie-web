@@ -70,6 +70,16 @@ const MusicGroup = ({
         handleEndDownload()
       })
   }
+
+  // Set MediaMetadata for player
+  if ('mediaSession' in navigator){
+    navigator.mediaSession.metadata = new window.MediaMetadata({
+      title,
+      artist: artiste,
+      album:  collection, 
+    })
+  }
+
   return (
     <Styles.MusicCard background={pictureLink}>
       <div className='image-group'>
