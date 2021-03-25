@@ -121,6 +121,17 @@ export const Styles = {
       align-items: flex-end;
       color: ${({ theme }) => theme.text};
 
+      .symbol {
+        font-size: 0.9rem;
+        font-weight: bold;
+        color: #000;
+
+        @media (max-width: 678px) {
+          font-size: 0.5rem;
+          font-weight: normal;
+        }
+      }
+
       .text-group {
         display: flex;
         flex-direction: column;

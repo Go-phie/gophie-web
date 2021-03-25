@@ -23,6 +23,8 @@ const MusicGroup = ({
   const [progress, setProgress] = useState(0)
   const [total, setTotal] = useState(0)
 
+  const cancelTokenSource = axios.CancelToken.source()
+
   const handlePlayRequest = () => {
     setCurrentMusic(id)
   }
@@ -49,7 +51,8 @@ const MusicGroup = ({
             setTotal(p.total)
           }
           setProgress(p.loaded)
-        }
+        },
+        cancelToken: cancelTokenSource.token
       })
       .then(setloadingDownload(true))
       .then(response => {
@@ -69,6 +72,10 @@ const MusicGroup = ({
         link.parentNode.removeChild(link)
         handleEndDownload()
       })
+  }
+
+  const cancelDownLoad = () => {
+    cancelTokenSource.cancel('canceled request')
   }
   return (
     <Styles.MusicCard background={pictureLink}>
@@ -107,6 +114,16 @@ const MusicGroup = ({
           <small>{collection}</small>
         </div>
         <div>
+          {total ? (
+            <button
+              onClick={() => cancelDownLoad()}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='gbtn gbtn-secondary mr-1'
+            >
+              Cancel
+            </button>
+          ) : null}
           <button
             onClick={() => downloadMusic()}
             target='_blank'
@@ -119,6 +136,7 @@ const MusicGroup = ({
                 type='circle'
                 width={30}
                 status='default'
+                symbolClassName='symbol'
                 theme={{
                   default: {
                     trailColor: 'lime',
