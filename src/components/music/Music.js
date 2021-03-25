@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Styles } from "./music.styles";
 import { DownloadIcon } from "../../utils/icons";
 import ReactPlayer from "react-player";
 import { API_ENDPOINTS } from "../../utils";
+import WaveLoading from "../Loader/WaveLoading";
 
 const MusicGroup = ({
   id,
@@ -15,6 +16,8 @@ const MusicGroup = ({
   setCurrentMusic,
   play,
 }) => {
+  const [loadingDownload, setloadingDownload] = useState(false);
+
   const handlePlayRequest = () => {
     setCurrentMusic(id);
   };
@@ -29,6 +32,7 @@ const MusicGroup = ({
         "Content-Type": "text/html",
       },
     })
+      .then(setloadingDownload(true))
       .then((response) => response.blob())
       .then((blob) => {
         // Create blob link to download
@@ -45,6 +49,7 @@ const MusicGroup = ({
 
         // Clean up and remove the link
         link.parentNode.removeChild(link);
+        setloadingDownload(false);
       });
   };
   return (
@@ -90,10 +95,16 @@ const MusicGroup = ({
             rel="noopener noreferrer"
             className="gbtn gbtn-secondary mr-3"
           >
-            <span className="mr-1">
-              <DownloadIcon />
-            </span>
-            download
+            {loadingDownload ? (
+              <WaveLoading />
+            ) : (
+              <>
+                <span className="mr-1">
+                  <DownloadIcon />
+                </span>
+                download
+              </>
+            )}
           </button>
         </div>
       </div>
