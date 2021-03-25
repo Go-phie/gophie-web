@@ -25,11 +25,11 @@ const MusicGroup = ({
 
   const handlePlayRequest = () => {
     // Set MediaMetadata for player
-    if ('mediaSession' in navigator){
+    if ('mediaSession' in navigator) {
       navigator.mediaSession.metadata = new window.MediaMetadata({
         title: title,
         artist: artiste,
-        album:  collection, 
+        album: collection
       })
     }
     setCurrentMusic(id)
@@ -43,9 +43,9 @@ const MusicGroup = ({
     setProgress(0)
     setTotal(0)
   }
-  
+
   // use cancelToken.cancel() to cancel download
-  const cancelToken = axios.CancelToken.source();
+  const cancelToken = axios.CancelToken.source()
 
   const downloadMusic = () => {
     axios
@@ -82,16 +82,20 @@ const MusicGroup = ({
         link.parentNode.removeChild(link)
         handleEndDownload()
       })
-      .catch((error) => {
-         if(axios.isCancel(error)){
-           handleEndDownload() 
-           console.log('Download cancelled')
-         } else {
-           console.error(error)
-         }
+      .catch(error => {
+        if (axios.isCancel(error)) {
+          handleEndDownload()
+          console.log('Download cancelled')
+        } else {
+          console.error(error)
+        }
       })
   }
 
+  const cancelDownLoad = () => {
+    console.log('logging: ', cancelToken)
+    cancelToken.cancel('canceled request')
+  }
   return (
     <Styles.MusicCard background={pictureLink}>
       <div className='image-group'>
@@ -129,6 +133,16 @@ const MusicGroup = ({
           <small>{collection}</small>
         </div>
         <div>
+          {total ? (
+            <button
+              onClick={() => cancelDownLoad()}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='gbtn gbtn-secondary mr-1'
+            >
+              Cancel
+            </button>
+          ) : null}
           <button
             onClick={() => downloadMusic()}
             target='_blank'
@@ -141,6 +155,7 @@ const MusicGroup = ({
                 type='circle'
                 width={30}
                 status='default'
+                symbolClassName='symbol'
                 theme={{
                   default: {
                     trailColor: 'lime',
