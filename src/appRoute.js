@@ -13,7 +13,7 @@ import Music from "./pages/music";
 
 const getRouter = () => {
   let router = BrowserRouter;
-  if (window.location.hostname === "netlify.app") {
+  if (window.location.hostname.endsWith("netlify.app")) {
     router = HashRouter;
   }
   return router;
