@@ -15,6 +15,7 @@
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
     "gsap": "^3.6.0",
+    "js-file-downloader": "^1.1.16",
     "material-ui-rating": "^4.0.0-beta.2",
     "morgan": "^1.10.0",
     "react": "^16.8.3",

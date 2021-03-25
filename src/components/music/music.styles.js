@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import svgIcon from "./assets/icon.svg";
+import styled from 'styled-components'
+import svgIcon from './assets/icon.svg'
 export const Styles = {
   MusicCard: styled.div`
     height: 120px;
@@ -21,7 +21,7 @@ export const Styles = {
       position: relative;
       display: flex;
       height: 100%;
-      width: 10%;
+      width: 20%;
       justify-content: center;
       align-items: center;
 
@@ -91,7 +91,7 @@ export const Styles = {
       }
 
       &::after {
-        content: "";
+        content: '';
         opacity: 0.5;
         top: 0;
         display: block;
@@ -165,5 +165,5 @@ export const Styles = {
       font-size: 0.72em;
       padding: 0.55em 1.2em;
     }
-  `,
-};
+  `
+}
