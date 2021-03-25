@@ -13,6 +13,7 @@ const accessLogStream = rfs.createStream("access.log", {
   interval: "1d",
   path: path.join(__dirname, "log"),
 });
+const defaultImage = "https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png"
 
 // use dev mode for console logging
 app.use(morgan("dev"));
@@ -39,7 +40,7 @@ var common = (request, response, description) => {
     );
     result = data.replace(
       /\$OG_IMAGE/g,
-      "https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png"
+     defaultImage 
     );
     response.send(result);
   });
@@ -82,8 +83,7 @@ app.get("/shared/:referralID", (request, response) => {
           description = "Could not find movie description";
         }
         if (image.length <= 1) {
-          image =
-            "https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png";
+          image = defaultImage
         }
         data = data.replace(/\$OG_DESCRIPTION/g, description);
         result = data.replace(/\$OG_IMAGE/g, image);
@@ -97,26 +97,16 @@ app.get("/shared/:referralID", (request, response) => {
 });
 
 app.get("/terms", (request, response) => {
-  let result = null;
-  fs.readFile(filePath, "utf8", (err, data) => {
-    if (err) {
-      return console.log(err);
-    }
-    // edit links for link preview
-    data = data.replace(/\$OG_TITLE/g, "Gophie");
-    data = data.replace(/\$OG_DESCRIPTION/g, "Terms and Conditions of Usage");
-    result = data.replace(
-      /\$OG_IMAGE/g,
-      "https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png"
-    );
-    response.send(result);
-  });
+  common(
+    request, 
+    response,
+    "Terms and Conditions of Usage",
+  )
 });
 
 app.get("/:engine", (request, response) => {
   const engine = request.params.engine;
-  let result,
-    description = null;
+  let description = null;
 
   switch (engine) {
     case "Server2":
@@ -135,19 +125,11 @@ app.get("/:engine", (request, response) => {
       description = "Download Movies with a simple click of the button";
       break;
   }
-  fs.readFile(filePath, "utf8", (err, data) => {
-    if (err) {
-      return console.log(err);
-    }
-    // edit links for link preview
-    data = data.replace(/\$OG_TITLE/g, `Gophie - ${engine}`);
-    data = data.replace(/\$OG_DESCRIPTION/g, description);
-    result = data.replace(
-      /\$OG_IMAGE/g,
-      "https://res.cloudinary.com/silva/image/upload/v1587376155/goophie-meta-banner.png"
-    );
-    response.send(result);
-  });
+  common(
+    request, 
+    response,
+    description
+  )
 });
 
 app.use(express.static(path.resolve(__dirname, "./build")));
@@ -158,8 +140,3 @@ app.get("*", (request, response) => {
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-// app.get("/search/:search_term", (request, response) => {
-//   const data = request.params.page
-//   console.log("here")
-//     response.send(data);
-//   });
