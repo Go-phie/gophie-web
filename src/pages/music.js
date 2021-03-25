@@ -10,6 +10,8 @@ import { lightTheme, darkTheme } from '../css/theme'
 import NavBar from '../components/navbar/Navbar'
 import MusicSkeletonLoader from '../components/Loader/MusicSkeletonLoader'
 import MusicSearchInput from '../components/musicSearchInput/MusicSearchInput'
+import { defaultImage } from '../utils/index'
+
 import {
   API_ENDPOINTS,
   musicEngines,
@@ -168,7 +170,49 @@ export class Music extends Component {
   }
 
   setCurrentMusic = id => {
-    this.setState({ currentMusic: id })
+    const { music } = this.state
+    this.setState({ currentMusic: id }, () => {
+      if (id === null) return
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new window.MediaMetadata({
+          title: music[this.state.currentMusic].title,
+          artist: music[this.state.currentMusic].artiste,
+          album: music[this.state.currentMusic].collection,
+          artwork: [
+            {
+              src: defaultImage,
+              sizes: '96x96',
+              type: 'image/png'
+            },
+            {
+              src: defaultImage,
+              sizes: '128x128',
+              type: 'image/png'
+            },
+            {
+              src: defaultImage,
+              sizes: '192x192',
+              type: 'image/png'
+            },
+            {
+              src: defaultImage,
+              sizes: '256x256',
+              type: 'image/png'
+            },
+            {
+              src: defaultImage,
+              sizes: '384x384',
+              type: 'image/png'
+            },
+            {
+              src: defaultImage,
+              sizes: '512x512',
+              type: 'image/png'
+            }
+          ]
+        })
+      }
+    })
   }
 
   render () {
