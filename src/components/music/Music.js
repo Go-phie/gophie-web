@@ -35,12 +35,16 @@ const MusicGroup = ({
     setProgress(0)
     setTotal(0)
   }
+  
+  // use cancelToken.cancel() to cancel download
+  const cancelToken = axios.CancelToken.source();
 
   const downloadMusic = () => {
     axios
       .request({
         url: API_ENDPOINTS.cors + downloadLink,
         method: 'GET',
+        cancelToken: cancelToken.token,
         headers: {
           'Content-Type': 'text/html'
         },
@@ -68,6 +72,14 @@ const MusicGroup = ({
         // Clean up and remove the link
         link.parentNode.removeChild(link)
         handleEndDownload()
+      })
+      .catch((error) => {
+         if(axios.isCancel(error)){
+           handleEndDownload() 
+           console.log('Download cancelled')
+         } else {
+           console.error(error)
+         }
       })
   }
 
