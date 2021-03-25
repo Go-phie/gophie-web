@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Styles } from './music.styles'
 import { DownloadIcon } from '../../utils/icons'
 import ReactPlayer from 'react-player'
@@ -22,6 +22,7 @@ const MusicGroup = ({
   const [loadingDownload, setloadingDownload] = useState(false)
   const [progress, setProgress] = useState(0)
   const [total, setTotal] = useState(0)
+  const cancelDownloadProcess = useRef(null)
 
   const handlePlayRequest = () => {
     // Set MediaMetadata for player
@@ -44,15 +45,14 @@ const MusicGroup = ({
     setTotal(0)
   }
 
-  // use cancelToken.cancel() to cancel download
-  const cancelToken = axios.CancelToken.source()
-
   const downloadMusic = () => {
     axios
       .request({
         url: API_ENDPOINTS.cors + downloadLink,
         method: 'GET',
-        cancelToken: cancelToken.token,
+        cancelToken: new axios.CancelToken(
+          cancel => (cancelDownloadProcess.current = cancel)
+        ),
         headers: {
           'Content-Type': 'text/html'
         },
@@ -84,7 +84,7 @@ const MusicGroup = ({
       .catch(error => {
         if (axios.isCancel(error)) {
           handleEndDownload()
-          console.log('Download cancelled')
+          console.log(error)
         } else {
           console.error(error)
         }
@@ -92,8 +92,9 @@ const MusicGroup = ({
   }
 
   const cancelDownLoad = () => {
-    console.log('logging: ', cancelToken)
-    cancelToken.cancel('canceled request')
+    if (cancelDownloadProcess) {
+      cancelDownloadProcess.current('User has canceled the download')
+    }
   }
   return (
     <Styles.MusicCard background={pictureLink}>
