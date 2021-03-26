@@ -68,13 +68,17 @@ export class Music extends Component {
 
   checkKey (e) {
     if (e.charCode !== 13) return
-    this.setState({ music: [], isLoading: true })
-    this.getMusic()
+    this.setState({ 
+      music: [], 
+      listMusic: [], 
+      isLoading: true, 
+      error: false },
+    () => this.getMusic())
   }
 
   handleMusicSearch = () => {
-    this.setState({ music: [], listMusic: [] })
-    this.getMusic()
+    this.setState({ music: [], listMusic: [] },
+    () => this.getMusic())
   }
 
   checkKeyOnChange = e => {
@@ -93,6 +97,7 @@ export class Music extends Component {
         this.setState({
           server: musicEngines.get("Server2"),
           isLoading: false,
+          listMusic: [],
           errror: err,
           errorCount: this.state.errorCount + 1
         })
