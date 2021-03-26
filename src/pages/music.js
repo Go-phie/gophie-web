@@ -33,6 +33,7 @@ export class Music extends Component {
       query: 'Mirrors',
       isLoading: false,
       error: false,
+      errorCount: 0,
       theme: 'light',
       currentMusic: null
     }
@@ -86,6 +87,18 @@ export class Music extends Component {
     this.setState({
       isLoading: true
     })
+    instance.interceptors.response.use(
+      res => res,
+      err => {
+        this.setState({
+          server: musicEngines.get("Server2"),
+          isLoading: false,
+          errror: err,
+          errorCount: this.state.errorCount + 1
+        })
+        throw err;
+      }
+    );
     instance
       .get(
         `${this.state.api}/search?engine=${this.state.server}&query=${this.state.query}`
@@ -105,24 +118,15 @@ export class Music extends Component {
           music,
           listMusic: music.slice(0, 10),
           listIndex: 10,
-          isLast: music.length > 10 ? false : true
+          isLast: music.length > 10 ? false : true,
+          errorCount: 0,
         })
       })
-      .catch(error => {
-        // If Server 1 is unavailable
-        if (this.state.server === musicEngines.get('Server1')) {
-          console.error(error)
-          this.setState(
-            {
-              server: musicEngines.get('Server2'),
-              isLoading: false,
-            },
-            () => {
-              return this.getMusic()
-            }
-          )
-        }
-      })
+    .catch(() => {
+      if(this.state.errorCount <= 2) {
+        this.getMusic()
+      }
+    })
   }
 
   handleScroll = () => {
