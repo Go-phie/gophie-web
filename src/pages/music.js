@@ -183,10 +183,11 @@ export class Music extends Component {
     this.setState({ currentMusic: id }, () => {
       if (id === null) return
       if ('mediaSession' in navigator) {
+        const currentMusicIndex = this.state.currentMusic - 1
         navigator.mediaSession.metadata = new window.MediaMetadata({
-          title: music[this.state.currentMusic - 1].title,
-          artist: music[this.state.currentMusic - 1].artiste,
-          album: music[this.state.currentMusic - 1].collection,
+          title: music[currentMusicIndex].title,
+          artist: music[currentMusicIndex].artiste,
+          album: music[currentMusicIndex].collection,
           artwork: [
             {
               src: defaultImage,
