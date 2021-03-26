@@ -81,10 +81,12 @@ export class Music extends Component {
   }
 
   getMusic = () => {
+    const instance = axios.create({})
+    console.log(`Retrieving music from ${this.state.server}`)
     this.setState({
       isLoading: true
     })
-    axios
+    instance
       .get(
         `${this.state.api}/search?engine=${this.state.server}&query=${this.state.query}`
       )
@@ -107,14 +109,17 @@ export class Music extends Component {
         })
       })
       .catch(error => {
-        console.error(error)
         // If Server 1 is unavailable
         if (this.state.server === musicEngines.get('Server1')) {
+          console.error(error)
           this.setState(
             {
-              server: musicEngines.get('Server2')
+              server: musicEngines.get('Server2'),
+              isLoading: false,
             },
-            () => this.getMusic()
+            () => {
+              return this.getMusic()
+            }
           )
         }
       })
