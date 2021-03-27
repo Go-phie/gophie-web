@@ -35,7 +35,7 @@ export const Styles = {
         justify-content: center;
         align-items: center;
         background: black;
-        opacity: 0.2;
+        opacity: 1;
 
         z-index: 3;
         width: 48px;
@@ -49,7 +49,7 @@ export const Styles = {
           border-radius: 2px;
         }
         &:hover {
-          opacity: 0.6;
+          opacity: 0.8;
         }
       }
 
