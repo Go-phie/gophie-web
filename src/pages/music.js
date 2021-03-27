@@ -85,6 +85,29 @@ export class Music extends Component {
     this.setState({ query: e.target.value.toLowerCase() })
   }
 
+  switchServer = (err) => {
+    let currentServer = this.state.server
+    let switchServer = null
+    switch(currentServer){
+      case musicEngines.get("Server1"):
+        switchServer = musicEngines.get("Server2")
+        break;
+      case musicEngines.get("Server2"):
+        switchServer = musicEngines.get("Server1")
+        break;
+      default:
+        switchServer = currentServer
+    }
+    this.setState({
+      server: switchServer,
+      isLoading: false,
+      listMusic: [],
+      errror: err,
+      errorCount: this.state.errorCount + 1
+    })
+    return switchServer
+  }
+
   getMusic = () => {
     const instance = axios.create({})
     console.log(`Retrieving music from ${this.state.server}`)
@@ -92,15 +115,16 @@ export class Music extends Component {
       isLoading: true
     })
     instance.interceptors.response.use(
-      res => res,
+      res => {
+        if(res.data.length===0){
+          let err = new Error("currently empty")
+          this.switchServer(err);
+          throw err;
+        }
+        return res
+      },
       err => {
-        this.setState({
-          server: musicEngines.get("Server2"),
-          isLoading: false,
-          listMusic: [],
-          errror: err,
-          errorCount: this.state.errorCount + 1
-        })
+        this.switchServer(err);
         throw err;
       }
     );
