@@ -151,7 +151,7 @@ export const Styles = {
       small {
         font-size: xx-small;
         color: #d5b62e;
-        line-height: 1px !important;
+        /* line-height: 1px !important; */
       }
     }
 
