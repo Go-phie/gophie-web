@@ -178,11 +178,11 @@ export class Music extends Component {
         const newIndex = listIndex + 5
         this.setState({
           listIndex: newIndex,
-          listMusic: [...listMusic, ...music.splice(listIndex, 5)],
+          listMusic: [...listMusic, ...music.slice(0).splice(listIndex, 5)],
           isLast: music.length <= newIndex,
           isLoading: false
         })
-      }, 4000)
+      }, 2000)
     }
   }
 
