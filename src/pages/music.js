@@ -30,7 +30,7 @@ export class Music extends Component {
       listMusic: [],
       listIndex: 10,
       isLast: false,
-      query: 'Mirrors',
+      query: '',
       isLoading: false,
       error: false,
       errorCount: 0,
@@ -108,12 +108,15 @@ export class Music extends Component {
     return switchServer
   }
 
-  getMusic = () => {
+  getMusic = (query=null) => {
     const instance = axios.create({})
     console.log(`Retrieving music from ${this.state.server}`)
     this.setState({
       isLoading: true
     })
+    if(query===null){
+      query = this.state.query
+    }
     instance.interceptors.response.use(
       res => {
         if(res.data.length===0){
@@ -130,7 +133,7 @@ export class Music extends Component {
     );
     instance
       .get(
-        `${this.state.api}/search?engine=${this.state.server}&query=${this.state.query}`
+        `${this.state.api}/search?engine=${this.state.server}&query=${query}`
       )
       .then(res => {
         let durationRe = /:(\d)$/
@@ -153,7 +156,7 @@ export class Music extends Component {
       })
     .catch(() => {
       if(this.state.errorCount <= 2) {
-        this.getMusic()
+        this.getMusic(query)
       }
     })
   }
@@ -181,7 +184,7 @@ export class Music extends Component {
   }
 
   componentDidMount () {
-    this.getMusic()
+    this.getMusic("Mirrors")
     this.setTheme()
     window.addEventListener('storage', this.setTheme)
     document.addEventListener('scroll', this.handleScroll)

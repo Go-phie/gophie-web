@@ -10,7 +10,7 @@ const MusicSearchInput = (props) => {
           type="text"
           value={props.query}
           className="form-control"
-          placeholder="Search music..."
+          placeholder="Search music... e.g Mirrors"
           // eslint-disable-next-line jsx-a11y/no-autofocus
           // autoFocus={true}
           onKeyPress={props.checkInputKey}
