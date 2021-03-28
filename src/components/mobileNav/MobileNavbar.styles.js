@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Style = {
   MobileNavbar: styled.div`
@@ -80,7 +80,7 @@ const Style = {
     @media (max-width: 678px) {
       display: flex;
     }
-  `
-}
+  `,
+};
 
-export default Style
+export default Style;

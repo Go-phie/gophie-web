@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import svgIcon from './assets/icon.svg'
+import styled from "styled-components";
+import svgIcon from "./assets/icon.svg";
 export const Styles = {
   MusicCard: styled.div`
     height: 120px;
@@ -11,6 +11,8 @@ export const Styles = {
     border-radius: 1em;
     background: transparent;
     box-shadow: 2px -2px 8px 2px ${({ theme }) => theme.movieBoxShadow};
+    background: ${({ theme }) => theme.movieBackground};
+    width:  calc(50% - 1.5em);
     /* padding: 10px 5px; */
 
     @media (max-width: 678px) {
@@ -91,7 +93,7 @@ export const Styles = {
       }
 
       &::after {
-        content: '';
+        content: "";
         opacity: 0.5;
         top: 0;
         display: block;
@@ -110,7 +112,7 @@ export const Styles = {
     }
 
     .music-details {
-      padding: 10px 20px;
+      padding: 10px ;
       width: 60%;
       height: 100%;
       position: relative;
@@ -139,12 +141,21 @@ export const Styles = {
       }
 
       h2 {
-        font-size: 1.2rem;
-        font-weight: 600;
+        font-size: 1.1rem;
+        font-weight: 500;
         margin-bottom: 12px;
+        text-overflow: ellipsis;
+        text-transform: capitalize;
+        overflow: hidden;
+        white-space: nowrap;
+        
+        @media (max-width: 903px) {
+          max-width: 200px;
+          font-size: 1rem;
+        }
 
         @media (max-width: 678px) {
-          font-size: 0.8rem;
+          font-size: 1rem;
         }
       }
 
@@ -183,5 +194,5 @@ export const Styles = {
       font-size: 0.72em;
       padding: 0.55em 1.2em;
     }
-  `
-}
+  `,
+};

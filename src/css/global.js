@@ -1,6 +1,8 @@
-import { createGlobalStyle } from "styled-components";
+import {
+  createGlobalStyle
+} from "styled-components";
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle `
 
 
 * {
@@ -76,6 +78,12 @@ body {
 .gophie-modal__body--header {
     border-bottom: 1px solid ${({ theme }) =>
       theme.sharedBorderColor} !important;
+}
+
+.music {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 1.5em;
 }
 
 .movie-shared-detail .MuiSvgIcon-root {

@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 export const Styles = {
-  MusicSearch: styled.div`
+  MusicSearch: styled.div `
     width: 70%;
     display: flex;
     align-items: center;
@@ -15,14 +15,19 @@ export const Styles = {
 
     .form-control {
       width: 80%;
-      background-color: transparent;
+      background-color: ${({ theme }) => theme.movieBackground};
       height: 60px;
-      border-color: #e7d10a;
-      border-top-left-radius: 3rem;
-      border-bottom-left-radius: 3rem;
-      border-left: none;
+      border-top-left-radius: .5rem;
+      border-bottom-left-radius: .5rem;
+      border: none;
       padding: 10px;
       color: ${({ theme }) => theme.text};
+      opacity: .8;
+      box-shadow: none;
+
+      &:hover, &:focus {
+        opacity: 1;
+      }
 
       @media (max-width: 678px) {
         height: 45px;
@@ -32,14 +37,14 @@ export const Styles = {
     .search-btn {
       height: 60px;
       width: 4rem;
-      background-color: #e7d10a;
-      border-top-right-radius: 3rem;
-      border-bottom-right-radius: 3rem;
-      color: #212529;
+      background-color: ${({ theme }) => theme.movieBackground};
+      border-top-right-radius: .5rem;
+      border-bottom-right-radius: .5rem;
+      color: ${({ theme }) => theme.formColor};
 
       @media (max-width: 678px) {
         height: 45px;
       }
     }
-  `
-}
+  `,
+};
