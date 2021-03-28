@@ -8,11 +8,13 @@ import {
   MoonIcon,
   MusicNotes
 } from '../../utils/icons'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 
 const MobileNavbar = props => {
   const [mobileSearch, setMobileSearch] = useState(false)
   let pathname = window.location.pathname
+  const location = useLocation()
+  console.log(location)
   const history = useHistory()
 
   return (
@@ -40,7 +42,7 @@ const MobileNavbar = props => {
           <HomeIcon />
         </button>
 
-        {pathname.match('/music') ? null : (
+        {location.pathname === '/music' ? null : (
           <button
             className={`${
               pathname.match('/search') ? 'active' : ''
