@@ -12,7 +12,6 @@ import { useHistory, useLocation } from 'react-router'
 
 const MobileNavbar = props => {
   const [mobileSearch, setMobileSearch] = useState(false)
-  let pathname = window.location.pathname
   const location = useLocation()
   console.log(location)
   const history = useHistory()
@@ -32,7 +31,7 @@ const MobileNavbar = props => {
       <Style.MobileNavbar>
         <button
           className={`${
-            pathname.match('/Server1') ? 'active' : ''
+            location.pathname === '/Server1' ? 'active' : ''
           } actions-button`}
           onClick={props.handleServerChange}
           onChange={props.handleServerChange}
@@ -45,7 +44,7 @@ const MobileNavbar = props => {
         {location.pathname === '/music' ? null : (
           <button
             className={`${
-              pathname.match('/search') ? 'active' : ''
+              location.pathname === '/search' ? 'active' : ''
             } actions-button`}
             title='Search'
             onClick={() => setMobileSearch(!mobileSearch)}
@@ -56,7 +55,7 @@ const MobileNavbar = props => {
 
         <button
           className={`${
-            pathname.match('/music') ? 'active' : ''
+            location.pathname === '/music' ? 'active' : ''
           } actions-button`}
           title='Music'
           onClick={() => history.push('/music')}
