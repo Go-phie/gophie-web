@@ -12,7 +12,7 @@ export const Styles = {
     background: transparent;
     box-shadow: 2px -2px 8px 2px ${({ theme }) => theme.movieBoxShadow};
     background: ${({ theme }) => theme.movieBackground};
-    width:  calc(50% - 1.5em);
+    width: calc(50% - 1.5em);
     /* padding: 10px 5px; */
 
     @media (max-width: 678px) {
@@ -112,7 +112,7 @@ export const Styles = {
     }
 
     .music-details {
-      padding: 10px ;
+      padding: 10px;
       width: 60%;
       height: 100%;
       position: relative;
@@ -148,7 +148,7 @@ export const Styles = {
         text-transform: capitalize;
         overflow: hidden;
         white-space: nowrap;
-        
+
         @media (max-width: 903px) {
           max-width: 200px;
           font-size: 1rem;

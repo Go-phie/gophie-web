@@ -567,6 +567,50 @@ export function GoToIcon() {
   );
 }
 
+export function SadFace() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnsSvgjs="http://svgjs.com/svgjs"
+      version="1.1"
+      width="50"
+      height="50"
+      x="0"
+      y="0"
+      viewBox="0 0 46.47 46.47"
+      xmlSpace="preserve"
+      className=""
+    >
+      <g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M46.222,41.889c0.658,1.521-0.042,3.287-1.562,3.943c-1.521,0.66-3.286-0.041-3.944-1.562   c-2.893-6.689-9.73-11.012-17.421-11.012c-7.868,0-14.747,4.32-17.523,11.004C5.292,45.416,4.175,46.112,3,46.112   c-0.384,0-0.773-0.073-1.15-0.229c-1.53-0.637-2.255-2.393-1.62-3.922c3.71-8.932,12.764-14.703,23.064-14.703   C33.379,27.26,42.379,33.002,46.222,41.889z M2.445,6.559c0-3.423,2.777-6.201,6.201-6.201c3.423,0,6.2,2.777,6.2,6.201   c0,3.426-2.777,6.203-6.2,6.203C5.222,12.761,2.445,9.984,2.445,6.559z M30.562,6.559c0-3.423,2.779-6.201,6.203-6.201   c3.423,0,6.2,2.777,6.2,6.201c0,3.426-2.776,6.203-6.2,6.203S30.562,9.984,30.562,6.559z"
+            fill="#e7d10a"
+            data-original="#000000"
+            className=""
+          />
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+      </g>
+    </svg>
+  );
+}
+
 // export function ShareIcon() {
 //   return (
 //     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

@@ -1,8 +1,6 @@
-import {
-  createGlobalStyle
-} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyles = createGlobalStyle `
+export const GlobalStyles = createGlobalStyle`
 
 
 * {
@@ -112,8 +110,12 @@ body {
   }
 }
 
-
-
+.align-center {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 0 auto;
+}
 
 
 .error {
