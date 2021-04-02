@@ -26,7 +26,7 @@ export class Music extends Component {
 
     this.state = {
       api: API_ENDPOINTS.mythra,
-      server: musicEngines.get("Server1"),
+      server: musicEngines.get("Server2"),
       music: [],
       listMusic: [],
       listIndex: 10,
