@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import Style from "./MobileNavbar.styles";
 import SearchInput from "../searchInput/SearchInput";
-import { HomeIcon, SearchIcon, SunIcon, MoonIcon } from "../../utils/icons";
+import {
+  HomeIcon,
+  SearchIcon,
+  SunIcon,
+  MoonIcon,
+  MusicNotes,
+} from "../../utils/icons";
+import { useHistory, useLocation } from "react-router";
 
 const MobileNavbar = (props) => {
   const [mobileSearch, setMobileSearch] = useState(false);
-  let pathname = window.location.pathname;
+  const location = useLocation();
+  console.log(location);
+  const history = useHistory();
 
   return (
     <>
@@ -22,7 +31,7 @@ const MobileNavbar = (props) => {
       <Style.MobileNavbar>
         <button
           className={`${
-            pathname.match("/Server1") ? "active" : ""
+            location.pathname === "/Server1" ? "active" : ""
           } actions-button`}
           onClick={props.handleServerChange}
           onChange={props.handleServerChange}
@@ -32,15 +41,28 @@ const MobileNavbar = (props) => {
           <HomeIcon />
         </button>
 
+        {location.pathname === "/music" ? null : (
+          <button
+            className={`${
+              location.pathname === "/search" ? "active" : ""
+            } actions-button`}
+            title="Search"
+            onClick={() => setMobileSearch(!mobileSearch)}
+          >
+            <SearchIcon />
+          </button>
+        )}
+
         <button
           className={`${
-            pathname.match("/search") ? "active" : ""
+            location.pathname === "/music" ? "active" : ""
           } actions-button`}
-          title="Search"
-          onClick={() => setMobileSearch(!mobileSearch)}
+          title="Music"
+          onClick={() => history.push("/music")}
         >
-          <SearchIcon />
+          <MusicNotes />
         </button>
+
         <button
           className="actions-button"
           title="Change Theme"

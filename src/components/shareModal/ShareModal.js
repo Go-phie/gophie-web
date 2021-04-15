@@ -12,7 +12,7 @@ import {
   TelegramShareButton,
   TelegramIcon,
   RedditShareButton,
-  RedditIcon
+  RedditIcon,
 } from "react-share";
 
 const ShareModal = (props) => {

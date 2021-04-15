@@ -198,5 +198,5 @@ div.skeleton-movies {
 .main-panel {
   width: calc(100% - 230px);
   position: relative;
-  float: right
+  float: right;
 }

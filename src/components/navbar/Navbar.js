@@ -8,21 +8,23 @@ import { SunIcon, MoonIcon } from "../../utils/icons";
 const NavBar = (props) => {
   return (
     <Style.Navbar>
-      {props.sharedPage && 
-          <Style.Sidebar__Logo>
-            <Link to="/">
-              <GophieLogo />
-            </Link>
-          </Style.Sidebar__Logo>
-      }
-      <Style.Navbar__HasSearch>
-        <SearchInput
-          searchInput={props.searchInput}
-          checkInputKey={props.checkInputKey}
-          newSearch={props.newSearch}
-          checkKeyOnChange={props.checkKeyOnChange}
-        />
-      </Style.Navbar__HasSearch>
+      {props.sharedPage && (
+        <Style.Sidebar__Logo>
+          <Link to="/">
+            <GophieLogo />
+          </Link>
+        </Style.Sidebar__Logo>
+      )}
+      {!props.onMusicPage && (
+        <Style.Navbar__HasSearch>
+          <SearchInput
+            searchInput={props.searchInput}
+            checkInputKey={props.checkInputKey}
+            newSearch={props.newSearch}
+            checkKeyOnChange={props.checkKeyOnChange}
+          />
+        </Style.Navbar__HasSearch>
+      )}
 
       {/* actions button */}
       <Style.Button>
@@ -32,11 +34,7 @@ const NavBar = (props) => {
           title="Change Theme"
           onClick={props.switchTheme}
         >
-          {props.theme === "dark" ? (
-            <SunIcon />
-          ) : (
-            <MoonIcon />
-          )}
+          {props.theme === "dark" ? <SunIcon /> : <MoonIcon />}
         </button>
       </Style.Button>
     </Style.Navbar>

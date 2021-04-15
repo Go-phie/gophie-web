@@ -26,6 +26,10 @@ const Style = {
       z-index: 999;
       bottom: initial;
       height: initial;
+
+      .dropdown-header {
+        display: none;
+      }
     }
 
     @media (max-width: 1141px) {
@@ -69,6 +73,16 @@ const Style = {
     position: relative;
     overflow: auto;
     justify-content: space-between;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+    &::-webkit-scrollbar-track {
+      background: #363537;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #e7d10a;
+    }
   `,
 
   // Sidebar Navigation
@@ -139,6 +153,46 @@ const Style = {
     }
   `,
 
+  DropDown__TitleContainer: styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    svg {
+      color: #e7d10a;
+    }
+
+    @media (max-width: 678px) {
+      display: none;
+    }
+  `,
+
+  DropDown__Content: styled.div`
+    /* display: none; */
+
+    opacity: 0;
+    height: 0px;
+    visibility: hidden;
+    margin-bottom: -15px;
+
+    &.open {
+      /* display: block; */
+      -webkit-transition: opacity 0.6s ease-in-out 0.15s;
+      -moz-transition: opacity 0.6s ease-in-out 0.15s;
+      -o-transition: opacity 0.6s ease-in-out 0.15s;
+      -ms-transition: opacity 0.6s ease-in-out 0.15s;
+      transition: opacity 0.6s ease-in-out 0.15s;
+      height: auto;
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 678px) {
+      display: flex;
+      flex-direction: row;
+    }
+  `,
+
   Sidebar__Footer: styled.div`
     display: block;
     bottom: 0;
@@ -174,7 +228,7 @@ const Style = {
       color: ${({ theme }) => theme.text};
       opacity: 0.5;
     }
-  `
+  `,
 };
 
 export default Style;

@@ -1,5 +1,5 @@
 import axios from "axios";
-import axiosRetry from 'axios-retry';
+import axiosRetry from "axios-retry";
 import React, { Component } from "react";
 import Tour from "reactour";
 import { Route } from "react-router-dom";
@@ -22,7 +22,7 @@ import {
   enableBody,
   nameToEngineMap,
   greekFromEnglish,
-  API_ENDPOINTS
+  API_ENDPOINTS,
 } from "../utils";
 import NavBar from "../components/navbar/Navbar";
 import TrendingCarousel from "../components/trendingCarousel/TrendingCarousel";
@@ -56,7 +56,7 @@ class Home extends Component {
       movieToBeShared: {},
       searchInput: "",
       movieFilterServer: "",
-      movieSearchResult: []
+      movieSearchResult: [],
     };
   }
 
@@ -97,7 +97,7 @@ class Home extends Component {
     if (filteredMovies.length >= 1) {
       this.setState({
         movies: filteredMovies,
-        movieSearchResult: filteredMovies
+        movieSearchResult: filteredMovies,
       });
       return;
     }
@@ -113,7 +113,7 @@ class Home extends Component {
         server,
         movies: [],
         listIndex: 1,
-        isSearch: false
+        isSearch: false,
       },
       () => {
         this.performList();
@@ -123,7 +123,7 @@ class Home extends Component {
   }
 
   newSearch() {
-    const query = this.state.searchInput
+    const query = this.state.searchInput;
     if (query.trim().length > 1) {
       this.setState(
         {
@@ -131,7 +131,7 @@ class Home extends Component {
           movies: [],
           error: false,
           listIndex: 1,
-          isSearch: true
+          isSearch: true,
         },
         () => this.performSearch(query, true)
       );
@@ -153,67 +153,69 @@ class Home extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: ""
+      searchError: "",
     });
 
     this.props.history.push("/search");
-    
+
     // Set axiosRetryLogic
-    axiosRetry(axios, { 
+    axiosRetry(axios, {
       retries: 3,
       shouldResetTimeout: true,
       retryCondition: (error) => {
         // retry whenever timeout is hit
         // TODO: Somehow inform user that search is still ongoing
-        console.log("retrying timedout request", error.config)
-        return error.code === 'ECONNABORTED'
-      }
+        console.log("retrying timedout request", error.config);
+        return error.code === "ECONNABORTED";
+      },
     });
 
-
-    let serverAxios = Array.from(nameToEngineMap.values())
-    for (let i=0; i < serverAxios.length; i++){
-      serverAxios[i] = axios.get(this.state.api + "/search?query="+
-        encodeURI(query.trim()) + "&engine=" + serverAxios[i] +
-          "&page=" + this.state.listIndex,
+    let serverAxios = Array.from(nameToEngineMap.values());
+    for (let i = 0; i < serverAxios.length; i++) {
+      serverAxios[i] = axios.get(
+        this.state.api +
+          "/search?query=" +
+          encodeURI(query.trim()) +
+          "&engine=" +
+          serverAxios[i] +
+          "&page=" +
+          this.state.listIndex,
         {
-          timeout: 30000
+          timeout: 30000,
         }
-      )
+      );
     }
-    
-    axios.all(serverAxios)
-      .then(axios.spread(
-          (
-            ...serverResults
-          ) => {
-            let mainMovies = []
-            let movies = []
-            for (let i=0; i< serverResults.length; i++){
-              let data = serverResults[i].data
-              movies = movies.concat(data)
-            }
-            movies.forEach((movie) => {
-              if (movie !== null) {
-                mainMovies.push(movie);
-              }
-            });
 
-            this.setState({
-              movies: [...mainMovies],
-              movieSearchResult: [...mainMovies],
-              isLoading: false,
-              isSearch: true,
-              listIndex: append ? this.state.listIndex + 1 : 1
-            });
+    axios
+      .all(serverAxios)
+      .then(
+        axios.spread((...serverResults) => {
+          let mainMovies = [];
+          let movies = [];
+          for (let i = 0; i < serverResults.length; i++) {
+            let data = serverResults[i].data;
+            movies = movies.concat(data);
           }
-        )
+          movies.forEach((movie) => {
+            if (movie !== null) {
+              mainMovies.push(movie);
+            }
+          });
+
+          this.setState({
+            movies: [...mainMovies],
+            movieSearchResult: [...mainMovies],
+            isLoading: false,
+            isSearch: true,
+            listIndex: append ? this.state.listIndex + 1 : 1,
+          });
+        })
       )
       .catch((err) => {
         this.setState({
           error: true,
           isLoading: false,
-          searchError: err.message
+          searchError: err.message,
         });
       });
   };
@@ -222,7 +224,7 @@ class Home extends Component {
     this.setState({
       isLoading: true,
       error: false,
-      searchError: ""
+      searchError: "",
     });
     axios
       .get(
@@ -239,18 +241,16 @@ class Home extends Component {
           return element;
         });
         newIndex += 1;
-        this.setState(
-          {
-            isLoading: false,
-            movies: append ? [...this.state.movies, ...newmovies] : newmovies,
-            listIndex: newIndex
-          },
-        );
+        this.setState({
+          isLoading: false,
+          movies: append ? [...this.state.movies, ...newmovies] : newmovies,
+          listIndex: newIndex,
+        });
       })
       .catch((err) => {
         console.log(err);
         this.setState({
-          error: true
+          error: true,
         });
       });
   };
@@ -269,12 +269,12 @@ class Home extends Component {
       .get(API_ENDPOINTS.ip)
       .then((res) => {
         this.setState({
-          ip_address: res.data.ip
+          ip_address: res.data.ip,
         });
       })
       .catch(() => {
         this.setState({
-          error: true
+          error: true,
         });
       });
   };
@@ -286,7 +286,7 @@ class Home extends Component {
         {
           listIndex: 1,
           movies: [],
-          server: nameToEngineMap.get(optionalRoute)
+          server: nameToEngineMap.get(optionalRoute),
         },
         () => {
           if (refresh) {
@@ -333,19 +333,20 @@ class Home extends Component {
     this.getIp();
     this.setTheme();
     this.performList();
-    if (!localStorage.getItem("viewedTour")) {
-      this.startTour();
-      localStorage.setItem("viewedTour", "true");
-    }
+    //    SCRAP TOUR
+    //    if (!localStorage.getItem("viewedTour")) {
+    //      this.startTour();
+    //      localStorage.setItem("viewedTour", "true");
+    //    }
     document.addEventListener("scroll", this.handleScroll);
-    window.addEventListener('storage', this.setTheme);
+    window.addEventListener("storage", this.setTheme);
   }
 
   componentWillUnmount() {
     this._isMounted = false;
 
     document.removeEventListener("scroll", this.handleScroll);
-    window.removeEventListener('storage', this.setTheme);
+    window.removeEventListener("storage", this.setTheme);
   }
 
   setTheme = () => {
@@ -353,7 +354,7 @@ class Home extends Component {
     if (theme !== null) {
       this.switchTheme(theme === "light" ? "dark" : "light");
     }
-  }
+  };
 
   setTour() {
     const tour = localStorage.getItem("showTour");
@@ -385,12 +386,12 @@ class Home extends Component {
       default:
         break;
     }
-  }
+  };
 
   setDescription(movie) {
     this.setState({
       show: true,
-      currentmovie: movie
+      currentmovie: movie,
     });
   }
 
@@ -407,7 +408,7 @@ class Home extends Component {
         url:
           window.location.hostname === "localhost"
             ? `localhost:${window.location.port}/shared/${movie.referral_id}`
-            : `https://gophie.cam/shared/${movie.referral_id}`
+            : `https://gophie.cam/shared/${movie.referral_id}`,
       };
 
       navigator
@@ -430,7 +431,7 @@ class Home extends Component {
       if (server === "all") {
         this.setState({
           movieSearchResult: this.state.movies,
-          movieFilterServer: ""
+          movieFilterServer: "",
         });
       } else if (server === "server1") {
         this.setState({
@@ -439,7 +440,7 @@ class Home extends Component {
             const movieSourceMap = nameToEngineMap.get("Server1");
             return movieSource.includes(movieSourceMap);
           }),
-          movieFilterServer: "Server1"
+          movieFilterServer: "Server1",
         });
       } else if (server === "server2") {
         this.setState({
@@ -448,7 +449,7 @@ class Home extends Component {
             const movieSourceMap = nameToEngineMap.get("Server2");
             return movieSource.includes(movieSourceMap);
           }),
-          movieFilterServer: "Server2"
+          movieFilterServer: "Server2",
         });
         console.log("server1 something");
       } else if (server === "server3") {
@@ -458,7 +459,7 @@ class Home extends Component {
             const movieSourceMap = nameToEngineMap.get("Server3");
             return movieSource.includes(movieSourceMap);
           }),
-          movieFilterServer: "Server3"
+          movieFilterServer: "Server3",
         });
       } else if (server === "server4") {
         this.setState({
@@ -467,7 +468,7 @@ class Home extends Component {
             const movieSourceMap = nameToEngineMap.get("Server4");
             return movieSource.includes(movieSourceMap);
           }),
-          movieFilterServer: "Server4"
+          movieFilterServer: "Server4",
         });
       } else if (server === "server5") {
         this.setState({
@@ -476,7 +477,7 @@ class Home extends Component {
             const movieSourceMap = nameToEngineMap.get("Server5");
             return movieSource.includes(movieSourceMap);
           }),
-          movieFilterServer: "Server5"
+          movieFilterServer: "Server5",
         });
       } else if (server === "server6") {
         this.setState({
@@ -485,7 +486,7 @@ class Home extends Component {
             const movieSourceMap = nameToEngineMap.get("Server6");
             return movieSource.includes(movieSourceMap);
           }),
-          movieFilterServer: "Server6"
+          movieFilterServer: "Server6",
         });
       }
     }

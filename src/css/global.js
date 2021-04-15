@@ -78,6 +78,12 @@ body {
       theme.sharedBorderColor} !important;
 }
 
+.music {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 1.5em;
+}
+
 .movie-shared-detail .MuiSvgIcon-root {
   fill: ${({ theme }) => theme.text} !important;
 }
@@ -104,8 +110,12 @@ body {
   }
 }
 
-
-
+.align-center {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 0 auto;
+}
 
 
 .error {
