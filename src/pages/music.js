@@ -137,6 +137,7 @@ export class Music extends Component {
         return res;
       },
       (err) => {
+        console.log("caught error here")
         this.switchServer(err);
         throw err;
       }

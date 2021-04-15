@@ -572,7 +572,7 @@ export function SadFace() {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      xmlnsSvgjs="http://svgjs.com/svgjs"
+      xmlnssvgjs="http://svgjs.com/svgjs"
       version="1.1"
       width="50"
       height="50"
