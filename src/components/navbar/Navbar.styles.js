@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 const Style = {
   Navbar: styled.div`
@@ -26,7 +26,7 @@ const Style = {
     &:before {
       width: 3em;
       height: 0.3em;
-      content: "";
+      content: '';
       display: block;
       background: ${({ theme }) => theme.yellowDark};
       border-radius: 1.5em;
@@ -107,7 +107,7 @@ const Style = {
       border-image: initial;
       outline: none !important;
     }
-  `,
-};
+  `
+}
 
-export default Style;
+export default Style
