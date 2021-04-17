@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
 const Style = {
   // Man sidebar container
@@ -47,7 +47,7 @@ const Style = {
     &:before {
       width: 3em;
       height: 0.3em;
-      content: "";
+      content: '';
       display: block;
       background: ${({ theme }) => theme.yellowDark};
       border-radius: 1.5em;
@@ -188,8 +188,16 @@ const Style = {
     }
 
     @media (max-width: 678px) {
+      opacity: 1;
+      visibility: visible;
+      margin-bottom: 0px;
+      height: auto;
       display: flex;
       flex-direction: row;
+
+      &.music-page {
+        visibility: hidden;
+      }
     }
   `,
 
@@ -228,7 +236,7 @@ const Style = {
       color: ${({ theme }) => theme.text};
       opacity: 0.5;
     }
-  `,
-};
+  `
+}
 
-export default Style;
+export default Style
