@@ -18,7 +18,7 @@ import {
   nameToEngineMap,
   greekFromEnglish,
 } from "../utils";
-import { SadFace } from "../utils/icons";
+import { ArrowUp, Beaver } from "../utils/icons";
 
 export class Music extends Component {
   constructor(props) {
@@ -335,12 +335,17 @@ export class Music extends Component {
                         : !this.state.isLoading &&
                           !this.state.error && (
                             <div className="align-center">
-                              <SadFace />
+                              <div className="bounce"><ArrowUp /></div>
+                              
+                              <Beaver />
                               <h3
                                 className="mt-5 mb-5 pt-5 pb-5 text-center"
                                 style={{ margin: "0 auto" }}
                               >
-                                {" Unfortunately we couldn't find your music"}
+                                {
+                                  " We looked everywhere but couldn't find your music"
+                                }{" "}
+                                <br /> {"Try searching for another one"}
                               </h3>{" "}
                             </div>
                           )}
