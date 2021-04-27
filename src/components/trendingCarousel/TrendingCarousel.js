@@ -129,6 +129,7 @@ class TrendingCarousel extends Component {
                 key={trendingMovie.referral_id}
                 className="trending-carousal-image__container"
               >
+              <p className="movie-size" style={{transform: 'translate(0px)'}}>{trendingMovie.size}</p>
                 <Image
                   className="img-fluid trending-carousal-image"
                   onKeyDown={() => {
