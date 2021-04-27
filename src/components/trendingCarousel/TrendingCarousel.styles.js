@@ -12,6 +12,23 @@ const Style = {
     .network-icon {
       margin: 0 !important;
     }
+
+   	.movie-size {
+			font-size: 0.67em;
+			font-weight: 600;
+			text-transform: uppercase;
+			position: absolute;
+			top: 0;
+			right: 0;
+			margin: 1.2em;
+			color: black;
+			background: #fff;
+			padding: 0.25em 0.5em;
+			border-radius: 0.5em;
+			-webkit-transition: 0.3s;
+			transition: 0.3s;
+		}
+
     .trending-carousal-image__container {
       position: relative;
       background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
