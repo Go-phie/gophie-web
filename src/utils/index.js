@@ -45,7 +45,7 @@ nm.set("Server1", "fzmovies");
 nm.set("Server2", "takanimelist");
 nm.set("Server3", "besthdmovies");
 nm.set("Server4", "tvseries");
-//nm.set("Server5", "netnaija");
+nm.set("Server5", "netnaija");
 nm.set("Server6", "kdramahood");
 nm.set("Server7", "animeout");
 
