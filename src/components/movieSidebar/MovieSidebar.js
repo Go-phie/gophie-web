@@ -90,6 +90,20 @@ export default function MovieSidebar(props) {
     }
   };
 
+  const addDownload = () => {
+    axios
+      .post(ratings_api + "/download", {
+        ip_address: ip_address,
+        referral_id: movie.referral_id,
+      })
+      .then((res) => {
+        console.log(res)
+      })
+      .catch((err) => {
+        console.error(err)
+      });
+  };
+
   const shareMovie = () => {
     if (referralID) {
       props.shareMovie({
@@ -327,6 +341,7 @@ export default function MovieSidebar(props) {
                 <div>
                   <a
                     href={movie.download_link}
+                    onClick={addDownload}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="gbtn gbtn-secondary mr-3"
