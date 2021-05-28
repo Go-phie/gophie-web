@@ -17,7 +17,7 @@ script:
 
 deploy:
   provider: script
-  script: openssl aes-256-cbc -K $encrypted_06838b60b58f_key -iv $encrypted_06838b60b58f_iv -in ./scripts/gophie-private-key.pem.enc -out gophie-private-key.pem -d && chmod 400 gophie-private-key.pem  && pm2 deploy ecosystem.config.js production
+  script: openssl aes-256-cbc -K $encrypted_0fe5067b505f_key -iv $encrypted_0fe5067b505f_iv -in ./scripts/private-key.pem.enc -out private-key.pem -d && chmod 400 gophie-private-key.pem  && pm2 deploy ecosystem.config.js production
   on:
     branch: master
     tags: true
