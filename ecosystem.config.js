@@ -7,8 +7,8 @@ module.exports = {
    deploy: {
       production: {
          user: 'ubuntu',
-         host: 'ec2-18-130-190-198.eu-west-2.compute.amazonaws.com',
-         key: './gophie-private-key.pem',
+         host: 'ec2-35-178-176-58.eu-west-2.compute.amazonaws.com',
+         key: './private-key.pem',
          ref: 'origin/master',
          ssh_options: ["StrictHostKeyChecking=no", "PasswordAuthentication=no"],
          repo: 'https://github.com/Go-phie/gophie-web.git',
