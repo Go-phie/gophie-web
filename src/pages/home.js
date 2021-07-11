@@ -38,7 +38,7 @@ class Home extends Component {
 
     this.state = {
       api: API_ENDPOINTS.ocena,
-      server: nameToEngineMap.get("Server1"),
+      server: nameToEngineMap.get("Server5"),
       mode: "movies",
       movies: [],
       listIndex: 1,
