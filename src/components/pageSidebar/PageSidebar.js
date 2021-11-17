@@ -1,23 +1,23 @@
-import React, { useState } from 'react'
-import Style from './PageSidebar.styles'
+import React, { useState } from "react";
+import Style from "./PageSidebar.styles";
 import {
   GophieLogo,
   MovieReel,
   MusicNotes,
   ExpandIcon,
   CollapseIcon,
-  GoToIcon
-} from '../../utils/icons'
-import { Link, useLocation } from 'react-router-dom'
+  GoToIcon,
+} from "../../utils/icons";
+import { Link, useLocation } from "react-router-dom";
 
-const PageSidebar = props => {
-  let pathname = window.location.pathname
-  const [isMovieDropdown, setMovieDropdown] = useState(false)
-  const location = useLocation()
+const PageSidebar = (props) => {
+  let pathname = window.location.pathname;
+  const [isMovieDropdown, setMovieDropdown] = useState(false);
+  const location = useLocation();
 
   const handleMovieDropdown = () => {
-    setMovieDropdown(!isMovieDropdown)
-  }
+    setMovieDropdown(!isMovieDropdown);
+  };
 
   return (
     <Style.Sidebar>
@@ -30,39 +30,39 @@ const PageSidebar = props => {
           <Style.Sidebar__NavListItem>
             <Style.Sidebar__NavLink
               className={`${
-                pathname.match('/Server1') ||
-                pathname.match('/Server2') ||
-                pathname.match('/Server3') ||
-                pathname.match('/Server4') ||
-                pathname.match('/Server5') ||
-                pathname.match('/Server6') ||
-                pathname.match('/Server7')
-                  ? 'active'
-                  : ''
+                pathname.match("/Server1") ||
+                pathname.match("/Server2") ||
+                pathname.match("/Server3") ||
+                pathname.match("/Server4") ||
+                pathname.match("/Server5") ||
+                pathname.match("/Server6") ||
+                pathname.match("/Server7")
+                  ? "active"
+                  : ""
               } dropdown-header`}
               onClick={handleMovieDropdown}
-              data-tour='movies'
-              data-value='movies'
+              data-tour="movies"
+              data-value="movies"
             >
               <Style.DropDown__TitleContainer>
-                <MovieReel /> Movies{' '}
+                <MovieReel /> Movies{" "}
                 {isMovieDropdown ? <ExpandIcon /> : <CollapseIcon />}
               </Style.DropDown__TitleContainer>
             </Style.Sidebar__NavLink>
           </Style.Sidebar__NavListItem>
 
           <Style.DropDown__Content
-            className={`${isMovieDropdown ? 'open' : ''} ${
-              location.pathname === '/music' ? 'music-page' : ''
+            className={`${isMovieDropdown ? "open" : ""} ${
+              location.pathname === "/music" ? "music-page" : ""
             }`}
           >
             <Style.Sidebar__NavListItem>
               <Style.Sidebar__NavLink
-                className={`${pathname.match('/Server1') ? 'active' : ''}`}
+                className={`${pathname.match("/Server1") ? "active" : ""}`}
                 onClick={props.handleServerChange}
                 onChange={props.handleServerChange}
-                data-tour='server1'
-                data-value='Server1'
+                data-tour="server1"
+                data-value="Server1"
               >
                 Server1 <small>(Movies)</small>
               </Style.Sidebar__NavLink>
@@ -70,11 +70,11 @@ const PageSidebar = props => {
 
             <Style.Sidebar__NavListItem>
               <Style.Sidebar__NavLink
-                className={`${pathname.match('/Server2') ? 'active' : ''}`}
+                className={`${pathname.match("/Server2") ? "active" : ""}`}
                 onClick={props.handleServerChange}
                 onChange={props.handleServerChange}
-                data-tour='server2'
-                data-value='Server2'
+                data-tour="server2"
+                data-value="Server2"
               >
                 Server2 <small>(Anime)</small>
               </Style.Sidebar__NavLink>
@@ -82,11 +82,11 @@ const PageSidebar = props => {
 
             <Style.Sidebar__NavListItem>
               <Style.Sidebar__NavLink
-                className={`${pathname.match('/Server3') ? 'active' : ''}`}
+                className={`${pathname.match("/Server3") ? "active" : ""}`}
                 onClick={props.handleServerChange}
                 onChange={props.handleServerChange}
-                data-tour='server3'
-                data-value='Server3'
+                data-tour="server3"
+                data-value="Server3"
               >
                 Server3 <small>(HD)</small>
               </Style.Sidebar__NavLink>
@@ -94,11 +94,11 @@ const PageSidebar = props => {
 
             <Style.Sidebar__NavListItem>
               <Style.Sidebar__NavLink
-                className={`${pathname.match('/Server4') ? 'active' : ''}`}
+                className={`${pathname.match("/Server4") ? "active" : ""}`}
                 onClick={props.handleServerChange}
                 onChange={props.handleServerChange}
-                data-tour='server4'
-                data-value='Server4'
+                data-tour="server4"
+                data-value="Server4"
               >
                 Server4 <small>(Series)</small>
               </Style.Sidebar__NavLink>
@@ -106,11 +106,11 @@ const PageSidebar = props => {
 
             <Style.Sidebar__NavListItem>
               <Style.Sidebar__NavLink
-                className={`${pathname.match('/Server5') ? 'active' : ''}`}
+                className={`${pathname.match("/Server5") ? "active" : ""}`}
                 onClick={props.handleServerChange}
                 onChange={props.handleServerChange}
-                data-tour='server5'
-                data-value='Server5'
+                data-tour="server5"
+                data-value="Server5"
               >
                 Server5 <small>(Movies)</small>
               </Style.Sidebar__NavLink>
@@ -118,11 +118,11 @@ const PageSidebar = props => {
 
             <Style.Sidebar__NavListItem>
               <Style.Sidebar__NavLink
-                className={`${pathname.match('/Server6') ? 'active' : ''}`}
+                className={`${pathname.match("/Server6") ? "active" : ""}`}
                 onClick={props.handleServerChange}
                 onChange={props.handleServerChange}
-                data-tour='server6'
-                data-value='Server6'
+                data-tour="server6"
+                data-value="Server6"
               >
                 Server6 <small>(Korean)</small>
               </Style.Sidebar__NavLink>
@@ -130,11 +130,11 @@ const PageSidebar = props => {
 
             <Style.Sidebar__NavListItem>
               <Style.Sidebar__NavLink
-                className={`${pathname.match('/Server7') ? 'active' : ''}`}
+                className={`${pathname.match("/Server7") ? "active" : ""}`}
                 onClick={props.handleServerChange}
                 onChange={props.handleServerChange}
-                data-tour='server6'
-                data-value='Server7'
+                data-tour="server6"
+                data-value="Server7"
               >
                 Server7 <small>(Anime)</small>
               </Style.Sidebar__NavLink>
@@ -142,12 +142,12 @@ const PageSidebar = props => {
           </Style.DropDown__Content>
 
           <Style.Sidebar__NavListItem>
-            <Link to='/music'>
+            <Link to="/music">
               <Style.Sidebar__NavLink
-                className={`${pathname.match('/music') ? 'active' : ''}`}
+                className={`${pathname.match("/music") ? "active" : ""}`}
                 onClick={props.handleServerChange}
-                data-tour='music'
-                data-value='music'
+                data-tour="music"
+                data-value="music"
               >
                 <Style.DropDown__TitleContainer>
                   <MusicNotes /> Music <GoToIcon />
@@ -159,10 +159,10 @@ const PageSidebar = props => {
 
         <Style.Sidebar__Footer>
           <h3>
-            Gophie.cam —{' '}
+            Gophie.cam —{" "}
             <small>
-              {' '}
-              <Style.Sidebar__FooterLink to={'/terms'}>
+              {" "}
+              <Style.Sidebar__FooterLink to={"/terms"}>
                 Terms
               </Style.Sidebar__FooterLink>
             </small>
@@ -171,7 +171,7 @@ const PageSidebar = props => {
         </Style.Sidebar__Footer>
       </Style.Sidebar__Main>
     </Style.Sidebar>
-  )
-}
+  );
+};
 
-export default PageSidebar
+export default PageSidebar;

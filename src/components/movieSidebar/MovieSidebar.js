@@ -97,10 +97,10 @@ export default function MovieSidebar(props) {
         referral_id: movie.referral_id,
       })
       .then((res) => {
-        console.log(res)
+        console.log(res);
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err);
       });
   };
 

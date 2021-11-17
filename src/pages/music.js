@@ -137,7 +137,7 @@ export class Music extends Component {
         return res;
       },
       (err) => {
-        console.log("caught error here")
+        console.log("caught error here");
         this.switchServer(err);
         throw err;
       }
@@ -336,8 +336,9 @@ export class Music extends Component {
                         : !this.state.isLoading &&
                           !this.state.error && (
                             <div className="align-center">
-                              <div className="bounce"><ArrowUp /></div>
-                              
+                              <div className="bounce">
+                                <ArrowUp />
+                              </div>
                               <Beaver />
                               <h3
                                 className="mt-5 mb-5 pt-5 pb-5 text-center"
