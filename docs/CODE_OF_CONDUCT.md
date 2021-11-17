@@ -68,5 +68,5 @@ members of the project's leadership.
 
 ## Attribution
 
-This Code of Conduct is adapted from theContribution Convenant
+This Code of Conduct is adapted from the Contribution Convenant
 available at [Contributor Convenant](http://contributor-covenant.org/version/1/4)
