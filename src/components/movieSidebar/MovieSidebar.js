@@ -11,6 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DownloadIcon, ShareIcon } from "../../utils/icons";
 
 import { faSpinner, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { sanitizeUrl } from "../../utils";
 
 export default function MovieSidebar(props) {
   let refLi = useRef([]);
@@ -97,10 +98,10 @@ export default function MovieSidebar(props) {
         referral_id: movie.referral_id,
       })
       .then((res) => {
-        console.log(res)
+        console.log(res);
       })
       .catch((err) => {
-        console.error(err)
+        console.error(err);
       });
   };
 
@@ -154,7 +155,7 @@ export default function MovieSidebar(props) {
           >
             <p>{downloadTxtStrip}</p>
             <a
-              href={downloadLink}
+              href={sanitizeUrl(downloadLink)}
               target="_blank"
               rel="noopener noreferrer"
               className="gbtn gbtn-primary align-items-center"
