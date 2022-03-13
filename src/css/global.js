@@ -78,6 +78,12 @@ body {
       theme.sharedBorderColor} !important;
 }
 
+.music {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 1.5em;
+}
+
 .movie-shared-detail .MuiSvgIcon-root {
   fill: ${({ theme }) => theme.text} !important;
 }
@@ -104,8 +110,23 @@ body {
   }
 }
 
+.align-center {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 0 auto;
+}
 
+.bounce {
+  animation: bounce 1s infinite;
+  margin: 10px auto;
+}
 
+@keyframes bounce { 
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 
+  40% {transform: translateY(-30px);} 
+  60% {transform: translateY(-15px);} 
+}
 
 
 .error {

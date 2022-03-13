@@ -228,7 +228,8 @@ body {
 }
 
 .gophie-modal__body--header {
-    border-bottom: 1px solid ${({ theme }) => theme.sharedBorderColor} !important;
+    border-bottom: 1px solid ${({ theme }) =>
+      theme.sharedBorderColor} !important;
 }
 
 .movie-shared-detail .MuiSvgIcon-root {

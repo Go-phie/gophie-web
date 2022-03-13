@@ -340,6 +340,376 @@ export function WalkingIcon() {
   );
 }
 
+export function MovieReel() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnssvgjs="http://svgjs.com/svgjs"
+      version="1.1"
+      width="24"
+      height="24"
+      x="0"
+      y="0"
+      viewBox="0 0 192 192"
+      fill="currentColor"
+      stroke="currentColor"
+      xmlSpace="preserve"
+    >
+      <g>
+        <path
+          xmlns="http://www.w3.org/2000/svg"
+          d="m192 96c0-53.019531-42.980469-96-96-96s-96 42.980469-96 96 42.980469 96 96 96h96v-16h-43c26.839844-17.769531 42.988281-47.808594 43-80zm-48.976562 64.722656c-10.722657 7.789063-25.734376 5.414063-33.523438-5.3125-7.789062-10.722656-5.414062-25.730468 5.308594-33.523437 10.726562-7.789063 25.734375-5.414063 33.523437 5.3125 7.792969 10.722656 5.414063 25.730469-5.308593 33.523437zm-1.179688-104.851562c12.605469-4.097656 26.144531 2.800781 30.242188 15.40625 4.09375 12.609375-2.804688 26.148437-15.410157 30.242187-12.605469 4.097657-26.144531-2.800781-30.242187-15.40625-4.09375-12.605469 2.804687-26.148437 15.410156-30.242187zm-45.84375-39.871094c13.253906 0 24 10.746094 24 24s-10.746094 24-24 24-24-10.746094-24-24 10.746094-24 24-24zm-76.085938 55.277344c4.097657-12.605469 17.636719-19.503906 30.242188-15.410156 12.605469 4.097656 19.503906 17.636718 15.410156 30.242187-4.097656 12.605469-17.636718 19.503906-30.242187 15.410156s-19.503907-17.632812-15.410157-30.242187zm62.585938 84.132812c-7.789062 10.726563-22.800781 13.101563-33.523438 5.3125-10.722656-7.792968-13.101562-22.800781-5.308593-33.523437 7.789062-10.722657 22.800781-13.101563 33.523437-5.308594 10.722656 7.789063 13.097656 22.796875 5.308594 33.519531zm5.5-59.410156c0-4.417969 3.582031-8 8-8s8 3.582031 8 8-3.582031 8-8 8-8-3.582031-8-8zm0 0"
+          fill="currentColor"
+          stroke="currentColor"
+          data-original="#000000"
+        />
+      </g>
+    </svg>
+  );
+}
+
+export function MusicNotes() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnssvgjs="http://svgjs.com/svgjs"
+      version="1.1"
+      width="24"
+      height="24"
+      x="0"
+      y="0"
+      fill="currentColor"
+      stroke="currentColor"
+      viewBox="0 0 512 512"
+      xmlSpace="preserve"
+    >
+      <g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path
+              d="M209.297,106.47c-27.041-19.819-54.785-44.246-74.531-73.865L117.48,6.677c-3.662-5.493-10.488-7.939-16.831-6.035    C94.321,2.561,90,8.391,90,14.998v235.344c-8.86-5.167-19.023-8.344-30-8.344c-33.091,0-60,26.909-60,60    c0,33.091,26.909,59.999,60,59.999s60-26.909,60-60V64.249c21.196,26.792,47.71,48.93,71.558,66.42    C203.276,139.253,210,152.496,210,166.997c0,24.814-20.186,45-45,45c-8.291,0-15,6.709-15,15c0,8.291,6.709,15,15,15    c41.353,0,75-33.647,75-75C240,143.193,228.53,120.576,209.297,106.47z"
+              fill="currentColor"
+              stroke="currentColor"
+              data-original="#000000"
+            />
+          </g>
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path
+              d="M492.884,122.569l-212,60c-6.445,1.846-10.884,7.734-10.884,14.429v203.344c-8.86-5.167-19.023-8.344-30-8.344    c-33.091,0-60,26.909-60,60s26.909,60,60,60s60-26.909,60-60c0-3.42,0-183.68,0-183.68l182-51.429v123.453    c-8.86-5.167-19.023-8.344-30-8.344c-33.091,0-60,26.909-60,60s26.909,60,60,60s60-26.909,60-60c0-3.42,0-255,0-255    C512,127.077,502.51,119.85,492.884,122.569z"
+              fill="currentColot"
+              stroke="currentColor"
+              data-original="#000000"
+            />
+          </g>
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+      </g>
+    </svg>
+  );
+}
+
+export function ExpandIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnssvgjs="http://svgjs.com/svgjs"
+      version="1.1"
+      width="10"
+      height="10"
+      x="0"
+      y="0"
+      viewBox="0 0 306 306"
+      xmlSpace="preserve"
+    >
+      <g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <g id="expand-more">
+            <polygon
+              points="270.3,58.65 153,175.95 35.7,58.65 0,94.35 153,247.35 306,94.35   "
+              fill="#e7d10a"
+              data-original="#000000"
+            />
+          </g>
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+      </g>
+    </svg>
+  );
+}
+
+export function CollapseIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnssvgjs="http://svgjs.com/svgjs"
+      version="1.1"
+      width="10"
+      height="10"
+      x="0"
+      y="0"
+      viewBox="0 0 256 256"
+      xmlSpace="preserve"
+    >
+      <g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <polygon
+              points="79.093,0 48.907,30.187 146.72,128 48.907,225.813 79.093,256 207.093,128   "
+              fill="#e7d10a"
+              data-original="#000000"
+            />
+          </g>
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+      </g>
+    </svg>
+  );
+}
+
+export function GoToIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnssvgjs="http://svgjs.com/svgjs"
+      version="1.1"
+      width="10"
+      height="10"
+      x="0"
+      y="0"
+      viewBox="0 0 512 512"
+      xmlSpace="preserve"
+    >
+      <g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path
+              d="M255.15,468.625H63.787c-11.737,0-21.262-9.526-21.262-21.262V64.638c0-11.737,9.526-21.262,21.262-21.262H255.15    c11.758,0,21.262-9.504,21.262-21.262S266.908,0.85,255.15,0.85H63.787C28.619,0.85,0,29.47,0,64.638v382.724    c0,35.168,28.619,63.787,63.787,63.787H255.15c11.758,0,21.262-9.504,21.262-21.262    C276.412,478.129,266.908,468.625,255.15,468.625z"
+              fill="#e7d10a"
+              data-original="#000000"
+            />
+          </g>
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path
+              d="M505.664,240.861L376.388,113.286c-8.335-8.25-21.815-8.143-30.065,0.213s-8.165,21.815,0.213,30.065l92.385,91.173    H191.362c-11.758,0-21.262,9.504-21.262,21.262c0,11.758,9.504,21.263,21.262,21.263h247.559l-92.385,91.173    c-8.377,8.25-8.441,21.709-0.213,30.065c4.167,4.21,9.653,6.336,15.139,6.336c5.401,0,10.801-2.041,14.926-6.124l129.276-127.575    c4.04-3.997,6.336-9.441,6.336-15.139C512,250.302,509.725,244.88,505.664,240.861z"
+              fill="#e7d10a"
+              data-original="#000000"
+            />
+          </g>
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+      </g>
+    </svg>
+  );
+}
+
+export function SadFace() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnssvgjs="http://svgjs.com/svgjs"
+      version="1.1"
+      width="50"
+      height="50"
+      x="0"
+      y="0"
+      viewBox="0 0 46.47 46.47"
+      xmlSpace="preserve"
+      className=""
+    >
+      <g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M46.222,41.889c0.658,1.521-0.042,3.287-1.562,3.943c-1.521,0.66-3.286-0.041-3.944-1.562   c-2.893-6.689-9.73-11.012-17.421-11.012c-7.868,0-14.747,4.32-17.523,11.004C5.292,45.416,4.175,46.112,3,46.112   c-0.384,0-0.773-0.073-1.15-0.229c-1.53-0.637-2.255-2.393-1.62-3.922c3.71-8.932,12.764-14.703,23.064-14.703   C33.379,27.26,42.379,33.002,46.222,41.889z M2.445,6.559c0-3.423,2.777-6.201,6.201-6.201c3.423,0,6.2,2.777,6.2,6.201   c0,3.426-2.777,6.203-6.2,6.203C5.222,12.761,2.445,9.984,2.445,6.559z M30.562,6.559c0-3.423,2.779-6.201,6.203-6.201   c3.423,0,6.2,2.777,6.2,6.201c0,3.426-2.776,6.203-6.2,6.203S30.562,9.984,30.562,6.559z"
+            fill="#e7d10a"
+            data-original="#000000"
+            className=""
+          />
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+      </g>
+    </svg>
+  );
+}
+
+export function Beaver() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnsSvgjs="http://svgjs.com/svgjs"
+      version="1.1"
+      width="50"
+      height="50"
+      x="0"
+      y="0"
+      viewBox="0 0 412.232 412.231"
+      xmlSpace="preserve"
+      className=""
+    >
+      <g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path
+              d="M138.553,137.994c0-18.063-14.698-32.764-32.764-32.764c-18.065,0-32.756,14.691-32.756,32.764    c0,18.062,14.691,32.757,32.756,32.757C123.855,170.751,138.553,156.055,138.553,137.994z M105.784,154.624    c-2.005,0-3.909-0.415-5.688-1.063c10.724-0.844,19.217-9.735,19.217-20.669c0-1.919-0.343-3.746-0.834-5.509    c2.425,2.892,3.943,6.57,3.943,10.627C122.428,147.165,114.96,154.624,105.784,154.624z M103.188,132.887    c0,2.59-2.118,4.708-4.715,4.708c-2.595,0-4.708-2.118-4.708-4.708c0-2.597,2.113-4.714,4.708-4.714    C101.07,128.172,103.188,130.29,103.188,132.887z"
+              fill="#e7d10a"
+              data-original="#000000"
+            />
+            <path
+              d="M267.153,137.994c0,18.055,14.688,32.757,32.757,32.757c18.075,0,32.756-14.691,32.756-32.757    c0-18.068-14.681-32.764-32.756-32.764C281.841,105.229,267.153,119.931,267.153,137.994z M287.889,132.887    c0-2.597,2.114-4.714,4.713-4.714c2.595,0,4.704,2.118,4.704,4.714c0,2.59-2.109,4.708-4.704,4.708    C289.999,137.595,287.889,135.477,287.889,132.887z M299.91,154.624c-2.005,0-3.905-0.415-5.689-1.063    c10.729-0.844,19.212-9.735,19.212-20.669c0-1.919-0.346-3.746-0.828-5.514c2.424,2.892,3.937,6.57,3.937,10.626    C316.541,147.165,309.085,154.624,299.91,154.624z"
+              fill="#e7d10a"
+              data-original="#000000"
+            />
+            <path
+              d="M404.179,161.821h-3.218c-3.088-36.439-26.826-67.03-59.456-80.059c-29.774-42.891-79.334-71.053-135.389-71.053    c-56.048,0-105.616,28.155-135.391,71.048c-32.627,13.029-56.36,43.614-59.446,80.064H8.063c-4.449,0-8.063,3.614-8.063,8.062    c0,4.452,3.615,8.063,8.063,8.063h3.216c2.483,29.331,18.299,54.916,41.412,70.575l22.84,146.17    c0.612,3.927,3.995,6.83,7.966,6.83h60.462c4.452,0,8.063-3.612,8.063-8.063c0-29.831,24.271-54.094,54.093-54.094    c29.824,0,54.092,24.276,54.092,54.094c0,4.451,3.612,8.063,8.063,8.063h60.462c3.963,0,7.349-2.898,7.954-6.83l22.845-146.17    c23.118-15.664,38.931-41.244,41.408-70.575h3.228c4.436,0,8.063-3.611,8.063-8.063    C412.232,165.435,408.625,161.821,404.179,161.821z M41.376,175.459c0,0.414,0.031,0.834,0.097,1.236l7.428,47.549    c-13.53-14.151-21.897-33.281-21.897-54.36c0-24.176,10.965-45.819,28.155-60.284C46.311,129.785,41.376,152.044,41.376,175.459z     M105.784,248.676c-13.906,0-26.958-3.659-38.31-10.001l-9.977-63.833c0.118-29.378,8.842-56.744,23.723-79.778    c7.74-2.545,15.979-3.971,24.564-3.971c43.449,0,78.793,35.341,78.793,78.791C184.583,213.326,149.233,248.676,105.784,248.676z     M248.34,285.71h-45.983c-4.448,0-8.062-3.617-8.062-8.063c0-4.451,3.614-8.063,8.062-8.063h45.983    c4.451,0,8.063,3.612,8.063,8.063C256.404,282.093,252.796,285.71,248.34,285.71z M344.761,238.675    c-11.345,6.357-24.41,10.001-38.31,10.001c-43.456,0-78.795-35.35-78.795-78.792c0-43.449,35.339-78.791,78.795-78.791    c8.583,0,16.818,1.431,24.557,3.971c14.886,23.035,23.611,50.4,23.726,79.778L344.761,238.675z M363.343,224.244l7.424-47.549    c0.067-0.401,0.099-0.822,0.099-1.236c0-23.41-4.934-45.675-13.779-65.859c17.197,14.459,28.169,36.108,28.169,60.284    C385.245,190.963,376.873,210.093,363.343,224.244z"
+              fill="#e7d10a"
+              data-original="#000000"
+            />
+          </g>
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+      </g>
+    </svg>
+  );
+}
+
+export function ArrowUp() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlnsSvgjs="http://svgjs.com/svgjs"
+      version="1.1"
+      width="20"
+      height="20"
+      x="0"
+      y="0"
+      viewBox="0 0 512.005 512.005"
+      xmlSpace="preserve"
+    >
+      <g>
+        <g xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <path
+              d="M466.22,205.787L263.553,3.12c-4.16-4.16-10.923-4.16-15.083,0L45.804,205.787c-21.803,21.803-21.803,57.28,0,79.083    s57.28,21.803,79.083,0l77.781-77.781v251.584c0,29.397,23.936,53.333,53.333,53.333s53.333-23.936,53.333-53.333V207.088    l77.781,77.781c21.803,21.803,57.28,21.803,79.083,0C488.001,263.088,488.001,227.589,466.22,205.787z"
+              fill="#e7d10a"
+              data-original="#000000"
+            />
+          </g>
+        </g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+        <g xmlns="http://www.w3.org/2000/svg"></g>
+      </g>
+    </svg>
+  );
+}
+
 // export function ShareIcon() {
 //   return (
 //     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">

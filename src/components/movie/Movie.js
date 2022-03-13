@@ -2,14 +2,11 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { Component } from "react";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { isImageURL, greekFromEnglish, API_ENDPOINTS } from "../../utils";
 import { Link } from "react-router-dom";
 import Rating from "material-ui-rating";
 import Style from "./movie.styles";
 import MovieSidebar from "../movieSidebar/MovieSidebar";
-import { DownloadIcon } from "../../utils/icons";
 export default class Movie extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +16,7 @@ export default class Movie extends Component {
       referralID: null,
       loadingReferralID: false,
       hover: false,
-      showMovieSidebar: false
+      showMovieSidebar: false,
     };
     this._isMounted = false;
   }
@@ -37,7 +34,7 @@ export default class Movie extends Component {
     axios
       .post(this.state.ratings_api + "/download", {
         ip_address: this.props.ip_address,
-        referral_id: this.props.data.referral_id
+        referral_id: this.props.data.referral_id,
       })
       .then(() => {
         console.log(`added ${this.props.data.name} to downloads on ocena`);
@@ -48,17 +45,17 @@ export default class Movie extends Component {
     const { data } = this.props;
     axios
       .post(this.state.ratings_api + "/movie/ratings/average", {
-        referral_id: data.referral_id
+        referral_id: data.referral_id,
       })
       .then((res) => {
         this.setState({
-          ratings: res.data
+          ratings: res.data,
         });
       })
       .catch((err) => {
         if (err) {
           this.setState({
-            error: true
+            error: true,
           });
         }
       });
@@ -70,7 +67,7 @@ export default class Movie extends Component {
     axios
       .post(this.state.ratings_api + "/referral", {
         ip_address: this.props.ip_address,
-        referral_id: data.referral_id
+        referral_id: data.referral_id,
       })
       .then((res) => {
         const { data } = res;
@@ -87,7 +84,7 @@ export default class Movie extends Component {
         this.setState(
           {
             loadingReferralID: false,
-            referralID: data.referral_id
+            referralID: data.referral_id,
           },
           () => {
             this.shareMovie();
@@ -101,7 +98,7 @@ export default class Movie extends Component {
     if (this.state.referralID) {
       this.props.shareMovie({
         ...this.props.data,
-        referralID: this.state.referralID
+        referralID: this.state.referralID,
       });
     } else {
       this.setState({ loadingReferralID: true });
@@ -120,14 +117,7 @@ export default class Movie extends Component {
   }
 
   render() {
-    const {
-      cover_photo_link,
-      download_link,
-      size,
-      name,
-      engine,
-      Index
-    } = this.props.data;
+    const { cover_photo_link, size, name, engine, Index } = this.props.data;
     const { server, ip_address, shareMovie } = this.props;
 
     var translateStyle;
@@ -169,34 +159,6 @@ export default class Movie extends Component {
               {" "}
               {size}{" "}
             </p>
-
-            {greekFromEnglish(server) !== "Server2" &&
-            greekFromEnglish(server) !== "Server6" ? (
-              <a
-                style={translateStyle}
-                className="download-btn"
-                target="_blank"
-                rel="noopener noreferrer"
-                href={download_link}
-                onClick={() => this.addDownload()}
-                data-tour="my-eight-step"
-              >
-                <DownloadIcon />
-              </a>
-            ) : (
-              <button
-                style={translateStyle}
-                className="download-btn"
-                onClick={() => {
-                  this.toggleSidebar();
-                }}
-                onKeyDown={() => {
-                  this.toggleSidebar();
-                }}
-              >
-                <FontAwesomeIcon icon={faPlus} />
-              </button>
-            )}
           </div>
           <div className="movie__about">
             <Link to={`/${greekFromEnglish(engine)}/${Index}`}>
