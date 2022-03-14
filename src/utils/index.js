@@ -85,5 +85,5 @@ export const disableBody = (target) => disableBodyScroll(target);
 export const enableBody = (target) => enableBodyScroll(target);
 
 export const sanitizeUrl = (str) => {
-  return str.replace(/http:/g, "https:");
+  return str?.replace(/http:/g, "https:");
 };
