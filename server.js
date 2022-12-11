@@ -67,7 +67,7 @@ app.get('/shared/:referralID', (request, response) => {
   const referralID = request.params.referralID
     axios
       .post(
-        `https://gophie-ocena.herokuapp.com/referral/id/?referral_id=${referralID}`
+        `https://ocena.gophie.cam/referral/id/?referral_id=${referralID}`
       )
       .then(json => {
         let movie_name = json.data.name
