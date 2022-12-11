@@ -75,7 +75,7 @@ export const defaultImage =
 export const API_ENDPOINTS = {
   //  ocena: "https://staging-ocena.herokuapp.com",
   //  cors: "http://localhost:9001/",
-  ocena: "https://gophie-ocena.herokuapp.com",
+  ocena: "https://ocena.gophie.cam",
   ip: "https://api.ipify.org?format=json",
   mythra: "https://mythra.gophie.cam",
   cors: "https://gophie-cors.herokuapp.com/",
