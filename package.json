@@ -13,7 +13,7 @@
     "axios-retry": "^3.1.9",
     "body-scroll-lock": "^3.1.5",
     "bootstrap": "^4.6.0",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "gsap": "^3.6.0",
     "js-file-downloader": "^1.1.16",
     "material-ui-rating": "^4.2.0",
