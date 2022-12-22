@@ -41,11 +41,12 @@ export const tourSteps = [
 
 let nm = new Map();
 //nm.set("Styx", "mycoolmoviez");
-nm.set("Server1", "fzmovies");
+nm.set("Server1", "nkiri");
 nm.set("Server2", "takanimelist");
 nm.set("Server3", "besthdmovies");
 nm.set("Server4", "tvseries");
 nm.set("Server5", "netnaija");
+nm.set("Server8", "fzmovies");
 nm.set("Server6", "kdramahood");
 nm.set("Server7", "animeout");
 
