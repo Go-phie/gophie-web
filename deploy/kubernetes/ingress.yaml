@@ -1,0 +1,45 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: gophie-web
+  namespace: gophie
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-production
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      if ($request_uri ~* \.(js|css|gif|jpe?g|png)) {
+        expires 1M;
+        add_header Cache-Control "public";
+      }
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: gophie.cam
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: /
+        backend:
+          service:
+            name: gophie-web
+            port:
+              number: 80
+  - host: web.gophie.cam
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: /
+        backend:
+          service:
+            name: gophie-web
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - web.gophie.cam
+    secretName: web-gophie-cam-tls
+  - hosts:
+    - gophie.cam
+    secretName: gophie-cam-tls
+
+

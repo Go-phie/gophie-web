@@ -35,6 +35,11 @@ export default class Movie extends Component {
       .post(this.state.ratings_api + "/download", {
         ip_address: this.props.ip_address,
         referral_id: this.props.data.referral_id,
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        },
       })
       .then(() => {
         console.log(`added ${this.props.data.name} to downloads on ocena`);
@@ -46,6 +51,11 @@ export default class Movie extends Component {
     axios
       .post(this.state.ratings_api + "/movie/ratings/average", {
         referral_id: data.referral_id,
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        },
       })
       .then((res) => {
         this.setState({
@@ -68,6 +78,11 @@ export default class Movie extends Component {
       .post(this.state.ratings_api + "/referral", {
         ip_address: this.props.ip_address,
         referral_id: data.referral_id,
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        }
       })
       .then((res) => {
         const { data } = res;

@@ -45,6 +45,11 @@ export default function MovieSidebar(props) {
         referral_id: movie.referral_id,
         ip_address: ip_address,
         score: value,
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        }
       })
       .then((res) => {
         if (res.data !== null) {
@@ -65,6 +70,11 @@ export default function MovieSidebar(props) {
       .post(ratings_api + "/referral", {
         ip_address: ip_address,
         referral_id: movie.referral_id,
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        }
       })
       .then((res) => {
         const { data } = res;
@@ -96,6 +106,11 @@ export default function MovieSidebar(props) {
       .post(ratings_api + "/download", {
         ip_address: ip_address,
         referral_id: movie.referral_id,
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        }
       })
       .then((res) => {
         console.log(res);
@@ -123,6 +138,11 @@ export default function MovieSidebar(props) {
         .post(ratings_api + "/referral", {
           ip_address: ip_address,
           referral_id: movie.referral_id,
+        },{
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        }
         })
         .then((res) => {
           const { data } = res;
