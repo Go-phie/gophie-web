@@ -111,7 +111,7 @@ class Shared extends Component {
 	getAverage = () => {
 		const { movie } = this.state;
 		axios
-			.post(this.state.api + '/movie/ratings/average', {
+            .post(this.state.api + '/movie/ratings/average/', {
 				referral_id: movie.referral_id,
       }, {
         auth: {
@@ -136,7 +136,7 @@ class Shared extends Component {
 	rateMovie = (value) => {
 		const { movie } = this.state;
 		axios
-			.post(this.state.api + '/rate', {
+            .post(this.state.api + '/rate/', {
 				referral_id: movie.referral_id,
 				ip_address: this.state.ip_address,
 				score: value,

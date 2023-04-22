@@ -41,7 +41,7 @@ export default function MovieSidebar(props) {
 
   const rateMovie = (value) => {
     axios
-      .post(ratings_api + "/rate", {
+      .post(ratings_api + "/rate/", {
         referral_id: movie.referral_id,
         ip_address: ip_address,
         score: value,
@@ -67,7 +67,7 @@ export default function MovieSidebar(props) {
 
   const getShareID = (action) => {
     axios
-      .post(ratings_api + "/referral", {
+      .post(ratings_api + "/referral/", {
         ip_address: ip_address,
         referral_id: movie.referral_id,
       }, {
@@ -103,7 +103,7 @@ export default function MovieSidebar(props) {
 
   const addDownload = () => {
     axios
-      .post(ratings_api + "/download", {
+      .post(ratings_api + "/download/", {
         ip_address: ip_address,
         referral_id: movie.referral_id,
       }, {
@@ -135,7 +135,7 @@ export default function MovieSidebar(props) {
   useEffect(() => {
     const getShareID = (action) => {
       axios
-        .post(ratings_api + "/referral", {
+        .post(ratings_api + "/referral/", {
           ip_address: ip_address,
           referral_id: movie.referral_id,
         },{
