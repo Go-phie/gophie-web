@@ -53,6 +53,10 @@ class TrendingCarousel extends Component {
 				filter_num: 4,
 				top: 10,
 			},
+            auth: {
+              username: process.env.REACT_APP_OCENA_USERNAME,
+              password: process.env.REACT_APP_OCENA_PASSWORD
+            },
 		};
 
 		axios(options)

@@ -49,6 +49,11 @@ class Popup extends Component {
       .post(this.state.ratings_api + "/referral/", {
         ip_address: this.props.ip_address,
         referral_id: this.props.movie.referral_id,
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        },
       })
       .then((res) => {
         this.setState(
@@ -65,6 +70,11 @@ class Popup extends Component {
     axios
       .post(this.state.ratings_api + "/movie/ratings/average/", {
         referral_id: movie.referral_id,
+      },{
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        },
       })
       .then((res) => {
         this.setState({
@@ -86,6 +96,11 @@ class Popup extends Component {
       .post(this.state.ratings_api + "/movie/rating/", {
         referral_id: movie.referral_id,
         ip_address: this.props.ip_address,
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        },
       })
       .then((res) => {
         if (res.data !== null) {
@@ -110,6 +125,11 @@ class Popup extends Component {
         referral_id: movie.referral_id,
         ip_address: this.props.ip_address,
         score: value,
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        },
       })
       .then((res) => {
         if (res.data !== null) {

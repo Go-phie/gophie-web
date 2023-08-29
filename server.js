@@ -92,6 +92,8 @@ app.get('/terms', (request, response) => {
   common(request, response, 'Terms and Conditions of Usage')
 })
 
+app.use(express.static(path.resolve(__dirname, './build')))
+
 app.get('/:engine', (request, response) => {
   const engine = request.params.engine
   let description = null
@@ -117,7 +119,6 @@ app.get('/:engine', (request, response) => {
   common(request, response, description, title)
 })
 
-app.use(express.static(path.resolve(__dirname, './build')))
 
 app.get('*', (request, response) => {
   response.sendFile(filePath)

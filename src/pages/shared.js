@@ -43,7 +43,12 @@ class Shared extends Component {
 		const urlPath = window.location.pathname.split('/');
 		const referralID = urlPath.pop();
 		axios
-			.post(`${this.state.api}/referral/id/?referral_id=${referralID}`)
+      .post(`${this.state.api}/referral/id/?referral_id=${referralID}`, {}, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        }
+      })
 			.then((res) => {
 				this.setState(
 					{
@@ -85,7 +90,12 @@ class Shared extends Component {
 
 	getIp = () => {
 		axios
-			.get('https://api.ipify.org?format=json')
+      .get('https://api.ipify.org?format=json', {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        }
+      })
 			.then((res) => {
 				this.setState({
 					ip_address: res.data.ip,
@@ -101,9 +111,14 @@ class Shared extends Component {
 	getAverage = () => {
 		const { movie } = this.state;
 		axios
-			.post(this.state.api + '/movie/ratings/average', {
+            .post(this.state.api + '/movie/ratings/average/', {
 				referral_id: movie.referral_id,
-			})
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        }
+      })
 			.then((res) => {
 				this.setState({
 					ratings: res.data,
@@ -121,11 +136,16 @@ class Shared extends Component {
 	rateMovie = (value) => {
 		const { movie } = this.state;
 		axios
-			.post(this.state.api + '/rate', {
+            .post(this.state.api + '/rate/', {
 				referral_id: movie.referral_id,
 				ip_address: this.state.ip_address,
 				score: value,
-			})
+      }, {
+        auth: {
+          username: process.env.REACT_APP_OCENA_USERNAME,
+          password: process.env.REACT_APP_OCENA_PASSWORD
+        }
+      })
 			.then((res) => {
 				if (res.data !== null) {
 					this.setState({

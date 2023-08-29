@@ -1,0 +1,18 @@
+namespace: gophie
+
+labels:
+  - pairs:
+      app: gophie-web
+    includeSelectors: true
+    includeTemplates: true
+  - pairs:
+      app.kubernetes.io/name: gophie-web
+      app.kubernetes.io/instance: gophie-web
+      app.kubernetes.io/managed-by: kustomize
+      app.kubernetes.io/part-of: gophie
+    includeSelectors: false
+    includeTemplates: true
+
+resources:
+  - deploy.yaml
+  - ingress.yaml

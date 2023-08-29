@@ -174,7 +174,7 @@ class Home extends Component {
     for (let i = 0; i < serverAxios.length; i++) {
       serverAxios[i] = axios.get(
         this.state.api +
-          "/search?query=" +
+          "/search/?query=" +
           encodeURI(query.trim()) +
           "&engine=" +
           serverAxios[i] +
@@ -182,6 +182,10 @@ class Home extends Component {
           this.state.listIndex,
         {
           timeout: 30000,
+          auth: {
+            username: process.env.REACT_APP_OCENA_USERNAME,
+            password: process.env.REACT_APP_OCENA_PASSWORD
+          }
         }
       );
     }
@@ -228,8 +232,13 @@ class Home extends Component {
     });
     axios
       .get(
-        `${this.state.api}/list?page=${this.state.listIndex}&engine=${this.state.server}`
-      )
+          `${this.state.api}/list/?page=${this.state.listIndex}&engine=${this.state.server}`, {
+      auth: {
+        username: process.env.REACT_APP_OCENA_USERNAME,
+        password: process.env.REACT_APP_OCENA_PASSWORD
+      },
+      withCredentials: false
+    })
       .then((res) => {
         const movies = res.data;
         let newIndex = this.state.listIndex;
