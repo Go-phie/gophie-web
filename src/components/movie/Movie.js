@@ -102,6 +102,7 @@ export default class Movie extends Component {
             referralID: data.referral_id,
           },
           () => {
+            // error thrown leading to a  bug of share modal always displayed on first renders
             // this.shareMovie();
           }
         );
