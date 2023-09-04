@@ -102,7 +102,7 @@ export default class Movie extends Component {
             referralID: data.referral_id,
           },
           () => {
-            this.shareMovie();
+            // this.shareMovie();
           }
         );
         console.log(err);
