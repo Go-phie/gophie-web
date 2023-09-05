@@ -235,7 +235,7 @@ export default function MovieSidebar(props) {
       <Style.MovieOverlayStyle className={toggle ? "isOnOverlay" : ""} />{" "}
       <Style.MovieSidebarStyle>
         <div className="moviesidenav">
-          <ul className="transition">
+          <ul className="">
             <li ref={(el) => (refLi.current[0] = el)}> </li>{" "}
             <li ref={(el) => (refLi.current[1] = el)}> </li>{" "}
             <li ref={(el) => (refLi.current[2] = el)}> </li>{" "}
